@@ -1,0 +1,404 @@
+/*JSP POJECT LOSE WEIGHT CSS 
+	list 
+		0.common use.jsp
+		1.singUp.jsp				 =       user_signUp.jsp
+		2.login.jsp					 = 		 login.jsp
+		3.mypage.jsp				 = 		 user_Info.jsp
+        4.idpsSerch.jsp				 =   	 find_id_pw.jsp
+        5.5.idSearchAction.jsp		 = 		 find_id_Action.jsp
+*/
+
+/* common use */
+.button{
+	color:#fff;
+	line-height: 30px;
+    width: 60px;
+	border:none;
+	outline:none;
+	font-size:13px;
+	font-weight:400;
+	transition:all .1s linear;
+	background:#dedede;
+	cursor:pointer;
+}
+.salmon{
+	color:#eee;
+	background:#fa8072;
+}
+.white{
+	color:#000;
+	background:#f5f5f5;
+}
+.button_addr{
+	width:90px;
+}
+
+/*버튼 디자인 색 추가시 button의 css 아래에 넣어야 적용가능 
+    버튼은 넣을때 height, padding 쓰지말고 
+    line-height로 값 줘야 텍스트와 높이 맞추는게 수월함. 
+*/
+
+/*
+==============================================================================
+2.singUp.jsp
+==============================================================================
+*/
+.singup_form{
+	    margin:0 auto;
+	    text-align: center;   
+	    width:400px;
+	    background:#f7f7f7;
+}
+.singup_form{
+	margin-top:20px;
+	border: medium none;
+    background:#f7f7f7;
+}
+.singup_input{
+	width: 400px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 40px;
+    margin-top:4px
+}
+.singupform{
+	margin-top:40px;
+	margin-bottom:40px;
+}
+.singup_select{
+	width: 89px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 43px;
+    margin-top:5px;
+}
+.autosize{
+	max-width: 100%; /*이미지 최대크기*/
+    width /***/: auto; /* only IE8 */
+    height: auto;
+    vertical-align: bottom;
+	position:relative;
+}
+.singupbuttonarer{
+	margin-top:10px;
+}
+a.no-uline { 
+text-decoration:none;
+color:#000;
+ }
+.singup_inputfont{
+	text-align:left;
+	text-align: left;
+    margin-block-end: 1.1mm;
+    margin-block-start: 1.1mm;
+}
+
+/*
+==============================================================================
+2.login.jsp
+==============================================================================
+*/
+.find_info{
+	font-size: 12px;
+    line-height: 13px;
+    display: inline-block;
+    text-decoration: none;
+    color: #888;
+    margin-top:10px;
+    float: right;
+    
+}
+.page_form{
+	    margin:0 auto;
+	    text-align: center;   
+	    width:400px;
+	    background:#f7f7f7;
+}
+.autosize{
+	max-width: 100%; /*이미지 최대크기*/
+    width /***/: auto; /* only IE8 */
+    height: auto;
+    vertical-align: bottom;
+	position:relative;
+}
+.login_form{
+	margin-top:20px;
+	border: medium none;
+    background:#f7f7f7;
+}
+.login_input{
+	width: 400px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 40px;
+    margin-top:4px
+}
+.login_inputfont{
+	float:left;
+	margin-block-start: 0.5em;
+    margin-block-end: 0.2em;
+}
+.login_postform{
+	margin-top:40px;
+	margin-bottom:40px;
+}
+.login_butonbar{
+	margin-top:30px;
+}
+a.no-uline { 
+text-decoration:none;
+color:#000;
+ }
+.login_hr{
+	border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+/*
+==============================================================================
+3. mypage_jsp
+==============================================================================
+*/
+.mypage_form{
+margin:0 auto;
+text-align:center;
+}
+.mypage_post{
+	margin-top:30px;
+	margin: 0 auto;
+    width: 600px;
+}
+.mypage_fullpost{
+	margin-top:30px;
+	margin: 0 auto;
+    width: 1300px;
+}
+.mypage_headtext{
+	text-align:left;
+}
+.mypage_post_table{
+	border-top: 3px solid #f6cdcd;
+	margin:0 auto;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 2.5;
+}
+.mypage_post_table thead{
+border-top: 3px solid #888;
+border-bottom: 1px solid #ccc;
+}
+.mypage_post_table tr{
+border:solid 1px #eee;
+}
+.mypage_post_table tr th{
+	width: 130px;
+    padding: 10px;
+    font-weight: bold;
+    text-align:left;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7
+}
+.mypage_post_table tr td{
+    width: 450px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.mypage_post_tableinput{
+border:solid 0px #eee;
+width: 110px;
+}
+.mypage_post_tableinput:focus {
+	outline:none;
+	}
+.mypage_post_tableaddrinput{
+	width: 115px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+}
+.mypage_post_tableaddrinput2{
+	width: 350px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+}
+.mypage_post_tablepasswdinput{
+	width: 200px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+}
+.mypage_post_e_mail{
+	width: 110px;
+    background-color: #ededed;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+}
+.mypage_post_e_mailselect{
+	width: 100px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+    margin-left:5px;
+}
+.mypage_post_tablepasswd{
+	height: 150px;
+}
+.mypage_form_button{
+	margin:600 auto;
+	margin-top:30px;
+}
+/*
+==============================================================================
+4.idpsSearch.jsp
+==============================================================================
+*/
+.idps_bt{
+	width:130px;
+	margin-top:20px;
+}
+.idps_btcenter{
+	margin:0 auto;
+	text-align:center;
+}
+.idps_topform{
+	margin:0 auto;
+	text-align:center;
+}
+.idps_form{
+    margin: 0 auto;
+    width: 600px;
+	text-align:left;
+}
+.idps_input{
+	width: 150px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 40px;
+    margin-top:5px;
+}
+
+.idps_post{
+	margin-top:20px;
+	margin: 0 auto;
+    width: 600px;
+}
+.idps_post_table{
+	border-top: 3px solid #eee;
+	margin:0 auto;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 2.5;
+}
+.idps_post_table thead{
+border-top: 3px solid #888;
+border-bottom: 1px solid #ccc;
+}
+.idps_post_table tr{
+border:solid 1px #eee;
+}
+.idps_post_table tr th{
+	width: 130px;
+    padding: 10px;
+    font-weight: bold;
+    text-align:left;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7
+}
+.idps_post_table tr td{
+    width: 450px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+/*
+==============================================================================
+5.idSearchAction.jsp
+==============================================================================
+*/
+.idSearch_form{
+    margin: 0 auto;
+    width: 600px;
+	text-align:center;
+}
+.idSearch_topimg{
+	margin-top:50px;
+}
+.idSearch_topimgsort{
+	display:inline;
+}
+.idSearch_font{
+	font-size: 2em;
+    font-weight: bold;
+    margin-block-start: 0em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    }
+.idSearch_resultform{
+    margin: 0 auto;
+    text-align: center;
+    width: 600px;
+    background: #f7f7f7;
+    margin-top:50px;
+    border:solid 1px #dfdfdf;
+}
+.idSearch_resultform2{
+    margin: 0 auto;
+    text-align: center;
+    width: 600px;
+    background: #fff;
+    margin-top:0px;
+    border:solid 1px #dfdfdf;
+    padding-bottom:15px;
+}
+.idSearch_padding{
+	padding:30px;
+}
+.idpw_bt{
+    width: 140px;
+    height:47px;
+}

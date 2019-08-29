@@ -1,0 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
+<script type="text/javascript"> 
+	function sendIt() {
+    	   if (document.a.passwd.value != document.a.passwd2.value) {  //비밀번호 불일치시 나오는 경고문
+    	   	alert("비밀번호가 일치하지 않습니다")
+    	   	document.a.lw_passwd.value = ""
+    	   	document.a.passwd2.value = ""
+    	   	document.a.passwd2.focus();
+    	   	return false;
+    	   }
+    	}
+    	
+    	function email3(userinput){
+    		var email3 = userinput.e_mail3.value;
+    		if(email3 =="0"){
+    			userinput.lw_e_mail2.value="";
+    			userinput.lw_e_mail2.readOnly= false;
+    		}else{
+    			userinput.lw_e_mail2.value= email3;
+    			userinput.lw_e_mail2.readOnly= true;
+    		}
+    	}
+    </script>
+	<!-- 주소 데이터 가져오는 스크립트  -->
+    <script type="text/javascript">
+        var openWin;
+        function openzipcode()
+        {
+            // window.name = "해당페이지로 가져옴 이름"; 
+            window.name = "user_info";
+            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+            openWin = window.open("../../zipfinder/zipSearch.jsp",
+                    "childForm", "width=580, height=500, resizable = no, scrollbars = yes");    
+        }
+   </script>
+   <!-- 주소 end -->
+</head>
+<!-- stlye css -->
+ <link rel="stylesheet" href="../css/style.css">
+<body  style="background:#f7f7f7;">
+	<!-- header start -->
+	<div class="singup_form">
+		<div>
+			<div>
+				<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
+			</div>
+		</div>
+		<div class="singup_postform autosize">
+			<form class="singupform"action="user_signUpAction.jsp" method="post" onsubmit="return sendIt();">
+				<h4 class="singup_inputfont">아이디</h4>
+				<input class="singup_input" type="text" name="lw_id" placeholder="아이디">
+				<h4 class="singup_inputfont">비밀번호</h4>
+				<input class="singup_input" type="password" name="lw_passwd" placeholder="비밀번호">
+				<h4 class="singup_inputfont">비밀번호 확인</h4>
+				<input class="singup_input" type="password" name="passwd2" placeholder="비밀번호 확인">
+				<h4 class="singup_inputfont">이름</h4>
+				<input class="singup_input" type="text" name="lw_name" placeholder="이름">
+				<h4 class="singup_inputfont">성별</h4>
+				<select class="singup_input" name="lw_gender">
+					<option value="남성"selected="selected">남성</option>
+					<option value="여성">여성</option>
+				</select>
+				<h4 class="singup_inputfont">이메일</h4>
+				<input class="singup_input" type="text" name="lw_e_mail1" placeholder="이메일" style="width:140px"/><a class="">@</a>
+				<input class="singup_input" type="text" name="lw_e_mail2" style="width:140px"/>
+				<select class="singup_select" name="e_mail3" onchange="email3(this.form)">
+					<option value="naver.com">네이버</option>
+					<option value="daum.com">다음</option>
+					<option value="nate.com">네이트</option>
+					<option value="gmail.com">구글</option>
+					<option value="0"selected="selected">집적입력</option>
+				</select><br>
+				<h4 class="singup_inputfont">주민등록번호</h4>
+				<input class="singup_input" type="text" name="lw_juminN" placeholder="주민등록번호">
+				<h4 class="singup_inputfont">주소</h4>
+				<input class="singup_input" type="text" id ="lw_zipcode" name="lw_zipcode" placeholder="우편번호" style="width:306px"><button class="button salmon button_addr" style="line-height: 40px;" type="button" onclick="openzipcode()">주소검색</button>
+				<input class="singup_input" type="text" id="lw_addr1" name="lw_addr1" placeholder="주소 ">
+				<input class="singup_input" type="text" id="lw_addr2" name="lw_addr2" placeholder="상세주소를 입력해주세요" >
+				<h4 class="singup_inputfont">전화번호</h4>
+				<input class="singup_input" type="text" name="lw_phone" placeholder="전화번호">
+				<input type="text" name="lw_lp" value=0 style="display:none">                      
+				<div class="singupbuttonarer">
+					<button type="submit" class="button salmon" style="width:400px;height:50px"><span>회원가입</span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
