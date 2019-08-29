@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 				<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt=""></a>
 		</div>
 		<div class="login_form autosize">
-			<form class="login_postform" action="loginAction.jsp" method="post">
+			<form class="login_postform" action="loginAction.jsp" method="post" name="vcheck">  
 				<h4 class="login_inputfont">아이디</h4>
 				<input class="login_input" type="text" name="lw_id" placeholder="아이디">
 				<h4 class="login_inputfont">비밀번호</h4>

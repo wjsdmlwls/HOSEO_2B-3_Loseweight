@@ -1,25 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.io.PrintWriter" %>
+
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-</head>
+<meta charset="UTF-8">
 <!-- stlye css -->
- <link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript"> 
-function email3(userinput){
-	   var email3 = userinput.e_mail3.value;
-	   if(email3 =="0"){
-		   userinput.lw_e_mail2.value="";
-		   userinput.lw_e_mail2.readOnly= false;
-	   }else{
-		   userinput.lw_e_mail2.value= email3;
-		   userinput.lw_e_mail2.readOnly= true;
-	   }
-}
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="vcheck.js">
 </script>
+</head>
 <body>
 	<div class="idps_topform">
 		<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
@@ -27,7 +17,7 @@ function email3(userinput){
 			<h3>아이디찾기</h3>	
 		</div>
 	<div class="idps_post">
-	    <form class="idpas_post" name="mypage" action="find_id_Action.jsp">
+	    <form class="idpas_post" name="vcheck1" action="find_id_Action.jsp">
 	        <table class="idps_post_table">  
 	            <thead>
 	            <tr>
@@ -37,7 +27,9 @@ function email3(userinput){
 	            </thead>
 	            <tr>
 	                <th>핸드폰번호</th>
-	                <td><input class="idps_input" type="text" name="lw_phone" placeholder="-를 빼고 기입해주세요"></td>
+	                <td><input class="idps_input" type="text" name="lw_phone" placeholder="-를 빼고 기입해주세요" onkeyup="p_m_alert()">
+	                <span id="alert"><span style="color:blue;">ddd</span></span></td>
+	                
 	            </tr>
 	            
 	            </table>
@@ -48,7 +40,7 @@ function email3(userinput){
 	    <div class="idps_form">
 			<h3>비밀번호찾기</h3>	
 		</div>
-	    <form class="idps_post" name="mypage" action="find_pw_Action.jsp" >
+	    <form class="idps_post" name="vcheck" action="find_pw_Action.jsp" >
 	          <table  class="idps_post_table"> 
 	          <thead>
 	            <tr>

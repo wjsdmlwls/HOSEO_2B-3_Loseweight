@@ -45,18 +45,18 @@
 	    <div class="mypage_post">
 	    <div style="text-align:left"><h1>회원정보 탈퇴</h1>
 	    </div>
-	    <form class="mypage_post" name="mypage" method="post" action="user_delete_Action.jsp" >
+	    <form class="mypage_post" name="vcheck" method="post" action="user_delete_Action.jsp" >
 	        <table  class="mypage_post_table">
 	            <%while(rs.next()) { %>
 	            <thead>
 	            <tr>
 	                <th>아이디</th>
-	                 <td><input class="mypage_post_tableinput"type="text" name="id" value="<%=rs.getString("lw_id")%>"readonly></td>
+	                 <td><input class="mypage_post_tableinput"type="text" name="lw_id" value="<%=rs.getString("lw_id")%>"readonly></td>
 	            </tr>
 	            </thead>
 	            <tr>
 	                <th>이름</th>
-	                <td><input class="mypage_post_tableinput" type="text" name="name" value="<%=rs.getString("lw_name")%>"readonly></td>
+	                <td><input class="mypage_post_tableinput" type="text" name="lw_name" value="<%=rs.getString("lw_name")%>"readonly></td>
 	            </tr>
 	            
 	            <tr class="mypage_post_tablepasswd">

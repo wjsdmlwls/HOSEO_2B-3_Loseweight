@@ -10,8 +10,8 @@ pageEncoding="UTF-8"%>
     	   if (document.a.passwd.value != document.a.passwd2.value) {  //비밀번호 불일치시 나오는 경고문
     	   	alert("비밀번호가 일치하지 않습니다")
     	   	document.a.lw_passwd.value = ""
-    	   	document.a.passwd2.value = ""
-    	   	document.a.passwd2.focus();
+    	   	document.a.lw_passwd2.value = ""
+    	   	document.a.lw_passwd2.focus();
     	   	return false;
     	   }
     	}
@@ -52,13 +52,13 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="singup_postform autosize">
-			<form class="singupform"action="user_signUpAction.jsp" method="post" onsubmit="return sendIt();">
+			<form class="singupform" action="user_signUpAction.jsp" method="post" name="vcheck" onsubmit="return sendIt();">
 				<h4 class="singup_inputfont">아이디</h4>
 				<input class="singup_input" type="text" name="lw_id" placeholder="아이디">
 				<h4 class="singup_inputfont">비밀번호</h4>
 				<input class="singup_input" type="password" name="lw_passwd" placeholder="비밀번호">
 				<h4 class="singup_inputfont">비밀번호 확인</h4>
-				<input class="singup_input" type="password" name="passwd2" placeholder="비밀번호 확인">
+				<input class="singup_input" type="password" name="lw_passwd2" placeholder="비밀번호 확인">
 				<h4 class="singup_inputfont">이름</h4>
 				<input class="singup_input" type="text" name="lw_name" placeholder="이름">
 				<h4 class="singup_inputfont">성별</h4>

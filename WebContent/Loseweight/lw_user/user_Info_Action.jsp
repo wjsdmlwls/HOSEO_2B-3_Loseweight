@@ -8,12 +8,12 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
-	String id =request.getParameter("id");
-	String e_mail1 =request.getParameter("e_mail1");
-	String e_mail2 =request.getParameter("e_mail2");
-	String zipcode =request.getParameter("zipcode");
-	String addr1 =request.getParameter("addr1");
-	String addr2 =request.getParameter("addr2");
+	String lw_id =request.getParameter("lw_id");
+	String lw_e_mail1 =request.getParameter("lw_e_mail1");
+	String lw_e_mail2 =request.getParameter("lw_e_mail2");
+	String lw_zipcode =request.getParameter("lw_zipcode");
+	String lw_addr1 =request.getParameter("lw_addr1");
+	String lw_addr2 =request.getParameter("lw_addr2");
 	/*변경 버튼*/
 %>
 <%--java bean에서 값들 불러오기--%>
@@ -43,12 +43,12 @@
 	String sql="update lw_users set lw_e_mail1=?,lw_e_mail2=?,lw_zipcode=?,lw_addr1=?,lw_addr2=? where lw_id=?";
 	
 	pstmt=conn.prepareStatement(sql);
-	pstmt.setString(1, e_mail1);
-	pstmt.setString(2, e_mail2);
-	pstmt.setString(3, zipcode);
-	pstmt.setString(4, addr1);
-	pstmt.setString(5, addr2);
-	pstmt.setString(6, id);
+	pstmt.setString(1, lw_e_mail1);
+	pstmt.setString(2, lw_e_mail2);
+	pstmt.setString(3, lw_zipcode);
+	pstmt.setString(4, lw_addr1);
+	pstmt.setString(5, lw_addr2);
+	pstmt.setString(6, lw_id);
 	pstmt.executeUpdate();
 	
 	}catch(Exception e){
