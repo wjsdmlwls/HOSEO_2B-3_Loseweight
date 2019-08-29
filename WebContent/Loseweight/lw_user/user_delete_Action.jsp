@@ -11,7 +11,7 @@
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	
-	String id = (String) session.getAttribute("id");
+	String lw_id = (String) session.getAttribute("lw_id");
 	String lw_passwd1=request.getParameter("lw_passwd1");
 	String lw_passwd2=request.getParameter("lw_passwd2");
 	String pw ="";
@@ -53,7 +53,7 @@
     		String sql1 = "delete FROM lw_users WHERE lw_id = ? and lw_passwd = ? and lw_passwd=?";
 
     		pstmt = conn.prepareStatement(sql1);
-    		pstmt.setString(1,id);
+    		pstmt.setString(1,lw_id);
     		pstmt.setString(2,lw_passwd1);
     		pstmt.setString(3,lw_passwd2);
     		pstmt.executeUpdate();

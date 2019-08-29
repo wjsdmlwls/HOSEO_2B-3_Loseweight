@@ -51,12 +51,12 @@
 	            <thead>
 	            <tr>
 	                <th>아이디</th>
-	                 <td><input class="mypage_post_tableinput"type="text" name="id" value="<%=rs.getString("lw_id")%>"readonly></td>
+	                 <td><input class="mypage_post_tableinput"type="text" name="lw_id" value="<%=rs.getString("lw_id")%>"readonly></td>
 	            </tr>
 	            </thead>
 	            <tr>
 	                <th>이름</th>
-	                <td><input class="mypage_post_tableinput" type="text" name="name" value="<%=rs.getString("lw_name")%>"readonly></td>
+	                <td><input class="mypage_post_tableinput" type="text" name="lw_name" value="<%=rs.getString("lw_name")%>"readonly></td>
 	            </tr>
 	            
 	            <tr class="mypage_post_tablepasswd">

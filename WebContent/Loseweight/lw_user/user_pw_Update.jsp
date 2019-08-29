@@ -8,8 +8,8 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <%
-	String id =request.getParameter("id");
-	String passwd3 =request.getParameter("passwd3");
+	String lw_id =request.getParameter("lw_id");
+	String lw_passwd3 =request.getParameter("lw_passwd3");
 %>
 <%--java bean에서 값들 불러오기--%>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <body>
 
 <%	
-if (passwd3!="" || passwd3!=null){
+if (lw_passwd3!="" || lw_passwd3!=null){
 	Connection conn=null;
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
@@ -38,8 +38,8 @@ if (passwd3!="" || passwd3!=null){
 	String sql="update lw_users set lw_passwd=? where lw_id=?";
 
 	pstmt=conn.prepareStatement(sql);
-	pstmt.setString(1, passwd3);
-	pstmt.setString(2, id);
+	pstmt.setString(1, lw_passwd3);
+	pstmt.setString(2, lw_id);
 	pstmt.executeUpdate();
 	
 	}catch(Exception e){

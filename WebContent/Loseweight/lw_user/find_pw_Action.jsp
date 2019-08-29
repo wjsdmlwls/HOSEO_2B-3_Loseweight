@@ -32,13 +32,13 @@
 
  }
  function sendIt() {
- 	   if (document.getElementById("passwd2").value != document.getElementById("passwd3").value) 
+ 	   if (document.getElementById("lw_passwd2").value != document.getElementById("lw_passwd3").value) 
  	   {  //비밀번호 불일치시 나오는 경고문
  		   alert("비밀번호가 일치하지 않습니다")   
  		   return false;
      }
- 	  if (document.getElementById("passwd2").value == ""||document.getElementById("passwd2").value == null||
- 			 document.getElementById("passwd3").value == ""||document.getElementById("passwd3").value == null) 
+ 	  if (document.getElementById("lw_passwd2").value == ""||document.getElementById("lw_passwd2").value == null||
+ 			 document.getElementById("lw_passwd3").value == ""||document.getElementById("lw_passwd3").value == null) 
 	   {  //비밀번호 불일치시 나오는 경고문
 		   alert("비밀번호를 입력하지 않으셨습니다.")   
 		   return false;
@@ -57,7 +57,7 @@
 	String lw_id =request.getParameter("lw_id");
 	String lw_e_mail1=request.getParameter("lw_e_mail1");
 	String lw_e_mail2=request.getParameter("lw_e_mail2");
-	String pw ="";
+	String pw =""; //유효성검사 사용 변수 
 	
 	if(lw_id=="" || lw_e_mail1=="" || lw_e_mail2==""){
 		PrintWriter script = response.getWriter();
@@ -137,9 +137,9 @@
     	<div class="idSearch_resultform2">
     	<form class="pwSearch_post" name="pwSearch" action="user_pw_Update.jsp" onsubmit="return sendIt();">
     	<p>비밀번호 변경하기</p>
-    	<input type="text" style="display: none;"name="id" value=<%=lw_id%>>
-    	<input type="text" class="ps_Searcinput" name="passwd2" id="passwd2" placeholder="새 비밀번호"/><br>
-    	<input type="text" class="ps_Searcinput" name="passwd3" id="passwd3" placeholder="새 비밀번호 확인"/><br>
+    	<input type="text" style="display: none;"name="lw_id" value=<%=lw_id%>>
+    	<input type="text" class="ps_Searcinput" name="lw_passwd2" id="lw_passwd2" placeholder="새 비밀번호"/><br>
+    	<input type="text" class="ps_Searcinput" name="lw_passwd3" id="lw_passwd3" placeholder="새 비밀번호 확인"/><br>
     	<input type="submit" value="비밀번호 변경" style="margin-top:20px" class="button salmon idpw_bt" onclick="sendIt();"/>
     	</div>
 
