@@ -61,7 +61,8 @@ function email3(userinput){
 <!-- stlye css -->
  <link rel="stylesheet" href="../css/style.css">
 
-<!-- 주소 데이터 가져오는 스크립트  -->
+ <script type="text/javascript" src="vcheck.js">
+ </script>
     <script type="text/javascript">
         var openWin;
         function openzipcode()
@@ -86,7 +87,7 @@ function email3(userinput){
 	    %> 
 	    <div class="mypage_fullpost">
 	    <div><h1>회원정보 수정</h1></div>
-	    <form class="mypage_post"name="vcheck" action="user_pw_Update.jsp" onsubmit="return sendIt();">
+	    <form class="mypage_post"name="vcheck1" action="user_pw_Update.jsp" onsubmit="return sendIt();">
 	    
 	    <!-- 
 	     <div style="style=position: relative;float: left; text-align:center; width:150px;height:200px">
@@ -122,8 +123,9 @@ function email3(userinput){
 	                <th>패스워드변경</th>
 	                <td>
 	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd2"  id="lw_passwd2"placeholder="기존 비밀번호"><br>
-	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd3" id="lw_passwd3" placeholder="신규 비밀번호 " ><button class="button salmon" type="submit" value="변경" onclick="sendIt();" style="margin-left:5px;">변경</button>
-	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd4" id="lw_passwd4" placeholder="신규 비밀번호 확인 " ><br>
+	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd3" id="lw_passwd3" placeholder="신규 비밀번호 " onkeyup="pw_m_alert_m()"><button class="button salmon" type="submit" value="변경" onclick="sendIt();" style="margin-left:5px;">변경</button>
+	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd4" id="lw_passwd4" placeholder="신규 비밀번호 확인 " onkeyup="pw_m_alert_m()"><br>
+	                <span id="alert_pw_m"><span style="color:blue;"></span></span>
 	                </td>
 	            </tr>
 	            </form>

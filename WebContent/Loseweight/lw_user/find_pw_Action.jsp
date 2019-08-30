@@ -120,9 +120,9 @@
     	<form class="pwSearch_post" name="vcheck1" action="user_pw_Update.jsp" onsubmit="return sendIt();">
     	<p>비밀번호 변경하기</p>
     	<input type="text" style="display: none;"name="lw_id" value=<%=lw_id%>>
-    	<input type="password" class="ps_Searcinput" name="lw_passwd2" id="lw_passwd2" placeholder="새 비밀번호" onkeyup="pw_m_alert()"><Br>
-    	<input type="password" class="ps_Searcinput" name="lw_passwd3" id="lw_passwd3" placeholder="새 비밀번호 확인" onkeyup="pw_m_alert()"><Br>
-    	<span id="alert_pw"><span style="color:blue;"></span></span><br>
+    	<input type="password" class="ps_Searcinput" name="lw_passwd2" id="lw_passwd2" placeholder="새 비밀번호" onkeyup="pw_m_alert_f()"><Br>
+    	<input type="password" class="ps_Searcinput" name="lw_passwd3" id="lw_passwd3" placeholder="새 비밀번호 확인" onkeyup="pw_m_alert_f()"><Br>
+    	<span id="alert_pw_f"><span style="color:blue;"></span></span><br>
     	<input type="submit" value="비밀번호 변경" style="margin-top:20px" class="button salmon idpw_bt" onclick="sendIt();"/>
       </div>
    </div>
