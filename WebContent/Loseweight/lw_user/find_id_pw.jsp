@@ -27,8 +27,8 @@
 	            </thead>
 	            <tr>
 	                <th>핸드폰번호</th>
-	                <td><input class="idps_input" type="text" name="lw_phone" placeholder="-를 빼고 기입해주세요" onkeyup="p_m_alert()">
-	                <span id="alert"><span style="color:blue;">ddd</span></span></td>
+	                <td><input class="idps_input" type="text" name="lw_phone" placeholder="-를 빼고 기입해주세요" onkeyup="ph_m_alert()">
+	                <span id="alert"><span style="color:blue;"></span></span></td>
 	                
 	            </tr>
 	            

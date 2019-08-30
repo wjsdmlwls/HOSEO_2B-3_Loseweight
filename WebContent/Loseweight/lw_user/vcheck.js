@@ -9,7 +9,7 @@ function phone_max(){
 	}
 	
 }
-function p_m_alert(){
+function ph_m_alert(){
 	  var obj = document.vcheck1;
 		
 	  if(obj.lw_phone.value.length > 12){
@@ -20,7 +20,16 @@ function p_m_alert(){
 	    return false;
 	  }
 	}
-
+function pw_m_alert(){
+	  var obj = document.vcheck1;
+		
+	  if(obj.lw_passwd2.value != obj.lw_passwd3.value || obj.lw_passwd3==''){
+	    document.getElementById("alert_pw").innerHTML=('<span style="color:red;font-size:12px;">비밀번호가 일치하지 않습니다..</span>');
+	    return;
+	  }else{
+		  document.getElementById("alert_pw").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
+	  }
+	}
 function email3(userinput){
 	   var email3 = userinput.e_mail3.value;
 	   if(email3 =="0"){
