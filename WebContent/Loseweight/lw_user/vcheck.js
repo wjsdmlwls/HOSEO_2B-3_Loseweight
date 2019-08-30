@@ -9,6 +9,7 @@ function phone_max(){
 	}
 	
 }
+//패스워드 중복 text
 function ph_m_alert(){
 	  var obj = document.vcheck1;
 		
@@ -41,6 +42,26 @@ function pw_m_alert_m(){ //mypage
 		  document.getElementById("alert_pw_m").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
 	  }
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	function pw_m_alert_s(){
+	  var obj = document.vcheck;
+		
+	  if(obj.lw_passwd.value != obj.lw_passwd2.value || obj.lw_passwd2==''){
+	    document.getElementById("alert_pw_s").innerHTML=('<span style="color:red;font-size:12px;">비밀번호가 일치하지 않습니다..</span>');
+	    return;
+	  }else{
+		  document.getElementById("alert_pw_s").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
+	  }
+	}
+	
 function email3(userinput){
 	   var email3 = userinput.e_mail3.value;
 	   if(email3 =="0"){
@@ -65,4 +86,15 @@ function sendIt() {
 		   return false;
  } 
 }
+
+	function sendIt_s() {
+    	   if (document.a.passwd.value != document.a.passwd2.value) {  //비밀번호 불일치시 나오는 경고문
+    	   	alert("비밀번호가 일치하지 않습니다")
+    	   	document.a.lw_passwd.value = ""
+    	   	document.a.lw_passwd2.value = ""
+    	   	document.a.lw_passwd2.focus();
+    	   	return false;
+    	   }
+    	}
+    	
 <!-- PW 입력 안했을경우나 비밀번호 확인이 틀릴경우 -->

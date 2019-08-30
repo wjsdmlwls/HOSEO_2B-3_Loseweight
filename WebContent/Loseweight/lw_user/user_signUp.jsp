@@ -5,27 +5,7 @@ pageEncoding="UTF-8"%>
 <head>
 	<meta charset="UTF-8">
 	<title>회원가입</title>
-<script type="text/javascript"> 
-	function sendIt() {
-    	   if (document.a.passwd.value != document.a.passwd2.value) {  //비밀번호 불일치시 나오는 경고문
-    	   	alert("비밀번호가 일치하지 않습니다")
-    	   	document.a.lw_passwd.value = ""
-    	   	document.a.lw_passwd2.value = ""
-    	   	document.a.lw_passwd2.focus();
-    	   	return false;
-    	   }
-    	}
-    	
-    	function email3(userinput){
-    		var email3 = userinput.e_mail3.value;
-    		if(email3 =="0"){
-    			userinput.lw_e_mail2.value="";
-    			userinput.lw_e_mail2.readOnly= false;
-    		}else{
-    			userinput.lw_e_mail2.value= email3;
-    			userinput.lw_e_mail2.readOnly= true;
-    		}
-    	}
+<script type="text/javascript" src="vcheck.js"> 
     </script>
 	<!-- 주소 데이터 가져오는 스크립트  -->
     <script type="text/javascript">
@@ -56,9 +36,10 @@ pageEncoding="UTF-8"%>
 				<h4 class="singup_inputfont">아이디</h4>
 				<input class="singup_input" type="text" name="lw_id" placeholder="아이디">
 				<h4 class="singup_inputfont">비밀번호</h4>
-				<input class="singup_input" type="password" name="lw_passwd" placeholder="비밀번호">
+				<input class="singup_input" type="password" name="lw_passwd" placeholder="비밀번호" onkeyup="pw_m_alert_s()">
 				<h4 class="singup_inputfont">비밀번호 확인</h4>
-				<input class="singup_input" type="password" name="lw_passwd2" placeholder="비밀번호 확인">
+				<input class="singup_input" type="password" name="lw_passwd2" placeholder="비밀번호 확인" onkeyup="pw_m_alert_s()">
+				<span id="alert_pw_s"></span>
 				<h4 class="singup_inputfont">이름</h4>
 				<input class="singup_input" type="text" name="lw_name" placeholder="이름">
 				<h4 class="singup_inputfont">성별</h4>
