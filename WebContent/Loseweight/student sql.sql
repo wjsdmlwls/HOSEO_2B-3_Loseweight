@@ -5,7 +5,6 @@ create table lw_users(
     lw_gender varchar(50) not null,
     lw_e_mail1 varchar(50) null,
     lw_e_mail2 varchar(50) null,
-    lw_juminN varchar(50) null,
     lw_zipcode varchar(50) null,
     lw_addr1 varchar(50) null,
 	lw_addr2 varchar(50) null,
@@ -22,8 +21,8 @@ drop table lw_users;
 
 update lw_users set lw_e_mail1="g",lw_e_mail2="naver.com",lw_addr="test" where lw_id="choyk12"
 update lw_users set lw_e_mail1=g,lw_e_mail2="naver.com",lw_addr="test" where lw_id=choyk12 and passwd=asd123
-insert into lw_users (lw_id, lw_passwd, lw_name, lw_gender, lw_e_mail1, lw_e_mail2, lw_juminN, lw_addr, lw_phone, lw_lp)
-values("choyk12","asd123","test",11,11,11,11,11,11,11,11,11);
+insert into lw_users (lw_id, lw_passwd, lw_name, lw_gender, lw_e_mail1, lw_e_mail2, lw_zipcode,lw_addr1,lw_addr2, lw_phone, lw_lp)
+values("choyk12","asd123","test",11,11,11,11,11,11,11,11);
 
 select * from lw_users 
 

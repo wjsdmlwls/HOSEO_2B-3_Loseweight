@@ -38,6 +38,7 @@
     line-height로 값 줘야 텍스트와 높이 맞추는게 수월함. 
 */
 
+
 /*
 ==============================================================================
 2.singUp.jsp
@@ -50,7 +51,6 @@
 	    background:#f7f7f7;
 }
 .singup_form{
-	margin-top:20px;
 	border: medium none;
     background:#f7f7f7;
 }
@@ -62,12 +62,15 @@
     color: #7d7d7d;
     font-size: 12px;
     font-weight: 500;
-    height: 40px;
+    height: 35px;
     margin-top:4px
 }
 .singupform{
 	margin-top:40px;
 	margin-bottom:40px;
+}
+.singupform h4{
+    margin-top:5px;
 }
 .singup_select{
 	width: 89px;
@@ -77,8 +80,8 @@
     color: #7d7d7d;
     font-size: 12px;
     font-weight: 500;
-    height: 43px;
-    margin-top:5px;
+    height: 35px;
+    vertical-align:middle 
 }
 .autosize{
 	max-width: 100%; /*이미지 최대크기*/

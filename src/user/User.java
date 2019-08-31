@@ -8,7 +8,6 @@ public class User {
 	private String lw_gender;
 	private String lw_e_mail1;
 	private String lw_e_mail2;
-	private String lw_juminN;
 	private String lw_zipcode;
 	private String lw_addr1;
 	private String lw_addr2;
@@ -32,9 +31,6 @@ public class User {
 	}
 	public String getLw_e_mail2() {
 		return lw_e_mail2;
-	}
-	public String getLw_juminN() {
-		return lw_juminN;
 	}
 	public String getLw_addr1() {
 		return lw_addr1;
@@ -68,9 +64,6 @@ public class User {
 	}
 	public void setLw_e_mail2(String lw_e_mail2) {
 		this.lw_e_mail2 = lw_e_mail2;
-	}
-	public void setLw_juminN(String lw_juminN) {
-		this.lw_juminN = lw_juminN;
 	}
 	public void setLw_addr1(String lw_addr1) {
 		this.lw_addr1 = lw_addr1;

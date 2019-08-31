@@ -32,7 +32,8 @@
 </head>
 <!-- stlye css -->
  <link rel="stylesheet" href="../css/style.css">
-
+<script type="text/javascript" src="vcheck.js">
+</script>
 <body>
 	<div class="mypage_form" style="margin-top:40px">
 	<div><a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
@@ -45,7 +46,7 @@
 	    <div class="mypage_post">
 	    <div style="text-align:left"><h1>회원정보 탈퇴</h1>
 	    </div>
-	    <form class="mypage_post" name="vcheck" method="post" action="user_delete_Action.jsp" >
+	    <form class="mypage_post" name="vcheck1" method="post" action="user_delete_Action.jsp" >
 	        <table  class="mypage_post_table">
 	            <%while(rs.next()) { %>
 	            <thead>
@@ -62,8 +63,9 @@
 	            <tr class="mypage_post_tablepasswd">
 	                <th>비밀번호 확인</th>
 	                <td>
-	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd1" id="lw_passwd1" placeholder="비밀번호 " ><br>
-	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd2" id="lw_passwd2" placeholder="비밀번호 확인 " ><br>
+	                <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd1" id="lw_passwd1"  placeholder="비밀번호 " onkeyup="pw_m_alert_d()"><br>
+                    <input class="mypage_post_tablepasswdinput" type="password" name="lw_passwd2" id="lw_passwd2"  placeholder="비밀번호 확인 " onkeyup="pw_m_alert_d()"><br>
+                    <span id="alert_pw_d"><span></span></span>
 	                </td>
 	                
 	            </tr>

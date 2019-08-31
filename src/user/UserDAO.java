@@ -69,12 +69,11 @@ public class UserDAO {
 			pstmt.setString(4,user.getLw_gender());
 			pstmt.setString(5,user.getLw_e_mail1());
 			pstmt.setString(6,user.getLw_e_mail2());
-			pstmt.setString(7,user.getLw_juminN());
-			pstmt.setString(8,user.getLw_zipcode());
-			pstmt.setString(9,user.getLw_addr1());
-			pstmt.setString(10,user.getLw_addr2());
-			pstmt.setString(11,user.getLw_phone());
-			pstmt.setString(12,user.getLw_lp());
+			pstmt.setString(7,user.getLw_zipcode());
+			pstmt.setString(8,user.getLw_addr1());
+			pstmt.setString(9,user.getLw_addr2());
+			pstmt.setString(10,user.getLw_phone());
+			pstmt.setString(11,user.getLw_lp());
 			
 			return pstmt.executeUpdate();		//쿼리?�� ?��?��?��?��
 		}catch(Exception e) {

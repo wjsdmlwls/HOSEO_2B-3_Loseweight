@@ -8,8 +8,21 @@
 		<meta charset="UTF_8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		
 	</head>
+	<!-- 모달창 오픈   -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+	    $("#popbutton").click(function(){
+	        $('div.modal').modal({remote : 'layer.jsp'});
+	    })
+	})
+	</script>
+	<link rel="stylesheet" href="css/style.css">
+	<!-- 모달창 오픈   -->
 	<body>
 	<%
 	String id= null;
@@ -24,7 +37,15 @@
 						<li class="nav">
 							<%if(id==null){ %>
 							<a href="lw_user/login.jsp">Login</a>
-							<a href="lw_user/user_signUp.jsp">회원가입</a>
+							<button class="btn btn-default"id="popbutton">회원가입</button>
+							<!-- 클릭시 모달창 새로 띄움  -->
+							<div class="modal fade">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								        <!-- remote ajax call이 되는영역 -->
+								    </div>
+								  </div>
+								</div>
 							<%}else{%>
 							<a href="lw_user/user_Info.jsp">MyPage</a>
 							<a href="lw_user/logout.jsp">LogOut</a>
@@ -61,14 +82,13 @@
 		<hr class="hr">
 				
 			</header>
-
+				
 		<!-- Banner -->
 			<section id="banner">
 				 <a href="lw_main.jsp"><img class="logo" alt="logo" src="img\main_img\logo1.jpg"></a> 
 				<p>안녕하세요 Loseweight에 오신것을 환영합니다.</p>
 				<p class="p2"></p>
 			</section>
-		
 <!-- 그림 사진 파일 설명(슬라이드) -->
 <div id="wrapper">
       <div id="slider-wrap">
@@ -113,11 +133,9 @@
 				</div>
 			</footer>
 			<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 			<!--텍스트 자바스크립트 애니멘이션 효과-->
 			<script type="text/javascript">
 			function changeText(cont1,cont2,speed){
@@ -135,7 +153,6 @@
 			};
 			$(document).ready(function(){
 				changeText($("p"),$(".p2"),150);
-				clearInterval(Otimer);
 			});
 			</script>
 		
