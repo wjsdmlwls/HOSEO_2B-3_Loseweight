@@ -60,7 +60,7 @@ public class UserDAO {
 	}
 	
 	public int signup(User user) {
-		String sql="insert into lw_users values(?,?,?,?,?,?,?,?,?,?,?,?)";  //DB?�� �? 집어?��?�� SQL�?
+		String sql="insert into lw_users values(?,?,?,?,?,?,?,?,?,?,?)";  //DB?�� �? 집어?��?�� SQL�?
 		try {
 			pstmt =conn.prepareStatement(sql); //값을 ?���? 받아?��
 			pstmt.setString(1,user.getLw_id());

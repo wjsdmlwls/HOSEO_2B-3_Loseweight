@@ -6,6 +6,7 @@
 		3.mypage.jsp				 = 		 user_Info.jsp
         4.idpsSerch.jsp				 =   	 find_id_pw.jsp
         5.5.idSearchAction.jsp		 = 		 find_id_Action.jsp
+        6.user_delete.jsp
 */
 
 /* common use */
@@ -37,8 +38,22 @@
     버튼은 넣을때 height, padding 쓰지말고 
     line-height로 값 줘야 텍스트와 높이 맞추는게 수월함. 
 */
-
-
+/*사이드 메뉴 mypage 공통 부분*/
+.sidemenu_mypage tbody tr{
+height:40px;
+}
+.sidemenu_mypage tbody tr td{
+padding:10px;
+}
+.mainbg_autosize{
+	max-width: 100%; /*이미지 최대크기*/
+    width /***/: auto; /* only IE8 */
+    height: 100%;
+    min-width: 2000px;
+    vertical-align: bottom;
+	position:relative;
+}
+/*end*/
 /*
 ==============================================================================
 2.singUp.jsp
@@ -179,42 +194,31 @@ color:#000;
 */
 .mypage_form{
 margin:0 auto;
-text-align:center;
-}
-.mypage_post{
-	margin-top:30px;
-	margin: 0 auto;
-    width: 600px;
 }
 .mypage_fullpost{
-	margin-top:30px;
-	margin: 0 auto;
-    width: 1300px;
 }
 .mypage_headtext{
 	text-align:left;
 }
 .mypage_post_table{
-	border-top: 3px solid #f6cdcd;
 	margin:0 auto;
     border-collapse: collapse;
     text-align: left;
-    line-height: 2.5;
+    line-height: 4.5;
+    margin-left:20px;
+    border-top: 1px solid #ccc;
 }
 .mypage_post_table thead{
-border-top: 3px solid #888;
+border-top: 2px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
-.mypage_post_table tr{
-border:solid 1px #eee;
-}
 .mypage_post_table tr th{
+    background:#f1f2ff;
 	width: 130px;
-    padding: 10px;
+    padding-left: 20px;
     font-weight: bold;
     text-align:left;
     border-bottom: 1px solid #ccc;
-    background: #f3f6f7
 }
 .mypage_post_table tr td{
     width: 450px;
@@ -288,8 +292,9 @@ width: 110px;
 	height: 150px;
 }
 .mypage_form_button{
-	margin:600 auto;
-	margin-top:30px;
+	margin:0 auto;
+    margin-top:30px;
+    text-align: center;
 }
 /*
 ==============================================================================
@@ -404,4 +409,78 @@ border:solid 1px #eee;
 .idpw_bt{
     width: 140px;
     height:47px;
+}
+/*
+==============================================================================
+6.user_delete.jsp
+==============================================================================
+*/
+.delete_form{
+margin:0 auto;
+text-align:center;
+}
+
+.delete_post_table{
+	margin:0 auto;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 4.5;
+    margin-top:50px;
+    margin-left:20px;
+    border-top: 1px solid #ccc;
+  
+}
+.delete_post_table thead{
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+.delete_post_table tr th{
+	width: 500px;
+    padding: 10px;
+    font-weight: bold;
+    text-align:left;
+    border-bottom: 1px solid #ccc;
+    background:#eee;
+    font-size: 13px;
+}
+.delete_post_table tr td{
+    width: 450px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background:#eee;
+}
+
+.delete_provision1{
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    padding:20px;
+}
+.delete_provision2{
+    margin-top: 20px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    padding:20px;
+}
+.delete_post_tableinput {
+    border:none;
+    background:#eee;
+	}
+.delete_post_tableinput:focus {
+    outline:none;
+	}
+.delete_post_tablepasswdinput{
+	width: 200px;
+    background-color: #fff;
+    border: medium none;
+    border: 1px solid #ccc;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 500;
+    height: 33px;
+    margin-top:5px;
+}
+.delete_form_button{
+	margin:0 auto;
+	margin-top:30px;
+    text-align: center;
 }

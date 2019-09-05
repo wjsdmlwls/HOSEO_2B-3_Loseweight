@@ -15,8 +15,6 @@
  <link rel="stylesheet" href="../css/style.css">
 <!-- ID SearchAction 스크립트 -->
 <%
-		
-
 	Connection conn= null;
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
@@ -24,14 +22,6 @@
 	String lw_name =request.getParameter("lw_name");
 	String lw_phone=request.getParameter("lw_phone");
 	String id ="";
-	
-	if(lw_name=="" || lw_phone==""){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('입력 안된 사항이 있습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
 	
 	try{
 		String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
@@ -52,7 +42,7 @@
     	while(rs.next()){
     		id = rs.getString("lw_id");	
     	}
-    	if(id == null){%>
+    	if(id == null || id==""){%>
     	
     	<%
     			PrintWriter script = response.getWriter();

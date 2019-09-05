@@ -16,13 +16,6 @@
 	String lw_passwd2=request.getParameter("lw_passwd2");
 	String pw ="";
 	
-	if(lw_passwd1=="" && lw_passwd2=="" || lw_passwd1==""||lw_passwd2==""){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('회원 정보가 일치하지 않습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
 	try{
 		String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
     	String dbId="jspid";
@@ -40,7 +33,7 @@
     	while(rs.next()){
     		pw = rs.getString("lw_passwd");	
     	}
-    	if(pw == ""){%>
+    	if(pw == "" || pw == null){%>
     	<%
     			PrintWriter script = response.getWriter();
 			script.println("<script>");

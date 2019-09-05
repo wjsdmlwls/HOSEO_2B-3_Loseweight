@@ -1,3 +1,5 @@
+// 인라인 스크립트 유효성 검사
+
 function phone_max(){
 	var obj = document.vcheck;
 
@@ -31,7 +33,6 @@ function pw_m_alert_f(){ //find
 		  document.getElementById("alert_pw_f").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
 	  }
 	}
-
 function pw_m_alert_m(){ //mypage
 	  var obj = document.vcheck1;
 		
@@ -42,17 +43,17 @@ function pw_m_alert_m(){ //mypage
 		  document.getElementById("alert_pw_m").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
 	  }
 	}
-	function pw_m_alert_s(){
+function pw_m_alert_s(){
 	  var obj = document.vcheck;
 		
 	  if(obj.lw_passwd.value != obj.lw_passwd2.value || obj.lw_passwd2==''){
-	    document.getElementById("alert_pw_s").innerHTML=('<span style="color:red;font-size:12px;">비밀번호가 일치하지 않습니다..</span>');
+	    document.getElementById("alert_pw_s").innerHTML=('<span style="color:red;font-size:12px;float:left;">비밀번호가 일치하지 않습니다..</span><Br>');
 	    return;
 	  }else{
-		  document.getElementById("alert_pw_s").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
+		  document.getElementById("alert_pw_s").innerHTML=('<span style="color:blue; font-size:12px;float:left;">비밀번호가 일치합니다..</span><Br>');
 	  }
 	}
-	function pw_m_alert_d(){    //delete passwd match
+function pw_m_alert_d(){    //delete passwd match
       var obj = document.vcheck1;
       if(obj.lw_passwd1.value != obj.lw_passwd2.value || obj.lw_passwd2==''){
         document.getElementById("alert_pw_d").innerHTML=('<span style="color:red;font-size:12px;">비밀번호가 일치하지 않습니다..</span>');
@@ -72,29 +73,47 @@ function email3(userinput){
 	   }
 }
 
-function sendIt() {
-	   if (document.getElementById("passwd2").value != document.getElementById("passwd3").value) 
-	   {  //비밀번호 불일치시 나오는 경고문
-		   alert("비밀번호가 일치하지 않습니다")   
-		   return false;
-  }
-	  if (document.getElementById("passwd2").value == ""||document.getElementById("passwd2").value == null||
-			 document.getElementById("passwd3").value == ""||document.getElementById("passwd3").value == null) 
-	   {  //비밀번호 불일치시 나오는 경고문
-		   alert("비밀번호를 입력하지 않으셨습니다.")   
-		   return false;
- } 
-}
 
-
-	function sendIt_s() {
-    	   if (document.a.passwd.value != document.a.passwd2.value) {  //비밀번호 불일치시 나오는 경고문
-    	   	alert("비밀번호가 일치하지 않습니다")
-    	   	document.a.lw_passwd.value = ""
-    	   	document.a.lw_passwd2.value = ""
-    	   	document.a.lw_passwd2.focus();
-    	   	return false;
-    	   }
-    	}
+// submit 스크립트 유효성 검사
+	
+	function id_pw_name_phone(){
+		 var obj = document.vcheck1;
+		 
+		if(obj.lw_name.value ==""||obj.lw_phone.value==""){
+			alert("입력 안된 사항이 있습니다1111.");
+			obj.lw_name.focus();
+			return false;
 			
-<!-- PW 입력 안했을경우나 비밀번호 확인이 틀릴경우 -->
+		}else{ 
+	return true;	
+	}
+}
+	
+	function id_pw_id_e_mail(){
+		 var obj = document.vcheck;
+		 
+		if(obj.lw_id.value ==""||obj.lw_e_mail1.value ==""||obj.lw_e_mail2.value==""){
+			alert("입력 안된 사항이 있습니다1111.");
+			obj.lw_id.focus();
+			return false;
+			
+		}else{ 
+	return true;	
+	}
+}
+	
+	function pw_action_pw(){
+		 var obj = document.vcheck1;
+		 if(obj.lw_passwd3.value==""||obj.lw_passwd2.value==""){
+			alert("공백이 있습니다.");
+			obj.lw_passwd2.focus();
+			return false;
+			
+		}else if(obj.lw_passwd2.value != obj.lw_passwd3.value){
+			alert("일치하지 않습니다.");
+	return false;	
+	}else{
+		return true;
+	}
+}
+	

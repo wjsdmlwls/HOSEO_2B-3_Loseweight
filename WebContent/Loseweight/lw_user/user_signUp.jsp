@@ -31,10 +31,10 @@ pageEncoding="UTF-8"%>
 	<div class="singup_form">
 		<div>
 			<div>
-				<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
+				<a href="../lw_main.jsp" style="margin-top: -30px;"><img src="../img/logo/logo.png" alt="" /></a>
 			</div>
 		</div>
-		<div class="singup_postform autosize">
+		<div class="singup_postform autosize" style="margin-top:-30px;">
 			<form class="singupform" action="user_signUpAction.jsp" method="post" name="vcheck">
 				<h4 class="singup_inputfont">아이디</h4>
 				<input class="singup_input" type="text" name="lw_id" placeholder="아이디">
@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
 				<input class="singup_input" type="password" name="lw_passwd" placeholder="비밀번호" onkeyup="pw_m_alert_s()">
 				<h4 class="singup_inputfont">비밀번호 확인</h4>
 				<input class="singup_input" type="password" name="lw_passwd2" placeholder="비밀번호 확인" onkeyup="pw_m_alert_s()">
-				<span id="alert_pw_s"></span>
+				<span id="alert_pw_s" ></span><br>
 				<h4 class="singup_inputfont" style="position: absolute;">이름</h4>
 				<h4 class="singup_inputfont" style="margin-left: 210px;">성별</h4>
 				<input class="singup_input" type="text" name="lw_name" placeholder="이름" style="width:190px;margin-right:12px">

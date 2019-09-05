@@ -64,6 +64,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println(" $('#div.modal').dialog('close');");
+			script.println("alert('회원가입이 완료되었습니다.')");
 			script.println("</script>");
 			//회원가입이 되었을때 메인페이지로 이동
 		}  
