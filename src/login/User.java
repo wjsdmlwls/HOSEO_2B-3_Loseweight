@@ -1,5 +1,5 @@
 package login;
-
+// 유저 멤버 클래스 
 public class User {
 	private int email;
 	private String password;
@@ -24,5 +24,6 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 }
