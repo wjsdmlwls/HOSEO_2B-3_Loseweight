@@ -17,12 +17,12 @@
 			<h3>아이디찾기</h3>	
 		</div>
 	<div class="idps_post">
-	    <form class="idpas_post" name="vcheck1" action="find_id_Action.jsp">
+	    <form class="idpas_post" method="post" name="vcheck1" action="find_id_Action.jsp" onsubmit="return id_pw_name_phone()">
 	        <table class="idps_post_table">  
 	            <thead>
 	            <tr>
 	                <th>이름</th>
-	                 <td><input class="idps_input"type="text" name="lw_name"></td>
+	                 <td><input class="idps_input" type="text" name="lw_name"></td>
 	            </tr>
 	            </thead>
 	            <tr>
@@ -31,16 +31,15 @@
 	                <span id="alert"><span style="color:blue;"></span></span></td>
 	                
 	            </tr>
-	            
 	            </table>
 	            <div class="idps_btcenter">
-	            	<button class="button salmon idps_bt" type="submit" id="schBT" value="아이디 찾기" >아이디 찾기</button>
+	            <input type="submit" class="button salmon idps_bt"  id="schBT" value="아이디 찾기" />	
 	            </div>
 	    </form>
 	    <div class="idps_form">
 			<h3>비밀번호찾기</h3>	
 		</div>
-	    <form class="idps_post" name="vcheck" action="find_pw_Action.jsp" >
+	    <form class="idps_post" name="vcheck" action="find_pw_Action.jsp" onsubmit="return id_pw_id_e_mail()">
 	          <table  class="idps_post_table"> 
 	          <thead>
 	            <tr>

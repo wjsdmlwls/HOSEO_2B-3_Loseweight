@@ -2,42 +2,130 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.io.PrintWriter" %>
 
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Lose weight</title>
-		<meta charset="UTF_8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<!-- 모달창 오픈   -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	$(function(){
-	    $("#popbutton").click(function(){
-	        $('div.modal').modal({remote : 'layer.jsp'});
-	    })
-	})
-	</script>
-	<link rel="stylesheet" href="css/style.css">
-	<!-- 모달창 오픈   -->
-	<body>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+	<!--slide-->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery.slim.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+<!--slide end-->
+<!-- modal windows -->
+<script type="text/javascript">
+window.closeModal = function() {
+	$( 'div.modal' ).modal( 'hide' );
+}
+</script>
+<!-- modal windows -->
+<link rel="stylesheet" href="css/style.css">
+<style>
+.menu ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.menu ul li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+    padding:10px
+}
+.menu ul li a { 
+	font-size:20px;
+	padding:10px;
+	padding-left:95px;
+	color:#fff;
+}
+.menu ul li a:link { 
+	color: #eee; 
+	text-decoration: none;
+}
+.nav{
+	padding:10px;
+}
+.nav a{
+	margin-right:20px;
+	color:#fff;
+	font-size:16px;
+}
+.nav a:link { 
+	color: #eee; 
+	text-decoration: none;
+}
+.carousel-item {
+  height: 100vh;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.Opacity_box{
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<body style="overflow:hidden;">
 	<%
 	String id= null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-	}
+	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
-%>
-				<!-- Header -->
-			<header id="header">
-					<nav id="nav">
-						<li class="nav">
+	%>
+	<div class="div_body">
+	<!-- slider 영역 -->
+		  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="position: fixed; width: 100%; height: 100%;">
+			    <ol class="carousel-indicators" style="position:absolute">
+			      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			    </ol>
+			    <div class="carousel-inner" role="listbox"style="position:absolute">
+			      <!-- Slide One - Set the background image for this slide in the line below -->
+			      <div class="carousel-item active" style="background-image: url('img/main_img/main_background.png')">
+			        <div class="carousel-caption d-none d-md-block">
+			          <h3 class="display-4">First Slide</h3>
+			          <p class="lead">This is a description for the first slide.</p>
+			        </div>
+			      </div>
+			      <!-- Slide Two - Set the background image for this slide in the line below -->
+			      <div class="carousel-item" style="background-image: url('img/main_img/main_background2.png')">
+			        <div class="carousel-caption d-none d-md-block">
+			          <h3 class="display-4">Second Slide</h3>
+			          <p class="lead">This is a description for the second slide.</p>
+			        </div>
+			      </div>
+			      <!-- Slide Three - Set the background image for this slide in the line below -->
+			      <div class="carousel-item" style="background-image: url('img/main_img/main_background3.png')">
+			        <div class="carousel-caption d-none d-md-block">
+			          <h3 class="display-4">Third Slide</h3>
+			          <p class="lead">This is a description for the third slide.</p>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+					<!-- slider end -->
+		
+		
+		
+		<div class="div_top" style=" margin:0 auto; width: 100%; height: 120px; position:absolute">
+		<div class="Opacity_box">
+			<nav style="float:right; padding:10px;">
+					<li class="nav">
 							<%if(id==null){ %>
-							<a href="lw_user/login.jsp">Login</a>
-							<button class="btn btn-default"id="popbutton">회원가입</button>
+							<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l">로그인</a>
+							
+							<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal">회원가입</a>
 							<!-- 클릭시 모달창 새로 띄움  -->
 							<div class="modal fade">
 								  <div class="modal-dialog">
@@ -47,12 +135,12 @@
 								  </div>
 								</div>
 							<%}else{%>
-							<a href="lw_user/user_Info.jsp">MyPage</a>
-							<a href="lw_user/logout.jsp">LogOut</a>
+							<a href="lw_user/user_Info.jsp">마이페이지</a>
+							<a href="lw_user/logout.jsp">로그아웃</a>
 							<%} %>
-						</li>
-					</nav>
-		<div class='menu'>			
+					</li>
+			</nav>
+			<div class='menu' style="width:1050px;height:50px; margin:0 auto;padding-top:100px">			
 			<ul>
 				<li>
 					<a href='#'>운동방법</a>
@@ -61,101 +149,39 @@
 					<a href='#'>식단조절</a>
 				</li>
 				<li>
-					<a href='#'>shop</a>
-					<ul>
-						<li class='sub'>
-							<a href='#'>운동기구</a>
-						</li>
-						<li class='sub'>
-							<a href='#'>프로틴</a>
-						</li>
-					</ul>
-				</li>
-				<li>
 					<a href='#'>자유게시판</a>
 				</li>
 				<li class='last'>
 					<a href='#'>고객센터</a>
 				</li>
+				<li>
+					<a href='#'>shop</a>
+				</li>
 			</ul>
 		</div>
-		<hr class="hr">
-				
-			</header>
-				
-		<!-- Banner -->
-			<section id="banner">
-				 <a href="lw_main.jsp"><img class="logo" alt="logo" src="img\main_img\logo1.jpg"></a> 
-				<p>안녕하세요 Loseweight에 오신것을 환영합니다.</p>
-				<p class="p2"></p>
-			</section>
-<!-- 그림 사진 파일 설명(슬라이드) -->
-<div id="wrapper">
-      <div id="slider-wrap">
-          <ul id="slider">
-             <li data-color="#1abc9c">               
-<img src="img\main_img\main.png">
-             </li>
-             
-             <li data-color="#3498db">
-<img src="img\main_img\main1.png">
-             </li>
-             
-             <li data-color="#9b59b6">
-<img src="img\main_img\main2.png">
-             </li>      
-          </ul>
-          
-           <!--controls-->
-          <div class="btns" id="next"><i class="fa fa-arrow-right"></i></div>
-          <div class="btns" id="previous"><i class="fa fa-arrow-left"></i></div>
-          <div id="counter"></div>
-          
-          <div id="pagination-wrap">
-            <ul>
-            </ul>
-          </div>
-          <!--controls-->  
-                 
-      </div>
-  
-   </div>
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<div class="flex">
-						<div class="copyright">
-							&copy; 팀명 : Lose Weignt<br>
-							</a>&copy; 블로그 주소 : 
-							<a href="https://blog.naver.com/loseweight_2019_2b03">https://blog.naver.com/loseweight_2019_2b03</a>.
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!-- Scripts -->
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<!--텍스트 자바스크립트 애니멘이션 효과-->
-			<script type="text/javascript">
-			function changeText(cont1,cont2,speed){
-				var Otext=cont1.text();
-				var Ocontent=Otext.split("");
-				var i=0;
-				function show(){
-					if(i<Ocontent.length)
-					{		
-						cont2.append(Ocontent[i]);
-						i=i+1;
-					};
-				};
-					var Otimer=setInterval(show,speed);	
-			};
-			$(document).ready(function(){
-				changeText($("p"),$(".p2"),150);
-			});
-			</script>
-		
-
-	</body>
+		</div>
+		</div>
+		<div style='margin: 0 auto; width: 1020px;height:200px'>
+			<div class="div_sidemenu"style='width: 250px; position: absolute;'></div>
+			<div class="div_sidecontents" style=';position: relative; margin-left: 250px;'></div>
+		</div>
+	</div>
+	<div class="modallist">
+	<!-- signUp modal -->
+	 <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <iframe src="lw_user/user_signUp.jsp" style="width:100%; height:740px; background:##f7f7f7;" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+	<div id="myModal_l" class="modal fade">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <iframe src="lw_user/login.jsp" style="width:100%; height:500px; background:##f7f7f7;" scrolling="no"></iframe>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
 </html>

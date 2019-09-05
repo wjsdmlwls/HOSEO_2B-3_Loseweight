@@ -41,14 +41,6 @@
 	String lw_e_mail2=request.getParameter("lw_e_mail2");
 	String pw =""; //유효성검사 사용 변수 
 	
-	if(lw_id=="" || lw_e_mail1=="" || lw_e_mail2==""){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('입력 안된 사항이 있습니다.')");
-		script.println("history.back()");
-		script.println("</script>");
-	}
-	
 	try{
 		String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
     	String dbId="jspid";
@@ -117,13 +109,14 @@
     	
     	</div>
     	<div class="idSearch_resultform2">
-    	<form class="pwSearch_post" name="vcheck1" action="user_pw_Update.jsp" onsubmit="return sendIt();">
+    	<form class="pwSearch_post" name="vcheck1" action="user_pw_Update.jsp" onsubmit="return pw_action_pw()">
     	<p>비밀번호 변경하기</p>
     	<input type="text" style="display: none;"name="lw_id" value=<%=lw_id%>>
     	<input type="password" class="ps_Searcinput" name="lw_passwd2" id="lw_passwd2" placeholder="새 비밀번호" onkeyup="pw_m_alert_f()"><Br>
     	<input type="password" class="ps_Searcinput" name="lw_passwd3" id="lw_passwd3" placeholder="새 비밀번호 확인" onkeyup="pw_m_alert_f()"><Br>
     	<span id="alert_pw_f"><span style="color:blue;"></span></span><br>
     	<input type="submit" value="비밀번호 변경" style="margin-top:20px" class="button salmon idpw_bt" onclick="sendIt();"/>
+    	</form>
       </div>
    </div>
 
