@@ -24,43 +24,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script>
-	function check() {
-
-	}
-	function sendIt() {
-		if (document.getElementById("lw_passwd4").value != document
-				.getElementById("lw_passwd3").value) { //비밀번호 불일치시 나오는 경고문
-			alert("비밀번호가 일치하지 않습니다")
-			return false;
-		}
-		if (document.getElementById("lw_passwd2").value == ""
-				|| document.getElementById("lw_passwd2").value == null
-				|| document.getElementById("lw_passwd3").value == ""
-				|| document.getElementById("lw_passwd3").value == null
-				|| document.getElementById("lw_passwd4").value == ""
-				|| document.getElementById("lw_passwd4").value == null) { //비밀번호 불일치시 나오는 경고문
-			alert("비밀번호를 입력하지 않으셨습니다.")
-			return false;
-		}
-
-	}
-	function email3(userinput) {
-		var email3 = userinput.e_mail3.value;
-		if (email3 == "0") {
-			userinput.lw_e_mail2.value = "";
-			userinput.lw_e_mail2.readOnly = false;
-		} else {
-			userinput.lw_e_mail2.value = email3;
-			userinput.lw_e_mail2.readOnly = true;
-		}
-	}
-</script>
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="vcheck.js">
-	
 </script>
 <script type="text/javascript">
 	var openWin;
@@ -107,7 +74,7 @@
 					<div style="text-align: left; margin-left: 20px;">
 									<h1>회원정보 관리</h1>
 								</div>
-						<form class="mypage_post" name="vcheck1"action="user_pw_Update.jsp" onsubmit="return sendIt();">
+						<form class="mypage_post" name="vcheck1"action="user_pw_Update.jsp" onsubmit="return user_info_pw_e_mail()">
 							<table class="mypage_post_table">
 								<%
 									while (rs.next()) {

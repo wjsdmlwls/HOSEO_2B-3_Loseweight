@@ -62,6 +62,7 @@ function pw_m_alert_d(){    //delete passwd match
           document.getElementById("alert_pw_d").innerHTML=('<span style="color:blue; font-size:12px;">비밀번호가 일치합니다..</span>');
       }
     }
+
 function email3(userinput){
 	   var email3 = userinput.e_mail3.value;
 	   if(email3 =="0"){
@@ -87,8 +88,7 @@ function email3(userinput){
 		}else{ 
 	return true;	
 	}
-}
-	
+}	
 	function id_pw_id_e_mail(){
 		 var obj = document.vcheck;
 		 
@@ -117,3 +117,25 @@ function email3(userinput){
 	}
 }
 	
+	function user_info_pw_e_mail() {
+		var obj = document.vcheck1;
+		if(obj.lw_passwd1.value!=obj.lw_passwd2.value){
+			alert("기존 비밀번호가 일치하지 않습니다.");
+			obj.lw_passwd2.focus();
+			return false;
+		}else if(obj.lw_passwd2.value==""||obj.lw_passwd3.value==""||obj.lw_passwd4.value==""){
+			alert("비밀번호 칸에 공백이 있습니다.");
+			obj.lw_passwd3.focus();
+			return false;
+		}else if(obj.lw_passwd3.value!=obj.lw_passwd4.value){
+			alert("신규 비밀번호가 맞지 않습니다.");
+			obj.lw_passwd3.focus();
+			obj.lw_passwd3.value="";
+			obj.lw_passwd4.value="";
+			return false;
+		}else{
+			return true;
+		}
+	}
+		
+
