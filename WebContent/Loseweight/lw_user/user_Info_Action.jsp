@@ -14,6 +14,7 @@
 	String lw_zipcode =request.getParameter("lw_zipcode");
 	String lw_addr1 =request.getParameter("lw_addr1");
 	String lw_addr2 =request.getParameter("lw_addr2");
+	String lw_phone =request.getParameter("lw_phone");
 	/*변경 버튼*/
 %>
 <%--java bean에서 값들 불러오기--%>
@@ -40,7 +41,7 @@
 	Class.forName("com.mysql.jdbc.Driver");
 	conn=DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 	
-	String sql="update lw_users set lw_e_mail1=?,lw_e_mail2=?,lw_zipcode=?,lw_addr1=?,lw_addr2=? where lw_id=?";
+	String sql="update lw_users set lw_e_mail1=?,lw_e_mail2=?,lw_zipcode=?,lw_addr1=?,lw_addr2=?,lw_phone=? where lw_id=?";
 	
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setString(1, lw_e_mail1);
@@ -48,7 +49,8 @@
 	pstmt.setString(3, lw_zipcode);
 	pstmt.setString(4, lw_addr1);
 	pstmt.setString(5, lw_addr2);
-	pstmt.setString(6, lw_id);
+	pstmt.setString(6, lw_phone);
+	pstmt.setString(7, lw_id);
 	pstmt.executeUpdate();
 	
 	}catch(Exception e){

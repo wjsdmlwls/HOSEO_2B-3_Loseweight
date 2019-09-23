@@ -1,6 +1,7 @@
 package user;
 
 import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,8 +13,6 @@ import java.util.Vector;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import ch11.RegisterBean;
 
 public class UserDAO {
 	
@@ -74,7 +73,6 @@ public class UserDAO {
 			pstmt.setString(9,user.getLw_addr2());
 			pstmt.setString(10,user.getLw_phone());
 			pstmt.setString(11,user.getLw_lp());
-			
 			return pstmt.executeUpdate();		//쿼리?�� ?��?��?��?��
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -100,7 +98,6 @@ public class UserDAO {
 			if(rs!=null) try {rs.close();} catch(SQLException e) {}
 			if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
 			if(conn!=null) try {conn.close();} catch(SQLException e) {} //?��?��반납
-				PrintWriter script = response.getWriter();
 		}
 		return 0;
 	}

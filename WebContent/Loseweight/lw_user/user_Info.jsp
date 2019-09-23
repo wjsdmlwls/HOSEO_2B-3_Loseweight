@@ -24,6 +24,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/jquery.slim.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="../css/style.css">
 <script>
 	function check() {
 
@@ -58,7 +63,6 @@
 </script>
 </head>
 <!-- stlye css -->
-<link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="vcheck.js">
 	
 </script>
@@ -74,41 +78,13 @@
 </script>
 <!-- 주소 end -->
 <body>
-	<div class="div_body">
-		<div class="div_top" style="width: 100%; height: 120px">
-			<jsp:include page="../lw_top.jsp" flush="false" />
-		</div>
-		<div style='margin: 0 auto; width: 1020px'>
-			<div class="div_sidemenu"style='width: 250px; position: absolute;'>
-				<table class="sidemenu_mypage"style="margin: auto; text-align: center; border: 1px solid #ccc; border-spacing: 0; width: 200px">
-					<thead>
-						<tr style="background: #f5c293; height: 55px">
-							<th colspan='2' style="color: #fff">마이페이지</th>
-						</tr>
-					</thead>
-					<tr>
-						<td>회원정보</td>
-					</tr>
-					<tr>
-						<td>몸무게 일기</td>
-					</tr>
-					<tr>
-						<td><a href="user_delete.jsp">회원탈퇴</a></td>
-					</tr>
-				</table>
-			</div>
-			<div class="div_sidecontents" style='position: relative; margin-left: 250px;'>
-				<div class="mypage_form">
-					<%
-						if (id == null) {
-								response.sendRedirect("login.jsp");
-							} else {
-					%>
-					<div style="text-align: left; margin-left: 20px;">
-									<h1>회원정보 관리</h1>
-								</div>
-						<form class="mypage_post" name="vcheck1"action="user_pw_Update.jsp" onsubmit="return sendIt();">
-							<table class="mypage_post_table">
+	<div class="div_body" style="text-align: center;">
+		<jsp:include page="../community/community_topinclude.jsp" >
+			<jsp:param name="tom" value="0"/>
+			<jsp:param name="toc" value="0"/>
+		</jsp:include>
+						<form class="mypage_post" name="vcheck1"style="margin-top:80px"action="user_pw_Update.jsp" onsubmit="return sendIt();">
+							<table class="mypage_post_table" >
 								<%
 									while (rs.next()) {
 								%>
@@ -124,18 +100,13 @@
 									<td><input class="mypage_post_tableinput" type="text"
 										name="lw_name" value="<%=rs.getString("lw_name")%>" readonly></td>
 								</tr>
-								<tr>
-									<th>기존 패스워드</th>
-									<td><input class="mypage_post_tableinput" type="text"name="lw_passwd1" id="lw_passwd1"value="<%=rs.getString("lw_passwd")%>" readonly></td>
-								</tr>
 								<tr class="mypage_post_tablepasswd">
 									<th>패스워드변경</th>
 									<td><input class="mypage_post_tablepasswdinput"type="password" name="lw_passwd2" id="lw_passwd2"placeholder="기존 비밀번호"><br> 
-										<input class="mypage_post_tablepasswdinput" type="password"name="lw_passwd3" id="lw_passwd3" placeholder="신규 비밀번호 "onkeyup="pw_m_alert_m()">
-										<button class="button salmon" type="submit" value="변경"onclick="sendIt();" style="margin-left: 5px;">변경</button> 
+										<input class="mypage_post_tablepasswdinput" type="password"name="lw_passwd3" id="lw_passwd3" placeholder="신규 비밀번호 "onkeyup="pw_m_alert_m()"><br>
 										<input class="mypage_post_tablepasswdinput" type="password"name="lw_passwd4" id="lw_passwd4" placeholder="신규 비밀번호 확인 "onkeyup="pw_m_alert_m()">
-										<br> 
-										<span id="alert_pw_m"><span style="color: blue;"></span></span>
+										<button class="button salmon" type="submit" value="변경"onclick="sendIt();" style="">변경</button>
+										<br><span id="alert_pw_m"><span style="color: blue;"></span></span>
 									</td>
 								</tr>
 								</form>
@@ -143,6 +114,10 @@
 									<input style="display: none" type="text" name="lw_id"
 										value="<%=rs.getString("lw_id")%>" readonly>
 									<!-- 아래 정보 변경시 필요해서 보여줄 필요없어 숨김 -->
+									<tr>
+									<th>전화번호</th>
+									<td><input class="mypage_post_tableaddrinput2" style="background: #fff"type="text"name="lw_phone" id="lw_phone"value="<%=rs.getString("lw_phone")%>" ></td>
+									</tr>
 									<tr>
 										<th>이메일</th>
 										<td><input class="mypage_post_e_mail" type="text"style="background: #fff" name="lw_e_mail1"value="<%=rs.getString("lw_e_mail1")%>"><a>@</a> 
@@ -169,14 +144,10 @@
 							</table>
 							<div class="mypage_form_button">
 								<button class="button salmon" type="submit" value="변경">변경</button>
+								</div>
 						</form>
 				</div>
-			</div>
-		</div>
-
-		<%
-			}
-		%>
+				
 
 		<%
 			} catch (Exception e) {

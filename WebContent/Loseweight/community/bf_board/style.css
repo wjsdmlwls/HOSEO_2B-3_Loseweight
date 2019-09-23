@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 9pt; 
+	text-align: center;
+}
+
+.lw_board {
+	font-size: 11pt;
+	text-align: center;
+}
+
+.lw_board tbody tr{
+	font-size: 11pt;
+	text-align: center;
+}
+
+select {
+	font-size: 9pt; 
+}
+
+form {
+	font-size: 9pt; 
+}
+
+p{
+	font-weight: 700;
+}

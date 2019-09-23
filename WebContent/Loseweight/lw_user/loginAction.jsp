@@ -33,7 +33,7 @@
 		session.setAttribute("id",user.getLw_id());
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("location.href='../lw_main.jsp'");
+		script.println("window.parent.closeModal();");
 		script.println("</script>");
 		//로그인이 성공했을때 메인홈페이지로 돌아감.
 	}
@@ -41,7 +41,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다')");
-		script.println("history.back()");
+		script.println("window.parent.closeModal();");
 		script.println("</script>");
 		//비밀번호가 틀렸을때
 	}else if(result == -1) {

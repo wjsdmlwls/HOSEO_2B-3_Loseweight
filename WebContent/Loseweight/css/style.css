@@ -10,6 +10,22 @@
 */
 
 /* common use */
+.newbutton{
+    font-size: 12px;
+    line-height: 42px;
+    width: 100px;
+    height: 42px;
+    cursor: pointer;
+    vertical-align: middle;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #263238;
+    border: 1px solid #263238;
+    background: transparent;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
 .button{
 	color:#fff;
 	line-height: 30px;
@@ -38,22 +54,184 @@
     버튼은 넣을때 height, padding 쓰지말고 
     line-height로 값 줘야 텍스트와 높이 맞추는게 수월함. 
 */
-/*사이드 메뉴 mypage 공통 부분*/
-.sidemenu_mypage tbody tr{
-height:40px;
+/* input box */
+.writeinput{
+font-size: 14px;
+    display: block;
+    width: 40%;
+    height: 42px;
+    margin-bottom: 12px;
+    padding: 16px 13px;
+    color: #999999;
+    border: 1px solid #d9d9d9;
+    background: transparent;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+ }
+/*top mainmenu*/
+.menu ul {
+    list-style:none;
+    margin:0;
+    padding:0;
 }
-.sidemenu_mypage tbody tr td{
-padding:10px;
+
+.menu ul li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+    padding:10px
 }
-.mainbg_autosize{
-	max-width: 100%; /*이미지 최대크기*/
-    width /***/: auto; /* only IE8 */
-    height: 100%;
-    min-width: 2000px;
-    vertical-align: bottom;
-	position:relative;
+.menu ul li a { 
+	font-size:20px;
+	padding:10px;
+    padding-left:85px;
+	padding-right:85px;
+	color:#fff;
+}
+.menu ul li a:link { 
+	color: #eee; 
+	text-decoration: none;
+}
+.nav{
+	padding:10px;
+}
+.nav a{
+	margin-right:20px;
+	color:#fff;
+	font-size:16px;
+}
+.nav a:link { 
+	color: #eee; 
+	text-decoration: none;
+}
+.carousel-item {
+  height: 100vh;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.Opacity_box{
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    }
+
+/*테이블 선그리기 용 */
+tr.tableline td{
+    border-bottom:1px solid #ddd;
 }
 /*end*/
+/*
+/*sub mainmenu 커뮤니티*/
+.sub_menu3 {
+    width:1500px;
+    height:50px;
+    margin:0 auto;
+    padding-top:50px;
+    margin-top:30px;
+}
+
+.sub_menu3 ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    padding-left:335px
+}
+
+.sub_menu3 ul li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+.sub_menu3 ul li a { 
+	font-size:23px;
+    padding-left: 70;
+    padding-right: 70;
+    margin-left: 70;
+    margin-right: 70;
+    padding-bottom:10px;
+    color:#000;
+}
+.sub_menu3 ul li a:link { 
+	color: #000; 
+	text-decoration: none;
+}
+
+/*end*/
+/*서브메뉴 마이페이지 */
+.sub_menu {
+    width:1500px;
+    height:50px;
+    margin:0 auto;
+    padding-top:50px;
+    margin-top:30px;
+}
+
+.sub_menu ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    padding-left:335px
+}
+
+.sub_menu ul li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+.sub_menu ul li a { 
+    font-size:23px;
+    padding-left: 70;
+    padding-right: 70;
+    padding-bottom:10px;
+    color:#000;
+}
+.sub_menu ul li a:link { 
+    color: #000; 
+    text-decoration: none;
+}
+/*서브메뉴 고객센터*/
+.sub_menu4 {
+    width:1500px;
+    height:50px;
+    margin:0 auto;
+    padding-top:50px;
+    margin-top:30px;
+}
+
+.sub_menu4 ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    padding-left:335px
+}
+
+.sub_menu4 ul li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+.sub_menu4 ul li a { 
+    font-size:23px;
+    padding-left: 70;
+    padding-right: 70;
+    margin-left: 70;
+    margin-right: 70;
+    padding-bottom:10px;
+    color:#000;
+}
+.sub_menu4 ul li a:link { 
+    color: #000; 
+    text-decoration: none;
+}
 /*
 ==============================================================================
 2.singUp.jsp
@@ -195,25 +373,22 @@ color:#000;
 .mypage_form{
 margin:0 auto;
 }
-.mypage_fullpost{
-}
 .mypage_headtext{
 	text-align:left;
 }
 .mypage_post_table{
+    width:1000px;
+    border-top: solid;
 	margin:0 auto;
     border-collapse: collapse;
     text-align: left;
     line-height: 4.5;
-    margin-left:20px;
-    border-top: 1px solid #ccc;
 }
 .mypage_post_table thead{
 border-top: 2px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
 .mypage_post_table tr th{
-    background:#f1f2ff;
 	width: 130px;
     padding-left: 20px;
     font-weight: bold;
@@ -228,6 +403,7 @@ border-bottom: 1px solid #ccc;
 .mypage_post_tableinput{
 border:solid 0px #eee;
 width: 110px;
+font-size:16px;
 }
 .mypage_post_tableinput:focus {
 	outline:none;
@@ -242,6 +418,7 @@ width: 110px;
     font-weight: 500;
     height: 33px;
     margin-top:5px;
+    font-size:16px;
 }
 .mypage_post_tableaddrinput2{
 	width: 350px;
@@ -253,6 +430,7 @@ width: 110px;
     font-weight: 500;
     height: 33px;
     margin-top:5px;
+    font-size:16px;
 }
 .mypage_post_tablepasswdinput{
 	width: 200px;
@@ -264,6 +442,7 @@ width: 110px;
     font-weight: 500;
     height: 33px;
     margin-top:5px;
+    font-size:16px;
 }
 .mypage_post_e_mail{
 	width: 110px;
@@ -275,6 +454,7 @@ width: 110px;
     font-weight: 500;
     height: 33px;
     margin-top:5px;
+    font-size:16px;
 }
 .mypage_post_e_mailselect{
 	width: 100px;
@@ -287,9 +467,11 @@ width: 110px;
     height: 33px;
     margin-top:5px;
     margin-left:5px;
+    font-size:16px;
 }
 .mypage_post_tablepasswd{
-	height: 150px;
+    height: 150px;
+    font-size:16px;
 }
 .mypage_form_button{
 	margin:0 auto;
@@ -424,7 +606,6 @@ text-align:center;
 	margin:0 auto;
     border-collapse: collapse;
     text-align: left;
-    line-height: 4.5;
     margin-top:50px;
     margin-left:20px;
     border-top: 1px solid #ccc;
@@ -483,4 +664,9 @@ border-bottom: 1px solid #ccc;
 	margin:0 auto;
 	margin-top:30px;
     text-align: center;
+}
+.delete_post{
+    width:1020px;
+    margin:0 auto;
+    margin-top:50px;
 }

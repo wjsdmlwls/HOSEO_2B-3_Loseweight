@@ -176,7 +176,7 @@ function AutoInput(zip, address){
         function setParentText(){
         	window.opener.document.getElementById("lw_zipcode").value = document.getElementById("zip_code1").value
         	window.opener.document.getElementById("lw_addr1").value = document.getElementById("zip_code2").value
-        		window.close();
+        	window.close();
         }
     </script>
     <center>

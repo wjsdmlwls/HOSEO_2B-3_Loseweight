@@ -96,7 +96,6 @@ function email3(userinput){
 			alert("입력 안된 사항이 있습니다1111.");
 			obj.lw_id.focus();
 			return false;
-			
 		}else{ 
 	return true;	
 	}

@@ -14,7 +14,8 @@
 %>
 
 <script>
-	location.href="../lw_main.jsp";  //세션을 해제한뒤 메인페이지로 돌아감
+	//세션을 해제한뒤 메인페이지로 돌아감
+	location.href="../lw_main.jsp";
 </script>
 </body>
 </html>
