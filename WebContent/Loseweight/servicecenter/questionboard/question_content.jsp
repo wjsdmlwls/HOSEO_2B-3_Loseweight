@@ -264,9 +264,9 @@ tr.tableline td{
 		 <tr height="50" style="border-top: 1pt solid gray">
 			    <td  width="50" > <input style="border:none" name="lw_id" value="<%=lw_id%>"readonly></td>
 			    <td  width="250" align="left">
-			    <input type="text" class="replyeditleft1"style="border: none;display:block;"name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
+			    <input type="text" class="replyeditleft1"style="border: none;display:block; width:100%;"name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
 			    
-			     <input type="text" class="replyeditleft2" style="display:none;float:left;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
+			     <input type="text" class="replyeditleft2" style="display:none;float:left; width:100%;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
 			    <button class="replyedit_submit" style="display:none" onclick="replyedit()">등록</button>
 			     <input type="hidden"class="glenumname" value="<%=glenum2%>">
 				</td>

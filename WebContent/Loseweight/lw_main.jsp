@@ -109,10 +109,10 @@ window.closeModal = function() {
 					<a href='#'>식단조절</a>
 				</li>
 				<li>
-					<a href='community/board/list.jsp'>자유게시판</a>
+					<a href='community/board/board_list.jsp'>자유게시판</a>
 				</li>
 				<li class='last'>
-					<a href='servicecenter/Noticeboard/list.jsp'>고객센터</a>
+					<a href='servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
 				</li>
 				<li>
 					<a href='#'>shop</a>
