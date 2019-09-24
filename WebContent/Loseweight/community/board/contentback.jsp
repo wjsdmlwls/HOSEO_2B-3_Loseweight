@@ -1,39 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
 <%@ page import="java.io.File" %>
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "board.board_DAO" %>
+<%@ page import = "board.board_DTO" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<%request.setCharacterEncoding("utf-8"); %>
-     <% String imgs =request.getParameter("abc"); //경로 
-     	String name =request.getParameter("abd"); //파일이름
-     
-		String directory = application.getRealPath("/img/");
-		String files[] = new File(directory).list();
-		
-		
+<%
+	request.setCharacterEncoding("utf-8");
 %>
+     <%
+     	String imgs =request.getParameter("abc"); //경로 
+               	String name =request.getParameter("abd"); //파일이름
+               
+          		String directory = application.getRealPath("/img/");
+          		String files[] = new File(directory).list();
+     %>
 
     <%
-    // 세션정보 가져오기
-    try {
-    String id = (String) session.getAttribute("id");
-    
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
-	
-    UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
- 
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
- 
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1,id);
-    rs = pstmt.executeQuery();
-%>
+    	// 세션정보 가져오기
+            try {
+            String id = (String) session.getAttribute("id");
+            
+            String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
+        	String dbId="jspid";
+        	String dbPass="jsppass";
+        	
+            UserDAO db= new UserDAO();
+            Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+         
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
+         
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+    %>
 
 <html>
 <head>
@@ -52,20 +53,19 @@ tr.tableline td{
 </style>
 <body>
 <%
-   int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("num"));
    String pageNum = request.getParameter("pageNum");
 
    SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
    try{
-      BoardDBBean dbPro = BoardDBBean.getInstance(); 
-      BoardDataBean article =  dbPro.getArticle(num);
+      board_DAO dbPro = board_DAO.getInstance(); 
+      board_DTO article =  dbPro.getArticle(num);
   
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();
 	  int re_level=article.getRe_level();
-	  
 %>
 	<div class="div_body">
 		<jsp:include page="../community_topinclude.jsp" >

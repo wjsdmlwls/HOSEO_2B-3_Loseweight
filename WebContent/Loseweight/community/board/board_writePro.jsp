@@ -2,26 +2,26 @@
     pageEncoding="UTF-8"%>
 
      
-<%@ page import = "board.BoardDBBean" %>
+<%@ page import = "board.board_DAO" %>
 <%@ page import = "java.sql.Timestamp" %>
      
 <%
-	request.setCharacterEncoding("utf-8");
-%>
+     	request.setCharacterEncoding("utf-8");
+     %>
 
 
-<jsp:useBean id="article"  scope="page" class="board.BoardDataBean">
+<jsp:useBean id="article"  scope="page" class="board.board_DTO">
    <jsp:setProperty name="article" property="*"/>
 </jsp:useBean>
 <%
-    article.setReg_date(new Timestamp(System.currentTimeMillis()));
+	article.setReg_date(new Timestamp(System.currentTimeMillis()));
 	article.setIp(request.getRemoteAddr());
 	
 	
-    BoardDBBean dbPro = BoardDBBean.getInstance();
-    dbPro.replyArticle(article); 
+    board_DAO dbPro = board_DAO.getInstance();
+    dbPro.insertArticle(article); 
     
     String boardfiles = (request.getParameter("boardfiles"));
     int num=article.getNum();
-    response.sendRedirect("list.jsp");
+    response.sendRedirect("board_list.jsp");
 %>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "board.board_DAO" %>
+<%@ page import = "board.board_DTO" %>
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
@@ -124,7 +124,7 @@ font-size:18px;
 								<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">자유게시판</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bf_board_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">BEFOR & AFTER </a>
+								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">BEFOR & AFTER </a>
 							</li>
 						</ul>
 		</div>

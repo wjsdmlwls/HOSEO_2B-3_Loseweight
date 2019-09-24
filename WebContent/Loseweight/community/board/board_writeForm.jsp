@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
-	<%@ include file="color.jspf"%>
    	<%@ page import="java.io.File" %>
     <%@page import="java.sql.*" %>
 <%@page import="java.io.PrintWriter" %>
@@ -10,9 +9,9 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -33,14 +32,9 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-</head>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="../../css/style.css">
-<script type="text/javascript" src="../../lw_user/vcheck.js"></script>
+<script src="../../js/jquery.slim.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
 <script>
 $(function() {
@@ -69,10 +63,15 @@ $(function() {
 	}
 </script>
 <!-- 파일업로드  -->
+</head>
+<!-- stlye css -->
+<link rel="stylesheet" href="../../css/style.css">
+<script type="text/javascript" src="../../lw_user/vcheck.js"></script>
+
 <!-- form 두개 다른곳에 보내기  -->
 	<script>
 	function  sendProcess(f){
-	        f.action="writePro.jsp";
+	        f.action="board_writePro.jsp";
 	        f.submit();
 	}
 	</script>
@@ -107,13 +106,14 @@ font-size: 14px;
     }
 %>
 	<div class="div_body">
+		
+		
 		<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="1"/>
+			<jsp:param name="toc" value="0"/>
 			<jsp:param name="imgs" value="cemu_1.png"/>
 		</jsp:include>
-						<form method="post" name="writeform" style="margin-top: 5%;"
-						    onsubmit="return writeSave()">
+			<form method="post" name="writeform" style="margin-top: 5%;"onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">
 						<input type="hidden" name="ref" value="<%=ref%>">
 						<input type="hidden" name="re_step" value="<%=re_step%>">
@@ -167,7 +167,7 @@ font-size: 14px;
 						  <tr>      
 						    <td colspan=2 align="right"> 
 						      <input type="submit" id="write" class="newbutton" value="글쓰기" onClick="sendProcess(this.form)" >  
-						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='list.jsp'">
+						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='board_list.jsp'">
 						    </td>
 						  </tr>
 						  <tr style="display: none;"><!-- upload db에 보내는용도  -->
@@ -181,7 +181,7 @@ font-size: 14px;
 						  <tr>
 							  <Td colspan="5">
 							  <h3 style="margin-left: 70;">파일 업로드</h3>
-							  	  <div id="parah" style="border:solid;min-height:100px;margin-top:5px;margin:0 auto;margin-left:70px;width:1000px;text-align: left;padding: 10;">
+							  	  <div id="parah" style="border:solid;min-height:100px;margin-top:5px;margin:0 auto;margin-left:70px;width:1000px;text-align: left; padding: 10;">
 							   <input type="text" name="filename0" id="filename0" value="" style="border:none;font-size: 23;"><br>
 							   <input type="text" name="filename1" id="filename1" value="" style="border:none;font-size: 23;"><br>
 								  </div>
@@ -198,25 +198,5 @@ font-size: 14px;
 						  }catch(Exception e){}
 						%>    
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modallist">
-	<!-- signUp modal -->
-	<div id="myModal_l" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<iframe id="iframe_l"src="../lw_user/login_signUp.jsp" style="margin-top:-113px;margin-left:-10px;width:140%; height:880px; background:##f7f7f7;" scrolling="no"></iframe>
-			</div>
-		</div>
-	</div>
-	<div id="myModal_s" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<iframe id="iframe_s"src="../lw_user/signUp_login.jsp" style="margin-top:-103px;margin-left:-3px;width:100%;width:140%; height:880px; background:##f7f7f7;" scrolling="no"></iframe>
-			</div>
-		</div>
-	</div>
-</div>
 </body>
 </html>

@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "board.board_DAO" %>
+<%@ page import = "board.board_DTO" %>
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ include file="color.jspf"%>
     
-<%!
-    int pageSize = 10;
+<%!int pageSize = 10;
     SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -27,20 +25,19 @@
     int endRow = currentPage * pageSize;
     int count = 0;
     int number = 0;
-    List<BoardDataBean> articleList = null; 
+    List<board_DTO> articleList = null; 
     
     listsearch = request.getParameter("listsearch");
 	if(listsearch==null){
 		listsearch ="";
 	}
-    BoardDBBean dbPro = BoardDBBean.getInstance();
+    board_DAO dbPro = board_DAO.getInstance();
     count = dbPro.getArticleCount(); 
 
 	String searchcol=request.getParameter("searchcol"); //검색 조건 
 	if(searchcol==""||searchcol==null){
 		searchcol ="subject";
 	}
-	
 %>
 <%
 jekimDB usedb = new jekimDB();

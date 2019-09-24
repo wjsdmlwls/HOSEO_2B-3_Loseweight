@@ -2,44 +2,46 @@
 	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
 
 <%@ page import="java.io.File" %>
-<%@ page import = "BFboard.BoardDBBean" %>
-<%@ page import = "BFboard.BoardDataBean" %>
+<%@ page import = "BFboard.BF_DAO" %>
+<%@ page import = "BFboard.BF_DTO" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import="DBBean.jekimDB" %>    
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page language="java" import="java.net.InetAddress" %>
-<%request.setCharacterEncoding("utf-8"); %>
-     <% String imgs =request.getParameter("abc"); //경로 
-     	String name =request.getParameter("abd"); //파일이름
-     
-		String directory = application.getRealPath("/img/");
-		String files[] = new File(directory).list();
+<%
+	request.setCharacterEncoding("utf-8");
 %>
-<%! //댓글기능 date에도 사용 
+     <%
+     	String imgs =request.getParameter("abc"); //경로 
+               	String name =request.getParameter("abd"); //파일이름
+               
+          		String directory = application.getRealPath("/img/");
+          		String files[] = new File(directory).list();
+     %>
+<%!//댓글기능 date에도 사용 
     int pageSize = 10;
-    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
+    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
     <%
-    // 세션정보 가져오기
-    try {
-    String id = (String) session.getAttribute("id");
-    
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
-	
-    UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
- 
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
- 
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1,id);
-    rs = pstmt.executeQuery();
-%>
+    	// 세션정보 가져오기
+            try {
+            String id = (String) session.getAttribute("id");
+            
+            String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+        	String dbId="lw_admin";
+        	String dbPass="3whakstp";
+        	
+            UserDAO db= new UserDAO();
+            Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+         
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
+         
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+    %>
 <%
 	//content load
    int num = Integer.parseInt(request.getParameter("num"));
@@ -56,8 +58,8 @@
         new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
    try{
-      BoardDBBean dbPro = BoardDBBean.getInstance(); 
-      BoardDataBean article =  dbPro.getArticle(num);
+      BF_DAO dbPro = BF_DAO.getInstance(); 
+      BF_DTO article =  dbPro.getArticle(num);
       count = dbPro.getArticleCount(); 
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();
@@ -71,16 +73,16 @@
 		Cookie[] cookieFromRequest= request.getCookies();
 		String cookieValue = null;
 		for(int i = 0; i<cookieFromRequest.length;i++){
-			cookieValue = cookieFromRequest[0].getValue();
+	cookieValue = cookieFromRequest[0].getValue();
 		}
 	 	// 쿠키 세션 입력
 		if (session.getAttribute(num+":cookie") == null) {
 		 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
 		} else {
-			session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
-			if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
-			 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
-			}
+	session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
+	if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
+	 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
+	}
 		}
 	 	
 		article.setNum(num);
@@ -158,7 +160,7 @@ $(function() {
 	
 });
 function  sendProcess(f){
-	f.action="content_replyedelete.jsp";
+	f.action="bfboard_replyedelete.jsp";
     f.submit();      
     
 }
@@ -217,16 +219,16 @@ function  sendProcess(f){
 					  <tr height="30">      
 					    <td colspan="4" align="right" > 
 						  <input type="button" value="글수정" class="newbutton"
-					       onclick="document.location.href='updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+					       onclick="document.location.href='bfboard_updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
 						   &nbsp;&nbsp;
 						  <input type="button" value="글삭제" class="newbutton"
- 					       onclick="document.location.href='deleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+ 					       onclick="document.location.href='bfboard_deleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
 						   &nbsp;&nbsp;
 					      <input type="button" value="답글쓰기" class="newbutton"
-					       onclick="document.location.href='writeForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'">
+					       onclick="document.location.href='bfboard_writeForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'">
 						   &nbsp;&nbsp;
 					       <input type="button" value="글목록" class="newbutton"
-					       onclick="document.location.href='list.jsp?pageNum=<%=pageNum%>'">
+					       onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">
 					    </td>
 					  </tr>
 					</table>   
@@ -234,7 +236,7 @@ function  sendProcess(f){
 			</div>
 		</div>
 		<div style="margin-top:30px;">
-		<form action = "content_reply.jsp" method="post" name="replyform">
+		<form action = "bfboard_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="num" value="<%=article.getNum()%>">
@@ -244,7 +246,7 @@ function  sendProcess(f){
 		</form>
 		</div>
 	<div style="padding-bottom:60px;">
-		<form method="post" action="content_replyedit.jsp" onsubmit="return writeSave()">
+		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
 			<table class="lw_board" style="margin:0 auto;width:1000px"> 
 			    <tr height="40"> 
 			      <td align="center"  width="100"  ></td> 
@@ -303,7 +305,7 @@ function  sendProcess(f){
 	var form = document.createElement("form");
         form.setAttribute("charset", "utf-8");
         form.setAttribute("method", "get"); // Get 또는 Post 입력
-        form.setAttribute("action", "content_replyedit.jsp");
+        form.setAttribute("action", "bfboard_replyedit.jsp");
         
         hiddenField = document.createElement("input");
     	hiddenField.setAttribute("type", "hidden");

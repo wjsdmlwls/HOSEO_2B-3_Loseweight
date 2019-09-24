@@ -2,21 +2,21 @@
     pageEncoding="UTF-8"%>
 
      <%@page import= "java.sql.*,javax.sql.*,javax.naming.*,java.util.* ,board.*" %>
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "board.board_DAO" %>
+<%@ page import = "board.board_DTO" %>
      
 <%
-	request.setCharacterEncoding("utf-8");
-%>
+     	request.setCharacterEncoding("utf-8");
+     %>
  
-<jsp:useBean id="article"  scope="page" class="board.BoardDataBean"/>
+<jsp:useBean id="article"  scope="page" class="board.board_DTO"/>
 
 <%
 	String recontent2 = request.getParameter("recontent2");
 	String lw_id = request.getParameter("lw_id");
 	int glenum = Integer.parseInt(request.getParameter("glenumpost"));
 
-  	BoardDBBean boardDAO = new BoardDBBean();
+  	board_DAO boardDAO = new board_DAO();
 
 	article.setLw_id(lw_id);
 	article.setGlenum(glenum);
@@ -27,7 +27,7 @@
     int num=article.getNum();
     
 
-    response.sendRedirect("list.jsp");
+    response.sendRedirect("board_list.jsp");
 %>
 
 <%=glenum%>

@@ -1,26 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import = "board.BoardDBBean" %>
+<%@ page import = "BFboard.BF_DAO" %>
 <%@ page import = "java.sql.Timestamp" %>
 
 <%
 	request.setCharacterEncoding("utf-8");
 %>
 
-<jsp:useBean id="article" scope="page" class="board.BoardDataBean">
+<jsp:useBean id="article" scope="page" class="BFboard.BF_DTO">
    <jsp:setProperty name="article" property="*"/>
 </jsp:useBean>
 <%
- 
-    String pageNum = request.getParameter("pageNum");
+	String pageNum = request.getParameter("pageNum");
 
-	BoardDBBean dbPro = BoardDBBean.getInstance();
+	BF_DAO dbPro = BF_DAO.getInstance();
     int check = dbPro.updateArticle(article); 
 
     if(check==1){
 %>
-	  <meta http-equiv="Refresh" content="0;url=list.jsp?pageNum=<%=pageNum%>" >
+	  <meta http-equiv="Refresh" content="0;url=bfboard_list.jsp?pageNum=<%=pageNum%>" >
 <% }else{%>
       <script type="text/javascript">      
       <!--      

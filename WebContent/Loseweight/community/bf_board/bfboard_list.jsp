@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "BFboard.BF_DAO" %>
+<%@ page import = "BFboard.BF_DTO" %>
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-    
-<%!
-    int pageSize = 10;
+<%!int pageSize = 10;
     SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -26,41 +23,47 @@
     int endRow = currentPage * pageSize;
     int count = 0;
     int number = 0;
-    List<BoardDataBean> articleList = null; 
+    List<BF_DTO> articleList = null; 
     
     listsearch = request.getParameter("listsearch");
 	if(listsearch==null){
 		listsearch ="";
 	}
-    BoardDBBean dbPro = BoardDBBean.getInstance();
+    BF_DAO dbPro = BF_DAO.getInstance();
     count = dbPro.getArticleCount(); 
 
 	String searchcol=request.getParameter("searchcol"); //검색 조건 
 	if(searchcol==""||searchcol==null){
 		searchcol ="subject";
 	}
-	
 %>
 <%
-jekimDB usedb = new jekimDB();
-usedb.connect();
-Statement stmt=null;
-Connection con=null;
-String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-String dbId="jspid";
-String dbPass="jsppass";
-con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
-stmt=con.createStatement();
-String listsql1="select count(*) from board where "+searchcol+"  like '%"+listsearch+"%'";
-ResultSet rs = stmt.executeQuery(listsql1);
-String listsql2="select * from board where "+searchcol+"  like '%"+listsearch+"%' order by ref desc, re_step asc limit "+startRow+","+pageSize+"";
-ResultSet listsearchresult = usedb.resultQuery(listsql2);
-number = count-(currentPage-1)*pageSize;
-if(rs.next()){ count = rs.getInt(1); } rs.close();
+	jekimDB usedb = new jekimDB();
+	usedb.connect();
+	
+	Statement stmt=null;
+	Connection con=null;
+	String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
+	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
+	stmt=con.createStatement();
+	
+	String listsql1="select count(*) from bf_board where "+searchcol+"  like '%"+listsearch+"%'";
+	ResultSet rs = stmt.executeQuery(listsql1);
+	
+	String listsql2="select * from bf_board where "+searchcol+"  like '%"+listsearch+"%' order by ref desc, re_step asc limit "+startRow+","+pageSize+"";
+	ResultSet listsearchresult = usedb.resultQuery(listsql2);
+	number = count-(currentPage-1)*pageSize;
+	if(rs.next()){ count = rs.getInt(1); } rs.close();
 %>	
+
+
+
 <html>
 <head>
 <link href="style.css" rel="stylesheet" type="text/css">
+
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <style>
 tr.headtableline td{
@@ -81,67 +84,68 @@ font-size:18px;
 
 <title>게시판</title>
 </head>
-
 <body>
+
 <%
 	String id= null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
 	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
-	%>
+%>
 <div class="div_body" >
-		<jsp:include page="../community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
-
+	<jsp:include page="../community_topinclude.jsp" >
+		<jsp:param name="tom" value="3"/>
+		<jsp:param name="toc" value="1"/>
+		<jsp:param name="imgs" value="cemu_1.png"/>
+	</jsp:include>
+	
 		<div style='margin: 0 auto; width: 1120px;margin-top: 5%;'>
 		
 			<table class="lw_board"> 
 			    <tr height="40"> 
-			      <td align="center"  width="50"  >번 호</td> 
-			      <td align="center"  width="650" >제   목</td> 
-			      <td align="center"  width="150" >작성자</td>
-			      <td align="center"  width="150" >작성일</td> 
-			      <td align="center"  width="100" >조 회</td> 
 			    </tr>
 			    <tr class="headtableline"><td colspan="6"></td></tr>
 			
-	<%if(listsearchresult.next()){
-		do{
-		String num=listsearchresult.getString("num");
-		String subject=listsearchresult.getString("subject");
-		String writer=listsearchresult.getString("writer");
-		String email=listsearchresult.getString("email");
-		Timestamp reg_date=listsearchresult.getTimestamp("reg_date");
-		int readcount=listsearchresult.getInt("readcount");
-		int re_level=listsearchresult.getInt("re_level");
-		int members=listsearchresult.getInt("members");
-		int replycount=0;
-			BoardDBBean dbPro1 = BoardDBBean.getInstance();
-			BoardDataBean article =  dbPro.getArticle(Integer.parseInt(num));
-		   	String replylistsql1="select count(*) from boardre where num="+article.getNum()+"";
-		   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-		if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
-		%>
-		 <tr height="50" style="border-top: 1pt solid gray">
+	<%
+					if(listsearchresult.next()){
+								do{
+								String num=listsearchresult.getString("num");
+								String subject=listsearchresult.getString("subject");
+								String writer=listsearchresult.getString("writer");
+								String email=listsearchresult.getString("email");
+								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");
+								int readcount=listsearchresult.getInt("readcount");
+								int re_level=listsearchresult.getInt("re_level");
+								int members=listsearchresult.getInt("members");
+								String img0=listsearchresult.getString("img0");
+								int replycount=0;
+							BF_DAO dbPro1 = BF_DAO.getInstance();
+							BF_DTO article =  dbPro.getArticle(Integer.parseInt(num));
+								   	String replylistsql1="select count(*) from bf_boardre where num="+article.getNum()+"";
+								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
+								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
+				%>
+			    <tr height="50" style="border-top: 1pt solid gray;cursor: pointer;" OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
 			    <td  width="50" > <%=number--%></td>
-			    <td  width="250" align="left">
+			    <td width="150" >
+			    <%if (img0!=null){%>
+			    <img style="max-width:145px;max-height:115px;min-height:115px;padding: 5;border-radius: 5px;"src="<%=img0%>">
+			    <%}else{%>
+			     <img style="max-width:145px;max-height:115px;min-height:115px;border-radius: 5px;"src="../../img/board/board_null_img.png">
+			    	<%}%></td>
+			    <td  width="1000" align="left" style="vertical-align: text-top;">
 			<%
 				int wid=0; 
 				if(re_level>0){
-				   wid=5*(re_level); 
+				   wid=5*(re_level);
 			%>
 				  <img src="images/level.png" width="<%=wid%>" height="16">
 				  <img src="images/re.png">
 			<%  }else{%>
 				  <img src="images/level.png" width="<%=wid%>" height="16">
-				  
 			<%  }%>
-			           
-			       <a href="content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
+			      <a href="bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
 			           <%=subject%></a><a style="margin-left:10px">[<%=replycount%>]</a><hr style="margin-top:8">
 			           <a href="mailto:<%=email%>" style="margin-left: 10;">
 				        작성자:<%=writer%>
@@ -151,19 +155,8 @@ font-size:18px;
 				        <a style="margin-left: 10;">작성일:<%= sdf.format(reg_date)%></a>
 				        <a style="margin-left: 10;">조회수:<%=readcount%></a>
 				
-			          
-				
 			<% if(readcount>=20){%>
 			         <img src="images/hot.png" border="0"  height="16"><%}%> </td>
-			    <td width="100" align="center"> 
-			       <a href="mailto:<%=email%>"style="margin-left: 10;">
-			        <%=writer%>
-			        
-			       <% if(members>=1){%>
-			         <img src="images/pig.png" border="0"  height="16"><%}%>
-			        </a></td>
-			    <td width="150"><%= sdf.format(reg_date)%></td>
-			    <td width="50"><%=readcount%></td>
 			  </tr>
 			  <tr class="tableline"><td colspan="6"></td></tr>
 		<%
@@ -199,29 +192,32 @@ font-size:18px;
 	        if (endPage > pageCount) endPage = pageCount;
 	        
 	        if (startPage > 10) { %>
-	          <a href="list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
+	          <a href="bfboard_list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
 	<%      }
 	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
-	           <a href="list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
+	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
 		          <% }
 		           else{%>
-	           <a href="list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
+	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
 	<%      }}
 	        	
 	        
 	        
 	        if (endPage < pageCount) {  %>
-	        <a href="list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
+	        <a href="bfboard_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
 	<%	
 	        }
 	        
 	    }
-	%><%if(id!=null){%><a href="writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
+	%><%if(id!=null||id!=""){%>
+	<a href="bfboard_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;" class="newbutton"value="글쓰기"></a>
+	</div>
 	<%} %>
-	<form method="post" action="list.jsp">
-		<div style="margin:0 auto; margin-top:10px;">
+	
+	<form method="post" action="bfboard_list.jsp">
+		<div style="margin:0 auto;margin-top:10px;">
 		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->
 	        <OPTION value='subject'>제목</OPTION>
 	        <OPTION value='writer'>작성자</OPTION>
@@ -229,10 +225,10 @@ font-size:18px;
 	    </SELECT>
 		<input style="width: 250;height:42px"name="listsearch" type="text">
 		<input style="font-size: 12px;  line-height: 40px; width: 100px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; color: #263238; border: 1px solid #263238; background: transparent;" type="submit"  value="검색"><Br>
-</div>
+		</div>
 	</form>
 	</div>
-
-</div>					
+</div>
+						
 </body>
 </html>
