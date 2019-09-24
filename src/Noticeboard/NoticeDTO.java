@@ -2,7 +2,7 @@ package Noticeboard;
 
 import java.sql.Timestamp;
 
-public class BoardDataBean {
+public class NoticeDTO {
 	private int num;
 	private String writer;
 	private String subject;

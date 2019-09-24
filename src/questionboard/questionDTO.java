@@ -2,7 +2,7 @@ package questionboard;
 
 import java.sql.Timestamp;
 
-public class BoardDataBean {
+public class questionDTO {
 	private int num;
 	private String writer;
 	private String subject;

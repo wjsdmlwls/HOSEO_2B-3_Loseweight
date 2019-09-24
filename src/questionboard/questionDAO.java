@@ -12,12 +12,12 @@ import javax.sql.DataSource;
 
 import ch13.QnAboardDTO;
 
-public class BoardDBBean {
+public class questionDAO {
 
-	private static BoardDBBean instance = new BoardDBBean();
+	private static questionDAO instance = new questionDAO();
 
 	// .jsp페이지에서 DB연동빈인 BoardDBBean클래스의 메소드에 접근시 필요
-	public static BoardDBBean getInstance() {
+	public static questionDAO getInstance() {
 		return instance;
 	}
 
@@ -25,13 +25,13 @@ public class BoardDBBean {
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource) envCtx.lookup("jdbc/basicjsp");
+		DataSource ds = (DataSource) envCtx.lookup("jdbc/loseweight_db");
 		return ds.getConnection();
 	}
 
 	// board테이블에 글을 추가(inset문)<=writePro.jsp페이지에서 사용
 	@SuppressWarnings("resource")
-	public void insertArticle(BoardDataBean article) throws Exception {
+	public void insertArticle(questionDTO article) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,11 +150,11 @@ public class BoardDBBean {
 	}
 
 	// 글의 목록(복수개의 글)을 가져옴(select문) <=list.jsp에서 사용
-	public List<BoardDataBean> getArticles(int start, int end) throws Exception {
+	public List<questionDTO> getArticles(int start, int end) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<BoardDataBean> articleList = null;
+		List<questionDTO> articleList = null;
 		try {
 			conn = getConnection();
 
@@ -164,9 +164,9 @@ public class BoardDBBean {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				articleList = new ArrayList<BoardDataBean>(end);
+				articleList = new ArrayList<questionDTO>(end);
 				do {
-					BoardDataBean article = new BoardDataBean();
+					questionDTO article = new questionDTO();
 					article.setNum(rs.getInt("num"));
 					article.setWriter(rs.getString("writer"));
 					article.setEmail(rs.getString("email"));
@@ -206,11 +206,11 @@ public class BoardDBBean {
 	}
 
 	// 글의 내용을 보기(1개의 글)(select문)<=content.jsp페이지에서 사용
-	public BoardDataBean getArticle(int num) throws Exception {
+	public questionDTO getArticle(int num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BoardDataBean article = null;
+		questionDTO article = null;
 		try {
 			conn = getConnection();
 
@@ -219,7 +219,7 @@ public class BoardDBBean {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				article = new BoardDataBean();
+				article = new questionDTO();
 				article.setNum(rs.getInt("num"));
 				article.setWriter(rs.getString("writer"));
 				article.setEmail(rs.getString("email"));
@@ -262,11 +262,11 @@ public class BoardDBBean {
 	}
 
 	// 글 수정폼에서 사용할 글의 내용(1개의 글)(select문)<=updateForm.jsp에서 사용
-	public BoardDataBean updateGetArticle(int num) throws Exception {
+	public questionDTO updateGetArticle(int num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BoardDataBean article = null;
+		questionDTO article = null;
 		try {
 			conn = getConnection();
 
@@ -275,7 +275,7 @@ public class BoardDBBean {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				article = new BoardDataBean();
+				article = new questionDTO();
 				article.setNum(rs.getInt("num"));
 				article.setWriter(rs.getString("writer"));
 				article.setEmail(rs.getString("email"));
@@ -317,7 +317,7 @@ public class BoardDBBean {
 	}
 
 	// 글 수정처리에서 사용(update문)<=updatePro.jsp에서 사용
-	public int updateArticle(BoardDataBean article) throws Exception {
+	public int updateArticle(questionDTO article) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -423,7 +423,7 @@ public class BoardDBBean {
 	}
 	
     //댓글
-	public void replyArticle(BoardDataBean article) throws Exception {
+	public void replyArticle(questionDTO article) throws Exception {
 		try {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;   
@@ -442,8 +442,8 @@ public class BoardDBBean {
 	}	
 	
 
-	public List<BoardDataBean> getquestionboardreList(int num) throws Exception {
-		List<BoardDataBean> list = new ArrayList<>();
+	public List<questionDTO> getquestionboardreList(int num) throws Exception {
+		List<questionDTO> list = new ArrayList<>();
 		//DTO 값을 리스트에 저장하려 빈 리스트를 만듭니다.
 		  Connection conn = null;
 	        PreparedStatement pstmt = null;
@@ -458,7 +458,7 @@ public class BoardDBBean {
 			
 			if(rs.next()) {
 				do {
-					BoardDataBean BoardDataBean = new BoardDataBean();
+					questionDTO BoardDataBean = new questionDTO();
 					BoardDataBean.setGlenum(rs.getInt("glenum"));
 					BoardDataBean.setLw_id(rs.getString("lw_id"));
 					BoardDataBean.setRecontent(rs.getString("recontent"));
@@ -478,7 +478,7 @@ public class BoardDBBean {
 		//리스트에 업데이트함.
 	}	
 	//수정
-		public void updatereplyArticle2(BoardDataBean article)throws Exception {
+		public void updatereplyArticle2(questionDTO article)throws Exception {
 			 Connection conn = null;
 		        PreparedStatement pstmt = null;
 		        try {
@@ -493,7 +493,7 @@ public class BoardDBBean {
 		  	  }
 		  	}	
 		//삭제
-		public void deletereplyArticle(BoardDataBean article)throws Exception {
+		public void deletereplyArticle(questionDTO article)throws Exception {
 			 Connection conn = null;
 		        PreparedStatement pstmt = null;
 		        try {
