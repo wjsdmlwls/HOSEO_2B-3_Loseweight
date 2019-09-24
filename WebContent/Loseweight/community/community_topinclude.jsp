@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
-<%@ page import = "board.BoardDBBean" %>
-<%@ page import = "board.BoardDataBean" %>
+<%@ page import = "board.board_DAO" %>
+<%@ page import = "board.board_DTO" %>
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
@@ -85,10 +85,10 @@ font-size:18px;
 						<a href='#'>식단조절</a>
 					</li>
 					<li>
-						<a href='/2019_JeonJSP/Loseweight/community/board/list.jsp'>커뮤니티</a>
+						<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>커뮤니티</a>
 					</li>
 					<li class='last'>
-						<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/list.jsp'>고객센터</a>
+						<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
 					</li>
 					<li>
 						<a href='#'>shop</a>
@@ -121,10 +121,10 @@ font-size:18px;
 		
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/board/list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">자유게시판</a>
+								<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">자유게시판</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/bf_board/list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">BEFOR & AFTER </a>
+								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">BEFOR & AFTER </a>
 							</li>
 						</ul>
 		</div>
@@ -133,10 +133,10 @@ font-size:18px;
 		<div class='sub_menu4' style="margin-top:25%">			
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">공지사항</a>
+								<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">공지사항</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>"> 문의하기 </a>
+								<a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>"> 문의하기 </a>
 							</li>
 						</ul>
 					</div>

@@ -9,9 +9,9 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);

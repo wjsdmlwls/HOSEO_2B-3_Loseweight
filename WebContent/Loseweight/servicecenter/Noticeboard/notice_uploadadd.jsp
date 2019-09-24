@@ -10,7 +10,7 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+    String jdbcUrl="jdbc:mysql://localhost:3306/losewweight_db";
 	String dbId="lw_admin";
 	String dbPass="3whakstp";
 	

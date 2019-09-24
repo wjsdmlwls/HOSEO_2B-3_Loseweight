@@ -16,9 +16,9 @@ public class jekimDB {
 		}
 		
 		try {
-			String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	    	String dbId="jspid";
-	    	String dbPass="jsppass";
+			String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	    	String dbId="lw_admin";
+	    	String dbPass="3whakstp";
 	    	
 	    	con=DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		}catch(Exception e) {
