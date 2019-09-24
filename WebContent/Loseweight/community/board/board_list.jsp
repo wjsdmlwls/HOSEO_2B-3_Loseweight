@@ -130,7 +130,7 @@ font-size:18px;
 			<%
 				int wid=0; 
 				if(re_level>0){
-				   wid=5*(re_level); 
+				   wid=30*(re_level); 
 			%>
 				  <img src="images/level.png" width="<%=wid%>" height="16">
 				  <img src="images/re.png">
