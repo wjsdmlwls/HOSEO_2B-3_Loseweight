@@ -194,7 +194,7 @@ function  sendProcess(f){
 					  <tr class="tableline"><td colspan="5"></td></tr>
 					  <tr>
 					    <td align="left" colspan="3">
-					           <pre style="height:auto;min-height: 500px;"><%=article.getContent()%></pre></td>
+					           <pre style="height:auto;min-height: 500px; word-break: break-all; white-space: pre-wrap;"><%=article.getContent()%></pre></td>
 					           
 					  </tr>
 					   <% if(article.getFilename0()!=null){%>
@@ -269,7 +269,7 @@ function  sendProcess(f){
 		 <tr height="50" style="border-top: 1pt solid gray">
 			    <td  width="50" > <input style="border:none" name="lw_id" value="<%=lw_id%>"readonly></td>
 			    <td  width="250" align="left">
-			    <input type="text" class="replyeditleft1"style="border: none;display:block;"name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
+			    <input type="text" class="replyeditleft1"style="border: none; width:100%; display:block;"name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
 			    
 			     <input type="text" class="replyeditleft2" style="display:none;float:left;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
 			     

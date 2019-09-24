@@ -192,7 +192,7 @@ tr.tableline td{
 					  <tr class="tableline"><td colspan="5"></td></tr>
 					  <tr>
 					    <td align="left" colspan="3">
-					           <pre style="height:auto;min-height: 500px;"><%=article.getContent()%></pre></td>
+					           <pre style="height:auto;min-height: 500px; word-break: break-all; white-space: pre-wrap;"><%=article.getContent()%></pre></td>
 					           
 					  </tr> <% if(article.getFilename0()!=null){%>
 					  <tr class="tableline">
