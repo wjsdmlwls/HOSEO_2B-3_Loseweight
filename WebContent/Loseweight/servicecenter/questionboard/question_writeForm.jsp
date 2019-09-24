@@ -9,9 +9,9 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -73,7 +73,7 @@ $(function() {
 <!-- form 두개 다른곳에 보내기  -->
 	<script>
 	function  sendProcess(f){
-	        f.action="writePro.jsp";
+	        f.action="question_writePro.jsp";
 	        f.submit();
 	}
 	</script>
@@ -166,7 +166,7 @@ font-size: 14px;
 						  <tr>      
 						    <td colspan=2 align="right"> 
 						      <input type="submit" id="write" class="newbutton" value="글쓰기" onClick="sendProcess(this.form); writeSave();" >  
-						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='list.jsp'">
+						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='question_list.jsp'">
 						    </td>
 						  </tr>
 						  <tr style="display: none;"><!-- upload db에 보내는용도  -->

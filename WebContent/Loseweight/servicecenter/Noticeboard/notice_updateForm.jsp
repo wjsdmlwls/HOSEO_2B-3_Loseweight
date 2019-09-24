@@ -2,32 +2,32 @@
     pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
 	<%@ include file="color.jspf"%>
    	<%@ page import="java.io.File" %>
-	<%@ page import = "Noticeboard.BoardDBBean" %>
-	<%@ page import = "Noticeboard.BoardDataBean" %>
+	<%@ page import = "Noticeboard.NoticeDAO" %>
+	<%@ page import = "Noticeboard.NoticeDTO" %>
     <%@page import="java.sql.*" %>
     
 <%@page import="java.io.PrintWriter" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
-    // 세션정보 가져오기
-    try {
-    String id = (String) session.getAttribute("id");
-    
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
-	
-    UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
- 
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
- 
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1,id);
-    rs = pstmt.executeQuery();
-%>
+    	// 세션정보 가져오기
+            try {
+            String id = (String) session.getAttribute("id");
+            
+            String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+        	String dbId="lw_admin";
+        	String dbPass="3whakstp";
+        	
+            UserDAO db= new UserDAO();
+            Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+         
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
+         
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+    %>
 
 <html>
 <head>
@@ -132,7 +132,7 @@
 
 <!-- 파일업로드  -->
 <%
- request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
  String realFolder = "";
  String filename0 = "";
  String filename1 = "";
@@ -180,12 +180,11 @@ font-size: 14px;
 <!-- 주소 end -->
 <body>
 <%
-  int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("num"));
   String pageNum = request.getParameter("pageNum");
   try{
-      BoardDBBean dbPro = BoardDBBean.getInstance(); 
-      BoardDataBean article =  dbPro.updateGetArticle(num);
-
+      NoticeDAO dbPro = NoticeDAO.getInstance(); 
+      NoticeDTO article =  dbPro.updateGetArticle(num);
 %>
 	<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
@@ -198,7 +197,7 @@ font-size: 14px;
 				<div class="mypage_form">
 					<br>
 					<form method="post" name="writeform" 
-					action="updatePro.jsp?pageNum=<%=pageNum%>" onsubmit="return writeSave()">
+					action="notice_updatePro.jsp?pageNum=<%=pageNum%>" onsubmit="return writeSave()">
 					<table>
 					  <tr>
 					    <td align="left" width="200">
@@ -228,7 +227,7 @@ font-size: 14px;
 					   <td align="right" colspan="2"> 
 					     <input type="submit" class="newbutton"value="글수정" id="write">  
 					     <input type="button"class="newbutton" value="목록보기" 
-					       onclick="document.location.href='list.jsp?pageNum=<%=pageNum%>'">
+					       onclick="document.location.href='notice_list.jsp?pageNum=<%=pageNum%>'">
 					   </td>
 					 </tr>
 					 <tr style="display: none;"> <!-- upload db에 보내는용도  -->

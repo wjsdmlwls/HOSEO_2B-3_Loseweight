@@ -10,9 +10,9 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -53,7 +53,7 @@ $(function() {
 	var openWin;
 	function openimgadd() {
 		// window.name = "해당페이지로 가져옴 이름"; 
-		window.name = "writeForm";
+		window.name = "	writeForm";
 		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open("imgadd.jsp", "childForm",
 				"width=580, height=600, resizable = no, scrollbars = yes");
@@ -74,7 +74,7 @@ $(function() {
 <!-- form 두개 다른곳에 보내기  -->
 	<script>
 	function  sendProcess(f){
-	        f.action="writePro.jsp";
+	        f.action="notice_writePro.jsp";
 	        f.submit();
 	}
 	</script>

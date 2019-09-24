@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
-<%@ page import = "Noticeboard.BoardDBBean" %>
-<%@ page import = "Noticeboard.BoardDataBean" %>
+<%@ page import = "Noticeboard.NoticeDAO" %>
+<%@ page import = "Noticeboard.NoticeDTO" %>
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
     
-<%!
-    int pageSize = 10;
+<%!int pageSize = 10;
     SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>
+        new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -26,29 +24,28 @@
     int endRow = currentPage * pageSize;
     int count = 0;
     int number = 0;
-    List<BoardDataBean> articleList = null; 
+    List<NoticeDTO> articleList = null; 
     
     listsearch = request.getParameter("listsearch");
 	if(listsearch==null){
 		listsearch ="";
 	}
-    BoardDBBean dbPro = BoardDBBean.getInstance();
+    NoticeDAO dbPro = NoticeDAO.getInstance();
     count = dbPro.getArticleCount(); 
 
 	String searchcol=request.getParameter("searchcol"); //검색 조건 
 	if(searchcol==""||searchcol==null){
 		searchcol ="subject";
 	}
-	
 %>
 <%
 	jekimDB usedb = new jekimDB();
 	usedb.connect();
 	Statement stmt=null;
 	Connection con=null;
-	String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+	String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	String listsql1="select count(*) from noticeboard where "+searchcol+"  like '%"+listsearch+"%'";
@@ -98,7 +95,7 @@ font-size:18px;
 	}	
 	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
-	%>
+%>
 <div class="div_body" >
 		<jsp:include page="../../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="4"/>
@@ -117,24 +114,25 @@ font-size:18px;
 			    </tr>
 			    <tr class="headtableline"><td colspan="6"></td></tr>
 			
-	<%if(listsearchresult.next()){
-		do{
-		String num=listsearchresult.getString("num");
-		String subject=listsearchresult.getString("subject");
-		String writer=listsearchresult.getString("writer");
-		String email=listsearchresult.getString("email");
-		Timestamp reg_date=listsearchresult.getTimestamp("reg_date");
-		int readcount=listsearchresult.getInt("readcount");
-		int re_level=listsearchresult.getInt("re_level");
-		int members=listsearchresult.getInt("members");
-		//댓글
-		int replycount=0;
-							BoardDBBean dbPro1 = BoardDBBean.getInstance();
-							BoardDataBean article =  dbPro.getArticle(Integer.parseInt(num));
-						   	String replylistsql1="select count(*) from Noticeboardre where num="+article.getNum()+"";
-						   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-						if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
-		%>
+	<%
+					if(listsearchresult.next()){
+								do{
+								String num=listsearchresult.getString("num");
+								String subject=listsearchresult.getString("subject");
+								String writer=listsearchresult.getString("writer");
+								String email=listsearchresult.getString("email");
+								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");
+								int readcount=listsearchresult.getInt("readcount");
+								int re_level=listsearchresult.getInt("re_level");
+								int members=listsearchresult.getInt("members");
+								//댓글
+								int replycount=0;
+											NoticeDAO dbPro1 = NoticeDAO.getInstance();
+											NoticeDTO article =  dbPro.getArticle(Integer.parseInt(num));
+										   	String replylistsql1="select count(*) from Noticeboardre where num="+article.getNum()+"";
+										   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
+										if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
+				%>
 		 <tr height="50" style="border-top: 1pt solid gray">
 			    <td  width="50" > <%=number--%></td>
 			    <td  width="250" align="left">
@@ -150,7 +148,7 @@ font-size:18px;
 				  
 			<%  }%>
 			           
-			     <a href="content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
+			     <a href="notice_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
 			           <%=subject%></a><a style="margin-left:10px">[<%=replycount%>]</a><hr style="margin-top:8">
 			           <a href="mailto:<%=email%>" style="margin-left: 10;">
 				        작성자:<%=writer%>
@@ -196,30 +194,30 @@ font-size:18px;
 	        if (endPage > pageCount) endPage = pageCount;
 	        
 	        if (startPage > 10) { %>
-	          <a href="list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
+	          <a href="notice_list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
 	<%      }
 	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
-	           <a href="list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
+	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
 		          <% }
 		           else{%>
-	           <a href="list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
+	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
 	<%      }}
 	        	
 	        
 	        
 	        if (endPage < pageCount) {  %>
-	        <a href="list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
+	        <a href="notice_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
 	<%	
 	        }
 	        
 	    }
-	%><%if(id.toString().equals("admin")){%><a href="writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
+	%><%if(id.toString().equals("admin")){%><a href="notice_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
 	<%}else{
 		%>
 	<% }%>
-		<form method="post" action="list.jsp">
+		<form method="post" action="notice_list.jsp">
 		<div style="margin:0 auto;margin-top:10px;">
 		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->
 	        <OPTION value='subject'>제목</OPTION>

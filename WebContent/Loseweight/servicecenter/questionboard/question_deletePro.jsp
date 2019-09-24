@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "questionboard.BoardDBBean" %>
+<%@ page import = "questionboard.questionDAO" %>
 <%@ page import = "java.sql.Timestamp" %>
 
-<% request.setCharacterEncoding("utf-8");%>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
 
 <%
-  int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("num"));
   String pageNum = request.getParameter("pageNum");
   String passwd = request.getParameter("passwd");
 
-  BoardDBBean dbPro = BoardDBBean.getInstance(); 
+  questionDAO dbPro = questionDAO.getInstance(); 
   int check = dbPro.deleteArticle(num, passwd);
 
   if(check==1){
 %>
-	<meta http-equiv="Refresh" content="0;url=list.jsp?pageNum=<%=pageNum%>">
+	<meta http-equiv="Refresh" content="0;url=question_list.jsp?pageNum=<%=pageNum%>">
 <%}else{%>
     <script type="text/javascript">      
        <!--      

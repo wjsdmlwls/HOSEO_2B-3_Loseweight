@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
-	<%@ include file="color.jspf"%>
    	<%@ page import="java.io.File" %>
     <%@page import="java.sql.*" %>    
 <%@page import="java.io.PrintWriter" %>
@@ -10,9 +9,9 @@
     try {
     String id = (String) session.getAttribute("id");
     
-    String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+    String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -66,13 +65,13 @@ font-size: 14px;
 	<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
+			<jsp:param name="toc" value="1"/>
 			<jsp:param name="imgs" value="gogec_1.png"/>
 		</jsp:include>
 		
 		<div style='width: 1000px;margin-top:5%;margin:0 auto;'>
 				<div class="mypage_form">
-				<form method="POST" name="delForm" action="deletePro.jsp?pageNum=<%=pageNum%>" onsubmit="return deleteSave()"> 
+				<form method="POST" name="delForm" action="question_deletePro.jsp?pageNum=<%=pageNum%>" onsubmit="return deleteSave()"> 
 				 <table id="del_table" style="margin:0 auto;border:solid;margin-top: 200px;">
 				  <tr height="30">
 				     <td align=center style="padding-top: 20px; padding-left: 100;padding-right: 100;">
@@ -86,7 +85,7 @@ font-size: 14px;
 				 <tr height="30">
 				    <td align=center style="padding:20px;padding-top:0">
 				      <input type="button" value="취소" class="newbutton"
-				       onclick="document.location.href='list.jsp?pageNum=<%=pageNum%>'">    
+				       onclick="document.location.href='question_list.jsp?pageNum=<%=pageNum%>'">    
 				       
 				      <input type="submit" value="확인"class="newbutton" > 
 				    </td>

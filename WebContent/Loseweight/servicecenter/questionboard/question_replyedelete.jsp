@@ -2,19 +2,19 @@
     pageEncoding="UTF-8"%>
 
      <%@page import= "java.sql.*,javax.sql.*,javax.naming.*,java.util.* ,questionboard.*" %>
-<%@ page import = "questionboard.BoardDBBean" %>
-<%@ page import = "questionboard.BoardDataBean" %>
+<%@ page import = "questionboard.questionDAO" %>
+<%@ page import = "questionboard.questionDTO" %>
      
 <%
-	request.setCharacterEncoding("utf-8");
-%>
+     	request.setCharacterEncoding("utf-8");
+     %>
  
-<jsp:useBean id="article"  scope="page" class="questionboard.BoardDataBean"/>
+<jsp:useBean id="article"  scope="page" class="questionboard.questionDTO"/>
 
 <%
 	int glenum = Integer.parseInt(request.getParameter("glenumpost"));
 
-  	BoardDBBean boardDAO = new BoardDBBean();
+  	questionDAO boardDAO = new questionDAO();
 
 	article.setGlenum(glenum);
 
@@ -23,7 +23,7 @@
     int num=article.getNum();
     
 
-    response.sendRedirect("list.jsp");
+    response.sendRedirect("question_list.jsp");
 %>
 
 <%=glenum%>
