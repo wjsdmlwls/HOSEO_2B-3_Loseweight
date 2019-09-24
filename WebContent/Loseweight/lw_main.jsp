@@ -87,7 +87,6 @@ window.closeModal = function() {
 		<h1 style="width:130px; margin:0 auto; position:relative; z-index:222;"><a href="lw_main.jsp"><img id="logo" src="img/logo/logo_BY.png" alt="logo" style="width:135px;"></a></h1>
 		<div class="Opacity_box" style="position:relative; left:0px; top:-100px; z-index:1;">
 			<nav style="float:right; padding:10px;">
-				
 					<li class="nav">
 							<%if(id==null){ %>
 							<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l">로그인</a>
@@ -109,10 +108,10 @@ window.closeModal = function() {
 					<a href='#'>식단조절</a>
 				</li>
 				<li>
-					<a href='community/board/list.jsp'>자유게시판</a>
+					<a href='community/board/board_list.jsp'>자유게시판</a>
 				</li>
 				<li class='last'>
-					<a href='servicecenter/Noticeboard/list.jsp'>고객센터</a>
+					<a href='servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
 				</li>
 				<li>
 					<a href='#'>shop</a>

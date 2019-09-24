@@ -190,7 +190,6 @@ tr.tableline td{
 					<tr height="30">
 					    <td align="left"  align="center" colspan="3">
 						    <a style="font-size: 20px;font-weight: bold;"> <%=article.getSubject()%></a></td>
-						    
 					  </tr>
 					  <tr height="30">
 					    <td align="left"style="width:1;"><%=article.getWriter()%></td>
@@ -213,7 +212,6 @@ tr.tableline td{
 							   <a href="<%=article.getFilepath0()%>" style="border:none" type="text/html"target="_blank"download><%=article.getFilename0()%></a><br>
 							     <% if(article.getFilename1()!=null){%>
 							  		 <a href="<%=article.getFilepath1()%>" style="border:none" type="text/html"download><%=article.getFilename1()%></a><br>
-							  		 
 							   <%}}
 							     }else{%>
 							   <%} %>
@@ -247,13 +245,20 @@ tr.tableline td{
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="num" value="<%=article.getNum()%>">
+			<input name="pageNum" value="<%=pageNum%>">
 		</div>
+		<%if(id!=null){%>
 			<textarea name="recontent" id="recontent" style="width: 600px;" rows="3" ></textarea>
 			<input type="submit" style="margin-top: -50;height: 59;"class="newbutton" value="댓글 등록">
+			<%}%>
 		</form>
 		</div>
 	<div style="padding-bottom:60px;">
 		<form method="post" action="board_replyedit.jsp" onsubmit="return writeSave()">
+		<div style="display:none">
+			<input name="num" value="<%=article.getNum()%>">
+			<input name="pageNum" value="<%=pageNum%>">
+		</div>
 			<table class="lw_board" style="margin:0 auto;width:1000px"> 
 			    <tr height="40"> 
 			      <td align="center"  width="100"  ></td> 

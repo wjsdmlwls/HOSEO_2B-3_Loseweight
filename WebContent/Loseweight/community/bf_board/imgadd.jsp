@@ -25,7 +25,6 @@
     pstmt.setString(1,id);
     rs = pstmt.executeQuery();
 %>
-
 <html>
 <head>
 <!--slide-->
@@ -33,19 +32,11 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="../../js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
-<!-- modal windows -->
-<script>
-window.closeModal = function() {
-   $( '#myModal_l' ).modal( 'hide' );
-}
-</script>
-<!-- modal windows -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%
  request.setCharacterEncoding("utf-8");
  String realFolder = "";
- 
  String uploadimg1 = "";
  String uploadimg2 = "";
  String uploadimg3 = "";
@@ -64,12 +55,12 @@ window.closeModal = function() {
 		     String file3 = (String)files.nextElement();
 		     uploadimg3 = multi.getFilesystemName(file3);
 	     	 } 
-	 
 	 catch(Exception e) {
 	  e.printStackTrace();
 	 }
-	 String upimgpath1= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg1;
-	 String upimgtag1 = "<img src="+upimgpath1+">";
+	 //넣을 이미지 정보를 변수에 담음
+	 String upimgpath1= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg1; //이미지 파일의 경로값
+	 String upimgtag1 = "<img src="+upimgpath1+">";								//이미지 파일의 태그 
 	 
 	 String upimgpath2= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg2;
 	 String upimgtag2= "<img src="+upimgpath2+">";
@@ -83,7 +74,7 @@ window.closeModal = function() {
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../lw_user/vcheck.js"></script>
 <!-- img upload -->
-	<script src="../js/jquery.MultiFile.js"></script>
+	<script src="../js/jquery.MultiFile.js"></script> 
 	<script>
 	
 		$(function(){ // wait for page to load
@@ -148,14 +139,14 @@ window.closeModal = function() {
 	<script>
 	function setParentText(){
 		if (document.getElementById("img0").value!=""){
-        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:500px"src="<%=upimgpath1%>">');
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:500px"src="<%=upimgpath1%>">'); <!-이미지태그를 글쓰는 곳에 마자믹에 추가  --->
         	window.opener.document.getElementById("img0").value = document.getElementById("uploadimg1").value;
         	window.close();
 		}
 		else{
 			alert("파일을 업로드해주세요");
 		}
-        }
+    }
 	</script>
 <style>
 .writeinput{
@@ -175,43 +166,44 @@ font-size: 14px;
 </style>
 <!-- 주소 end -->
 <body>
-
 	<div class="div_body">
 	<div style="width:100%;height: 50px;;background:#faafaf"><h4 style="padding-top: 10;color: white; padding-left: 10px;">이미지 업로드</h4>
 	</div>
 						<form method="post" name="writeform" style="margin-top: 80px;"
 						    onsubmit="return writeSave()">
 						
-						<table class="lw_board" style="margin:0 auto;">
-						<%while(rs.next()) { %>
-						  
-						  <tr>
-							  <td>
-							  <%if (uploadimg1!=""){ %>
-							 <img style="width:250px;height:160px"src="<%=upimgpath1 %>"><br><input id="img0" name="img0"value="<%=uploadimg1 %>" style="border:none;display:none">
-							 <%} else{%><input id="img0" name="img0"value="" style="border:none">
-							 <%} %>
-						
-							  </td>
-						  </tr>
-						  <tr>
-						  <td style="display:none">
-						  <%if (uploadimg1!=""){ %>
-						  <input id="uploadimg1" value="<%=upimgpath1 %>"><br>
-						  <%}else{ %> <input id="uploadimg1" value=""><br>
-						  <% }%>
-						  </td>
-						  </tr>
-						</table> 
+							<table class="lw_board" style="margin:0 auto;">
+								<%while(rs.next()) { %>
+							  
+								  <tr>
+									  <td>
+									  <%if (uploadimg1!=""){ %>
+									 <img style="width:250px;height:160px"src="<%=upimgpath1 %>"><br><input id="img0" name="img0"value="<%=uploadimg1 %>" style="border:none;display:none">
+									 <%} else{%><input id="img0" name="img0"value="" style="border:none">
+									 <%} %>
+								
+									  </td>
+								  </tr>
+									  <tr>
+									  <td style="display:none">
+									  <%if (uploadimg1!=""){ %>
+									  <input id="uploadimg1" value="<%=upimgpath1 %>"><br>
+									  <%}else{ %> <input id="uploadimg1" value=""><br>
+									  <% }%>
+									  </td>
+								  </tr>
+							</table> 
 						</form>  
 						<!-- 파일업로드하는거임  -->
 						<form method="post" enctype="multipart/form-data" style="margin:0 auto;width:500px;">
-						<input type="file" class="afile3 with-preview" />
- 						<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:150px; margin-top:5px"></div>
- 						<div style="margin-top:10px">
-							  <input type="submit"class="newbutton" value="업로드">
-							 <input type="button" style="float:right"class="newbutton" value="확인" onclick="setParentText()">
-					    </div>
+							<input type="file" class="afile3 with-preview" />
+	 						<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:150px; margin-top:5px">
+	 							<!-- 이미지 태그 들어가는 곳  -->
+	 						</div>
+	 						<div style="margin-top:10px">
+								 <input type="submit"class="newbutton" value="업로드">
+								 <input type="button" style="float:right"class="newbutton" value="확인" onclick="setParentText()">
+						    </div>
 						</form> 
 						<div style="margin-top:20px;margin-left:50px;">
 						<h6>파일은 각각 최대 10MB, 총 2개까지 업로드 하실 수 있습니다.</h6>

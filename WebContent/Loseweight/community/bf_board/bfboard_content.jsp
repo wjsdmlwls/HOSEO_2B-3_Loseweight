@@ -12,17 +12,18 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
-     <%
+<%
      	String imgs =request.getParameter("abc"); //경로 
                	String name =request.getParameter("abd"); //파일이름
                
           		String directory = application.getRealPath("/img/");
           		String files[] = new File(directory).list();
-     %>
+%>
 <%!//댓글기능 date에도 사용 
     int pageSize = 10;
-    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
-    <%
+    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+%>
+<%
     	// 세션정보 가져오기
             try {
             String id = (String) session.getAttribute("id");
@@ -41,7 +42,7 @@
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,id);
             rs = pstmt.executeQuery();
-    %>
+%>
 <%
 	//content load
    int num = Integer.parseInt(request.getParameter("num"));
@@ -49,13 +50,14 @@
 
 	int pageSize = 10;
 	int currentPage = Integer.parseInt(pageNum);
-   int startRow = (currentPage-1) * pageSize  ;
-   int endRow = currentPage * pageSize;
-   int count = 0;
-   int number = 0;
- 
-   SimpleDateFormat sdf = 
-        new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	int startRow = (currentPage-1) * pageSize  ;
+	int endRow = currentPage * pageSize;
+	int count = 0;
+	int number = 0;
+	 
+	SimpleDateFormat sdf = 
+    	new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	//댓글 date양식
 
    try{
       BF_DAO dbPro = BF_DAO.getInstance(); 
@@ -73,21 +75,20 @@
 		Cookie[] cookieFromRequest= request.getCookies();
 		String cookieValue = null;
 		for(int i = 0; i<cookieFromRequest.length;i++){
-	cookieValue = cookieFromRequest[0].getValue();
+			cookieValue = cookieFromRequest[0].getValue();
 		}
 	 	// 쿠키 세션 입력
 		if (session.getAttribute(num+":cookie") == null) {
 		 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
-		} else {
-	session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
-	if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
-	 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
-	}
+		}else {
+			session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
+			if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
+			 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
+			}
 		}
-	 	
 		article.setNum(num);
 		article = dbPro.getArticle(num);
-
+		
 	 	// 조회수 카운트
 	 	if (!session.getAttribute(num+":cookie").equals(session.getAttribute(num+":cookie ex"))) {
 	 		dbPro.updateBoardreadcount(num);	
@@ -107,7 +108,7 @@
 	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 	String replylistsql2="select * from bf_boardre where num="+article.getNum()+"";
 	ResultSet replylist = usedb.resultQuery(replylistsql2);
-	
+	//댓글 개수 확인후 개수만큼 select문 뿌려주려고함
 	
     number = count-(currentPage-1)*pageSize;
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
@@ -115,12 +116,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-</head>
-<!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script type="text/javascript" src="../../lw_user/vcheck.js"></script>
+</head>
+<!-- stlye css -->
 <style>
 tr.tableline td{
 	border-bottom:1px solid #ddd;
@@ -132,19 +132,18 @@ tr.tableline td{
 </style>
 <script type="text/javascript">
 
-//form 두개 사용 
 $(function() {
-	$(".replyedit").on("click", function() {
-		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
-		$(this).parent().prev().children(".replyeditleft2").css({"display": "block"});
-		$(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');
+	$(".replyedit").on("click", function() { //수정버튼
+		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"}); //보여준 content 숨기기
+		$(this).parent().prev().children(".replyeditleft2").css({"display": "block"});	//숨겨진 textbox를 불러냄
+		$(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');	//send할 content값에 name을 붙힘
 		$(this).parent().prev().children(".replyedit_submit").css({"display": "block"});
-		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-		$(this).css({"display":"none"});
-		$(this).next(".replydelete").css({"display":"none"});
-		$(this).next().next(".replycancel").css({"display":"block"});
+		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');	//send할 glenumber name 
+		$(this).css({"display":"none"});	//수정버튼
+		$(this).next(".replydelete").css({"display":"none"});	//삭제버튼
+		$(this).next().next(".replycancel").css({"display":"block"});	//캔슬버튼
 	});
-	$(".replycancel").on("click", function() {
+	$(".replycancel").on("click", function() { //수정 캔슬
 		$(this).parent().prev().children(".replyeditleft1").css({"display": "block","position":"relative"});
 		$(this).parent().prev().children(".replyeditleft2").css({"display": "none"});
 		$(this).parent().prev().children(".replyeditleft2").attr('name','');
@@ -157,16 +156,13 @@ $(function() {
 	$(".replydelete").on("click", function() {
 		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
 	});
-	
 });
 function  sendProcess(f){
 	f.action="bfboard_replyedelete.jsp";
     f.submit();      
-    
 }
 </script>
 <body>
-
 	<div class="div_body">
 		<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
@@ -240,20 +236,27 @@ function  sendProcess(f){
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="num" value="<%=article.getNum()%>">
+			<input name="pageNum" value="<%=pageNum%>">
 		</div>
+		<%if(id!=null){%>
 			<textarea name="recontent" id="recontent" cols="100" rows="3" ></textarea>
 			<input type="submit" style="margin-top: -50;height: 59;"class="newbutton" value="댓글 등록">
+			<%}%>
 		</form>
 		</div>
 	<div style="padding-bottom:60px;">
 		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
+			<div style="display:none">
+				<input name="num" value="<%=article.getNum()%>">
+				<input name="pageNum" value="<%=pageNum%>">
+			</div>
 			<table class="lw_board" style="margin:0 auto;width:1000px"> 
 			    <tr height="40"> 
 			      <td align="center"  width="100"  ></td> 
 			      <td align="center"  width="700" ></td> 
 			      <td align="center"  width="250" ></td>
 			    </tr>
-			
+	<!-- 댓글 리스트를 불러옴  -->
 	<%if(replylist.next()){
 		do{
 		String num2=replylist.getString("num");
@@ -269,10 +272,12 @@ function  sendProcess(f){
 			    <input type="text" class="replyeditleft1"style="border: none;display:block;"name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
 			    
 			     <input type="text" class="replyeditleft2" style="display:none;float:left;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
+			     
 			    <button class="replyedit_submit" style="display:none" onclick="replyedit()">등록</button>
 			     <input type="hidden"class="glenumname" value="<%=glenum2%>">
 				</td>
 				
+				<!-- id와 작성자가 맞으면 수정버튼을 작성 -->
 				<td id="replybtn<%=num2%>_1"><%if (id!=null){
 						if(id.toString().equals(lw_id)){%>
 						<input type="button" class="replyedit"value="수정">
@@ -285,13 +290,13 @@ function  sendProcess(f){
 			  </tr>
 			  <tr class="tableline"><td colspan="6"></td></tr>
 			  
-		<%}while(replylist.next());
-		}else{%>
+		<%}while(replylist.next());//다음 값이 있으면 반복
+		
+		}else{%><!-- 댓글이 아예없으면 예외 처리 --> 
 		 <tr class="tableline">
 			  <td colspan="6">
 			  <h4 style="padding: 200;">댓글이 없습니다</h4>
 			  </td></tr>
-			  
 		<%}%>	
 	</table>
 	

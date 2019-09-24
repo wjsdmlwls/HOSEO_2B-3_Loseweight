@@ -10,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import ch13.QnAboardDTO;
 
 public class questionDAO {
 

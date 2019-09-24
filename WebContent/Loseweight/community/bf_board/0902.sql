@@ -19,17 +19,6 @@ create table bf_board(
     filepath1 varchar(500) null
  );
  
- create table boardupload(
-    num int not null primary key auto_increment,
-    ref int not null,
-    re_step smallint not null,
-    re_level smallint not null,
-    img0 varchar(50) null,
-    img1 varchar(50) null,
-    img2 varchar(50) null,
-    filename0 varchar(50) null,
-    filename1 varchar(50) null,
- );
  
 create table file(
 	fileName varchar(100),

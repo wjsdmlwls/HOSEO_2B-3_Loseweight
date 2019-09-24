@@ -23,9 +23,9 @@
 	article.setRecontent(recontent2);
 
 	boardDAO.updatereplyArticle2(article); 
+	
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("notice_content.jsp?num="+num+"&pageNum="+pageNum+"");
 
-    int num=article.getNum();
-    
-
-    response.sendRedirect("notice_list.jsp");
 %>

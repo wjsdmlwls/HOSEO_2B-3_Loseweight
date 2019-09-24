@@ -6,8 +6,8 @@
 <%@ page import = "java.sql.Timestamp" %>
      
 <%
-     	request.setCharacterEncoding("utf-8");
-     %>
+     request.setCharacterEncoding("utf-8");
+%>
 
 
 <jsp:useBean id="article"  scope="page" class="BFboard.BF_DTO">
@@ -22,6 +22,7 @@
     dbPro.replyArticle(article); 
     
     String boardfiles = (request.getParameter("boardfiles"));
-    int num=article.getNum();
-    response.sendRedirect("bfboard_list.jsp");
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("bfboard_content.jsp?num="+num+"&pageNum="+pageNum+"");
 %>

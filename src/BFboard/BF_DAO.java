@@ -334,7 +334,7 @@ public class BF_DAO {
 			if (rs.next()) {
 				dbpasswd = rs.getString("passwd");
 				if (dbpasswd.equals(article.getPasswd())) {
-					sql = "  bf_board set writer=?,email=?,subject=?,passwd=?,filename0=?,filename1=?,filepath0=?,filepath1=?";
+					sql = "update bf_board set writer=?,email=?,subject=?,passwd=?,filename0=?,filename1=?,filepath0=?,filepath1=?";
 					sql += ",content=? where num=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, article.getWriter());

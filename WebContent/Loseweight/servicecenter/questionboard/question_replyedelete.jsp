@@ -20,10 +20,10 @@
 
 	boardDAO.deletereplyArticle(article); 
 
-    int num=article.getNum();
-    
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("question_content.jsp?num="+num+"&pageNum="+pageNum+"");
 
-    response.sendRedirect("question_list.jsp");
 %>
 
 <%=glenum%>

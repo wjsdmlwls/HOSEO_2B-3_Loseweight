@@ -236,6 +236,7 @@ tr.tableline td{
 		<form action = "question_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
+			<input name="pageNum" value="<%=pageNum%>">
 			<input name="num" value="<%=article.getNum()%>">
 		</div>
 			<textarea name="recontent" id="recontent" cols="100" rows="3" ></textarea>
@@ -245,6 +246,10 @@ tr.tableline td{
 	</div>
 	<div style="padding-bottom:60px;">
 		<form method="post" action="question_replyedit.jsp" onsubmit="return writeSave()">
+		<div style="display:none">
+			<input name="num" value="<%=article.getNum()%>">
+			<input name="pageNum" value="<%=pageNum%>">
+		</div>
 			<table class="lw_board" style="margin:0 auto;width:1000px"> 
 			    <tr height="40"> 
 			      <td align="center"  width="100"  ></td> 

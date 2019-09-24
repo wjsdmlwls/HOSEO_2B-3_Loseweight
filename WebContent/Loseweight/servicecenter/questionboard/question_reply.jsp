@@ -22,6 +22,8 @@
     dbPro.replyArticle(article); 
     
     String boardfiles = (request.getParameter("boardfiles"));
-    int num=article.getNum();
-    response.sendRedirect("question_list.jsp");
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("question_content.jsp?num="+num+"&pageNum="+pageNum+"");
+
 %>

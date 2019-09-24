@@ -33,7 +33,7 @@
     count = dbPro.getArticleCount(); 
 
 	String searchcol=request.getParameter("searchcol"); //검색 조건 
-	if(searchcol==""||searchcol==null){
+	if(searchcol==""||searchcol==null){ //조건값 초기값
 		searchcol ="subject";
 	}
 %>
@@ -51,9 +51,11 @@
 	
 	String listsql1="select count(*) from bf_board where "+searchcol+"  like '%"+listsearch+"%'";
 	ResultSet rs = stmt.executeQuery(listsql1);
+	//게시판 페이지를 만들기위한 count
 	
 	String listsql2="select * from bf_board where "+searchcol+"  like '%"+listsearch+"%' order by ref desc, re_step asc limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
+	//게시판 글들을 list에 담아주는 소스 , 검색조건에 따라 나오는 결과 다름 
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
 %>	
@@ -162,17 +164,12 @@ font-size:18px;
 		<%
 			}while(listsearchresult.next());
 		%>
-	<%
-	}else{
+	<%}else{
 			%>
-			  
 			  <tr class="tableline">
 			  <td colspan="6">
 			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
 			  </td></tr>
-			
-			
-			
 			<%}
 	%>
 	</table>
@@ -194,7 +191,6 @@ font-size:18px;
 	        if (startPage > 10) { %>
 	          <a href="bfboard_list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
 	<%      }
-	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
 	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
@@ -202,23 +198,19 @@ font-size:18px;
 		           else{%>
 	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
 	<%      }}
-	        	
-	        
-	        
 	        if (endPage < pageCount) {  %>
 	        <a href="bfboard_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
 	<%	
 	        }
-	        
 	    }
-	%><%if(id!=null||id!=""){%>
+	%><%if(id!=null){%>
 	<a href="bfboard_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;" class="newbutton"value="글쓰기"></a>
 	</div>
 	<%} %>
-	
+	<!-- 검색창  -->
 	<form method="post" action="bfboard_list.jsp">
 		<div style="margin:0 auto;margin-top:10px;">
-		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->
+		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 조건 -->
 	        <OPTION value='subject'>제목</OPTION>
 	        <OPTION value='writer'>작성자</OPTION>
 	        <OPTION value='content'>내용</OPTION>

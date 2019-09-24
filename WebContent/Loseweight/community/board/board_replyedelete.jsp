@@ -19,11 +19,10 @@
 	article.setGlenum(glenum);
 
 	boardDAO.deletereplyArticle(article); 
-
-    int num=article.getNum();
-    
-
-    response.sendRedirect("board_list.jsp");
+	
+	int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("board_content.jsp?num="+num+"&pageNum="+pageNum+"");
 %>
 
 <%=glenum%>

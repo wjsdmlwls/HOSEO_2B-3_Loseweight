@@ -6,8 +6,8 @@
 <%@ page import = "BFboard.BF_DTO" %>
      
 <%
-     	request.setCharacterEncoding("utf-8");
-     %>
+     request.setCharacterEncoding("utf-8");
+%>
  
 <jsp:useBean id="article"  scope="page" class="BFboard.BF_DTO"/>
 
@@ -24,10 +24,7 @@
 
 	boardDAO.updatereplyArticle2(article); 
 
-    int num=article.getNum();
-    
-
-    response.sendRedirect("bfboard_list.jsp");
+    int num = Integer.parseInt(request.getParameter("num"));
+    String pageNum = request.getParameter("pageNum");
+    response.sendRedirect("bfboard_content.jsp?num="+num+"&pageNum="+pageNum+"");
 %>
-
-<%=glenum%>

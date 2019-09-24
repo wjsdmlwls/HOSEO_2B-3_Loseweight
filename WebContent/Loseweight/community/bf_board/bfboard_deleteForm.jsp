@@ -10,8 +10,8 @@
     String id = (String) session.getAttribute("id");
     
     String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
-	String dbId="jspid";
-	String dbPass="jsppass";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -27,7 +27,6 @@
 <%
   int num = Integer.parseInt(request.getParameter("num"));
   String pageNum = request.getParameter("pageNum");
-
 %>
 <html>
 <head>

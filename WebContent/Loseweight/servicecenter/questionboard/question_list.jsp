@@ -176,9 +176,9 @@ font-size:18px;
 		<%
 			}while(listsearchresult.next());
 		%>
-	<%
-	}else{
-			%>
+		<%
+		}else{
+		%>
 			  
 			  <tr class="tableline">
 			  <td colspan="6">
@@ -226,10 +226,8 @@ font-size:18px;
 	        
 	    }
 	%><%if(id!=null){%>
-	<a href="question_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
-	<%}else{
-		%>
-	<% }%>
+		<a href="question_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
+	<%}%>
 		<form method="post" action="question_list.jsp">
 		<div style="margin:0 auto;margin-top:10px;">
 		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->

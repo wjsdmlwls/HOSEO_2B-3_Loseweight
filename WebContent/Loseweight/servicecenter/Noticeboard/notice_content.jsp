@@ -240,14 +240,20 @@ tr.tableline td{
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="num" value="<%=article.getNum()%>">
-		</div>
+			<input name="pageNum" value="<%=pageNum%>">
+		</div><%if(id!=null){%>
 			<textarea name="recontent" id="recontent" cols="100" rows="3" ></textarea>
 			<input type="submit" style="margin-top: -50;height: 59;"class="newbutton" value="댓글 등록">
+			<%} %>
 		</form>
 		</div>
 	</div>
 	<div style="padding-bottom:60px;">
 		<form method="post" action="notice_replyedit.jsp" onsubmit="return writeSave()">
+			<div style="display:none">
+				<input name="num" value="<%=article.getNum()%>">
+				<input name="pageNum" value="<%=pageNum%>">
+			</div>
 			<table class="lw_board" style="margin:0 auto;width:1000px"> 
 			    <tr height="40"> 
 			      <td align="center"  width="100"  ></td> 

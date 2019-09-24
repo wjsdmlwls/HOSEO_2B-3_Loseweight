@@ -32,17 +32,9 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
-<!--slide end-->
-<!-- modal windows -->
-<script>
-window.closeModal = function() {
-   $( '#myModal_l' ).modal( 'hide' );
-}
-</script>
-<!-- modal windows -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
-<!-- 이미지창 띄우기  -->
+
 <!-- 파일업로드  -->
 <%
  request.setCharacterEncoding("utf-8");
@@ -74,12 +66,11 @@ window.closeModal = function() {
 	 String fullpath1 =  "http://localhost:8080/2019_JeonJSP/img/" + filename1;
 	 uploadfile1 = filename1;
 %>
-<!-- 파일업로드  -->
-<!-- 업로드 버튼생성  -->
 <script>
+<!-- 업로드박스 컨트롤 스크립트 -->
 var arrInput = new Array(0);
   var arrInputValue = new Array(0);
- 
+// 
 function addInput() {
 	if (arrInput.length<2) { 
 		  arrInput.push(arrInput.length);
@@ -105,7 +96,7 @@ function saveValue(intId,strValue) {
 function createInput(id,value) {
   return "<div id='Upload_file"+id+"'><input type='file' name='filename"+ id +"'id='filename"+ id +"'onChange='javascript:saveValue("+ id +",this.value)' value='"+ value +"'><input type='button' value='삭제' onclick='deleteInput();'/></div>";
 }
- 
+ //input 삭제
 function deleteInput() {
   if (arrInput.length > 0) { 
      arrInput.pop(); 
@@ -113,6 +104,7 @@ function deleteInput() {
   }
   display(); 
 }
+
 $(function() {
 	$("deleteInput").on("click", function() {
         $("p").unwrap(); // <p> 요소의 부모 요소를 삭제한다.
@@ -168,12 +160,12 @@ font-size: 14px;
 	<div style="width:100%;height: 50px;;background:#faafaf"><h4 style="padding-top: 10;color: white; padding-left: 10px;">파일 업로드</h4>
 		<table class="lw_board" style="margin:0 auto; margin-top:50px">
 						<%while(rs.next()) { %>
-						  <tr style="display: none;"><!-- upload db에 보내는용도  -->
+						  <tr style="display: none;"><!-- upload db에 보내는용도 숨기기  -->
 							  <td>
 							  <div id="upload" style="border:solid;min-height: 100px;">
 							   <input type="text" name="filename0" id="filenames0" value="<%=uploadfile0%>" style="border:none"><br>
 							   <input type="text" name="filename1" id="filenames1" value="<%=uploadfile1%>" style="border:none"><br>
-							   <%
+							   <%	//file 다운로드 경로 
 							   		String filelink0="http://localhost:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile0;
 									String filelink1="http://localhost:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile1;
 								%>	<!-- 호스트 다르면 변경해라  -->
@@ -184,11 +176,12 @@ font-size: 14px;
 						  </tr>
 						</table> 
 						</form>  
-						<!-- 파일업로드하는거임  -->
+						<!-- 메인  -->
 						<form method="post" enctype="multipart/form-data" style="margin:0 auto;width:500px;">
 						 <input type="button" class="newbutton" value="파일 추가" onclick="addInput();" />
 							  <div id="parah" style="border:solid;min-height: 100px;margin-top:5px">
-							  <%if(uploadfile0!=""){ %>
+							  <!-- 업로드 파일이 있으면 업로드 하고 보여줄 파일이름 생성-->
+							  <%if(uploadfile0!=""){ %>	
 							   <div><input type="text" name="filename0" value="<%=uploadfile0%>" style="border:none"><input type='button' value='삭제' onclick='deleteInput();'readonly/></div><br>
 							   <%} %>
 							   <%if(uploadfile1!=""){ %>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
 <%@ page import = "BFboard.BF_DAO" %>
 <%@ page import = "java.sql.Timestamp" %>
 
