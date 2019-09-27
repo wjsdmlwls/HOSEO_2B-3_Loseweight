@@ -9,37 +9,47 @@
 
 <html>
 <head>
-<!--slide-->
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
 <script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
 <script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
-<!--slide end-->
-<!-- modal windows -->
+<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/community/include.css">
 <script>
-window.closeModal = function() {
-   $( '#myModal_l' ).modal( 'hide' );
-}
-</script>
-<!-- modal windows -->
-<link href="style.css" rel="stylesheet" type="text/css">
+	<!-- modal windows -->
+	window.closeModal = function() {
+	   $( '#myModal_l' ).modal( 'hide' );
+	}
+	<!-- modal windows -->
+	/*스크롤 내리면 top 고정 */
+	
+	$( document ).ready( function() {
 
-<link href="/2019_JeonJSP/Loseweight/css/style.css" rel="stylesheet" type="text/css">
-<style>
-tr.headtableline td{
-	border-bottom:1px solid #000;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-.pageselect {
-margin:15;
-margin-left:70px;
-}
-.pageselect a{
-color:000;
-font-size:18px;
-}
-</style>
+		var jbOffset = $( '.menu' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
+			$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > jbOffset.top ) {
+				$( '.Opacity_box' ).addClass( 'top_in_menuFixed' );
+				$(".mainlogo_box").addClass("top_in_delete_logo");
+				}
+		else {
+			$( '.Opacity_box' ).removeClass( 'top_in_menuFixed' );
+			$(".mainlogo_box").removeClass("top_in_delete_logo");
+			}
+		});
+		} );
+
+		$(window).scroll(function() { 
+			var scroll = $(window).scrollTop();
+			//console.log(scroll);
+			if (scroll >= 200) {
+				//console.log('a');
+				$(".Opacity_box").addClass(".top_in_scrollchange");
+				$(".mainlogo_box").addClass("top_in_delete_logo");
+				} else {
+				//console.log('a');
+				$(".mainlogo_box").removeClass(".top_in_scrollchange");
+			}
+		});
+</script>
+
 
 <title>게시판</title>
 </head>
@@ -54,49 +64,48 @@ font-size:18px;
 	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 	%>
-<div class="div_body" >
-	<div class="div_top" style="width: 100%; height: 120px">
-		<div class="Opacity_box" style="height:150px; background-color: rgba(0, 0, 0, 0);">
-		 	<a href="/2019_JeonJSP/Loseweight/lw_main.jsp"><img src="/2019_JeonJSP/Loseweight/img/logo/logo_BY.png" style="margin: 0 auto; margin-left:55px; position: absolute;width: 130px;padding-top: 10px;"></a>
-			<img id="community" src="/2019_JeonJSP/Loseweight/community/C_img/<%=imgs%>" alt="community" style="width: 100%;z-index: -1; position: absolute;left: 0;">
-			
-			<nav style="float:right; padding:10px;">
-					<ul>
+	<div class="top_include_body">
+		<img id="community" src="/2019_JeonJSP/Loseweight/community/C_img/<%=imgs%>" alt="community" >
+			<div class="Opacity_box">
+				<nav class="top_in_login-up">
 						<li class="nav">
 								<%if(id==null){ %>
 								<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l">로그인</a>
-								
 								<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
-								<!-- 클릭시 모달창 새로 띄움  -->
-									
+								
 								<%}else{%>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">마이페이지</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/logout.jsp">로그아웃</a>
 								<%} %>
 						</li>
+				</nav>
+				<h1 class="mainlogo_box">
+					<a href="/2019_JeonJSP/Loseweight/lw_main.jsp">
+					<img id="logo" class="top_in_logo"src="/2019_JeonJSP/Loseweight/img/logo/logo_BY.png" alt="logo">
+					</a>
+				</h1>
+				
+				<div class='menu'>			
+					<ul class="nav01">
+						<li>
+							<a href='#'>운동방법</a>
+						</li>
+						<li>
+							<a href='#'>식단조절</a>
+						</li>
+						<li>
+							<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a>
+						</li>
+						<li class='last'>
+							<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
+						</li>
+						<li>
+							<a href='#'>shop</a>
+						</li>
 					</ul>
-			</nav>
-			<div class='menu' style="width:1340px;height:50px; margin:0 auto;padding-top:100px">			
-				<ul>
-					<li>
-						<a href='#'>운동방법</a>
-					</li>
-					<li>
-						<a href='#'>식단조절</a>
-					</li>
-					<li>
-						<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>커뮤니티</a>
-					</li>
-					<li class='last'>
-						<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
-					</li>
-					<li>
-						<a href='#'>shop</a>
-					</li>
-				</ul>
+				</div>
 			</div>
-		</div>
-		</div>
+	</div>
 		<% 
 		String tom = request.getParameter("tom"); /*table of menu*/
 		String toc = request.getParameter("toc"); /*table of contents*/
@@ -105,38 +114,38 @@ font-size:18px;
 		<div class='sub_menu'>			
 						<ul>
 							<li>
-								<a href='user_Info.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">회원정보</a>
+								<a href='user_Info.jsp'<%if(toc.equals ("0")){ %><%}%>>회원정보</a>
 							</li>
 							<li>
-								<a href='#'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">나의 몸무게 </a>
+								<a href='#'<%if(toc.equals ("1")){ %><%}%>>나의 몸무게 </a>
 							</li>
 							<li>
-								<a href='user_delete.jsp'<%if(toc.equals ("2")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">회원탈퇴</a>
+								<a href='user_delete.jsp'<%if(toc.equals ("2")){ %><%}%>>회원탈퇴</a>
 							</li>
 						</ul>
 					</div>
 		<%} %>
 		<%if(tom.equals ("3")){ %>
-		<div class='sub_menu3' style="margin-top:25%;">			
+		<div class='sub_menu3' style="margin-top: 350px;">			
 		
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">자유게시판</a>
+								<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %><%}%>>자유게시판</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">BEFOR & AFTER </a>
+								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %><%}%>>BEFOR & AFTER </a>
 							</li>
 						</ul>
 		</div>
 		<%} %>
 		<%if(tom.equals ("4")){ %>
-		<div class='sub_menu4' style="margin-top:25%">			
+		<div class='sub_menu4' style="margin-top: 350px;">			
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>">공지사항</a>
+								<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %><%}%>">공지사항</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'<%if(toc.equals ("1")){ %>style="font-weight:bold;border-bottom: 1px solid #444;<%}%>"> 문의하기 </a>
+								<a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'<%if(toc.equals ("1")){ %><%}%>"> 문의하기 </a>
 							</li>
 						</ul>
 					</div>
@@ -158,7 +167,6 @@ font-size:18px;
 				<iframe id="iframe_s"src="/2019_JeonJSP/Loseweight/lw_user/signUp_login.jsp" style="margin-top:-103px;margin-left:-3px;width:100%;width:140%; height:880px; background:##f7f7f7;" scrolling="no"></iframe>
 			</div>
 		</div>
-	</div>
 </div>				
 </body>
 </html>
