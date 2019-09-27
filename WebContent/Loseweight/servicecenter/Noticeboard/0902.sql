@@ -37,7 +37,7 @@ select * from lw_users;
 
 
 
-insert into Noticeboard(writer,email,subject,passwd,reg_date,members,ref,re_step,re_level,content,ip) values(1,1,1,1,"2019-09-04",1,0,0,1,1,1)
+insert into Noticeboard(writer,email,subject,passwd,reg_date,members,ref,re_step,re_level,content,ip) values(1,1,1,1,"2019-09-04",1,0,0,1,1,1);
 
 insert into board(writer,email,subject,passwd,reg_date,members,ref,re_step,re_level,content,ip,boardfiles) values(1,1,1,1,"2019-09-04",1,0,0,1,1,1,"/2019_JeonJSP/downloadAction?file=블로그2.png")
 

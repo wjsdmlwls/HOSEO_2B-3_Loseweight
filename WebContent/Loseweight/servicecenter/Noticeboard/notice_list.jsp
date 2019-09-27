@@ -55,33 +55,14 @@
 	number = count-(currentPage-1)*pageSize;
 if(rs.next()){ count = rs.getInt(1); } rs.close();
 %>	
+
 <html>
 <head>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
-
-
-
-<link href="../../css/style.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css">
-<style>
-tr.headtableline td{
-	border-bottom:1px solid #000;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-.pageselect {
-margin:15;
-margin-left:70px;
-}
-.pageselect a{
-color:000;
-font-size:18px;
-}
-</style>
-
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+<link href="notice_list_css.css" rel="stylesheet" type="text/css">
 <title>게시판</title>
 </head>
 
@@ -96,23 +77,22 @@ font-size:18px;
 	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
-<div class="div_body" >
-		<jsp:include page="../../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="gogec_1.png"/>
-		</jsp:include>
-		<div style='margin: 0 auto; width: 1120px;margin-top: 5%;'>
-		
-			<table class="lw_board"> 
-			    <tr height="40"> 
-			      <td align="center"  width="50"  >번 호</td> 
-			      <td align="center"  width="650" >제   목</td> 
-			      <td align="center"  width="150" >작성자</td>
-			      <td align="center"  width="150" >작성일</td> 
-			      <td align="center"  width="100" >조 회</td> 
+<jsp:include page="../../community/community_topinclude.jsp" >
+		<jsp:param name="tom" value="3"/>
+		<jsp:param name="toc" value="1"/>
+		<jsp:param name="imgs" value="cemu_1.png"/>
+	</jsp:include>
+	
+			<div style='margin: 0 auto; width: 100%; margin-top: 5%;'>
+			<table class="notice_table"> 
+			    <tr class="tr1"> 	
+			      <td align="center" width="100">번호</td> 
+			      <td align="center" width="650">제목</td> 
+			      <td align="center" width="150">작성자</td>
+			      <td align="center" width="150">작성일</td> 
+			      <td align="center" width="100">조 회</td>		   
 			    </tr>
-			    <tr class="headtableline"><td colspan="6"></td></tr>
+
 			
 	<%
 					if(listsearchresult.next()){
@@ -133,51 +113,37 @@ font-size:18px;
 										   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 										if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
-		 <tr height="50" style="border-top: 1pt solid gray">
-			    <td  width="50" > <%=number--%></td>
-			    <td  width="250" align="left">
+		 <tr class="list_tr">
+			<td width="100px;" ><center><%=number--%></center></td>
+			 
+		
 			<%
 				int wid=0; 
 				if(re_level>0){
-				   wid=5*(re_level);
-			%>
-				  <img src="images/level.png" width="<%=wid%>" height="16">
-				  <img src="images/re.png">
-			<%  }else{%>
-				  <img src="images/level.png" width="<%=wid%>" height="16">
-				  
-			<%  }%>
-			           
-			     <a href="notice_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
-			           <%=subject%></a><a style="margin-left:10px">[<%=replycount%>]</a><hr style="margin-top:8">
-			           <a href="mailto:<%=email%>" style="margin-left: 10;">
-				        작성자:<%=writer%>
-				       <% if(members>=1){%>
-				         <img src="images/pig.png" border="0"  height="16"><%}%>
-				        </a>
-				        <a style="margin-left: 10;">작성일:<%= sdf.format(reg_date)%></a>
-				        <a style="margin-left: 10;">조회수:<%=readcount%></a>
-				
-			          
-				
-			<% if(readcount>=20){%>
-			         <img src="images/hot.png" border="0"  height="16"><%}%> </td>
+				   wid=10*(re_level);
+			%>   
+			 <td class="td_subject" width="630px;"><img src="images/re.png" style="margin-left:<%=wid%>px;"><a class="a_subject" href="notice_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%> ">
+			           <%=subject%><a style="margin-left:5px;">[<%=replycount%>]</a></a></td>
+		   
+			<%}else{%>	
+			<td class="td_subject" width="630px;"><a class="a_subject" href="notice_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%> ">
+			           <%=subject%> <% if(readcount>=20){%><img src="images/hot.png" height="16"><%}%> <a style="margin-left:5px;">[<%=replycount%>]</a></a></td>
+			<% }%>		
+				   
+			           <td width="150" class="td_id">
+			           <a class="a_email" href="mailto:<%=email%>"><center><%=writer%></center></a>
+				        </td>
+				       <td width="150"><center><%= sdf.format(reg_date)%></center></td>
+				       <td width="100"><center><%=readcount%></center></td>
 			  </tr>
-			  <tr class="tableline"><td colspan="6"></td></tr>
-		<%
-			}while(listsearchresult.next());
-		%>
-	<%
-	}else{
-			%>
-			  
-			  <tr class="tableline">
-			  <td colspan="6">
-			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
-			  </td></tr>
-			
+
+	<%}while(listsearchresult.next());%>
+	<%}else{%>
+
+			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4></td></tr>
 			<%}%>
 	</table>
+	
 	<div class="pageselect">
 	<%
 	    if (count > 0) {
@@ -194,43 +160,41 @@ font-size:18px;
 	        if (endPage > pageCount) endPage = pageCount;
 	        
 	        if (startPage > 10) { %>
-	          <a href="notice_list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
-	<%      }
+	          <a href="notice_list.jsp?pageNum=<%= startPage - 10 %>"><img class="page_next_pre_img" src="images/btn_pre.gif"></a>
+			<%}
 	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
-	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
-		          <% }
-		           else{%>
-	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
-	<%      }}
-	        	
 	        
-	        
-	        if (endPage < pageCount) {  %>
-	        <a href="notice_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
+	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">
+	             <div class="pageselect_num"><%= i %></div><a href="notice_list.jsp?pageNum=<%= startPage + 10 %>"></a></a></center>
+		          <%}else{%>
+	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"> <div class="pageselect_num"><%= i %></div></a>
+	<%}}if(endPage < pageCount){%>
+	        <a href="notice_list.jsp?pageNum=<%= startPage + 10 %>"><img class="page_next_pre_img" src="images/btn_next.gif"></a>
 	<%	
-	        }
-	        
+	        }       
 	    }
-	%><%if(id.toString().equals("admin")){%><a href="notice_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
-	<%}else{
-		%>
-	<% }%>
-		<form method="post" action="notice_list.jsp">
+	%>
+	
+		<form method="post" action="notice_list.jsp">		
 		<div style="margin:0 auto;margin-top:10px;">
-		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->
+		<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
 	        <OPTION value='subject'>제목</OPTION>
 	        <OPTION value='writer'>작성자</OPTION>
 	        <OPTION value='content'>내용</OPTION>
 	    </SELECT>
-		<input style="width: 250;height:42px"name="listsearch" type="text">
-		<input style="font-size: 12px;  line-height: 40px; width: 100px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; color: #263238; border: 1px solid #263238; background: transparent;" type="submit"  value="검색"><Br>
-</div>
-	</form>
-	</div>
+		<input class="search_input" name="listsearch" type="text">
+		<input type="image" type="submit" src="images/search.gif">
+		<%if(id.toString().equals("admin")){%><a href="notice_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
+	<%}else{
+		
+	}%>
+		</div>
+		</form>
 
-</div>
+
+
 					
 </body>
 </html>

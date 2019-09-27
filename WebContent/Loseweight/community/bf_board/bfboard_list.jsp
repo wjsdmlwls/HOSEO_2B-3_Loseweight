@@ -65,8 +65,8 @@
 <html>
 <head>
 <link href="style.css" rel="stylesheet" type="text/css">
-
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
+
 <style>
 tr.headtableline td{
 	border-bottom:1px solid #000;
@@ -77,6 +77,7 @@ tr.tableline td{
 .pageselect {
 margin:15;
 margin-left:70px;
+text-align:center;
 }
 .pageselect a{
 color:000;

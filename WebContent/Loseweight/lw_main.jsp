@@ -20,8 +20,12 @@ window.closeModal = function() {
    $( '#myModal_l' ).modal( 'hide' );
 }
 </script>
+<style>
+
+</style>
 <!-- modal windows -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="maincss.css">
 <body style="overflow:hidden;">
 	<%
 	String id= null;
@@ -32,13 +36,13 @@ window.closeModal = function() {
 	%>
 	<div class="div_body">
 	<!-- slider 영역 -->
-		  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="position: fixed; width: 100%; height: 100%;">
+		  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="position: fixed; width: 100%; height: 100%;" >
 			    <ol class="carousel-indicators" style="position:absolute">
 			      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 			      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			    </ol>
-			    <div class="carousel-inner" role="listbox"style="position:absolute">
+			    <div class="carousel-inner" role="listbox" style="position:absolute">
 			      <!-- Slide One - Set the background image for this slide in the line below -->
 			      <div class="carousel-item active" style="background-image: url('img/main_img/lw_background.png')">
 			        <div class="carousel-caption d-none d-md-block">
@@ -64,28 +68,28 @@ window.closeModal = function() {
 			  </div>
 					<!-- slider end -->
 		
-		<div class="div_top" style="margin:0 auto; width: 100%; height: 120px; position:relative;">
+		<div class="div_top">
 		<!-- 클릭시 모달창 새로 띄움  -->
-							<div class="modallist" style="position:absolute; z-index:999999;"	>
+							<div class="modallist">
 								<!-- signUp modal -->
 								 <div id="myModal_l" class="modal fade" >
 							        <div class="modal-dialog">
 							            <div class="modal-content" >
-							               <iframe id="iframe_l"src="lw_user/login_signUp.jsp" style="margin-top:-113px;margin-left:-10px;width:140%; height:880px; background:##f7f7f7;" scrolling="no"></iframe>
+							               <iframe id="iframe_l"src="lw_user/login_signUp.jsp" scrolling="no"></iframe>
 							            </div>
 							        </div>
 							    </div>
 								<div id="myModal_s" class="modal fade">
 								        <div class="modal-dialog">
 								            <div class="modal-content">
-								                <iframe id="iframe_s"src="lw_user/signUp_login.jsp" style="margin-top:-103px;margin-left:-3px;width:100%;width:140%; height:880px; background:##f7f7f7;" scrolling="no"></iframe>
+								                <iframe id="iframe_s"src="lw_user/signUp_login.jsp" scrolling="no"></iframe>
 								            </div>
 								        </div>
 								</div>
 							</div>
 		
-		<h1 style="width:130px; margin:0 auto; position:relative; z-index:222;"><a href="lw_main.jsp"><img id="logo" src="img/logo/logo_BY.png" alt="logo" style="width:135px;"></a></h1>
-		<div class="Opacity_box" style="position:relative; left:0px; top:-100px; z-index:1;">
+		<h1 class="mainlogo_box"><a href="lw_main.jsp"><img id="logo" src="img/logo/logo_BY.png" alt="logo"></a></h1>
+		<div class="Opacity_box" style="position:relative; left:0px; top:-110px; z-index:1; height:200px;">
 			<nav style="float:right; padding:10px;">
 					<li class="nav">
 							<%if(id==null){ %>
@@ -99,7 +103,7 @@ window.closeModal = function() {
 							<%} %>
 					</li>
 			</nav>
-			<div class='menu' style="width:1340px;height:50px; margin:0 auto;padding-top:100px">			
+			<div class='menu'>			
 			<ul class="nav01">
 				<li>
 					<a href='#'>운동방법</a>
@@ -119,11 +123,6 @@ window.closeModal = function() {
 			</ul>
 		</div>
 		</div>
-		</div>
-		<div style='margin: 0 auto; width: 1020px;height:200px'>
-			<div class="div_sidemenu"style='width: 250px; position: absolute;'></div>
-			<div class="div_sidecontents" style=';position: relative; margin-left: 250px;'></div>
-			
 		</div>
 	</div>
 	

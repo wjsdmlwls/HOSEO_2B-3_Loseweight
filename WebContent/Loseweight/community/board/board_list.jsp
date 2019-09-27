@@ -60,15 +60,13 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <style>
-tr.headtableline td{
-	border-bottom:1px solid #000;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
+.div_body{
+margin:0 auto;
 }
 .pageselect {
 margin:15;
 margin-left:70px;
+text-align:center;
 }
 .pageselect a{
 color:000;
@@ -181,6 +179,7 @@ font-size:18px;
 			<%}
 	%>
 	</table>
+	
 	<div class="pageselect">
 	<%
 	    if (count > 0) {
@@ -206,18 +205,22 @@ font-size:18px;
 		          <% }
 		           else{%>
 	           <a href="board_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
-	<%      }}
-	        	
-	        
-	        
+					<% }}      
 	        if (endPage < pageCount) {  %>
 	        <a href="board_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
-	<%	
-	        }
-	        
+			<%}
 	    }
-	%><%if(id!=null){%><a href="board_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;"class="newbutton"value="글쓰기"></a></div>
-	<%} %>
+		if(id!=null){
+		%>
+				<a href="board_writeForm.jsp">
+				<input style="text-align: center;
+				 margin-top: -5px;
+				  float: right;"
+					 class="newbutton" value="글쓰기">
+					</a>
+			</div>
+		<%} %>
+		
 	<form method="post" action="board_list.jsp">
 		<div style="margin:0 auto; margin-top:10px;">
 		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 컬럼 -->
