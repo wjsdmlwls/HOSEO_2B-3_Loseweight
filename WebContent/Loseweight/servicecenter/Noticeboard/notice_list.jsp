@@ -3,7 +3,7 @@
 <%@ page import="DBBean.jekimDB" %>    
 <%@ page import = "Noticeboard.NoticeDAO" %>
 <%@ page import = "Noticeboard.NoticeDTO" %>
-<%@ page import="java.sql.*"%>
+<%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
     
@@ -166,7 +166,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
 	        
-	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">
+	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">
 	             <div class="pageselect_num"><%= i %></div><a href="notice_list.jsp?pageNum=<%= startPage + 10 %>"></a></a></center>
 		          <%}else{%>
 	           <a href="notice_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"> <div class="pageselect_num"><%= i %></div></a>
