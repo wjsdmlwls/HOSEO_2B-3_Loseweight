@@ -136,10 +136,11 @@
 		});
 	</script>
 	<!-- 누르고 boardwrite에 보내기  -->
+	<!-- 이미지태그를 글쓰는 곳에 마자믹에 추가 -->
 	<script>
 	function setParentText(){
 		if (document.getElementById("img0").value!=""){
-        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:500px"src="<%=upimgpath1%>">'); <!-이미지태그를 글쓰는 곳에 마자믹에 추가  --->
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:500px"src="<%=upimgpath1%>">'); 
         	window.opener.document.getElementById("img0").value = document.getElementById("uploadimg1").value;
         	window.close();
 		}
