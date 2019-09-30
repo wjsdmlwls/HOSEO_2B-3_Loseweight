@@ -10,9 +10,9 @@
 <script type="text/javascript" src="vcheck.js">
 </script>
 </head>
-<body>
+<body style="width:550px">
 	<div class="idps_topform">
-		<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
+		<a href="login(old).jsp"><img src="../img/logo/logo.png" alt="" /></a>
 		<div class="idps_form">
 			<h3>아이디찾기</h3>	
 		</div>

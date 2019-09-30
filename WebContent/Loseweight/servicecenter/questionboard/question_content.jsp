@@ -202,6 +202,7 @@ tr.tableline td{
 					  <tr class="tableline">
 						  <td colspan="5">
 						  <div id="upload" style="border:solid 1px;min-height: 100px;">
+						  첨부파일 
 						  <% if(article.getFilename0()!=null){%>
 							   <a href="<%=article.getFilepath0()%>" style="border:none" type="text/html"target="_blank"download><%=article.getFilename0()%></a><br>
 							      <% if(article.getFilename1()!=null){%>

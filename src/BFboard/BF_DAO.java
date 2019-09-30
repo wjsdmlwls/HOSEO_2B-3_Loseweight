@@ -433,14 +433,18 @@ public class BF_DAO {
 			
 		}catch (Exception ex) {
 			ex.printStackTrace();
-	}
+	}finally {
+ 
+        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+    }	
 
 }
 	//댓글
 		public void replyArticle(BF_DTO article) throws Exception {
-			try {
 			Connection conn = null;
-		    PreparedStatement pstmt = null;   
+		    PreparedStatement pstmt = null;  
+			try {
+			 
 		    conn = getConnection();
 			 
 		 	pstmt = conn.prepareStatement("insert into bf_boardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
@@ -452,7 +456,11 @@ public class BF_DAO {
 			//DTO에 값을 전달함
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
-		  }
+		  }finally {
+	          
+	          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }	
 		}	
 		
 
@@ -504,7 +512,11 @@ public class BF_DAO {
 					pstmt.executeUpdate();
 			        }catch (SQLException e) {
 			    		throw new RuntimeException(e);
-			  	  }
+			  	  }finally {
+			          
+			          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			      }	
 			  	}	
 			//삭제
 			public void deletereplyArticle(BF_DTO article)throws Exception {
@@ -518,7 +530,11 @@ public class BF_DAO {
 					pstmt.executeUpdate();
 			        }catch (SQLException e) {
 			    		throw new RuntimeException(e);
-			  	  }
+			  	  }finally {
+			         
+			          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			      }	
 			  	}	
 
 

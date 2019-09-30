@@ -40,7 +40,7 @@
 }
 
 *, ::after, ::before {
-	box-sizing: border-box
+
 }
 
 html {
@@ -84,8 +84,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-	margin-top: 0;
-	margin-bottom: 1rem
+
 }
 
 abbr[data-original-title], abbr[title] {
@@ -230,10 +229,10 @@ button:focus {
 }
 
 button, input, optgroup, select, textarea {
-	margin: 0;
+/* 	margin: 0;
 	font-family: inherit;
 	font-size: inherit;
-	line-height: inherit
+	line-height: inherit */
 }
 
 button, input {
@@ -274,8 +273,8 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
 }
 
 textarea {
-	overflow: auto;
-	resize: vertical
+/* 	overflow: auto;
+	resize: vertical */
 }
 
 fieldset {

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
-
 <%@ page import="java.io.File" %>
 <%@ page import = "Noticeboard.NoticeDAO" %>
 <%@ page import = "Noticeboard.NoticeDTO" %>
@@ -23,6 +22,9 @@
      %>
     <%
     	// 세션정보 가져오기
+    		PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            Connection conn= null;
             try {
             String id = (String) session.getAttribute("id");
             
@@ -31,10 +33,9 @@
         	String dbPass="3whakstp";
         	
             UserDAO db= new UserDAO();
-            Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
          
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
+            
             String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
          
             pstmt = conn.prepareStatement(sql);
@@ -68,7 +69,7 @@
 		Cookie[] cookieFromRequest= request.getCookies();
 		String cookieValue = null;
 		for(int i = 0; i<cookieFromRequest.length;i++){
-	cookieValue = cookieFromRequest[0].getValue();
+		cookieValue = cookieFromRequest[0].getValue();
 		}
 	 	// 쿠키 세션 입력
 		if (session.getAttribute(num+":cookie") == null) {
@@ -109,11 +110,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--slide-->
-<!--slide end-->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
-
+<!--slide end-->
 <style>
 .cotent_first_line{
 font-size:20px;
@@ -209,52 +209,56 @@ tr.tableline td{
 </style>
 </head>
 <!-- stlye css -->
-
+<link rel="stylesheet" href="../../css/style.css">
 <script type="text/javascript">
 
 //form 두개 사용 
 $(function() {
-    $(".replyedit").on("click", function() {
-        $(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
-        $(this).parent().prev().children(".replyeditleft2").css({"display": "block"});
-        $(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');
-        $(this).next().next().next(".replyedit_submit").css({"display" : "block"});
-        $(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-        $(this).css({"display":"none"});
-        $(this).next(".replydelete").css({"display":"none"});
-        $(this).next().next(".replycancel").css({"display":"block"});
-    });
-    $(".replycancel").on("click", function() {
-        $(this).parent().prev().children(".replyeditleft1").css({"display": "block","position":"relative"});
-        $(this).parent().prev().children(".replyeditleft2").css({"display": "none"});
-        $(this).parent().prev().children(".replyeditleft2").attr('name','');
-        $(this).next(".replyedit_submit").css({"display": "none"});
-        $(this).parent().prev().children(".glenumname").attr('name','');
-        $(this).prev().prev(".replyedit").css({"display":"inline"});
-        $(this).prev(".replydelete").css({"display":"inline"});
-        $(this).css({"display":"none"});
-    });
-    $(".replydelete").on("click", function() {
-        $(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-    });
-
+	$(".replyedit").on("click", function() {
+		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
+		$(this).parent().prev().children(".replyeditleft2").css({"display": "block"});
+		$(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');
+		$(this).parent().prev().children(".replyedit_submit").css({"display": "block"});
+		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
+		$(this).css({"display":"none"});
+		$(this).next(".replydelete").css({"display":"none"});
+		$(this).next().next(".replycancel").css({"display":"block"});
+	});
+	$(".replycancel").on("click", function() {
+		$(this).parent().prev().children(".replyeditleft1").css({"display": "block","position":"relative"});
+		$(this).parent().prev().children(".replyeditleft2").css({"display": "none"});
+		$(this).parent().prev().children(".replyeditleft2").attr('name','');
+		$(this).parent().prev().children(".replyedit_submit").css({"display": "none"});
+		$(this).parent().prev().children(".glenumname").attr('name','');
+		$(this).prev().prev(".replyedit").css({"display":"inline"});
+		$(this).prev(".replydelete").css({"display":"inline"});
+		$(this).css({"display":"none"});
+	});
+	$(".replydelete").on("click", function() {
+		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
+	});
+	
 });
-
 function  sendProcess(f){
-    f.action="notice_replyedelete.jsp";
-    f.submit();
-
+	f.action="notice_replyedelete.jsp";
+    f.submit();      
+    
 }
 function  sendedit(f){
-    f.action="notice_replyedit.jsp";
-    f.submit();
-
+	f.action="notice_replyedit.jsp";
+    f.submit();      
+    
 }
 </script>
-<style>
 
-</style>
+		
+		
 <body>
+<jsp:include page="../community_topinclude.jsp" >
+			<jsp:param name="tom" value="3"/>
+			<jsp:param name="toc" value="1"/>
+			<jsp:param name="imgs" value="cemu_1.png"/>
+		</jsp:include>
 	<div class="div_body">
 
 		<div style='width: 100%;'>
@@ -357,9 +361,8 @@ function  sendedit(f){
 			    <tr>
 			    <td width="250" >
 			    <input type="text" class="replyeditleft1"style="border: none;display:block; " name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>			    
-			    <input type="text" class="replyeditleft2" style="display:none; width:100%; height:60px;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
-			    
-			    
+			    <input type="text" class="replyeditleft2" style="display:none; width:100%; height:60px;" id="reply<%=glenum2%>_2" value="<%=recontent%>">		    
+			    <button id="all_button" class="replyedit_submit" style="display:none; float:right;"  onClick="sendedit(this.form); writeSave();"onclick="replyedit()">등록</button>
 			    <input type="hidden"class="glenumname" value="<%=glenum2%>">
 				</td>			
 				<td id="replybtn<%=num2%>_1" style="text-align:right;"><%if (id!=null){
@@ -367,7 +370,7 @@ function  sendedit(f){
 						<input type="button" id="all_button"class="replyedit"value="수정">
 						<input type="submit" id="all_button"class="replydelete" onClick="sendProcess(this.form); writeSave();"value="삭제">
 						<input type="button" id="all_button"class="replycancel" value="수정취소" style="display:none;">
-						<button id="all_button" class="replyedit_submit" style="display:none; float:right;" onclick="replyedit()">등록</button>
+						
 						<%
 						}}%></td>			 
 			  </tr>
@@ -398,37 +401,17 @@ function  sendedit(f){
 					       </div>
 	</div>		
 	</form>
-	<script>
-	function replyedit(){
-	var recontent2 = document.getElementsByName("recontent2");
-	var glenumpost = document.getElementsByName("glenumpost").value();
-	
-
-	var form = document.createElement("form");
-        form.setAttribute("charset", "utf-8");
-        form.setAttribute("method", "get"); // Get 또는 Post 입력
-        form.setAttribute("action", "content_replyedit.jsp");
-        
-        hiddenField = document.createElement("input");
-    	hiddenField.setAttribute("type", "hidden");
-    	hiddenField.setAttribute("name", "recontent2");
-    	hiddenField.setAttribute("value", recontent2);
-    	form.appendChild(hiddenField);
-    	
-    	hiddenField = document.createElement("input");
-    	hiddenField.setAttribute("type", "hidden");
-    	hiddenField.setAttribute("name", "glenumpost");
-    	hiddenField.setAttribute("value", glenumpost);
-    	form.appendChild(hiddenField);
-    	
-    	document.body.appendChild(form); 
-    	form.submit();
-	}
-    	</script>
-	</div>
-	<%}catch(Exception e){} 
+	<%}catch(Exception e){}finally {
+        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+    }	  
 	 %>
-	 <%}catch(Exception e){} 
+	 <%}catch(Exception e){}finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }	  
 	 %>
 	
 </body>

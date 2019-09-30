@@ -423,9 +423,9 @@ public class questionDAO {
 	
     //댓글
 	public void replyArticle(questionDTO article) throws Exception {
-		try {
 		Connection conn = null;
 	    PreparedStatement pstmt = null;   
+		try {
 	    conn = getConnection();
 		 
 	 	pstmt = conn.prepareStatement("insert into questionboardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
@@ -437,7 +437,10 @@ public class questionDAO {
 		//DTO에 값을 전달함
 	}catch (SQLException e) {
 		throw new RuntimeException(e);
-	  }
+	  }finally {
+          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+      }	
 	}	
 	
 
@@ -489,7 +492,10 @@ public class questionDAO {
 				pstmt.executeUpdate();
 		        }catch (SQLException e) {
 		    		throw new RuntimeException(e);
-		  	  }
+		  	  }finally {
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
 		  	}	
 		//삭제
 		public void deletereplyArticle(questionDTO article)throws Exception {
@@ -503,15 +509,19 @@ public class questionDAO {
 				pstmt.executeUpdate();
 		        }catch (SQLException e) {
 		    		throw new RuntimeException(e);
-		  	  }
+		  	  }finally {
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
 		  	}	
 		
 		//세션
 				public void updateBoardreadcount(int num) throws Exception{
+
+					PreparedStatement pstmt = null;
 					Connection conn = null;
 					try {
 						conn = getConnection();
-						PreparedStatement pstmt = null;
 						
 						pstmt = conn.prepareStatement("update questionboard set readcount=readcount+1 where num = ?");
 						pstmt.setInt(1, num);
@@ -519,7 +529,10 @@ public class questionDAO {
 						
 					}catch (Exception ex) {
 						ex.printStackTrace();
-				}
+				}finally {
+			          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			      }	
 			}
 				
 }

@@ -1,10 +1,4 @@
 /*body 전체영역*/
-.div_top{
-margin:0 auto;
-width: 100%;
-height: 120px;
-position:relative;
-}
 /* 모달창 로그인/회원가입 */
 .modallist{
 position:absolute;
@@ -12,11 +6,10 @@ z-index:999999;
 }
 /*로그인 모달*/
 #iframe_l{
-margin-top:-113px;
-margin-left:-10px;
-width:140%;
-height:880px;
-background:##f7f7f7;
+padding:20px;
+width:600px;
+height:680px;
+background:#f7f7f7;
 }
 /*회원가입 모달*/
 #iframe_s{
@@ -25,7 +18,7 @@ margin-left:-3px;
 width:100%;
 width:140%;
 height:880px;
-background:##f7f7f7;
+background:#f7f7f7;
 }
 /*로고 영역 h1*/
 .mainlogo_box{
@@ -40,9 +33,3 @@ width:135px;
 margin-top:20px;		
 }
 /*네비바*/
-.menu{
-width:1340px;
-height:50px;
-margin:0 auto;
-padding-top:150px;
-}

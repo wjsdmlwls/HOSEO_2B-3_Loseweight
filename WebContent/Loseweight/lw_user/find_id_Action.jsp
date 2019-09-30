@@ -24,10 +24,10 @@
 	String id ="";
 	
 	try{
-		String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-    	String dbId="jspid";
-    	String dbPass="jsppass";
-    	
+		String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+		String dbId="lw_admin";
+		String dbPass="3whakstp";
+		
     	Class.forName("com.mysql.jdbc.Driver");
     	conn=DriverManager.getConnection(jdbcUrl, dbId, dbPass);
     	
@@ -74,7 +74,7 @@
 <!-- ID SearchAction 스크립트 -->
 <body>
 	<div class="idSearch_form">
-		<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt="" /></a>
+		<a href="login(old).jsp"><img src="../img/logo/logo.png" alt="" /></a>
 		<div class="idSearch_topimg">
 			<img class="idSearch_topimgsort"src="../img/idpw_Search/User_Search.png" alt="" />
 	    	<h1 class="idSearch_topimgsort idSearch_font">아이디 찾기</h1>
@@ -87,7 +87,7 @@
 		   	</div>
 		   	<div class="idSearch_padding">
 		    	<input type="button" value="돌아가기" class="button white idpw_bt" onClick="location.href='../lw_main.jsp'"/>
-				<input type="button" value="로그인 창으로가기" class="button salmon idpw_bt" onClick="location.href='login.jsp'"/>
+				<input type="button" value="로그인 창으로가기" class="button salmon idpw_bt" onClick="location.href='login(old).jsp'"/>
 			</div>
     	
     	</div>

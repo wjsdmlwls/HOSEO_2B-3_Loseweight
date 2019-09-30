@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
             // window.name = "해당페이지로 가져옴 이름"; 
             window.name = "user_info";
             // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-            openWin = window.open("../../zipfinder/zipSearch.jsp",
+            openWin = window.open("/2019_JeonJSP/zipfinder/zipSearch.jsp",
                     "childForm", "width=580, height=500, resizable = no, scrollbars = yes");    
         }
         function closemodal(){
@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 	<div class="singup_form">
 		<div>
 			<div>
-				<a href="../lw_main.jsp" style="margin-top: -30px;"><img src="../img/logo/logo.png" alt="" /></a>
+				<a style="margin-top: -30px;"><img src="../img/logo/logo.png" alt="" /></a>
 			</div>
 		</div>
 		<div class="singup_postform autosize" style="margin-top:-30px;">

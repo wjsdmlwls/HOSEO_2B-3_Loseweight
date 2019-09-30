@@ -435,15 +435,18 @@ public class NoticeDAO {
 			
 		}catch (Exception ex) {
 			ex.printStackTrace();
-	}
+	}finally {
+        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+    }	
 
 }
 	
 	//댓글
 		public void replyArticle(NoticeDTO article) throws Exception {
-			try {
+
 			Connection conn = null;
 		    PreparedStatement pstmt = null;   
+			try {
 		    conn = getConnection();
 			 
 		 	pstmt = conn.prepareStatement("insert into Noticeboardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
@@ -455,7 +458,10 @@ public class NoticeDAO {
 			//DTO에 값을 전달함
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
-		  }
+		  }finally {
+	          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }	
 		}	
 		
 
@@ -507,7 +513,10 @@ public class NoticeDAO {
 					pstmt.executeUpdate();
 			        }catch (SQLException e) {
 			    		throw new RuntimeException(e);
-			  	  }
+			  	  }finally {
+			          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			      }	
 			  	}	
 			//삭제
 			public void deletereplyArticle(NoticeDTO article)throws Exception {
@@ -521,7 +530,10 @@ public class NoticeDAO {
 					pstmt.executeUpdate();
 			        }catch (SQLException e) {
 			    		throw new RuntimeException(e);
-			  	  }
+			  	  }finally {
+			          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			      }	
 			  	}	
 
 }

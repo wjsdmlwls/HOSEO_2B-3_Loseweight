@@ -6,9 +6,9 @@
 	try {
 		String id = (String) session.getAttribute("id");
 
-		String jdbcUrl = "jdbc:mysql://localhost:3306/basicjsp";
-		String dbId = "jspid";
-		String dbPass = "jsppass";
+		String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+		String dbId="lw_admin";
+		String dbPass="3whakstp";
 
 		UserDAO db = new UserDAO();
 		Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -62,10 +62,11 @@
 </script>
 <!-- 주소 end -->
 <body>
-	<div class="div_body" style="text-align: center;">
+	<div class="div_body">
 		<jsp:include page="../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="0"/>
 			<jsp:param name="toc" value="2"/>
+			<jsp:param name="imgs" value="cemu_1.png"/>
 		</jsp:include>
 		<%if(id == null) { 
 	        response.sendRedirect("login.jsp");

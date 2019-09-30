@@ -11,6 +11,8 @@
 
 <!--slide-->
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="maincss.css">
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
@@ -24,8 +26,6 @@ window.closeModal = function() {
 
 </style>
 <!-- modal windows -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="maincss.css">
 <body style="overflow:hidden;">
 	<%
 	String id= null;
@@ -72,17 +72,17 @@ window.closeModal = function() {
 		<!-- 클릭시 모달창 새로 띄움  -->
 							<div class="modallist">
 								<!-- signUp modal -->
-								 <div id="myModal_l" class="modal fade" >
-							        <div class="modal-dialog">
-							            <div class="modal-content" >
-							               <iframe id="iframe_l"src="lw_user/login_signUp.jsp" scrolling="no"></iframe>
+								 <div id="myModal_l" class="modal fade" style="margin-top:40px">
+							        <div class="modal-dialog" style="margin-top:100px">
+							            <div class="modal-content">
+							               <iframe id="iframe_l"src="lw_user/login(old).jsp" scrolling="no" style="width: 660px; height: 690px;"></iframe>
 							            </div>
 							        </div>
 							    </div>
-								<div id="myModal_s" class="modal fade">
-								        <div class="modal-dialog">
+								<div id="myModal_s" class="modal fade" style="margin-top:40px">
+								        <div class="modal-dialog" style="margin-top:100px">
 								            <div class="modal-content">
-								                <iframe id="iframe_s"src="lw_user/signUp_login.jsp" scrolling="no"></iframe>
+								                <iframe id="iframe_s"src="lw_user/user_signUp(old).jsp" scrolling="no" style="width: 530px;height: 750px;"></iframe>
 								            </div>
 								        </div>
 								</div>

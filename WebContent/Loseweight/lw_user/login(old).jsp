@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 <body style="background:#f7f7f7;">
 	<div class="page_form">
 		<div style="margin-top:50px;">
-				<a href="../lw_main.jsp"><img src="../img/logo/logo.png" alt=""></a>
+				<a href="login(old).jsp"><img src="../img/logo/logo.png" alt=""></a>
 		</div>
 		<div class="login_form autosize">
 			<form class="login_postform" action="loginAction.jsp" method="post" name="vcheck">  
@@ -29,9 +29,9 @@ pageEncoding="UTF-8"%>
 				</div>
 			</form>
 			<div style="margin-top:-25px"> 
-			<hr class="login_hr">
-			<button onclick="location.href='user_signUp.jsp'"type="button" class="button" style="margin-top:5px;width:400px; height:50px; font-size:20px; cursor:pointer;">회원가입</button>
 			</div>
+			
+			<hr class="login_hr">
 		</div>
 		<div class="login_findinfo">
 		</div>

@@ -6,9 +6,9 @@
 	try {
 		String id = (String) session.getAttribute("id");
 
-		String jdbcUrl = "jdbc:mysql://localhost:3306/basicjsp";
-		String dbId = "jspid";
-		String dbPass = "jsppass";
+		String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+		String dbId="lw_admin";
+		String dbPass="3whakstp";
 
 		UserDAO db = new UserDAO();
 		Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -29,6 +29,7 @@
 <script src="../js/bootstrap.bundle.min.js"></script>
 
 <link rel="stylesheet" href="../css/style.css">
+
 <script>
 	function check() {
 
@@ -77,11 +78,18 @@
 	}
 </script>
 <!-- 주소 end -->
+<style>
+				.community{
+				position: relative;
+				}
+			</style>
 <body>
-	<div class="div_body" style="text-align: center;">
+	<div class="div_body" >
 		<jsp:include page="../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="0"/>
 			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="cemu_1.png"/>
+			
 		</jsp:include>
 						<form class="mypage_post" name="vcheck1"style="margin-top:80px"action="user_pw_Update.jsp" onsubmit="return sendIt();">
 							<table class="mypage_post_table" >
