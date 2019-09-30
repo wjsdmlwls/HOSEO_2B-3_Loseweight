@@ -7,6 +7,9 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
     // 세션정보 가져오기
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    Connection conn =null;
     try {
     String id = (String) session.getAttribute("id");
     
@@ -15,10 +18,9 @@
 	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+    conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    
     String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
@@ -192,10 +194,18 @@ font-size: 14px;
 						<!-- 파일업로드하는거임  -->
 						 <%} %>  
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>     
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>    
 				</div>
 			</div>
