@@ -206,6 +206,14 @@ border-bottom:1px solid red;
 tr.tableline td{
 	border-bottom:1px solid #ddd;
 }
+
+.noreple{
+height:200px;
+text-align:center;
+font-size:30px;
+font-weight:550;
+margin:0 auto; 
+}
 </style>
 </head>
 <!-- stlye css -->
@@ -378,10 +386,8 @@ function  sendedit(f){
 			  
 		<%}while(replylist.next());
 		}else{%>
-		 <tr class="tableline">
-			  <td colspan="6">
-			  <h4 style="padding: 200;">댓글이 없습니다</h4>
-			  </td></tr>
+	
+		<div class="noreple">댓글이 없습니다</div>
 			  
 		<%}%>	
 	</table>
