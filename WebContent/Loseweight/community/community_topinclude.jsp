@@ -104,7 +104,7 @@
 							<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
 						</li>
 						<li>
-							<a href='#'>shop</a>
+							<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>shop</a>
 						</li>
 						
 					</ul>
@@ -130,7 +130,7 @@
      <li><a href="#">식단조절</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a></li>
-     <li><a href="#">shop</a></li>
+     <li><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
     </ul>
     
  </li>
@@ -151,13 +151,15 @@
 			 	 <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
 			     <li><a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
 			 <%}%>
-			 <%if(tom.equals ("5")){ %><%}%>
+			 <%if(tom.equals ("5")){ %>
+			 <li><a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>기구</a></li>
+			 <li><a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>식품</a></li>
+			     <%}%>
 	 	</ul>
  	</li>
 </div>
 <hr style="background:#ccc; margin-top: -1px;">
 	<!-- nav menu -->
-		
 		<%if(tom.equals ("0")){ %>
 		<div class='sub_menu' >			
 						<ul>
@@ -198,6 +200,19 @@
 						</ul>
 					</div>
 		<%} %>
+		<%if(tom.equals ("5")){if(!toc.equals ("not")){ %>
+		<div class='sub_menu4'>			
+						<ul>
+							<li>
+								<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'<%if(toc.equals ("0")){ %><%}%>">기구</a>
+							</li>
+							<li>
+								<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'<%if(toc.equals ("1")){ %><%}%>">식품 </a>
+							</li>
+						</ul>
+					</div>
+		<%}}%>
+		
 		
 <div class="modallist">
 								<!-- signUp modal -->

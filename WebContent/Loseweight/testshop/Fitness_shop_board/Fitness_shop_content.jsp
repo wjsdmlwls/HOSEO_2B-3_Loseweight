@@ -162,10 +162,11 @@ function  sendProcess(f){
 <body>
 
 	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
+		<jsp:include page="../../community/community_topinclude.jsp" >
+				<jsp:param name="tom" value="5"/>
+				<jsp:param name="toc" value="0"/>
+				<jsp:param name="imgs" value="shop.png"/>
+				<jsp:param name="boardname" value="기구"/>
 		</jsp:include>
 
 		<div style='width: 100%;'>

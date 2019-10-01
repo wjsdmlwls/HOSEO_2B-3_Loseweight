@@ -58,12 +58,12 @@ font-size: 14px;
 
 	<div class="div_body">
 		
-		<jsp:include page="../community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
+		<jsp:include page="../../community/community_topinclude.jsp" >
+				<jsp:param name="tom" value="5"/>
+				<jsp:param name="toc" value="0"/>
+				<jsp:param name="imgs" value="shop.png"/>
+				<jsp:param name="boardname" value="기구"/>
 		</jsp:include>
-		
 		<div style='width: 1000px;margin-top:5%;margin:0 auto;'>
 				<div class="mypage_form">
 				<form method="POST" name="delForm" action="bfboard_deletePro.jsp?pageNum=<%=pageNum%>" onsubmit="return deleteSave()"> 

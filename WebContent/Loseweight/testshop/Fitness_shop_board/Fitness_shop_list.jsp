@@ -214,11 +214,12 @@ margin-left:10px;
 	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
-<jsp:include page="../community_topinclude.jsp" >
-		<jsp:param name="tom" value="3"/>
-		<jsp:param name="toc" value="1"/>
-		<jsp:param name="imgs" value="cemu_1.png"/>
-	</jsp:include>
+<jsp:include page="../../community/community_topinclude.jsp" >
+		<jsp:param name="tom" value="5"/>
+		<jsp:param name="toc" value="0"/>
+		<jsp:param name="imgs" value="shop.png"/>
+		<jsp:param name="boardname" value="기구"/>
+</jsp:include>
 
 		<div id="img_border_main">
 		<ul class="shop_board_ul">
@@ -240,8 +241,8 @@ margin-left:10px;
 							BF_DTO article =  dbPro.getArticle(Integer.parseInt(num));
 								   	String replylistsql1="select count(*) from bf_boardre where num="+article.getNum()+"";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
-				%>
+							if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
+	 %>
 				
 			    <li class="shop_board_li"  OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
 			    			   
@@ -328,7 +329,7 @@ margin-left:10px;
 	
 	<%if(id!=null||id!=""){%>
 	
-	<a href="bfboard_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
+	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
 	
 	
 	<%} %>
