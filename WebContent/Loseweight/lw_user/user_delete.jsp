@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"
+ import="java.sql.*,user.UserDAO"%>
 
 <%
 	// 세션정보 가져오기
@@ -22,8 +22,8 @@
 		rs = pstmt.executeQuery();
 %>
 <html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
@@ -63,11 +63,12 @@
 <!-- 주소 end -->
 <body>
 	<div class="div_body">
-		<jsp:include page="../community/community_topinclude.jsp" >
+<jsp:include page="../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="0"/>
-			<jsp:param name="toc" value="2"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="mypage.png"/>
+			<jsp:param name="boardname" value="회원정보"/>
+</jsp:include>
 		<%if(id == null) { 
 	        response.sendRedirect("login.jsp");
 	    }

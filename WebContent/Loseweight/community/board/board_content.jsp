@@ -267,9 +267,10 @@ function  sendedit(f){
 <body>
 <jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="자유게시판"/>
+</jsp:include>
 	<div class="div_body">
 
 		<div style='width: 100%;'>

@@ -77,10 +77,11 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
 <jsp:include page="../../community/community_topinclude.jsp" >
-		<jsp:param name="tom" value="3"/>
-		<jsp:param name="toc" value="1"/>
-		<jsp:param name="imgs" value="cemu_1.png"/>
-	</jsp:include>
+			<jsp:param name="tom" value="4"/>
+			<jsp:param name="toc" value="1"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="문의하기"/>
+</jsp:include>
 		
 			<div style='margin: 0 auto; width: 100%; margin-top: 5%;'>
 			<table class="notice_table"> 

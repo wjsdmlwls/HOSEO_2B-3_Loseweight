@@ -88,7 +88,7 @@
 	position: fixed;
 	top: 0px;
 	background: black;
-	height:100px;
+	height:130px;
 	transition: all ease 0.5s 0s;
 }
 
@@ -157,14 +157,13 @@ border-right:1px solid #ccc;
 border-bottom:1px solid #ccc;
 width:173px;
 z-index:200;
+transition: width 1s ease 0.5s, margin-top 1s ease-out 0.5s;
 background:#fff;
 /*top:1em;
 /*left:0;*/
 }
-
 .menubar li:hover ul{
 display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
-transition: width 1s ease 0.5s, margin-top 1s ease-out 0.5s;
 }
 
 .menubar li li {
@@ -188,6 +187,7 @@ margin:0px;
 color:#ffffff;
 padding:0px 10px 0px 15px;
 text-align:left;
+
 }
 
 .menubar li ul a:hover, .menubar li ul li:hover a{

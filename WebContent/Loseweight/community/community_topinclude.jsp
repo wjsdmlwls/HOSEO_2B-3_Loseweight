@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="DBBean.jekimDB" %>    
 <%@ page import = "board.board_DAO" %>
 <%@ page import = "board.board_DTO" %>
@@ -76,7 +75,7 @@
 		String boardname = request.getParameter("boardname"); /*table of contents*/
 %>
 	<div class="top_include_body">
-		<img id="community" src="/2019_JeonJSP/Loseweight/community/C_img/<%=imgs%>" alt="community" >
+		<img id="community" src="/2019_JeonJSP/Loseweight/community/includeback_img/<%=imgs%>" alt="community" >
 			<div class="Opacity_box">
 				<nav class="top_in_login-up">
 						<li class="nav">
@@ -135,12 +134,12 @@
     </ul>
     
  </li>
- 	<li><a href="#"><%=boardname %></a>	
+ 	<li><a href="#"><%=boardname%></a>	
 	 	<ul>
 		 	<%if(tom.equals ("0")){ %>
-		 		 <li><a href="#">회원정보</a></li>
+		 		 <li><a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">회원정보</a></li>
 			     <li><a href="#">나의 몸무게</a></li>
-			     <li><a href="#">회원탈퇴</a></li>
+			     <li><a href="/2019_JeonJSP/Loseweight/lw_user/user_delete.jsp">회원탈퇴</a></li>
 			<%}%>
 			 <%if(tom.equals ("1")){ %><%}%>
 			 <%if(tom.equals ("2")){ %><%}%>

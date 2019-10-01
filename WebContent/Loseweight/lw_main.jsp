@@ -23,7 +23,12 @@ window.closeModal = function() {
 }
 </script>
 <style>
-
+.menu{
+width:1340px;
+height:50px;
+margin:0 auto;
+padding-top:150px;
+}
 </style>
 <!-- modal windows -->
 <body style="overflow:hidden;">

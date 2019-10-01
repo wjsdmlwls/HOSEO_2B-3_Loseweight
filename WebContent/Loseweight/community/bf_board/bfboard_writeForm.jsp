@@ -107,11 +107,12 @@ font-size: 14px;
     }
 %>
 	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="BE & AT"/>
+</jsp:include>
 						<form method="post" name="writeform" style="margin-top: 5%;"
 						    onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">

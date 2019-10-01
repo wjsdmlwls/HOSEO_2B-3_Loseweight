@@ -186,11 +186,12 @@ font-size: 14px;
       questionDTO article =  dbPro.updateGetArticle(num);
 %>
 	<div class="div_body">
-		<jsp:include page="../../community/community_topinclude.jsp" >
+<jsp:include page="../../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="4"/>
 			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="gogec_1.png"/>
-		</jsp:include>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="문의하기"/>
+</jsp:include>
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			<div class="div_sidecontents" >
 				<div class="mypage_form">
