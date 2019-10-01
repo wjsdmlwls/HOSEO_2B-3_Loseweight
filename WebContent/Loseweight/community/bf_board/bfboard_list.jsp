@@ -66,7 +66,7 @@
 #img_border_main{
 margin: 0 auto;
 text-align:center;
-width:1600px;
+width:1200px;
 margin-top: 5%;
 height:auto;
 padding:10px;
@@ -74,19 +74,23 @@ min-height: 1000px;
 }
 .shop_board_ul{
 	width:100%;
-	
 	padding:0;
 	margin:0;
     list-style: none;
     border-top:2px solid #333;
     
 }
+.shop_board_ul:after {
+content:"";
+display:block;
+clear:both;
+}
 .shop_board_li{
   text-align: left;
     margin: 30px 0 10px 30px;
     margin-bottom: 20px;
-    width: 503px;
-    height: 410px;
+    width: 350px;
+    height: 300px;
     float: left;
     box-sizing: border-box;
     border: 0;
@@ -108,6 +112,7 @@ font-size: 28px;
 font-weight: 1000;
 line-height: 30px;  
 word-break:break-all;
+margin:10 auto;
 }
 
 .img_subject:hover{
@@ -128,9 +133,9 @@ line-height: 30px;
  color:#FF0000;
 }
 .shopboard_img{
- background-size:100%;
- width:470px;
- height:300px;
+ background-size:cover;
+ width:340px;
+ height:240px;
 }
 
 .img_background{
@@ -147,8 +152,9 @@ height:100%;
 .bottom_img{
     margin: 0 auto;
     height: 100px;
-    width: 1600px;
+    width: 1200px;
     text-align: center;
+    margin-top:200px;
 }
 .pageselect_num{
 	display: inline-block;
@@ -194,7 +200,7 @@ border-bottom:1px solid #a8a8a8;
 }
 .search_input{
 width:250px;
-height:47.5px;
+height:49px;
 border-style: none;
 margin-left:10px;
 border-bottom:1px solid #a8a8a8;
@@ -225,7 +231,19 @@ margin-left:10px;
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="BE & AT"/>
 </jsp:include>
-
+<div style="margin:0 auto;text-align:center;">
+	<form method="post" action="bfboard_list.jsp">
+		<div style="margin:0 auto; margin-top:10px;">
+		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
+	        <OPTION value='subject'>제목</OPTION>
+	        <OPTION value='writer'>작성자</OPTION>
+	        <OPTION value='content'>내용</OPTION>
+	    </SELECT>
+		<input class="search_input" name="listsearch" type="text">
+		<input type="image" type="submit" src="images/search.gif">
+		</div>
+	</form>
+</div>
 		<div id="img_border_main">
 		<ul class="shop_board_ul">
 	
@@ -338,17 +356,7 @@ margin-left:10px;
 	
 	
 	<%} %>
-	<form method="post" action="bfboard_list.jsp">
-		<div style="margin:0 auto; margin-top:10px;">
-		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='subject'>제목</OPTION>
-	        <OPTION value='writer'>작성자</OPTION>
-	        <OPTION value='content'>내용</OPTION>
-	    </SELECT>
-		<input class="search_input" name="listsearch" type="text">
-		<input type="image" type="submit" src="images/search.gif">
-		</div>
-	</form>
+
 	</div>					
 </body>
 </html>

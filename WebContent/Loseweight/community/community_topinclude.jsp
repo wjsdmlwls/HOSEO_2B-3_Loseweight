@@ -8,6 +8,11 @@
 
 <html>
 <head>
+<style>
+.menu_s:hover{
+text-decoration: underline; 
+}
+</style>
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
 <script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
 <script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
@@ -19,7 +24,8 @@
 	   $( '#myModal_l' ).modal( 'hide' );
 	}
 	<!-- modal windows -->
-	/*스크롤 내리면 top 고정 */
+	
+	 /*스크롤 내리면 top 고정 */
 	
 	$( document ).ready( function() {
 
@@ -123,7 +129,9 @@
  <%if(tom.equals ("3")){ %>게시판<%}%>
  <%if(tom.equals ("4")){ %>고객센터<%}%>
  <%if(tom.equals ("5")){ %>shop<%}%>
+ 
  </a>
+ 
  
 	<ul>
      <li><a href="#">운동방법</a></li>
@@ -131,28 +139,34 @@
      <li><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a></li>
      <li><a href="#">shop</a></li>
+    
     </ul>
     
  </li>
  	<li><a href="#"><%=boardname%></a>	
 	 	<ul>
 		 	<%if(tom.equals ("0")){ %>
-		 		 <li><a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">회원정보</a></li>
-			     <li><a href="#">나의 몸무게</a></li>
-			     <li><a href="/2019_JeonJSP/Loseweight/lw_user/user_delete.jsp">회원탈퇴</a></li>
+		 		 <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">회원정보</a></li>
+			     <li><a class="menu_s" href="#">나의 몸무게</a></li>
+			     <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/lw_user/user_delete.jsp">회원탈퇴</a></li>
+			     
 			<%}%>
 			 <%if(tom.equals ("1")){ %><%}%>
 			 <%if(tom.equals ("2")){ %><%}%>
 			 <%if(tom.equals ("3")){ %> 
-			 	 <li><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
-			     <li><a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
+			 	 <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
+			     <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
+			     
 			 <%}%>
 			 <%if(tom.equals ("4")){ %>
-			 	 <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
-			     <li><a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
+			 	 <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
+			     <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
+			     
 			 <%}%>
 			 <%if(tom.equals ("5")){ %><%}%>
+			 
 	 	</ul>
+	 	 <li></li>
  	</li>
 </div>
 <hr style="background:#ccc; margin-top: -1px;">
@@ -178,10 +192,10 @@
 		
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %><%}%>>자유게시판</a>
+								<a class="menu_s" href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'<%if(toc.equals ("0")){ %><%}%>>자유게시판</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %><%}%>>BEFOR & AFTER </a>
+								<a class="menu_s" href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'<%if(toc.equals ("1")){ %><%}%>>BEFOR & AFTER </a>
 							</li>
 						</ul>
 		</div>
@@ -190,10 +204,10 @@
 		<div class='sub_menu4'>			
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %><%}%>">공지사항</a>
+								<a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %><%}%>">공지사항</a>
 							</li>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'<%if(toc.equals ("1")){ %><%}%>"> 문의하기 </a>
+								<a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'<%if(toc.equals ("1")){ %><%}%>"> 문의하기 </a>
 							</li>
 						</ul>
 					</div>

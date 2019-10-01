@@ -128,7 +128,7 @@ font-size: 14px;
 						    <td  width="70"   align="center">이 름</td>
 						    <td  width="330" align="left">
 						       <input type="text" size="10" maxlength="10" class="writeinput"
-						          name="writer" style="ime-mode:active;" value="<%=rs.getString("lw_id")%>" readonly></td><!--active:한글-->
+						          name="writer" style="ime-mode:active;" value="<%=rs.getString("lw_id")%>" readonly ></td><!--active:한글-->
 						  </tr>
 						  <tr>
 						    <td  width="70" align="center" >제 목</td>
@@ -139,7 +139,7 @@ font-size: 14px;
 						      else
 						    	 strV = "[답변]";
 						    %>
-						    <input type="text" size="40" style="float:left" maxlength="50" name="subject" class="writeinput"value="<%=strV%>" style="ime-mode:active;">
+						    <input type="text" size="40" style="float:left" maxlength="11" name="subject" class="writeinput"value="<%=strV%>" style="ime-mode:active;">
 						    
 						    <button class="button salmon button_addr" style="float:right;height: 42px;" type="button"onclick="openfileadd()">파일 업로드</button>
 						    <button class="button salmon button_addr" style="float:right;height: 42px;margin-right: 10px;" type="button"onclick="openimgadd()">이미지 추가</button>
