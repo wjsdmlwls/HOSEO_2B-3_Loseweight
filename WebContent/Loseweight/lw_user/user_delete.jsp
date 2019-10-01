@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"
  import="java.sql.*,user.UserDAO"%>
-
+<%request.setCharacterEncoding("UTF-8"); %>
 <%
 	// 세션정보 가져오기
+	PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = null;
 	try {
 		String id = (String) session.getAttribute("id");
 
@@ -11,10 +14,9 @@
 		String dbPass="3whakstp";
 
 		UserDAO db = new UserDAO();
-		Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		
 		String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
 
 		pstmt = conn.prepareStatement(sql);
@@ -28,21 +30,22 @@
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script>
-	function check() {
-
-	}
 	function sendIt() {
 		if (document.getElementById("lw_passwd1").value != document
 				.getElementById("lw_passwd2").value) { //비밀번호 불일치시 나오는 경고문
 			alert("비밀번호가 일치하지 않습니다")
 			return false;
 		}
-		if (document.getElementById("lw_passwd2").value == ""|| document.getElementById("lw_passwd1").value == null || document.getElementById("lw_passwd1").value == ""|| document.getElementById("lw_passwd2").value == null || document.getElementById("lw_passwd2").value == "";
+		if (document.getElementById("lw_passwd2").value == ""
+				|| document.getElementById("lw_passwd1").value == null 
+				|| document.getElementById("lw_passwd1").value == ""
+				|| document.getElementById("lw_passwd2").value == null 
+				|| document.getElementById("lw_passwd2").value == "";)
 			alert("비밀번호를 입력하지 않으셨습니다.");
 			return false;
 		}
 
-	}
+	
 </script>
 </head>
 <!-- stlye css -->
@@ -67,7 +70,7 @@
 			<jsp:param name="tom" value="0"/>
 			<jsp:param name="toc" value="0"/>
 			<jsp:param name="imgs" value="mypage.png"/>
-			<jsp:param name="boardname" value="회원정보"/>
+			<jsp:param name="boardname" value="회원탈퇴"/>
 </jsp:include>
 		<%if(id == null) { 
 	        response.sendRedirect("login.jsp");
@@ -115,7 +118,11 @@
 
 		<%}catch (Exception e) {
 				e.printStackTrace();
-			}
+			}finally {
+		          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
 		%>
 </body>
 </html>

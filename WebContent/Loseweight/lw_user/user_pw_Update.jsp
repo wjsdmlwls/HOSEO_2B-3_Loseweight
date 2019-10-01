@@ -45,12 +45,11 @@ if (lw_passwd3!="" || lw_passwd3!=null){
 	}catch(Exception e){
 	e.printStackTrace();
 	str="member 테이블에 새로운 레코드를 추가에 실패하였습니다.";
-}finally{
-	if(pstmt!=null)
-		try{pstmt.close();}catch(SQLException sqle){}
-	if(conn!=null)
-		try{conn.close();}catch(SQLException sqle){}
-}
+}finally {
+    if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+    if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+    if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+}	
 	PrintWriter script = response.getWriter();
     script.println("<script>");
     script.println("alert('정상적으로 변경 되었습니다.')");

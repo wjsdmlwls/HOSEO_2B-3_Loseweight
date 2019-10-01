@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*,user.UserDAO"%>
-
+<%request.setCharacterEncoding("UTF-8"); %>
 <%
 	// 세션정보 가져오기
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = null;
 	try {
 		String id = (String) session.getAttribute("id");
 
@@ -12,10 +15,9 @@ pageEncoding="UTF-8"%>
 		String dbPass="3whakstp";
 
 		UserDAO db = new UserDAO();
-		Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		
 		String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
 
 		pstmt = conn.prepareStatement(sql);
@@ -162,7 +164,11 @@ pageEncoding="UTF-8"%>
 		<%
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}finally {
+		          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
 		%>
 </body>
 </html>

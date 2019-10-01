@@ -139,6 +139,11 @@ opacity: 0.5;
 width:100%;
 height:100%;
 }
+.img_background:hover{
+opacity: 0;
+width:100%;
+height:100%;
+}
 .bottom_img{
     margin: 0 auto;
     height: 100px;
