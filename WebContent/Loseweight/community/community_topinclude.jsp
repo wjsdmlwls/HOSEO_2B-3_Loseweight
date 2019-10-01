@@ -23,10 +23,7 @@ text-decoration: underline;
 	window.closeModal = function() {
 	   $( '#myModal_l' ).modal( 'hide' );
 	}
-	<!-- modal windows -->
-	
-	 /*스크롤 내리면 top 고정 */
-	
+
 	$( document ).ready( function() {
 
 		var jbOffset = $( '.menu' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
