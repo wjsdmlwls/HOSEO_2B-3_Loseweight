@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
      
-<%@ page import = "BFboard.BF_DAO" %>
+<%@ page import = "Fitnesshop.Fitnesshop_DAO" %>
 <%@ page import = "java.sql.Timestamp" %>
      
 <%
@@ -10,18 +10,16 @@
      %>
 
 
-<jsp:useBean id="article"  scope="page" class="BFboard.BF_DTO">
+<jsp:useBean id="article"  scope="page" class="Fitnesshop.Fitnesshop_DTO">
    <jsp:setProperty name="article" property="*"/>
 </jsp:useBean>
 <%
-	article.setReg_date(new Timestamp(System.currentTimeMillis()));
-	article.setIp(request.getRemoteAddr());
-	
-	
-    BF_DAO dbPro = BF_DAO.getInstance();
+	article.setWrite_date(new Timestamp(System.currentTimeMillis()));
+
+	Fitnesshop_DAO dbPro = Fitnesshop_DAO.getInstance();
     dbPro.insertArticle(article); 
     
     String boardfiles = (request.getParameter("boardfiles"));
-    int num=article.getNum();
-    response.sendRedirect("bfboard_list.jsp");
+   	int num=article.getLw_salesnum();
+    response.sendRedirect("Fitness_shop_list.jsp");
 %>

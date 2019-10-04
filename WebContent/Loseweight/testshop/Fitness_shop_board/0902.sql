@@ -62,7 +62,11 @@ create table bf_boardre(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 
-
+insert into fitness_shop values(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,20190202);
 
 select count(*) from questionboardre where num=1
 select * from questionboardre where num=1
+
+
+select * from fitness_shop;
+
