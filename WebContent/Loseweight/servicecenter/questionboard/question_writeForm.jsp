@@ -111,7 +111,8 @@ font-size: 14px;
 		<jsp:include page="../../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="4"/>
 			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="gogec_1.png"/>
+			<jsp:param name="imgs" value="Service_center.png"/>
+			<jsp:param name="boardname" value="문의하기"/>
 		</jsp:include>
 			<form method="post" name="writeform" style="margin-top: 5%;"onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">

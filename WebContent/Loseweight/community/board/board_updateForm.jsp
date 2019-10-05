@@ -189,7 +189,8 @@ font-size: 14px;
 		<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="자유게시판"/>
 		</jsp:include>
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			<div class="div_sidecontents" >

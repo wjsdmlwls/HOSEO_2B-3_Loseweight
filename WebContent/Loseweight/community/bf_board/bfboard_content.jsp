@@ -170,8 +170,7 @@ function  sendProcess(f){
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
 			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
-		
+		</jsp:include>	
 		<div style='width: 100%;'>
 			
 			<div class="div_sidecontents" >
@@ -349,7 +348,7 @@ function  sendProcess(f){
 	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	      }	
 				%>    
-</div>	
-	
+		<jsp:include page="../community_footerinclude.jsp"></jsp:include>
+	</div>	
 </body>
 </html>

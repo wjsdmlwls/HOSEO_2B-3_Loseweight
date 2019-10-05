@@ -6,7 +6,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<%!int pageSize = 10;
+<%!int pageSize = 9;
     SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
@@ -33,7 +33,7 @@
     count = dbPro.getArticleCount(); 
 
 	String searchcol=request.getParameter("searchcol"); //검색 조건 
-	if(searchcol==""||searchcol==null){ //조건값 초기값
+	if(searchcol==""||searchcol==null){
 		searchcol ="subject";
 	}
 %>
@@ -51,37 +51,166 @@
 	
 	String listsql1="select count(*) from bf_board where "+searchcol+"  like '%"+listsearch+"%'";
 	ResultSet rs = stmt.executeQuery(listsql1);
-	//게시판 페이지를 만들기위한 count
 	
 	String listsql2="select * from bf_board where "+searchcol+"  like '%"+listsearch+"%' order by ref desc, re_step asc limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
-	//게시판 글들을 list에 담아주는 소스 , 검색조건에 따라 나오는 결과 다름 
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
 %>	
-
-
 
 <html>
 <head>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
-
 <style>
-tr.headtableline td{
-	border-bottom:1px solid #000;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-.pageselect {
-margin:15;
-margin-left:70px;
+#img_border_main{
+margin: 0 auto;
 text-align:center;
+width:1200px;
+margin-top: 5%;
+height:auto;
+padding:10px;
+min-height: 1000px;
 }
-.pageselect a{
-color:000;
-font-size:18px;
+.shop_board_ul{
+	width:100%;
+	padding:0;
+	margin:0;
+    list-style: none;
+    border-top:2px solid #333;
+    
+}
+.shop_board_ul:after {
+content:"";
+display:block;
+clear:both;
+}
+.shop_board_li{
+  text-align: left;
+    margin: 30px 0 10px 30px;
+    margin-bottom: 20px;
+    width: 350px;
+    height: 300px;
+    float: left;
+    box-sizing: border-box;
+    border: 0;
+
+}
+
+#bottom_write_button{
+text-align: center;
+position:absolute;
+margin-top: -5px;
+float:right;
+margin-left:25%;
+}
+
+.img_subject{
+text-decoration:none;
+color: #222;
+font-size: 28px;
+font-weight: 1000;
+line-height: 30px;  
+word-break:break-all;
+margin:10 auto;
+}
+
+.img_subject:hover{
+ text-decoration:underline;
+ color:#FF0000;
+}
+
+.img_writer{
+text-decoration:none;
+color: #222;
+font-size: 18px;
+font-weight: 500;
+line-height: 30px;  
+}
+
+.img_writer:hover{
+ text-decoration:underline;
+ color:#FF0000;
+}
+.shopboard_img{
+ background-size:cover;
+ width:340px;
+ height:240px;
+}
+
+.img_background{
+background-color:#333;
+opacity: 0.5;
+width:100%;
+height:100%;
+}
+.img_background:hover{
+opacity: 0;
+width:100%;
+height:100%;
+}
+.bottom_img{
+    margin: 0 auto;
+    height: 100px;
+    width: 1200px;
+    text-align: center;
+    margin-top:200px;
+}
+.pageselect_num{
+	display: inline-block;
+    font-family: 'Tahoma';
+    font-weight: normal;
+    font-size: 13px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    margin: 0 2px;
+    text-align: center;
+    vertical-align: top;
+    color:#7d7d7d;
+}
+.pageselect_num:hover{
+   color: #fff;
+   background: #737373;
+   }
+.page_next_pre_img{
+	display: inline-block;
+    font-family: 'Tahoma';
+    font-weight: normal;
+    font-size: 13px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid  #e5e5e5;
+    margin: 0 2px;
+    text-align: center;
+    vertical-align: top; 
+}
+.page_next_pre_img:hover{
+   color: #fff;
+   background: #737373;
+   }
+   
+.search_list{
+width:100px;
+height:50px;
+border-style: none;
+border-bottom:1px solid #a8a8a8;
+}
+.search_input{
+width:250px;
+height:49px;
+border-style: none;
+margin-left:10px;
+border-bottom:1px solid #a8a8a8;
+}   
+.write_btn{
+width:100px;
+text-align:center;
+height:47.5px;
+border-style: 1px solid #a8a8a8;
+margin-left:10px;
 }
 </style>
 
@@ -96,20 +225,28 @@ font-size:18px;
 	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
-<div class="div_body" >
-	<jsp:include page="../community_topinclude.jsp" >
-		<jsp:param name="tom" value="3"/>
-		<jsp:param name="toc" value="1"/>
-		<jsp:param name="imgs" value="cemu_1.png"/>
-	</jsp:include>
+<jsp:include page="../community_topinclude.jsp" >
+			<jsp:param name="tom" value="3"/>
+			<jsp:param name="toc" value="1"/>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="BE & AT"/>
+</jsp:include>
+<div style="margin:0 auto;text-align:center;">
+	<form method="post" action="bfboard_list.jsp">
+		<div style="margin:0 auto; margin-top:10px;">
+		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
+	        <OPTION value='subject'>제목</OPTION>
+	        <OPTION value='writer'>작성자</OPTION>
+	        <OPTION value='content'>내용</OPTION>
+	    </SELECT>
+		<input class="search_input" name="listsearch" type="text">
+		<input type="image" type="submit" src="images/search.gif">
+		</div>
+	</form>
+</div>
+		<div id="img_border_main">
+		<ul class="shop_board_ul">
 	
-		<div style='margin: 0 auto; width: 1120px;margin-top: 5%;'>
-		
-			<table class="lw_board"> 
-			    <tr height="40"> 
-			    </tr>
-			    <tr class="headtableline"><td colspan="6"></td></tr>
-			
 	<%
 					if(listsearchresult.next()){
 								do{
@@ -129,99 +266,97 @@ font-size:18px;
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
-			    <tr height="50" style="border-top: 1pt solid gray;cursor: pointer;" OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
-			    <td  width="50" > <%=number--%></td>
-			    <td width="150" >
+				
+			    <li class="shop_board_li"  OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
+			    			   
 			    <%if (img0!=null){%>
-			    <img style="max-width:145px;max-height:115px;min-height:115px;padding: 5;border-radius: 5px;"src="<%=img0%>">
+			    <div class="shopboard_img" style="background-image:url('<%=img0%>');"><div class="img_background"></div></div>
 			    <%}else{%>
-			     <img style="max-width:145px;max-height:115px;min-height:115px;border-radius: 5px;"src="../../img/board/board_null_img.png">
-			    	<%}%></td>
-			    <td  width="1000" align="left" style="vertical-align: text-top;">
-			<%
-				int wid=0; 
-				if(re_level>0){
-				   wid=5*(re_level);
-			%>
-				  <img src="images/level.png" width="<%=wid%>" height="16">
-				  <img src="images/re.png">
-			<%  }else{%>
-				  <img src="images/level.png" width="<%=wid%>" height="16">
-			<%  }%>
-			      <a href="bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>" style="font-size: 20; font-weight: bold;margin-left: 13;">
-			           <%=subject%></a><a style="margin-left:10px">[<%=replycount%>]</a><hr style="margin-top:8">
-			           <a href="mailto:<%=email%>" style="margin-left: 10;">
-				        작성자:<%=writer%>
-				       <% if(members>=1){%>
-				         <img src="images/pig.png" border="0"  height="16"><%}%>
-				        </a>
-				        <a style="margin-left: 10;">작성일:<%= sdf.format(reg_date)%></a>
-				        <a style="margin-left: 10;">조회수:<%=readcount%></a>
+			    
+			     <div class="shopboard_img" style="background-image:url('../../img/board/board_null_img.png');"></div>
+			    	<%}%>
+			   
+			      <p class="img_subject" href="bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>" id="boardlink<%=num%>">
+			           <%=subject%></p>
+			            <a class="img_writer" href="mailto:<%=email%>">			          
+				       <p><%=writer%></a>&nbsp;<%= sdf.format(reg_date)%></p>
+			          
+				        
+				        
+				       
 				
 			<% if(readcount>=20){%>
-			         <img src="images/hot.png" border="0"  height="16"><%}%> </td>
-			  </tr>
-			  <tr class="tableline"><td colspan="6"></td></tr>
+			         <img src="images/hot.png" border="0"  height="16"><%}%> 
+			  </li>
+			  
+			
 		<%
 			}while(listsearchresult.next());
 		%>
-	<%}else{
+		
+	<%
+	}else{
 			%>
+			  
 			  <tr class="tableline">
 			  <td colspan="6">
 			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
 			  </td></tr>
+			
+			
+			
+			
 			<%}
 	%>
-	</table>
-	<div class="pageselect">
+	
+			</ul>
+			</div>
+			
+	<div class="bottom_img">
 	<%
 	    if (count > 0) {
 	        int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 			int startPage =1;
 			
-			if(currentPage % 10 != 0)
-	           startPage = (int)(currentPage/10)*10 + 1;
+			if(currentPage % 9 != 0)
+	           startPage = (int)(currentPage/9)*9 + 1;
 			else
-	           startPage = ((int)(currentPage/10)-1)*10 + 1;
+	           startPage = ((int)(currentPage/9)-1)*9 + 1;
 	
-			int pageBlock = 10;
+			int pageBlock = 9; 
 	        int endPage = startPage + pageBlock - 1;
 	        if (endPage > pageCount) endPage = pageCount;
 	        
-	        if (startPage > 10) { %>
-	          <a href="bfboard_list.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
+	        if (startPage > 9) { %>
+	          <a href="bfboard_list.jsp?pageNum=<%= startPage - 9 %>"><img class="page_next_pre_img" src="images/btn_pre.gif"></a>
 	<%      }
+	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
-	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"style="font-weight: bold;">[<%= i %>]</a>
+	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"><div class="pageselect_num"><%= i %></div></a>
 		          <% }
 		           else{%>
-	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>">[<%= i %>]</a>
+	           <a href="bfboard_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="num<%=i %>"><div class="pageselect_num"><%= i %></div></a>
 	<%      }}
+	        	
+	        
+	        
 	        if (endPage < pageCount) {  %>
-	        <a href="bfboard_list.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
+	        <a href="bfboard_list.jsp?pageNum=<%= startPage + 9 %>"><img class="page_next_pre_img" src="images/btn_next.gif"></a>
 	<%	
 	        }
+	        
 	    }
-	%><%if(id!=null){%>
-	<a href="bfboard_writeForm.jsp"><input style="text-align: center;margin-top: -5px;float:right;" class="newbutton"value="글쓰기"></a>
-	</div>
+	
+	%>
+	
+	<%if(id!=null||id!=""){%>
+	
+	<a href="bfboard_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
+	
+	
 	<%} %>
-	<!-- 검색창  -->
-	<form method="post" action="bfboard_list.jsp">
-		<div style="margin:0 auto;margin-top:10px;">
-		<SELECT style="height: 42px;width: 95;"name='searchcol'> <!-- 검색 조건 -->
-	        <OPTION value='subject'>제목</OPTION>
-	        <OPTION value='writer'>작성자</OPTION>
-	        <OPTION value='content'>내용</OPTION>
-	    </SELECT>
-		<input style="width: 250;height:42px"name="listsearch" type="text">
-		<input style="font-size: 12px;  line-height: 40px; width: 100px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; color: #263238; border: 1px solid #263238; background: transparent;" type="submit"  value="검색"><Br>
-		</div>
-	</form>
-	</div>
-</div>
-						
+
+	</div>					
 </body>
 </html>

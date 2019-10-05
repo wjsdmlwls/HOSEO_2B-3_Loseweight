@@ -57,12 +57,12 @@ font-size: 14px;
 <!-- 주소 end -->
 <body>
 
-	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
-		</jsp:include>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="자유게시판"/>
+</jsp:include>
 		
 		
 		<div style='width: 1000px;margin-top:5%;margin:0 auto;'>

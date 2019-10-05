@@ -65,9 +65,10 @@ font-size: 14px;
 
 	<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="gogec_1.png"/>
+				<jsp:param name="tom" value="4"/>
+				<jsp:param name="toc" value="0"/>
+				<jsp:param name="imgs" value="Service_center.png"/>
+					<jsp:param name="boardname" value="공지사항"/>
 		</jsp:include>
 		
 		<div style='width: 1000px;margin-top:5%;margin:0 auto;'>

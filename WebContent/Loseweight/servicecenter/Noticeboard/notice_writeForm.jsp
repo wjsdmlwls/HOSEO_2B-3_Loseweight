@@ -4,6 +4,9 @@
    	<%@ page import="java.io.File" %>
     <%@page import="java.sql.*" %>
 <%@page import="java.io.PrintWriter" %>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
     // 세션정보 가져오기
@@ -110,9 +113,10 @@ font-size: 14px;
 %>
 	<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="gogec_1.png"/>
+				<jsp:param name="tom" value="4"/>
+				<jsp:param name="toc" value="0"/>
+				<jsp:param name="imgs" value="Service_center.png"/>
+				<jsp:param name="boardname" value="공지사항"/>
 		</jsp:include>
 			<form method="post" name="writeform" style="margin-top: 5%;"onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">
@@ -167,7 +171,7 @@ font-size: 14px;
 						  <tr>      
 						    <td colspan=2 align="right"> 
 						      <input type="submit" id="write" class="newbutton" value="글쓰기" onClick="sendProcess(this.form);writeSave();" >  
-						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='list.jsp'">
+						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='notice_list.jsp'">
 						    </td>
 						  </tr>
 						  <tr style="display: none;"><!-- upload db에 보내는용도  -->

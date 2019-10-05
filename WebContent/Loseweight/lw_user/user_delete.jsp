@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
-
+<%
+	request.setCharacterEncoding("utf-8");
+%>
 <%
 	// 세션정보 가져오기
 	try {
@@ -66,7 +68,8 @@
 		<jsp:include page="../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="0"/>
 			<jsp:param name="toc" value="2"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
+			<jsp:param name="imgs" value="mypage.png"/>
+			<jsp:param name="boardname" value="회원탈퇴"/>
 		</jsp:include>
 		<%if(id == null) { 
 	        response.sendRedirect("login.jsp");

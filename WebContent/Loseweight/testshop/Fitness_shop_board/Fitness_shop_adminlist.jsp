@@ -87,7 +87,8 @@
 	<form method="post" action="Fitness_shop_list.jsp">
 		<div style="margin:0 auto; margin-top:10px;">
 		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='product_name'>상품이름</OPTION>
+	        <OPTION value='subject'>상품이름</OPTION>
+	        <OPTION value='content'>내용</OPTION>
 	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
 		<input type="image" type="submit" src="images/search.gif">
@@ -108,7 +109,7 @@
 								int replycount=0;
 								Fitnesshop_DAO dbPro1 = Fitnesshop_DAO.getInstance();
 								Fitnesshop_DTO article =  dbPro.getArticle(Integer.parseInt(lw_salesnum));
-								   	String replylistsql1="select count(*) from Fitness_shop where lw_salesnum="+article.getLw_salesnum()+"";
+								   	String replylistsql1="select count(*) from Fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
@@ -143,7 +144,7 @@
 	}else{
 			%>
 			  
-			  <tr class=" ">
+			  <tr class="tableline">
 			  <td colspan="6">
 			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
 			  </td></tr>

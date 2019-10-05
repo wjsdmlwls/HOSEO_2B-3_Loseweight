@@ -192,7 +192,8 @@ font-size: 14px;
 		<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="cemu_1.png"/>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="BE & AT"/>
 		</jsp:include>
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			
