@@ -4,10 +4,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/community/include.css">
+<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
+<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
+<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
 <title>게시판</title>
 </head>
 <body>
-	<footer id="dfooter" style="margin-top:200px">
+	<footer id="dfooter" style="margin-top:70px">
 		<div class="footer">
 			<div class="footer_menu">
 				<ul style="margin-left: 130px;">
@@ -22,7 +25,7 @@
 
 				<ul class="list">
 					<li class=""><a href="#">마일리지 조회</a></li>
-					<li class="sys"><a href="#">인트라넷</a></li>
+					<li class="sys"><a href="/2019_JeonJSP/Loseweight/admin/admin_main.jsp">관리자 페이지</a></li>
 				</ul>
 			</div>
 			<hr style="width: 100%; border: 1px solid #888;">
@@ -44,10 +47,8 @@
 			<!--아이콘-->
 			<div class="sns">
 				<ul>
-					<li><a href="https://blog.naver.com/loseweight_2019_2b03"><img
-							src="/2019_JeonJSP/Loseweight/img/footer_include/55.png"></a></li>
-					<li><a href="https://github.com"><img
-							src="/2019_JeonJSP/Loseweight/img/footer_include/git3.png"></a></li>
+					<li><a href="https://blog.naver.com/loseweight_2019_2b03"><img src="/2019_JeonJSP/Loseweight/img/footer_include/55.png"></a></li>
+					<li><a href="https://github.com/wjsdmlwls/HOSEO_2B-3_Loseweight"><img src="/2019_JeonJSP/Loseweight/img/footer_include/git3.png"></a></li>
 				</ul>
 			</div>
 		</div>

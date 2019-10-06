@@ -144,6 +144,8 @@ function fncCheckNumber(){
 	  cost = parseFloat(fitshopform.cost.value);
 	  reduced_price = parseFloat(fitshopform.reduced_price.value);
 	  fitshopform.selling_price.value = Math.round(cost -((cost * reduced_price) / 100));
+	  selling_price = parseFloat(fitshopform.selling_price.value);
+	  fitshopform.pointplus.value = Math.round(selling_price*0.015);
 	}
 </script>
 <!-- 이미지/업로드 창 띄우기  -->
@@ -154,6 +156,13 @@ function fncCheckNumber(){
 		window.name = "writeForm";
 		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open("imgadd.jsp", "childForm",
+				"width=580, height=600, resizable = no, scrollbars = yes");
+	}
+	function openimgupload() {
+		// window.name = "해당페이지로 가져옴 이름"; 
+		window.name = "writeForm";
+		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
+		openWin = window.open("imgupload.jsp", "childForm",
 				"width=580, height=600, resizable = no, scrollbars = yes");
 	}
 </script>
@@ -298,9 +307,17 @@ margin-right:15px;
 						  <tr>
 						   <th  width="70"  align="center" ><a class="addhead">내 용</a></th>
 						   <td  width="330" colspan="5"><div contentEditable="true" id="copy_div"name="copy_div" class="contentsinput" style="float:left; font-size: 14px;display: block;width:1135px;px;height: auto;min-height: 300px;max-height: 500px;overflow: auto;padding: 16px 13px;color: #999999;border: 1px solid #d9d9d9;background: transparent;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;" ></div><textarea name="product_contents" id="product_contents" style="height:500px; display:none;width:1000px; ime-mode:active; background:#fff; border:solid 1px;" ></textarea>
-						   <button class="button salmon button_addr" style="height: 42px;" type="button"onclick="openimgadd()">이미지 추가</button>
-						   <input id="img0" name="img0" style="display:none;"><!-- img첫번째로 올라오는것 --></td>
+						   <button class="button salmon button_addr"  type="button"onclick="openimgadd()">이미지 추가</button>
+						  </td>
 							
+						  </tr>
+						  <tr>
+							  <th  width="100"><a class="addhead">썸네일</a></th>
+							  <td  width="100" colspan="4">
+							  <input id="img0" name="img0" style="width:100%; height: 48px;"readonly><!-- img첫번째로 올라오는것 --></td>
+							  <td width="100">
+							  <button class="button salmon button_addr" style="height: 47px;width: 100%;" type="button"onclick="openimgupload()">썸네일 추가</button>
+							  </td>
 						  </tr>
 						    <tr>
 						    <th  width="100"><a class="addhead">상품노출</a></th>
@@ -322,12 +339,15 @@ margin-right:15px;
 						  </tr>
 						  <tr>
 						    <th  width="100"><a class="addhead">이벤트</a></th>
-						    <td  width="330" colspan="5">
+						    <td  width="330" colspan="3">
 							    <div name="productevent">
 								    <input type="checkbox" name="productevent" class="fitshop_checkbox" value="1" onclick="oneCheckbox(this)"><img src="/2019_JeonJSP/Loseweight/img/shop/new_shop.png">
 								    <input type="checkbox" name="productevent" class="fitshop_checkbox" value="2" onclick="oneCheckbox(this)"><img src="/2019_JeonJSP/Loseweight/img/shop/freedelivery_shop.png">
 								    <input type="checkbox" name="productevent" class="fitshop_checkbox" value="3" onclick="oneCheckbox(this)"><img src="/2019_JeonJSP/Loseweight/img/shop/hit_shop.png">
 								</div>
+						    </td><th  width="100"><a class="addhead">누적 LP 포인트</a></th>
+						    <td  width="100">
+							    <input id="pointplus" name="pointplus" style="width:100%; height: 48px;"readonly>
 						    </td>
 						  </tr>
 						  <tr>
@@ -362,5 +382,7 @@ margin-right:15px;
 						  }catch(Exception e){}
 						%>    
 				</div>
+				
+<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

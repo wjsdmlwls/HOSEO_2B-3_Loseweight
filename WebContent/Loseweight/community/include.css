@@ -208,6 +208,110 @@ clear:left;
 
 /*
 ==============================================================================
-		2.community_bottominclude.jsp
+		2.community_footerinclude.jsp
 ==============================================================================
 */
+#dfooter{
+		position: relative;
+		background-color: #222;
+	}
+	.footer{
+		position: relative;
+		width: 1200px;
+		margin: 0 auto;
+		height: 300px;
+		box-sizing: border-box;
+
+	}
+	.footer_menu{
+		height: 60px;
+	}
+	.footer .footer_menu ul{
+		float: left;
+	}
+	ul, ol, dl{
+		list-style-type: none;
+	}
+	.footer .footer_menu ul > li{
+		float: left;
+		position: relative;
+		margin-right: 30px;
+	}
+	.footer .footer_menu ul > li a{
+		display: block;
+		height: 67px;
+		padding: 22px 0;
+		color: #e1e1e1;
+		font-size: 15px;
+		letter-spacing: -0.02em;
+		box-sizing: border-box;
+		opacity: 0.5;
+	}
+	a:link, a:visited{
+		text-decoration: none;
+	}
+	a{
+		text-decoration: none;
+		color: #666;
+		cursor: pointer;
+	}
+
+
+	/*list css*/
+	.footer .footer_menu ul.list {
+    	margin-left: 30px;
+	}
+
+	.footer .footer_menu ul.list2 li a {
+    	opacity: 1;
+	}
+
+	.footer .footer_menu .sys a {
+	    color: #bcea10 !important;
+	    font-weight: 500;
+	}
+
+	
+
+	/*footer-info*/
+	.footer_info{
+		position: relative;
+		padding: 0 0 0 320px;
+	}
+	.footer .footer_info .info{
+		color: #fff;
+		font-size: 15px;
+		line-height: 26px;
+		opacity: 0.4;
+	}
+	.footer .footer_info .info span{
+		display: inline-block;
+		position: relative;
+		padding-right: 21px;
+	}
+	.footer .footer_info .corp{
+		margin-top: 20px;
+		color: #fff;
+		font-size: 12px;
+		letter-spacing: 0.01em;
+		opacity: 0.2;
+	}
+	.sns{
+		position: absolute;
+		top: 100px;
+		right: 0;
+		margin-right: 100px;
+	}
+	
+	.footer .sns li{
+		float: left;
+	}
+	.logo a img{
+		content: '';
+    	position: absolute;
+    	top: 20px;
+   		left: 0;
+    	width: 142px;
+    	height: 60px;
+		margin-left: 160px;
+	}

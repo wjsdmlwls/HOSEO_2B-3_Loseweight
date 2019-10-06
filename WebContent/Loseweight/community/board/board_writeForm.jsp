@@ -198,7 +198,9 @@ font-size: 14px;
 						%>     
 						 <%
 						  }catch(Exception e){}
-						%>    
+						%>
+						
+		<jsp:include page="../community_footerinclude.jsp"></jsp:include>    
 				</div>
 </body>
 </html>

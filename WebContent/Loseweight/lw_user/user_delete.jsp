@@ -119,5 +119,6 @@
 				e.printStackTrace();
 			}
 		%>
+		<jsp:include page="../community/community_footerinclude.jsp" ></jsp:include>	
 </body>
 </html>

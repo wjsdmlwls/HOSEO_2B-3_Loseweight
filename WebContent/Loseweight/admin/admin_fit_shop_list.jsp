@@ -6,7 +6,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<%!int pageSize = 20;
+<%!int pageSize = 9;
     SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
@@ -64,7 +64,7 @@
 <script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="/2019_JeonJSP/Loseweight/css/style.css" rel="stylesheet" type="text/css">
-<link href="Fitness_shop_listcss.css" rel="stylesheet" type="text/css">
+<link href="admin_shoplist.css" rel="stylesheet" type="text/css">
 
 <title>게시판</title>
 <style>
@@ -125,21 +125,21 @@ table.lw_shopboard tbody td {
 %>
 <div class="loseweight_admintop">
 	<div class='menu'>			
-					<ul class="nav01">
+					<ul class="nav01" style="margin: 0 auto;width: 1400px;">
 						<li>
 							<a href='/2019_JeonJSP/Loseweight/lw_main.jsp'>메인화면</a>
 						</li>
 						<li>
-							<a href='#'>회원정보</a>
+							<a href='/2019_JeonJSP/Loseweight/admin/admin_main.jsp'>관리자 메인</a>
 						</li>
 						<li>
-							<a href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list'>fit게시판</a>
+							<a href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list.jsp'>fit게시판</a>
 						</li>
 						<li class='last'>
-							<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
+							<a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>임시1</a>
 						</li>
 						<li>
-							<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>shop</a>
+							<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>임시2</a>
 						</li>
 						
 					</ul>
@@ -227,7 +227,7 @@ table.lw_shopboard tbody td {
 			    
 			    <td><%=lw_salesnum %></td>
 			    <td><%=product_code%></td>
-			    <td><%=product_name%></td>
+			    <td><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>"> <%=product_name%></a></td>
 			    <td><%=cost%></td>
 			    <td><%=reduced_price%>%</td>
 			    <td><%=selling_price%></td>
@@ -270,17 +270,17 @@ table.lw_shopboard tbody td {
 	        int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 			int startPage =1;
 			
-			if(currentPage % 20 != 0)
-	           startPage = (int)(currentPage/20)*20 + 1;
+			if(currentPage % 9 != 0)
+	           startPage = (int)(currentPage/9)*9 + 1;
 			else
-	           startPage = ((int)(currentPage/20)-1)*20 + 1;
+	           startPage = ((int)(currentPage/9)-1)*9 + 1;
 	
-			int pageBlock = 20; 
+			int pageBlock = 9; 
 	        int endPage = startPage + pageBlock - 1;
 	        if (endPage > pageCount) endPage = pageCount;
 	        
-	        if (startPage > 20) { %>
-	          <a href="admin_fit_shop_list.jsp?pageNum=<%= startPage - 20 %>"><img class="page_next_pre_img" src="images/btn_pre.gif"></a>
+	        if (startPage > 9) { %>
+	          <a href="admin_fit_shop_list.jsp?pageNum=<%= startPage - 9 %>"><img class="page_next_pre_img" src="images/btn_pre.gif"></a>
 	<%      }
 	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
@@ -294,7 +294,7 @@ table.lw_shopboard tbody td {
 	        
 	        
 	        if (endPage < pageCount) {  %>
-	        <a href="admin_fit_shop_list.jsp?pageNum=<%= startPage + 20 %>"><img class="page_next_pre_img" src="images/btn_next.gif"></a>
+	        <a href="admin_fit_shop_list.jsp?pageNum=<%= startPage + 9 %>"><img class="page_next_pre_img" src="images/btn_next.gif"></a>
 	<%	
 	        }
 	        

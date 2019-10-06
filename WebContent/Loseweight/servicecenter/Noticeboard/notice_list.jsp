@@ -177,9 +177,10 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	        }       
 	    }
 	%>
-	
+	</div>
+	</div>
 		<form method="post" action="notice_list.jsp">		
-		<div style="margin:0 auto;margin-top:10px;width: 1200px;">
+		<div style="margin:0 auto;margin-top:10px;width: 1200px;text-align:center;">
 		<select class="search_list" name="searchcol"> <!-- 검색 컬럼 -->
 	        <option value="subject">제목</option>
 	        <option value="writer">작성자</option>
@@ -191,8 +192,6 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 		<input class="write_btn" value="글쓰기"></a></div>
 		</form>
 
-
-
-					
+<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>				
 </body>
 </html>

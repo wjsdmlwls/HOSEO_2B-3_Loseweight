@@ -328,7 +328,7 @@ function  sendedit(f){
 		</div>
 
 		<div class="reply_box">
-		<form action = "notice_reply.jsp" method="post" name="replyform">
+		<form action = "board_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="num" value="<%=article.getNum()%>">
@@ -423,6 +423,7 @@ function  sendedit(f){
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	    }	  
 	 %>
-	
+	</div>
+		<jsp:include page="../community_footerinclude.jsp"></jsp:include>
 </body>
 </html>

@@ -357,6 +357,8 @@ margin-left:10px;
 	
 	<%} %>
 
-	</div>					
+	</div>	
+	
+<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>				
 </body>
 </html>

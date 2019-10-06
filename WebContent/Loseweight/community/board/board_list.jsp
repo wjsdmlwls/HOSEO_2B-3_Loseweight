@@ -175,9 +175,9 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	        }       
 	    }
 	%>
-	
+	</div>
 		<form method="post" action="board_list.jsp">		
-			<div style="margin:0 auto;margin-top:10px;width: 1200px;">
+			<div style="margin:0 auto;margin-top:10px;width: 1200px;text-align: center;">
 				<select class="search_list" name="searchcol"> <!-- 검색 컬럼 -->
 			        <option value="subject">제목</option>
 			        <option value="writer">작성자</option>
@@ -185,13 +185,11 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 			    </select>
 				<input class="search_input" name="listsearch" type="text">
 				<input type="image" src="images/search.gif">
-				<a href="notice_writeForm.jsp" style="float: right;">
+				<a href="board_writeForm.jsp" style="float: right;">
 				<input class="write_btn" value="글쓰기"></a>
 			</div>
 		</form>
-
-
-
-					
+		<jsp:include page="../community_footerinclude.jsp"></jsp:include>
+		</div>					
 </body>
 </html>
