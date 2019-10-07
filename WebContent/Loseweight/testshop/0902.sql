@@ -26,7 +26,13 @@ salestatus int not null, /*판매상태 : 판매중지/ 준비중 /판매중*/
 productevent int default '0', /*제품 이벤트(무료배송 신규상품 추천상품)*/ 
 option1 varchar(30) not null,
 option1price int not null,
-write_date datetime not null /*게시글 추가 날자 */
+option2 varchar(30) null,
+option2price int null,
+option3 varchar(30) null,
+option3price int null,
+write_date datetime not null, /*게시글 추가 날자 */
+passwd varchar(12) not null,
+lw_id varchar(12) not null
 );
 
 desc Fitness_shop

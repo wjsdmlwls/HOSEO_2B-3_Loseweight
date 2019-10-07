@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import BFboard.BF_DTO;
+import Fitnesshop.Fitnesshop_DTO;
 
 public class Fitnesshop_DAO {
 
@@ -54,8 +54,8 @@ public class Fitnesshop_DAO {
 			
 			sql = "insert into Fitness_shop(product_code,cost,selling_price,reduced_price,product_name,product_contents,quantity"
 					+ ",big_category,middle_category,small_category,brand,delivery_charge,pointplus,img0,exposure,salestatus"
-					+ ",productevent,option1,option1price,write_date)"
-					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ ",productevent,option1,option1price,option2,option2price,option3,option3price,write_date,passwd,lw_id)"
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 			
@@ -79,9 +79,18 @@ public class Fitnesshop_DAO {
 			
 			pstmt.setInt(16, article.getSalestatus());
 			pstmt.setInt(17, article.getProductevent());
+			
 			pstmt.setString(18, article.getOption1());
 			pstmt.setInt(19, article.getOption1price());
-			pstmt.setTimestamp(20, article.getWrite_date());
+			pstmt.setString(20, article.getOption2());
+			pstmt.setInt(21, article.getOption2price());
+			pstmt.setString(22, article.getOption3());
+			
+			pstmt.setInt(23, article.getOption3price());
+			pstmt.setTimestamp(24, article.getWrite_date());
+			
+			pstmt.setString(25, article.getPasswd());
+			pstmt.setString(26, article.getLw_id());
 			
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
@@ -116,7 +125,7 @@ public class Fitnesshop_DAO {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select count(*) from Fitness_shop");
+			pstmt = conn.prepareStatement("select count(*) from Fitness_shop ");
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -174,7 +183,7 @@ public class Fitnesshop_DAO {
 					article.setBig_category(rs.getString("big_category"));
 					article.setMiddle_category(rs.getString("middle_category"));
 					
-					article.setSmall_category(rs.getString("small_category "));
+					article.setSmall_category(rs.getString("small_category"));
 					article.setBrand(rs.getString("brand"));
 					article.setDelivery_charge(rs.getInt("delivery_charge"));
 					article.setPointplus(rs.getInt("pointplus"));
@@ -183,12 +192,19 @@ public class Fitnesshop_DAO {
 					article.setExposure(rs.getInt("exposure"));
 					article.setSalestatus(rs.getInt("salestatus"));
 					article.setProductevent(rs.getInt("productevent"));
-					article.setOption1(rs.getString("option1"));
 					
+					article.setOption1(rs.getString("option1"));					
 					article.setOption1price(rs.getInt("option1price"));
+					article.setOption2(rs.getString("option2"));					
+					article.setOption2price(rs.getInt("option2price"));
+					article.setOption3(rs.getString("option3"));					
+					article.setOption3price(rs.getInt("option3price"));
+					
 					article.setWrite_date(rs.getTimestamp("write_date"));
 					
-					
+					article.setPasswd(rs.getString("passwd"));					
+					article.setLw_id(rs.getString("lw_id"));
+			
 					articleList.add(article);
 				} while (rs.next());
 			}
@@ -228,7 +244,7 @@ public class Fitnesshop_DAO {
 
 			if (rs.next()) {
 				article = new Fitnesshop_DTO();
-		
+				article.setLw_salesnum(rs.getInt("lw_salesnum"));
 				article.setProduct_code(rs.getString("product_code"));
 				article.setCost(rs.getInt("cost"));
 				article.setSelling_price(rs.getInt("selling_price"));
@@ -240,7 +256,7 @@ public class Fitnesshop_DAO {
 				article.setBig_category(rs.getString("big_category"));
 				article.setMiddle_category(rs.getString("middle_category"));
 				
-				article.setSmall_category(rs.getString("small_category "));
+				article.setSmall_category(rs.getString("small_category"));
 				article.setBrand(rs.getString("brand"));
 				article.setDelivery_charge(rs.getInt("delivery_charge"));
 				article.setPointplus(rs.getInt("pointplus"));
@@ -249,14 +265,18 @@ public class Fitnesshop_DAO {
 				article.setExposure(rs.getInt("exposure"));
 				article.setSalestatus(rs.getInt("salestatus"));
 				article.setProductevent(rs.getInt("productevent"));
-				article.setOption1(rs.getString("option1"));
 				
+				article.setOption1(rs.getString("option1"));					
 				article.setOption1price(rs.getInt("option1price"));
+				article.setOption2(rs.getString("option2"));					
+				article.setOption2price(rs.getInt("option2price"));
+				article.setOption3(rs.getString("option3"));					
+				article.setOption3price(rs.getInt("option3price"));
+				
 				article.setWrite_date(rs.getTimestamp("write_date"));
 				
-				
-				
-				
+				article.setPasswd(rs.getString("passwd"));					
+				article.setLw_id(rs.getString("lw_id"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -279,38 +299,53 @@ public class Fitnesshop_DAO {
 		}
 		return article;
 	}
-	
-	public BF_DTO updateGetArticle(int num) throws Exception {
+	// 글 수정폼에서 사용할 글의 내용(1개의 글)(select문)<=updateForm.jsp에서 사용
+	public Fitnesshop_DTO updateGetArticle(int lw_salesnum) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BF_DTO article = null;
+		Fitnesshop_DTO article = null;
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select * from bf_board where num = ?");
-			pstmt.setInt(1, num);
+			pstmt = conn.prepareStatement("select * from Fitness_shop where lw_salesnum = ?");
+			pstmt.setInt(1, lw_salesnum);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				article = new BF_DTO();
-				article.setNum(rs.getInt("num"));
-				article.setWriter(rs.getString("writer"));
-				article.setEmail(rs.getString("email"));
-				article.setSubject(rs.getString("subject"));
-				article.setPasswd(rs.getString("passwd"));
-				article.setReg_date(rs.getTimestamp("reg_date"));
-				article.setReadcount(rs.getInt("readcount"));
-				article.setRef(rs.getInt("ref"));
-				article.setRe_step(rs.getInt("re_step"));
-				article.setRe_level(rs.getInt("re_level"));
-				article.setContent(rs.getString("content"));
-				article.setIp(rs.getString("ip"));
-				article.setMembers(rs.getInt("members"));
-				article.setFilename0(rs.getString("filename0"));
-				article.setFilename1(rs.getString("filename1"));
-				article.setFilepath0(rs.getString("filepath0"));
-				article.setFilepath1(rs.getString("filepath1"));
+				article = new Fitnesshop_DTO();
+				article.setLw_salesnum(rs.getInt("lw_salesnum"));
+				article.setProduct_code(rs.getString("product_code"));
+				article.setCost(rs.getInt("cost"));
+				article.setSelling_price(rs.getInt("selling_price"));
+				article.setReduced_price(rs.getInt("reduced_price"));
+				
+				article.setProduct_name(rs.getString("product_name"));					
+				article.setProduct_contents(rs.getString("product_contents"));
+				article.setQuantity(rs.getInt("quantity"));
+				article.setBig_category(rs.getString("big_category"));
+				article.setMiddle_category(rs.getString("middle_category"));
+				
+				article.setSmall_category(rs.getString("small_category"));
+				article.setBrand(rs.getString("brand"));
+				article.setDelivery_charge(rs.getInt("delivery_charge"));
+				article.setPointplus(rs.getInt("pointplus"));
+				
+				article.setImg0(rs.getString("img0"));
+				article.setExposure(rs.getInt("exposure"));
+				article.setSalestatus(rs.getInt("salestatus"));
+				article.setProductevent(rs.getInt("productevent"));
+				article.setOption1(rs.getString("option1"));					
+				article.setOption1price(rs.getInt("option1price"));
+				article.setOption2(rs.getString("option2"));					
+				article.setOption2price(rs.getInt("option2price"));
+				article.setOption3(rs.getString("option3"));					
+				article.setOption3price(rs.getInt("option3price"));
+				article.setWrite_date(rs.getTimestamp("write_date"));
+				
+				article.setPasswd(rs.getString("passwd"));					
+				article.setLw_id(rs.getString("lw_id"));
+				
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -335,43 +370,59 @@ public class Fitnesshop_DAO {
 	}
 
 	// 글 수정처리에서 사용(update문)<=updatePro.jsp에서 사용
-	public int updateArticle(BF_DTO article) throws Exception {
+	public void updateArticle(Fitnesshop_DTO article, int lw_salesnum, String passwd) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String sql="";
+		
 
-		String dbpasswd = "";
-		String sql = "";
-		int x = -1;
 		try {
 			conn = getConnection();
-
-			pstmt = conn.prepareStatement("select passwd from bf_board where num = ?");
-			pstmt.setInt(1, article.getNum());
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				dbpasswd = rs.getString("passwd");
-				if (dbpasswd.equals(article.getPasswd())) {
-					sql = "update bf_board set writer=?,email=?,subject=?,passwd=?,filename0=?,filename1=?,filepath0=?,filepath1=?";
-					sql += ",content=? where num=?";
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, article.getWriter());
-					pstmt.setString(2, article.getEmail());
-					pstmt.setString(3, article.getSubject());
-					pstmt.setString(4, article.getPasswd());
-					pstmt.setString(5, article.getFilename0());
-					pstmt.setString(6, article.getFilename1());
-					pstmt.setString(7, article.getFilepath0());
-					pstmt.setString(8, article.getFilepath1());
-					pstmt.setString(9, article.getContent());
-					pstmt.setInt(10, article.getNum());
+			
+		
+					sql = "update Fitness_shop set product_code=?,product_name=?"
+							+ ",cost=?,reduced_price=?,selling_price=?"
+							+ ",quantity=?,brand=?,delivery_charge=?,big_category=?,middle_category=?,small_category=?,"
+							+ "product_contents=?,img0=?,exposure=?,salestatus=?, productevent=?,pointplus=?,"
+							+ "option1=?,option1price=?,option2=?,option2price=?,option3=?,option3price=?"
+							+ " where lw_salesnum=? and passwd=?";
+					pstmt = conn.prepareStatement(sql);	
+					
+					pstmt.setString(1, article.getProduct_code());
+					pstmt.setString(2, article.getProduct_name());
+					pstmt.setInt(3, article.getCost());
+					pstmt.setInt(4, article.getReduced_price());
+					pstmt.setInt(5, article.getSelling_price());
+					
+					pstmt.setInt(6, article.getQuantity());
+					pstmt.setString(7, article.getBrand());
+					pstmt.setInt(8, article.getDelivery_charge());
+					pstmt.setString(9, article.getBig_category());
+					pstmt.setString(10, article.getMiddle_category());
+					pstmt.setString(11, article.getSmall_category());
+					
+					pstmt.setString(12, article.getProduct_contents());
+					pstmt.setString(13, article.getImg0());
+					pstmt.setInt(14, article.getExposure());
+					pstmt.setInt(15, article.getSalestatus());
+					pstmt.setInt(16, article.getProductevent());
+					pstmt.setInt(17, article.getPointplus());
+					
+					pstmt.setString(18, article.getOption1());
+					pstmt.setInt(19, article.getOption1price());
+					pstmt.setString(20, article.getOption2());
+					pstmt.setInt(21, article.getOption2price());
+					pstmt.setString(22, article.getOption3());
+					pstmt.setInt(23, article.getOption3price());
+					pstmt.setInt(24, lw_salesnum);
+					pstmt.setString(25, passwd);
 					pstmt.executeUpdate();
-					x = 1;
-				} else {
-					x = 0;
-				}
-			}
+				
+			
+					
+			
+		
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -391,33 +442,28 @@ public class Fitnesshop_DAO {
 				} catch (SQLException ex) {
 				}
 		}
-		return x;
+	
 	}
 
 	// 글삭제처리시 사용(delete문)<=deletePro.jsp페이지에서 사용
-	public int deleteArticle(int num, String passwd) throws Exception {
+	
+	public void deleteArticle(int lw_salesnum, String passwd, String lw_id) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String dbpasswd = "";
-		int x = -1;
+
+	
+		
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select passwd from bf_board where num = ?");
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				dbpasswd = rs.getString("passwd");
-				if (dbpasswd.equals(passwd)) {
-					pstmt = conn.prepareStatement("delete from bf_board where num=?");
-					pstmt.setInt(1, num);
-					pstmt.executeUpdate();
-					x = 1; // 글삭제 성공
-				} else
-					x = 0; // 비밀번호 틀림
-			}
+			pstmt = conn.prepareStatement("delete from Fitness_shop where lw_salesnum = ? and passwd =? and lw_id=? ");
+			pstmt.setInt(1, lw_salesnum);
+			pstmt.setString(2, passwd);
+			pstmt.setString(3, lw_id);
+			pstmt.executeUpdate();
+	
+	
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -437,7 +483,7 @@ public class Fitnesshop_DAO {
 				} catch (SQLException ex) {
 				}
 		}
-		return x;
+		
 	}
 
 	public void updateBoardreadcount(int num) throws Exception{
@@ -455,11 +501,8 @@ public class Fitnesshop_DAO {
 	}finally {
  
         if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-    }	
-
-}
-
-	
-
+    	}	
+		
+	}
 
 }

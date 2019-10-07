@@ -104,6 +104,8 @@
 								String lw_salesnum=listsearchresult.getString("lw_salesnum");
 								String subject=listsearchresult.getString("product_name");											
 								String product_code=listsearchresult.getString("product_code");
+								int cost=listsearchresult.getInt("cost");
+								int quantity=listsearchresult.getInt("quantity");
 								Timestamp write_date=listsearchresult.getTimestamp("write_date");								
 								String img0=listsearchresult.getString("img0");
 								int replycount=0;
@@ -127,8 +129,8 @@
 			           <%=product_code%></p>
 			            		          
 				       <p><%=product_code%>&nbsp;<%= sdf.format(write_date)%></p>
-			          
-				        
+			           <p><%=cost%></p>	
+			            <p><%=quantity%></p>				        
 				        
 				       
 				
@@ -197,8 +199,7 @@
 	%>
 	
 	<%if(id==null||id==""){%>
-	
-	
+
 	<%}else{%>
 	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
 	<%} %>
