@@ -149,6 +149,50 @@ function fncCheckNumber(){
 	  selling_price = parseFloat(fitshopform.selling_price.value);
 	  fitshopform.pointplus.value = Math.round(selling_price*0.015);
 	}
+	
+	//유효성 검사
+	
+	function admin_check(){	
+		 var obj = document.fitshopform;
+		 
+		 if(obj.product_code.value==""){
+			 alert("상품 코드를 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.product_name.value==""){
+			 alert("제품명을 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.cost.value==0){
+			 alert("소비자 가격을 입력을 안하셨습니다.");
+			 return false;
+		 }else if(obj.reduced_price.value==0){
+			 alert("할인율을 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.quantity.value==""){
+			 alert("수량을 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.brand.value==""){
+			 alert("브랜드를 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.delivery_charge.value==""){
+			 alert("배송비를 입력 안하셨습니다.");
+			 return false;
+		 }else if(obj.big_category.value==""||obj.middle_category.value==""||obj.small_category.value=="3차 분류"){
+			 alert("카테고리를 모두 선택해주세요.");
+			 return false;
+		 }else if(obj.img0.value==""||obj.img0.value==null){
+			 alert("썸네일 이미지를 선택해주세요.");
+			 return false;
+		 }else if(obj.exposure.value==""){
+			 alert("상품노출를 선택해주세요.");
+			 return false;
+		 }else if(obj.salestatus.value==""){
+			 alert("판매상태 를 선택해주세요.");
+			 return false;
+		 }else{
+			 alert("모든 항목이 입력되었습니다 상품등록이 완료되었습니다 ^^7");
+			 return true;
+		 } 
+	}
 </script>
 <!-- 이미지/업로드 창 띄우기  -->
 <script type="text/javascript">
@@ -242,14 +286,14 @@ margin-right:15px;
 				<jsp:param name="boardname" value="기구"/>
 		</jsp:include>
 						<form method="post" method="get" name="fitshopform" style="margin-top: 50px;"
-						    onsubmit="return writeSave()" action="Fitness_shop_writePro.jsp">
+						    onsubmit="return admin_check();return writeSave();" action="Fitness_shop_writePro.jsp">
 						<table class="lw_fitshoptable" style="margin:0 auto;">
 						   <%while(rs.next()) { %>
 						   <tr>
 						    <th  width="100"><a class="addhead">상품코드</a></th>
 						    <td  width="330">
 						       <input type="text" class="writeinput"
-						          name="product_code" style=""></td>
+						          name="product_code"></td>
 						    <th  width="100" ><a class="addhead">제품명</a></th>
 						    <td  width="330" colspan="3" >
 						       <input type="text"  class="writeinput"
@@ -259,7 +303,7 @@ margin-right:15px;
 						    <th  width="100"><a class="addhead">소비자 가격</a></th>
 						    <td  width="250">
 						       <input type="text"class="writeinput"
-						          name="cost" maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();" onkeyup="avg_price();" value="0"></td>
+						          name="cost" maxlength="9" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();" onkeyup="avg_price();" value="0"></td>
 						    <th  width="100" ><a class="addhead">할인율</a></th>
 						    <td  width="250" >
 						       <input type="text" class="writeinput" style="width: 50px;text-align: center;"
@@ -372,7 +416,7 @@ margin-right:15px;
 						</table>
 						<input type="hidden" name="lw_id" value="<%=rs.getString("lw_id")%>">
 						<input type="hidden" name="passwd" value="<%=rs.getString("lw_passwd")%>">
-						<input type="submit" id="write">
+						<button type="submit" id="write">보내기</button>
 						</form>  
 						<!-- 파일업로드하는거임  -->
 						<%} 

@@ -62,6 +62,9 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <link href="Fitness_shop_listcss.css" rel="stylesheet" type="text/css">
+<style>
+
+</style>
 
 <title>게시판</title>
 </head>
@@ -114,28 +117,37 @@
 								   	String replylistsql1="select count(*) from Fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
-				%>
-				
-			    <li class="shop_board_li"  OnClick="location.href ='Fitness_shop_content.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>'">
-			    			   
-			    <%if (img0!=null){%>
-			    <div class="shopboard_img" style="background-image:url('<%=img0%>');"><div class="img_background"></div></div>
-			    <%}else{%>
-			    
-			     <div class="shopboard_img" style="background-image:url('../../img/board/board_null_img.png');"></div>
-			    	<%}%>
-			   
-			      <p class="img_subject" href="Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>" id="boardlink<%=lw_salesnum%>">
-			           <%=product_code%></p>
-			            		          
-				       <p><%=product_code%>&nbsp;<%= sdf.format(write_date)%></p>
-			           <p><%=cost%></p>	
-			            <p><%=quantity%></p>				        
-				        
-				       
-				
-			
+				%>	
+			    <li class="shop_board_li" OnClick="location.href ='Fitness_shop_content.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>'">
+			    <div class="shopboard_img" style="background-image:url('<%=img0%>');">
+			    	<div class="img_background"></div>
+			    </div>
+			  	<div class="nameTxt"><%=product_name%></div>
+			  	<div class="ExTxt"><%=product_contents %></div>
+			  	<div class="flex">
+			  		<p class="bfcoin">
+			  			<strong><%=cost%></strong>
+			  		</p>
+			  		<p class="afcoin">
+			  			<strong><%=selling_price%></strong>
+			  		</p>
+			  	</div>
+			  	<div class="icon">
+			  		<%if(productevent==1){%>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/freedelivery_shop.png">
+			  		<%}else if(productevent==2){ %>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/hit_shop.png">
+			  		<%}else{ %>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/new_shop.png">
+			  		<%} %>
+			  	
+			  	</div>
 			  </li>
+		
+			
+	
+		
+
 			  
 			
 		<%
@@ -157,9 +169,8 @@
 			<%}
 	%>
 	
-			</ul>
-			</div>
-			
+		</ul>
+				</div>
 	<div class="bottom_img">
 	<%
 	    if (count > 0) {
@@ -200,8 +211,8 @@
 	
 	<%if(id==null||id==""){%>
 
-	<%}else{%>
-	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
+	<%}else if(id.equals("admin")){%>
+	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="상품등록"></a>
 	<%} %>
 
 	</div>					

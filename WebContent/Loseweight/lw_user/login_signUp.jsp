@@ -82,7 +82,7 @@
                    							<input type="text" name="lw_lp" value=0 style="display:none">      
 						                    <label for="phone">전화번호</label>
 						                    <div class="submit-wrap">
-							                        <input type="submit" value="회원가입" class="submit" ">
+							                        <input type="submit" value="회원가입" class="submit">
 							                        <a href="#" class="more">이용약관</a>
 						                    </div>
         					        </form>
