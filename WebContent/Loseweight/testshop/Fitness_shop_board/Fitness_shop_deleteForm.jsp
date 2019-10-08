@@ -5,13 +5,16 @@
 <%@page import="java.io.PrintWriter" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
+	request.setCharacterEncoding("utf-8");
+%>
+    <%
     // 세션정보 가져오기
     try {
     String id = (String) session.getAttribute("id");
     
     String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
-	String dbId="jspid";
-	String dbPass="jsppass";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
     Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
@@ -23,10 +26,10 @@
     pstmt = conn.prepareStatement(sql);
     pstmt.setString(1,id);
     rs = pstmt.executeQuery();
-%>
-<%
-  int num = Integer.parseInt(request.getParameter("num"));
+
+  int lw_salesnum = Integer.parseInt(request.getParameter("lw_salesnum"));
   String pageNum = request.getParameter("pageNum");
+  String lw_id = id;
 
 %>
 <html>
@@ -66,7 +69,7 @@ font-size: 14px;
 		</jsp:include>
 		<div style='width: 1000px;margin-top:5%;margin:0 auto;'>
 				<div class="mypage_form">
-				<form method="POST" name="delForm" action="bfboard_deletePro.jsp?pageNum=<%=pageNum%>" onsubmit="return deleteSave()"> 
+				<form method="POST" name="delForm" action="Fitness_shop_deletePro.jsp?pageNum=<%=pageNum%>" onsubmit="return deleteSave()"> 
 				 <table id="del_table" style="margin:0 auto;border:solid;margin-top: 200px;">
 				  <tr height="30">
 				     <td align=center style="padding-top: 20px; padding-left: 100;padding-right: 100;">
@@ -74,18 +77,20 @@ font-size: 14px;
 				  </tr>
 				  <tr height="30">
 				     <td align=center style="padding-top:30px">
-				       <input type="password" name="passwd" class="writeinput" style="width:200px">
-					   <input type="hidden" name="num" value="<%=num%>"></td>
+				       <input type="password" name="passwd" class="writeinput" style="width:200px">				   
+					   <input type="hidden" name="lw_salesnum" value="<%=lw_salesnum%>"></td>
+					   <input type="hidden" name="lw_id" value="<%=lw_id%>"></td>
 				 </tr>
 				 <tr height="30">
 				    <td align=center style="padding:20px;padding-top:0">
 				      <input type="button" value="취소" class="newbutton"
-				       onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">    
+				       onclick="document.location.href='Fitness_shop_list.jsp?pageNum=<%=pageNum%>'">    
 				       
 				      <input type="submit" value="확인"class="newbutton" > 
 				    </td>
 				 </tr>  
-				</table> 
+				</table>
+				
 				</form>
 		</div>
 	</div>

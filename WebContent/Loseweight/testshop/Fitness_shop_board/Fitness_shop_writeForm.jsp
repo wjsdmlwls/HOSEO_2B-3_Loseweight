@@ -8,6 +8,9 @@
 <%request.setCharacterEncoding("utf-8");%>
     <%
     // 세션정보 가져오기
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    Connection conn = null;
     try {
     String id = (String) session.getAttribute("id");
     
@@ -16,10 +19,9 @@
 	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+    conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    
     String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
@@ -231,13 +233,7 @@ margin-right:15px;
 </style>
 <!-- 주소 end -->
 <body>
-<% 
-  int num = 0;
-  try{
-    if(request.getParameter("num")!=null){
-	   num=Integer.parseInt(request.getParameter("num"));
-    }
-%>
+
 	<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
 				<jsp:param name="tom" value="5"/>
@@ -247,8 +243,8 @@ margin-right:15px;
 		</jsp:include>
 						<form method="post" method="get" name="fitshopform" style="margin-top: 50px;"
 						    onsubmit="return writeSave()" action="Fitness_shop_writePro.jsp">
-						<input type="hidden" name="num" value="<%=num%>">
 						<table class="lw_fitshoptable" style="margin:0 auto;">
+						   <%while(rs.next()) { %>
 						   <tr>
 						    <th  width="100"><a class="addhead">상품코드</a></th>
 						    <td  width="330">
@@ -361,12 +357,16 @@ margin-right:15px;
 							  <td  width="100" colspan="2"> <input type="text" class="writeinput"name="option1price" maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();"></td>
 							  <th  width="100" colspan="1"><a class="addhead"></a></th>
 						  </tr>
-						 <tr>
+						  <tr>
 							  <th  width="100"><a class="addhead">옵션 2</a></th>
-							  <td  width="100" colspan="2">
-							  <input type="text"class="writeinput"name="pitshop_option2"style=""></td>
-							  <td  width="100" colspan="2">
-							  <input type="text"class="writeinput"name="pitshop_option2"maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();"></td>
+							  <td  width="100" colspan="2"><input type="text"class="writeinput"name="option2"style=""></td>
+							  <td  width="100" colspan="2"><input type="text"class="writeinput"name="option2price"maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();"></td>
+							  <th  width="100" colspan="1"><a class="addhead"></a></th>
+						  </tr>
+						   <tr>
+							  <th  width="100"><a class="addhead">옵션 3</a></th>
+							  <td  width="100" colspan="2"><input type="text"class="writeinput"name="option3"style=""></td>
+							  <td  width="100" colspan="2"><input type="text"class="writeinput"name="option3price"maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();"></td>
 							  <th  width="100" colspan="1"><a class="addhead"></a></th>
 						  </tr>
 						</table>
@@ -375,14 +375,16 @@ margin-right:15px;
 						<input type="submit" id="write">
 						</form>  
 						<!-- 파일업로드하는거임  -->
-						 <%
-						  }catch(Exception e){}
-						%>     
-						 <%
-						  }catch(Exception e){}
+						<%} 
+						
+						  }catch(Exception e){}finally {
+						        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+						        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+						        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+						    }	  
 						%>    
 				</div>
 				
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
+
 </body>
 </html>

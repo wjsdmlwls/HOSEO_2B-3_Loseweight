@@ -23,8 +23,21 @@ public class Fitnesshop_DTO {
 	private int productevent;
 	private String option1;
 	private int option1price;
-	private Timestamp write_date;
+	private String option2;
+	private int option2price;
+	private String option3;
+	private int option3price;
 	
+	
+	
+	
+	
+	private Timestamp write_date;
+	private String lw_id;
+	private String passwd;
+	
+	
+
 	public int getCost() {
 		return cost;
 	}
@@ -145,11 +158,49 @@ public class Fitnesshop_DTO {
 	public void setOption1price(int option1price) {
 		this.option1price = option1price;
 	}
+	public String getOption2() {
+		return option2;
+	}
+	public void setOption2(String option2) {
+		this.option2 = option2;
+	}
+	public int getOption2price() {
+		return option2price;
+	}
+	public void setOption2price(int option2price) {
+		this.option2price = option2price;
+	}
+	public String getOption3() {
+		return option3;
+	}
+	public void setOption3(String option3) {
+		this.option3 = option3;
+	}
+	public int getOption3price() {
+		return option3price;
+	}
+	public void setOption3price(int option3price) {
+		this.option3price = option3price;
+	}
 	public Timestamp getWrite_date() {
 		return write_date;
 	}
 	public void setWrite_date(Timestamp write_date) {
 		this.write_date = write_date;
 	}
+	
+	public String getPasswd() {
+		return passwd;
+	}
+	public String getLw_id() {
+		return lw_id;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public void setLw_id(String lw_id) {
+		this.lw_id = lw_id;
+	}
+
 	
 }

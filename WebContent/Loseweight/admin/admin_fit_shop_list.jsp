@@ -242,8 +242,7 @@ table.lw_shopboard tbody td {
 			    <td><%=productevent%></td>
 			    <td><%=option1%></td>
 			    <td><%=option1price%></td>				
-			    <td><%=write_date%></td>			   
-			     
+			    <td><%=write_date%></td>	
 			 </tr>
 			 
 			

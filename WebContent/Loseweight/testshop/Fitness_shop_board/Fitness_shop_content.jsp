@@ -1,94 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
+
 <%@ page import="java.io.File" %>
-<%@ page import = "BFboard.BF_DAO" %>
-<%@ page import = "BFboard.BF_DTO" %>
+<%@ page import = "Fitnesshop.Fitnesshop_DAO" %>
+<%@ page import = "Fitnesshop.Fitnesshop_DTO" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import="DBBean.jekimDB" %>    
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
-
+<%@ page language="java" import="java.net.InetAddress" %>
+<% request.setCharacterEncoding("utf-8");%>
 <%
-	request.setCharacterEncoding("utf-8");
-
-	String imgs = request.getParameter("abc"); //경로 
-	String name = request.getParameter("abd"); //파일이름
-
-	String directory = application.getRealPath("/img/");
-	String files[] = new File(directory).list();
+     	String imgs =request.getParameter("abc"); //경로 
+               	String name =request.getParameter("abd"); //파일이름
+               
+          		String directory = application.getRealPath("/img/");
+          		String files[] = new File(directory).list();
 %>
-<%!
-	//댓글기능 date에도 사용 
-	int pageSize = 10;
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
+<%!//댓글기능 date에도 사용 
+    int pageSize = 10;
+    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
+%>
+
 <%
     	// 세션정보 가져오기
-            try {
-    		String id = (String) session.getAttribute("id");
-
-    		String jdbcUrl = "jdbc:mysql://localhost:3306/loseweight_db";
-    		String dbId = "lw_admin";
-    		String dbPass = "3whakstp";
-
-    		UserDAO db = new UserDAO();
-    		Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
-
     		PreparedStatement pstmt = null;
-    		ResultSet rs = null;
-    		String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
-
-    		pstmt = conn.prepareStatement(sql);
-    		pstmt.setString(1, id);
-    		rs = pstmt.executeQuery();
-    %>
-<%
-	//content load
-   		int num = Integer.parseInt(request.getParameter("num"));
-		String pageNum = request.getParameter("pageNum");
-
-		int pageSize = 10;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize;
-		int endRow = currentPage * pageSize;
-		int count = 0;
-		int number = 0;
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-		try {
-			BF_DAO dbPro = BF_DAO.getInstance();
-			BF_DTO article = dbPro.getArticle(num);
-			count = dbPro.getArticleCount();
-			int ref = article.getRef();
-			int re_step = article.getRe_step();
-			int re_level = article.getRe_level();
-
-			//조회수 중복 체크 부분
-			Cookie[] cookieFromRequest = request.getCookies();
-			String cookieValue = null;
-			for (int i = 0; i < cookieFromRequest.length; i++) {
-				cookieValue = cookieFromRequest[0].getValue();
-			}
-			// 쿠키 세션 입력
-			if (session.getAttribute(num + ":cookie") == null) {
-				session.setAttribute(num + ":cookie", num + ":" + cookieValue);
-			} else {
-				session.setAttribute(num + ":cookie ex", session.getAttribute(num + ":cookie"));
-				if (!session.getAttribute(num + ":cookie").equals(num + ":" + cookieValue)) {
-					session.setAttribute(num + ":cookie", num + ":" + cookieValue);
-				}
-			}
-				//게시물 번호 가져오는부분
-				article.setNum(num);
-				article = dbPro.getArticle(num);
-
-			// num값당 조회수1 추가
-			if (!session.getAttribute(num + ":cookie").equals(session.getAttribute(num + ":cookie ex"))) {
-				dbPro.updateBoardreadcount(num);
-				article.setReadcount(article.getReadcount() + 1);
-			}
+            ResultSet rs = null;
+            Connection conn = null;
+            try {
+            String id = (String) session.getAttribute("id");
+            
+            String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+        	String dbId="lw_admin";
+        	String dbPass="3whakstp";
+        	
+            UserDAO db= new UserDAO();
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+         
+            
+            String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
+         
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
 %>
 <%
+	//content load
+   int lw_salesnum = Integer.parseInt(request.getParameter("lw_salesnum"));
+   String pageNum = request.getParameter("pageNum");
+
+	int pageSize = 10;
+	int currentPage = Integer.parseInt(pageNum);
+	int startRow = (currentPage-1) * pageSize  ;
+	int endRow = currentPage * pageSize;
+	int count = 0;
+	int number = 0;
+	 
+	SimpleDateFormat sdf = 
+    	new SimpleDateFormat("yyyy-MM-dd");
+	//댓글 date양식
+
+   try{
+	   Fitnesshop_DAO dbPro = Fitnesshop_DAO.getInstance(); 
+	   Fitnesshop_DTO article =  dbPro.getArticle(lw_salesnum);
+       count = dbPro.getArticleCount(); 
+	  
+/*
+//ip불러오는부분
+	  InetAddress inet = InetAddress.getLocalHost();
+	  String svrIP = inet.getHostAddress();
+	  
+		//조회수 중복 체크 부분
+		Cookie[] cookieFromRequest= request.getCookies();
+		String cookieValue = null;
+		for(int i = 0; i<cookieFromRequest.length;i++){
+			cookieValue = cookieFromRequest[0].getValue();
+		}
+	 	// 쿠키 세션 입력
+		if (session.getAttribute(num+":cookie") == null) {
+		 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
+		}else {
+			session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
+			if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
+			 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
+			}
+		}
+		article.setNum(num);
+		article = dbPro.getArticle(num);
+		
+	 	// 조회수 카운트
+	 	if (!session.getAttribute(num+":cookie").equals(session.getAttribute(num+":cookie ex"))) {
+	 		dbPro.updateBoardreadcount(num);	
+		 	article.setReadcount(article.getReadcount() + 1);
+	 	} 
+	 	*/
+
 	//reply search
 	jekimDB usedb = new jekimDB();
 	usedb.connect();
@@ -97,11 +103,11 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String replylistsql1="select count(*) from bf_boardre where num="+article.getNum()+"";
+	String replylistsql1="select count(*) from fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-	String replylistsql2="select * from bf_boardre where num="+article.getNum()+"";
+	String replylistsql2="select * from fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 	ResultSet replylist = usedb.resultQuery(replylistsql2);
-	
+	//댓글 개수 확인후 개수만큼 select문 뿌려주려고함
 	
     number = count-(currentPage-1)*pageSize;
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
@@ -109,21 +115,52 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--slide-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="Fitness_shop_content_css.css">
+<script src="jquery-1.10.2.js"></script>
+<script src="../js/jquery.slim.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<!--slide end-->
+<style>
+.someimg{
+width:600px;
+height:500px;
+background-size:cover;
+float:left;
+}
+.content_ttt{
+float:left;
+width:300px;
+height:auto;
+padding-left:10%;
 
+}
+
+.mypage_form:after {
+content:"";
+display:block;
+clear:both;
+} 
+.textjump{
+padding-left:30px;
+}
+ ul, ol, li {list-style:none; margin:0; padding:0;}
+.price01 li p {display:inline-block; width:150px; height:15px;color:#666;}
+.price01 li p span {}
+.price01 li span {}
+.buttons{
+width:125px; 
+height:60px;
+border:none;
+}
+.basket_form input{
+display:none;
+}
+</style>
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script type="text/javascript" src="../../lw_user/vcheck.js"></script>
-<style>
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-.board_dir:link {text-decoration:none; color:#000;}
-.board_dir:visited {text-decoration:none; color:#000;}
-.board_dir:active {text-decoration:none; color:#000;}
-.board_dir:hover {text-decoration:none; color:#000;}
-</style>
 <script type="text/javascript">
 
 //form 두개 사용 
@@ -154,14 +191,69 @@ $(function() {
 	
 });
 function  sendProcess(f){
-	f.action="bfboard_replyedelete.jsp";
+	f.action="fitness_shop_replyedelete.jsp";
     f.submit();      
     
 }
-</script>
-<body>
+function  sendedit(f){
+	f.action="fitness_shop_replyedit.jsp";
+    f.submit();      
+    
+}
 
-	<div class="div_body">
+
+
+function myFunction(str) {
+
+	
+	document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
+}
+
+function sum(count){
+	
+	var option_value = document.getElementById("option_value").textContent;
+	if(option_value==""){
+		option_value=0;
+	}
+	var optionFormat = parseInt(option_value);
+	var price = document.getElementById("price2").textContent;
+	var priceFormat = parseInt(price);
+
+	
+	var total = (count * optionFormat) + (count * priceFormat);
+	document.getElementById("total_price").textContent = total;
+	document.getElementById("post_total_price").value = total;
+	
+}
+
+function maxquantitys(){
+	
+	var max = document.getElementById("quantitys").textContent;
+	var maxs = parseInt(max);
+	var maxt = document.getElementById("quantity").value;
+	var maxx = parseInt(maxt);
+	
+	if(max<maxx){
+		
+		alert("재고량보다 많은 수 를 입력하셨어요^^");
+		 document.getElementById("quantity").value=0;
+		return false;
+	}
+}
+function setValues(){
+	   var sh = document.getElementById("option1price");
+	   var soption = document.getElementById("select_option1");   
+	   var soptionprice = document.getElementById("select_option1price");   
+	   soption.value = sh.options[sh.selectedIndex].text;   
+	   soptionprice.value = $("#option1price option:selected").val(); 
+	}
+</script>
+
+
+
+	
+<body>
+<div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
 				<jsp:param name="tom" value="5"/>
 				<jsp:param name="toc" value="0"/>
@@ -170,97 +262,128 @@ function  sendProcess(f){
 		</jsp:include>
 
 		<div style='width: 100%;'>
-
-			<div class="div_sidecontents">
-				<div class="mypage_form">
-					<div style="margin: 0 auto; margin-top: 5%; width: 1020px"></div>
-					<table style="margin: 0 auto; width: 1100px; border-top: 50px">
-						<tr class="tableline">
-							<td style="border-color: #000;" colspan="5"></td>
-						</tr>
-						<tr height="30">
-							<td align="left" align="center" colspan="3"><a
-								style="font-size: 20px; font-weight: bold;"> <%=article.getSubject()%></a></td>
-
-						</tr>
-						<tr height="30">
-							<td align="left" style="width: 1;"><%=article.getWriter()%></td>
-							<td style="width: 1px; text-align: center;">|</td>
-							<td align="left"><%=sdf.format(article.getReg_date())%></td>
-							<td align="center" style="width: 35px;">조회</td>
-							<td align="center" align="center" style="width: 35px;"><%=article.getReadcount()%></td>
-						</tr>
-						<tr class="tableline">
-							<td colspan="5"></td>
-						</tr>
-						<tr>
-							<td align="left" colspan="3"><pre style="height: auto; word-break:break-all; white-space:pre-wrap; min-height: 500px;"><%=article.getContent()%></pre></td>
-
-						</tr>
-						<%
-							if (article.getFilename0() != null) {
-						%>
-						<tr class="tableline">
-							<td colspan="5">
-								<!-- 링크 뽑아오는곳 -->
-								<div id="upload" style="border: solid 1px; min-height: 100px;">
-									<%
-										if (article.getFilename0() != null) {
-									%>
-									<a href="<%=article.getFilepath0()%>" style="border: none"
-										type="text/html" target="_blank" download><%=article.getFilename0()%></a><br>
-									<%
-										if (article.getFilename1() != null) {
-									%>
-									<a href="<%=article.getFilepath1()%>" style="border: none"
-										type="text/html" download><%=article.getFilename1()%></a><br>
-
-									<%
-										}
-													}
-												} else {
-									%>
-									<%
-										}
-									%>
-								</div>
-							</td>
-						</tr>
-						<tr height="30">
-							<td colspan="4" align="right"><input type="button"
-								value="글수정" class="newbutton"
-								onclick="document.location.href='bfboard_updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
-								&nbsp;&nbsp; <input type="button" value="글삭제" class="newbutton"
-								onclick="document.location.href='bfboard_deleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
-								&nbsp;&nbsp; <input type="button" value="답글쓰기" class="newbutton"
-								onclick="document.location.href='bfboard_writeForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'">
-								&nbsp;&nbsp; <input type="button" value="글목록" class="newbutton"
-								onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">
-							</td>
-						</tr>
-					</table>
-				</div>
+			<div class="div_sidecontents" >
+					<div class="mypage_form">
+				<div style="margin:0 auto;margin-top:5%;width:1000px;margin-bottom:30px;">
+				
+				<!--썸네일 이미지 및 상품 이미지 -->			
+				<div>
+				<div class="someimg" style="background-image:url('<%=article.getImg0()%>');"></div>
+				
+				<!-- 오른쪽 박스 -->
+				
+				<div class="content_ttt">
+				<!-- <p>등록 날짜: <%=sdf.format(article.getWrite_date())%></p> -->
+				<p style="font-size: 16px; color: #555555;"><%=article.getProduct_name()%></p>
+				<p style="font-size: 12px;color: #aaaaaa;border-bottom: 1px solid #e8e8e8; padding-bottom: 13px;">간단한 설명임</p>
+					<ul class="price01">
+						<li>
+							<p><span>원가</span></p><span style="text-decoration:line-through;"><%=article.getCost()%></span>
+						</li>
+						<li>
+							<p><span>할인가</span></p><span id="price2"><strong><%=article.getSelling_price()%></strong> <a style="color:red;"><%=article.getReduced_price()%>%</a></span>
+						</li>
+						<li>
+							<p><span>적립금</span></p><span><%=article.getPointplus()%>LP</span>
+						</li>
+						<li>
+							<p><span>배송비</span></p><span><strong><%if(article.getDelivery_charge()==0){%>무료				
+							<%}else{%><%=article.getDelivery_charge()%>원<%} %></strong></span>
+						</li>
+						<li style="border-bottom: 1px solid #e8e8e8;margin-bottom:30px;"></li>
+						<li>
+							<p><span>재고량</span></p><span id="quantitys"><%=article.getQuantity()%></span>
+						</li>
+						<li>
+							<p><span>수량</span></p><span><input type="text" id="quantity" name="quantity" size="3"
+					      onchange="maxquantitys();sum(this.value);"></span>
+						</li>
+						<li>
+							<p>
+							<span><select style="height:30px; width:300px;"name="option1price" id="option1price" onchange="myFunction(this.value); setValues();" onmouseup="sum(quantity.value)">
+    			<option value="" selected="selected" >옵션 선택</option>
+    			<%if(article.getOption1()!=null){%>
+    			<option value="<%=article.getOption1price()%>"><%=article.getOption1()%></option>
+    			<%}else{} %>
+    			<%if(article.getOption2()!=null){%>
+    			<option value="<%=article.getOption2price()%>"><%=article.getOption2()%></option>
+    			<%}else{} %>
+    			<%if(article.getOption3()!=null){%>
+    			<option value="<%=article.getOption3price()%>"><%=article.getOption3()%></option>
+    			<%}else{} %>
+				</select></span></p>
+						</li>
+						<li style="margin-top:10px;">
+							<p><span>추가 금액</span></p><strong><span id="option_value"></span></strong>
+						</li>
+						<li style="border-bottom:2px solid #e8e8e8;margin-bottom:30px;margin-top:10px;"></li>
+						<li>
+							<p><span>결제 금액</span></p><strong><span id="total_price"></span>
+								<input type="hidden" name="total" id="post_total_price"></strong>
+						</li>
+					</ul>
+						<form action = "shopping_basket_Pro.jsp" method="post" name="replyform" class="basket_form">
+		<input name="link"value="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>">
+		<input name="lw_salenum" value="<%=article.getLw_salesnum ()%>">
+		<input name="lw_id" value="<%=id%>">
+		<input type="text" id="select_option1" name="option1">
+		<input type="text" id="select_option1price" name="option1price">
+		<input name="quantity" value="<%=article.getQuantity ()%>">
+		<input name="img0" value="<%=article.getImg0 ()%>">
+		<input name="cost" value="<%=article.getCost ()%>">
+		<input name="selling_price" value="<%=article.getSelling_price ()%>">
+		<input name="reduced_price" value="<%=article.getReduced_price ()%>">
+		<input name="big_category" value="<%=article.getBig_category ()%>">
+		<input name="middle_category" value="<%=article.getMiddle_category ()%>">
+		<input name="small_category" value="<%=article.getSmall_category ()%>">		
+		<input name="product_name" value="<%=article.getProduct_name ()%>">
+		<input name="delivery_charge" value="<%=article.getDelivery_charge ()%>">
+		<button class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button> 
+		</form> <button class="buttons">구매하기</button>
+				</div>	
 			</div>
 		</div>
-		<div style="margin-top:30px;">
-		<form action = "bfboard_reply.jsp" method="post" name="replyform">
+			
+		</div>
+	
+		</div>
+		</div>
+		</div>
+	<div>
+		<div class="reply_box">
+		<form action = "fitness_shop_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
-			<input name="num" value="<%=article.getNum()%>">
+			<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
+			<input name="pageNum" value="<%=pageNum%>">
 		</div>
-			<textarea name="recontent" id="recontent" cols="100" rows="3" ></textarea>
-			<input type="submit" style="margin-top: -50;height: 59;"class="newbutton" value="댓글 등록">
-		</form>
+		<%if(id!=null){%>
+		<div class="reply_box_centent">
+			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
+			<input type="submit" class="reply_button" value="댓글 등록">
+		</div>	
 		</div>
+			<%}else{ %>
+			<div class="reply_box_centent">
+			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
+			<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login"><div style="padding-top:50%">댓글 등록</div></a>
+			<%} %>
+		</div>
+	  </form>
+
+
+	  
+	</div>
 	<div style="padding-bottom:60px;">
 		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
-			<table class="lw_board" style="margin:0 auto;width:1000px"> 
-			    <tr height="40"> 
-			      <td align="center"  width="100"  ></td> 
-			      <td align="center"  width="700" ></td> 
-			      <td align="center"  width="250" ></td>
-			    </tr>
-			
+			<div style="display:none">
+				<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
+				<input name="pageNum" value="<%=pageNum%>">
+			</div>
+			<!-- 댓글 부분 -->
+			<table style="margin:0 auto;width:1000px"> 
+			 
+						  			
 	<%if(replylist.next()){
 		do{
 		String num2=replylist.getString("num");
@@ -270,74 +393,73 @@ function  sendProcess(f){
 		Timestamp reg_date=replylist.getTimestamp("reg_date");
 		%>
 		
-		 <tr height="50" style="border-top: 1pt solid gray">
-			    <td  width="50" > <input style="border:none" name="lw_id" value="<%=lw_id%>"readonly></td>
-			    <td  width="250" align="left">
-			    <input type="text" class="replyeditleft1"style="border: none; display:block; "name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>
-			    
-			     <input type="text" class="replyeditleft2" style="display:none;float:left;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
-			    <button class="replyedit_submit" style="display:none" onclick="replyedit()">등록</button>
-			     <input type="hidden"class="glenumname" value="<%=glenum2%>">
-				</td>				
-				<td id="replybtn<%=num2%>_1"><%if (id!=null){
+		 <tr height="50" >
+			    <td width="600"><input style="border:none; font-weight:bold; font-size:16px;width:60px;" name="lw_id" value="<%=lw_id%>" readonly></blod><a style="font-size:12px;"><%= sdf.format(reg_date)%></a></td>
+			    </tr>
+			    <tr>
+			    <td width="250" >
+			    <input type="text" class="replyeditleft1"style="border: none;display:block; " name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>			    
+			    <input type="text" class="replyeditleft2" style="display:none; width:100%; height:60px;" id="reply<%=glenum2%>_2" value="<%=recontent%>">		    
+			    <button id="all_button" class="replyedit_submit" style="display:none; float:right;"  onClick="sendedit(this.form); writeSave();"onclick="replyedit()">등록</button>
+			    <input type="hidden"class="glenumname" value="<%=glenum2%>">
+				</td>			
+				<td id="replybtn<%=num2%>_1" style="text-align:right;"><%if (id!=null){
 						if(id.toString().equals(lw_id)){%>
-						<input type="button" class="replyedit"value="수정">
-						<input type="submit" class="replydelete" onClick="sendProcess(this.form); writeSave();"value="삭제">
-						<input type="button" class="replycancel" value="수정취소" style="display:none;">
-						<%
-						}}%></td>
+						<input type="button" id="all_button"class="replyedit"value="수정">
+						<input type="submit" id="all_button"class="replydelete" onClick="sendProcess(this.form); writeSave();"value="삭제">
+						<input type="button" id="all_button"class="replycancel" value="수정취소" style="display:none;">
 						
-			    <td width="150"><%= sdf.format(reg_date)%></td>
+						<%
+						}}%></td>			 
 			  </tr>
 			  <tr class="tableline"><td colspan="6"></td></tr>
 			  
 		<%}while(replylist.next());
 		}else{%>
-		 <tr class="tableline">
-			  <td colspan="6">
-			  <h4 style="padding: 200;">댓글이 없습니다</h4>
-			  </td></tr>
-			  
+		 
+			<div class="noreple">댓글이 없습니다</div>
+		
 		<%}%>	
 	</table>
+	<div class="btn_box">
+	<div align="right">
+	<%if(id!=null){%>
+						  <input type="button" value="글수정" class="all_button"
+					       onclick="document.location.href='Fitness_shop_updateForm.jsp?lw_salesnum=<%=article.getLw_salesnum()%>&pageNum=<%=pageNum%>'">
+						   &nbsp;&nbsp;
+						   
+						  <input type="button" value="글삭제" class="all_button"
+ 					       onclick="document.location.href='Fitness_shop_deleteForm.jsp?lw_salesnum=<%=article.getLw_salesnum()%>&pageNum=<%=pageNum%>'">
+						   &nbsp;&nbsp;						   				    
+						   
+					       <input type="button" value="글목록" class="all_button"
+					       onclick="document.location.href='Fitness_shop_list.jsp?pageNum=<%=pageNum%>'">
+					       </div>
+					          <%}else{ %><input type="button" value="글목록" class="all_button"
+					       onclick="document.location.href='Fitness_shop_list.jsp?pageNum=<%=pageNum%>'">
+					       <%} %>
+	</div>	
+	
+		
+	
+	
 	</form>
-		<script>
-	function replyedit(){
-	var recontent2 = document.getElementsByName("recontent2");
-	var glenumpost = document.getElementsByName("glenumpost").value();
 	
-
-	var form = document.createElement("form");
-        form.setAttribute("charset", "utf-8");
-        form.setAttribute("method", "get"); // Get 또는 Post 입력
-        form.setAttribute("action", "bfboard_replyedit.jsp");
-        
-        hiddenField = document.createElement("input");
-    	hiddenField.setAttribute("type", "hidden");
-    	hiddenField.setAttribute("name", "recontent2");
-    	hiddenField.setAttribute("value", recontent2);
-    	form.appendChild(hiddenField);
-    	
-    	hiddenField = document.createElement("input");
-    	hiddenField.setAttribute("type", "hidden");
-    	hiddenField.setAttribute("name", "glenumpost");
-    	hiddenField.setAttribute("value", glenumpost);
-    	form.appendChild(hiddenField);
-    	
-    	document.body.appendChild(form); 
-    	form.submit();
-	}
-    	</script>
-	</div>
-	<% 
-	}catch(Exception e){} 
-					 %>
-	 <%
-		  }catch(Exception e){}
-				%>    
 	
-</div>	
 	
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
+	
+	<%}catch(Exception e){}finally {
+        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+    }	  
+	 %>
+	 <%}catch(Exception e){}finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }	  
+	 %>
+	
 </body>
 </html>

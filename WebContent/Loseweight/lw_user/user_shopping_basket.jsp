@@ -160,6 +160,15 @@ border-left:solid #ccc 1px;
     width: 25px;
     text-align: center;
 }
+.product_name{
+font-weight:bold;
+font-size: 20px;
+}
+.option{
+margin-left: 5px;
+font-size: 12px;
+
+}
 </style>
 <!-- 주소 end -->
 <body>
@@ -195,7 +204,9 @@ border-left:solid #ccc 1px;
 								int quantity=listsearchresult.getInt("quantity");
 								int selling_price=listsearchresult.getInt("selling_price");
 								int delivery_charge=listsearchresult.getInt("delivery_charge");
-								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");		
+								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");	
+								String option1=listsearchresult.getString("option1");			
+								int option1price=listsearchresult.getInt("option1price");	
 								
 								i=i+1;
 				%>		
@@ -211,7 +222,8 @@ border-left:solid #ccc 1px;
 				    	<img class="basket_img" src="<%=img0%>">
 				    <%}%>
 				    </td>
-			    <td style="text-align: left;font-weight: bold;"><%=product_name%></td>
+			    <td style="text-align: left;"><a class="product_name"><%=product_name%></a>
+			    <a class="option"><%=option1%></a></td>
 			    <td rowspan="2" class="selling"><input type="hidden" name="total" id="post_total_price">원</td>
 			    <td rowspan="2" class="delivery"><%if(delivery_charge!=0){ %><input type="text" name="delivery<%=i%>"value="<%=delivery_charge%>"readonly>원<%
 			    	}else{ %><input type="text" name="delivery<%=i%>"value="무료"readonly><%} %></td>	

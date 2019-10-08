@@ -5,9 +5,7 @@
 <%@ page import = "Fitnesshop.Fitnesshop_DAO" %>
 <%@ page import = "java.sql.Timestamp" %>
      
-<%
-     	request.setCharacterEncoding("utf-8");
-     %>
+<%request.setCharacterEncoding("utf-8"); %>
 
 
 <jsp:useBean id="article"  scope="page" class="Fitnesshop.Fitnesshop_DTO">

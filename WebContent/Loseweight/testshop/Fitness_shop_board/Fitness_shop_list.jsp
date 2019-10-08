@@ -76,7 +76,7 @@
 	}
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
-<jsp:include page="../../community/community_topinclude.jsp" >
+	<jsp:include page="../../community/community_topinclude.jsp" >
 				<jsp:param name="tom" value="5"/>
 				<jsp:param name="toc" value="not"/>
 				<jsp:param name="imgs" value="shop.png"/>
@@ -87,7 +87,8 @@
 	<form method="post" action="Fitness_shop_list.jsp">
 		<div style="margin:0 auto; margin-top:10px;">
 		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='product_name'>상품이름</OPTION>
+	        <OPTION value='subject'>상품이름</OPTION>
+	        <OPTION value='content'>내용</OPTION>
 	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
 		<input type="image" type="submit" src="images/search.gif">
@@ -103,12 +104,14 @@
 								String lw_salesnum=listsearchresult.getString("lw_salesnum");
 								String subject=listsearchresult.getString("product_name");											
 								String product_code=listsearchresult.getString("product_code");
+								int cost=listsearchresult.getInt("cost");
+								int quantity=listsearchresult.getInt("quantity");
 								Timestamp write_date=listsearchresult.getTimestamp("write_date");								
 								String img0=listsearchresult.getString("img0");
 								int replycount=0;
 								Fitnesshop_DAO dbPro1 = Fitnesshop_DAO.getInstance();
 								Fitnesshop_DTO article =  dbPro.getArticle(Integer.parseInt(lw_salesnum));
-								   	String replylistsql1="select count(*) from Fitness_shop where lw_salesnum="+article.getLw_salesnum()+"";
+								   	String replylistsql1="select count(*) from Fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
@@ -118,6 +121,7 @@
 			    <%if (img0!=null){%>
 			    <div class="shopboard_img" style="background-image:url('<%=img0%>');"><div class="img_background"></div></div>
 			    <%}else{%>
+			    
 			     <div class="shopboard_img" style="background-image:url('../../img/board/board_null_img.png');"></div>
 			    	<%}%>
 			   
@@ -125,8 +129,8 @@
 			           <%=product_code%></p>
 			            		          
 				       <p><%=product_code%>&nbsp;<%= sdf.format(write_date)%></p>
-			          
-				        
+			           <p><%=cost%></p>	
+			            <p><%=quantity%></p>				        
 				        
 				       
 				
@@ -142,7 +146,7 @@
 	}else{
 			%>
 			  
-			  <tr class=" ">
+			  <tr class="tableline">
 			  <td colspan="6">
 			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
 			  </td></tr>
@@ -195,12 +199,11 @@
 	%>
 	
 	<%if(id==null||id==""){%>
-	
-	
+
 	<%}else{%>
 	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
 	<%} %>
-	</div>
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
+
+	</div>					
 </body>
 </html>

@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 
      <%@page import= "java.sql.*,javax.sql.*,javax.naming.*,java.util.* ,BFboard.*" %>
-<%@ page import = "BFboard.BF_DAO" %>
-<%@ page import = "BFboard.BF_DTO" %>
+<%@ page import = "Fitnesshop.Fitnesshop_DAO" %>
+<%@ page import = "Fitnesshop.Fitnesshop_DTO" %>
      
 <%
      	request.setCharacterEncoding("utf-8");
      %>
  
-<jsp:useBean id="article"  scope="page" class="BFboard.BF_DTO"/>
+<jsp:useBean id="article"  scope="page" class="Fitnesshop.Fitnesshop_DTO"/>
 
 <%
 	String recontent2 = request.getParameter("recontent2");
@@ -22,12 +22,12 @@
 	article.setGlenum(glenum);
 	article.setRecontent(recontent2);
 
-	boardDAO.updatereplyArticle2(article); 
+	Fitnesshop_DAO.updatereplyArticle2(article); 
 
     int num=article.getNum();
     
 
-    response.sendRedirect("bfboard_list.jsp");
+    response.sendRedirect("Fitness_shop_list.jsp");
 %>
 
 <%=glenum%>
