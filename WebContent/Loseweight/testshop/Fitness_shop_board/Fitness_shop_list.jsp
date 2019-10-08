@@ -105,10 +105,13 @@
 					if(listsearchresult.next()){
 								do{
 								String lw_salesnum=listsearchresult.getString("lw_salesnum");
-								String subject=listsearchresult.getString("product_name");											
+								String product_name=listsearchresult.getString("product_name");											
 								String product_code=listsearchresult.getString("product_code");
+								String product_contents=listsearchresult.getString("product_contents");	
 								int cost=listsearchresult.getInt("cost");
+								int selling_price=listsearchresult.getInt("selling_price");
 								int quantity=listsearchresult.getInt("quantity");
+								int productevent=listsearchresult.getInt("productevent");
 								Timestamp write_date=listsearchresult.getTimestamp("write_date");								
 								String img0=listsearchresult.getString("img0");
 								int replycount=0;
@@ -122,7 +125,7 @@
 			    <div class="shopboard_img" style="background-image:url('<%=img0%>');">
 			    	<div class="img_background"></div>
 			    </div>
-			  	<div class="nameTxt"><%=product_name%></div>
+			  	<div class="nameTxt"><%=product_name%></div> 
 			  	<div class="ExTxt"><%=product_contents %></div>
 			  	<div class="flex">
 			  		<p class="bfcoin">
