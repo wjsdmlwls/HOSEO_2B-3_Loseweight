@@ -90,6 +90,7 @@ text-decoration: underline;
 								<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
 								
 								<%}else{%>
+								<a href="/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp">장바구니</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">마이페이지</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/logout.jsp">로그아웃</a>
 								<%} %>

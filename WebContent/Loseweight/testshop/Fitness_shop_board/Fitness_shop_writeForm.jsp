@@ -249,7 +249,6 @@ margin-right:15px;
 						    onsubmit="return writeSave()" action="Fitness_shop_writePro.jsp">
 						<input type="hidden" name="num" value="<%=num%>">
 						<table class="lw_fitshoptable" style="margin:0 auto;">
-						<%while(rs.next()) { %>
 						   <tr>
 						    <th  width="100"><a class="addhead">상품코드</a></th>
 						    <td  width="330">
@@ -371,10 +370,11 @@ margin-right:15px;
 							  <th  width="100" colspan="1"><a class="addhead"></a></th>
 						  </tr>
 						</table>
+						<input type="hidden" name="lw_id" value="<%=rs.getString("lw_id")%>">
+						<input type="hidden" name="passwd" value="<%=rs.getString("lw_passwd")%>">
 						<input type="submit" id="write">
 						</form>  
 						<!-- 파일업로드하는거임  -->
-						 <%} %>  
 						 <%
 						  }catch(Exception e){}
 						%>     
