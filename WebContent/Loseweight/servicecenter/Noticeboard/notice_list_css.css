@@ -69,7 +69,7 @@ border-bottom:1px solid #a8a8a8;
 }
 .search_input{
 width:250px;
-height:47.5px;
+height:49px;
 border-style: none;
 margin-left:10px;
 border-bottom:1px solid #a8a8a8;
@@ -98,3 +98,11 @@ margin-left:10px;
    color: #fff;
    background: #737373;
    }
+   
+.noreple{
+height:200px;
+text-align:center;
+font-size:30px;
+font-weight:550;
+margin:0 auto;
+}

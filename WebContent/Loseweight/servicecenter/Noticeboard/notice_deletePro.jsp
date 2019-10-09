@@ -3,9 +3,7 @@
 <%@ page import = "Noticeboard.NoticeDAO" %>
 <%@ page import = "java.sql.Timestamp" %>
 
-<%
-	request.setCharacterEncoding("utf-8");
-%>
+<%request.setCharacterEncoding("utf-8");%>
 
 <%
 	int num = Integer.parseInt(request.getParameter("num"));

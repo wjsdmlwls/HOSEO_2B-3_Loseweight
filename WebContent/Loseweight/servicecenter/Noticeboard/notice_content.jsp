@@ -15,10 +15,10 @@
 %>
      <%
      	String imgs =request.getParameter("abc"); //경로 
-               	String name =request.getParameter("abd"); //파일이름
+        String name =request.getParameter("abd"); //파일이름
                
-          		String directory = application.getRealPath("/img/");
-          		String files[] = new File(directory).list();
+        String directory = application.getRealPath("/img/");
+        String files[] = new File(directory).list();
      %>
     <%
     	// 세션정보 가져오기
@@ -111,101 +111,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--slide-->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="content_css.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
 <style>
-.cotent_first_line{
-font-size:20px;
-color:#707070;
-}
-.content_subject{
-font-size:30px;
-color:#363636;
-border-bottom:1px solid #a1a1a1;
-}
-.cotents{
-height:auto;
-min-height: 500px;
-word-break: break-all;
-white-space: pre-wrap;
-margin-top:20px;
-font-size:16px;
-color:#000;
-line-height:25px;
-}
-.upload_content{
-font-size: 14;
-color: #7d7d7d;
-border:1px solid #d8d8d8;
-margin:20px 0;
-padding-left:20px;
-}
-.downlode_ob{
-text-decoration: none;
-font-size: 14;
-margin-left: 13;
-color: #7d7d7d;
-}
-.downlode_ob:hover{
-   color: red;
-}
-.all_button{
-border-style:none;
-color: #fff;
-font-size:13px;
-background-color:#666;
-width:90px;
-height:40px;
-}
-#all_button{
-border-style:none;
-color: #fff;
-font-size:9px;
-background-color:#666;
-width:50px;
-height:25px;
-}
-.reply_box{
-text-align:center;
-margin: 0 auto;
-margin-top:100px;
-margin-bottom:50px;
-background: #f3f3f3;
-height:200px;
-width:920px;
-position:relative;
-padding-right:80px;
-}
-.reply_box_centent{
-padding-top:50px;
-}
-.reply_button{
-border-style:none;
-color: #fff;
-font-size:13px;
-background-color:#666;
-width:90px;
-height:109px;
-position:absolute;
-}
-.btn_box{
-margin:0 auto;
-margin-top:10px;
-width:1000px;
-}
-.reply_content{
-margin:0 auto;
-width:1000px;
-height:500px;
-}
-.test123{
 
-border-bottom:1px solid red;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
 </style>
 </head>
 <!-- stlye css -->
@@ -239,6 +150,7 @@ $(function() {
 	});
 	
 });
+
 function  sendProcess(f){
 	f.action="notice_replyedelete.jsp";
     f.submit();      
@@ -246,8 +158,7 @@ function  sendProcess(f){
 }
 function  sendedit(f){
 	f.action="notice_replyedit.jsp";
-    f.submit();      
-    
+    f.submit();          
 }
 </script>
 
@@ -255,10 +166,10 @@ function  sendedit(f){
 		
 <body>
 <jsp:include page="../../community/community_topinclude.jsp" >
-		<jsp:param name="tom" value="4"/>
-		<jsp:param name="toc" value="0"/>
-		<jsp:param name="imgs" value="Service_center.png"/>
-		<jsp:param name="boardname" value="공지사항"/>
+			<jsp:param name="tom" value="4"/>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="공지사항"/>
 </jsp:include>
 	<div class="div_body">
 
@@ -332,6 +243,10 @@ function  sendedit(f){
 			<input type="submit" class="reply_button" value="댓글 등록">
 		</div>	
 		</div>
+			<%}else{ %>
+			<div class="reply_box_centent">
+			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
+			<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login"><div style="padding-top:50%">댓글 등록</div></a>
 			<%} %>
 		</form>
 		</div>
@@ -379,15 +294,14 @@ function  sendedit(f){
 			  
 		<%}while(replylist.next());
 		}else{%>
-		 <tr class="tableline">
-			  <td colspan="6">
-			  <h4 style="padding: 200;">댓글이 없습니다</h4>
-			  </td></tr>
+	
+		<div class="noreple">댓글이 없습니다</div>
 			  
 		<%}%>	
 	</table>
 	<div class="btn_box">
 	<div align="right">
+	<%if(id!=null){%>
 						  <input type="button" value="글수정" class="all_button"
 					       onclick="document.location.href='notice_updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
 						   &nbsp;&nbsp;
@@ -400,6 +314,10 @@ function  sendedit(f){
 					       <input type="button" value="글목록" class="all_button"
 					       onclick="document.location.href='notice_list.jsp?pageNum=<%=pageNum%>'">
 					       </div>
+					       <%}else{ %>					       
+					        <input type="button" value="글목록" class="all_button"
+					       onclick="document.location.href='notice_list.jsp?pageNum=<%=pageNum%>'">
+					       <%} %>
 	</div>		
 	</form>
 	<%}catch(Exception e){}finally {
@@ -414,7 +332,6 @@ function  sendedit(f){
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	    }	  
 	 %>
-	</div>
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>			
+	
 </body>
 </html>

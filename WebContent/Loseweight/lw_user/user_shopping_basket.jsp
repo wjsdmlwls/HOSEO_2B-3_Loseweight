@@ -85,20 +85,7 @@
 		openWin = window.open("../../zipfinder/zipSearch.jsp", "childForm",
 				"width=580, height=500, resizable = no, scrollbars = yes");
 	}
-	function maxquantitys(){
-		
-		var max = document.getElementById("quantitys").textContent;
-		var maxs = parseInt(max);
-		var maxt = document.getElementById("quantity").value;
-		var maxx = parseInt(maxt);
-		
-		if(max<maxx){
-			
-			alert("주문량이 현재 제고량보다 많습니다.");
-			 document.getElementById("quantity").value=0;
-			return false;
-		}
-	}
+	
 	
 	function  DeleteProcess(f){
 		f.action="shopping_basketDelete_Pro.jsp";
@@ -146,19 +133,14 @@ border-right:solid #ccc 1px;
 border-left:solid #ccc 1px;
 }
 
-.selling input{
-	width: 50px;
-    border: none;
-    text-align: center;
-}
-.delivery input{
-	width: 90px;
-    border: none;
-    text-align: center;
-}
+
 .break_basket{
-    width: 25px;
+	background: #fff;
+    border: solid 1px #000;
+    width: 23px;
     text-align: center;
+    float:right;
+    margin-right: 10px;
 }
 .product_name{
 font-weight:bold;
@@ -169,7 +151,47 @@ margin-left: 5px;
 font-size: 12px;
 
 }
+.basket_pricersultbox{
+	margin: 50 auto;
+    width: 1000px;
+    border: solid 4px #afafaf;
+    text-align: center;
+    padding: 20 20 20 20;
+}
+.basket_result{
+    display: inline;
+}
+.basket_pricersultinputbox{
+	border: none;
+    width: 100px;
+    font-size: 24px;
+    color: #00aa;
+	font-weight:bold;;
+    text-align:right;
+}
+
+.quantity_input{
+}
+.selling_input{
+	border: none;
+    width: 80px;
+    font-size: 18px;
+    text-align:right;
+}
+.total_input{
+	border: none;
+    width: 80px;
+    font-size: 18px;
+    text-align:center;
+}
+.delivery_input{
+	border: none;
+    width: 80px;
+    font-size: 18px;
+    text-align:center;	
+}
 </style>
+
 <!-- 주소 end -->
 <body>
 	<div class="div_body">
@@ -184,7 +206,7 @@ font-size: 12px;
 		<table class="user_shopping_baskettable">
 		<thead>
 		   		 <tr>
-				      <td width="100">전체선택</td> 
+				      <td width="100"></td> 
 				      <td width="100"></td> <!-- imge -->
 				      <td width="500">상품정보</td>
 				      <td width="100">상품금액</td>  
@@ -207,15 +229,48 @@ font-size: 12px;
 								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");	
 								String option1=listsearchresult.getString("option1");			
 								int option1price=listsearchresult.getInt("option1price");	
-								
-								i=i+1;
+								i=i+5;
 				%>		
-			
-				<span id="quantitys" style="display:none;"><%=quantity%></span>	
+				<script language='javascript'>
+				
+					function maxquantitys<%=i%>(){
+						
+						var max = document.getElementById("quantitys<%=i%>").textContent;
+						var maxs = parseInt(max);
+						var maxt = document.getElementById("quantity<%=i%>").value;
+						var maxx = parseInt(maxt);
+						
+						if(max<maxx){
+							
+							alert("주문량이 현재 제고량보다 많습니다.");
+							 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+							 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+							 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-parseInt(document.getElementById("delivery<%=i%>").value);
+							 document.getElementById("quantity<%=i%>").value=0;
+							 document.getElementById("total<%=i%>").value=0;
+							 
+							return false;
+						}
+					}
+						function basketplus<%=i%>(){
+							
+							 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+							 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-parseInt(document.getElementById("delivery<%=i%>").value);
+							 
+						   if(document.getElementById("selling<%=i%>").value && document.getElementById("quantity<%=i%>").value){
+						  document.getElementById("total<%=i%>").value =parseInt(document.getElementById("selling<%=i%>").value) * parseInt(document.getElementById("quantity<%=i%>").value);
+							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)+(parseInt(document.getElementById("delivery<%=i%>").value));
+							 
+						  document.getElementById("product_total").value=parseInt(document.getElementById("total<%=i%>").value)+parseInt(document.getElementById("product_total").value);
+						  document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)+parseInt(document.getElementById("delivery_total").value);
+						  }
+						}
+			</script>
 					<form  method="post">
 				<tr>
-					<td rowspan="2"><input type='checkbox' class="delete_check"name='basket_delete' value="<%=num %>"></td>
-					<td rowspan="2">
+					<td rowspan="2" colspan="2">
 					<%if (img0.equals("null")){%>
 						<img class="basket_img" src="/2019_JeonJSP/Loseweight/img/logo/logo_BY.png" >
 				    <%}else{%>			    
@@ -223,23 +278,38 @@ font-size: 12px;
 				    <%}%>
 				    </td>
 			    <td style="text-align: left;"><a class="product_name"><%=product_name%></a>
-			    <a class="option"><%=option1%></a></td>
-			    <td rowspan="2" class="selling"><input type="hidden" name="total" id="post_total_price">원</td>
-			    <td rowspan="2" class="delivery"><%if(delivery_charge!=0){ %><input type="text" name="delivery<%=i%>"value="<%=delivery_charge%>"readonly>원<%
-			    	}else{ %><input type="text" name="delivery<%=i%>"value="무료"readonly><%} %></td>	
+			    
+			    <a class="option<%=i%>"><%=option1%></a>
+			    <input type="submit" class="break_basket" value="X" onClick="DeleteProcess(this.form); writeSave();"></td>
+			    <td rowspan="2" class="selling"><input type="text" class="total_input" readonly name="total<%=i%>" id="total<%=i%>" value=0>원</td><!-- 개수+가격=총가격  -->
+			    
+			    <td rowspan="2" class="delivery"><%if(delivery_charge!=0){ %><input class="delivery_input"type="text" id="delivery<%=i%>"name="delivery<%=i%>"value="<%=delivery_charge%>"readonly>원<%
+			    }else{ %>무료<input type="hidden" id="delivery<%=i%>" name="delivery<%=i%>"value="0"readonly><%} %></td>	<!-- 배송비  -->
 			</tr>    	
 			<tr>
-			<td style="text-align: right;"><%=selling_price%>원
-				<input type="text" id="quantity" name="quantity" value="1" size="3" onchange="maxquantitys();sum(this.value);">
-				<input type="submit" class="break_basket" name="num" value=<%=num%> onClick="DeleteProcess(this.form); writeSave();">
-			</td>
-			</tr>
-			<Tr style="display:none;">
-				<td>
-					<input name="num" value="<%=num %>">
+				<td style="text-align: right;">
+					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
+					<select class="quantity_input"id="quantity<%=i%>"'name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
+					<option value="0" selected>수량</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					</select><!-- 수량  -->
+						
 				</td>
-			</Tr>
-			
+			</tr>
+			<tr style="display:none;">
+				<td>
+					<span id="quantitys<%=i%>"><%=quantity%></span>	
+					<input name="num" value="<%=num%>">
+				</td>
+			</tr>
 		</form>
 		<%
 			}while(listsearchresult.next());
@@ -249,10 +319,16 @@ font-size: 12px;
 		<%} %>
 		
 		</table>
+		<div class="basket_pricersultbox">
+		<h4 class="basket_result">총 상품가격 </h4><input type="text" class="basket_pricersultinputbox" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
+		</div>
 		<%}catch (Exception e) {
 				e.printStackTrace();
 			}
 		%>
+		
 		<jsp:include page="../community/community_footerinclude.jsp" ></jsp:include>	
 </body>
 </html>

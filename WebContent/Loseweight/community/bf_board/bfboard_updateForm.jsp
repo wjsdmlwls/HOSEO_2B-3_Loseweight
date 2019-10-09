@@ -9,6 +9,10 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
     	// 세션정보 가져오기
+    	    PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            Connection conn = null;
+            
             try {
             String id = (String) session.getAttribute("id");
             
@@ -17,10 +21,9 @@
         	String dbPass="3whakstp";
         	
             UserDAO db= new UserDAO();
-            Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
          
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
+           
             String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
          
             pstmt = conn.prepareStatement(sql);
@@ -188,13 +191,12 @@ font-size: 14px;
       BF_DTO article =  dbPro.updateGetArticle(num);
 %>
 	<div class="div_body">
-		
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="BE & AT"/>
-		</jsp:include>
+</jsp:include>
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			
 			<div class="div_sidecontents" >
@@ -274,10 +276,18 @@ font-size: 14px;
 							 <input type="submit"class="newbutton"style="float:right;margin-top:5px" value="업로드">
 					</form>
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>     
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>    
 											
 					
@@ -286,7 +296,5 @@ font-size: 14px;
 			</div>
 		</div>
 	</div>
-	
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

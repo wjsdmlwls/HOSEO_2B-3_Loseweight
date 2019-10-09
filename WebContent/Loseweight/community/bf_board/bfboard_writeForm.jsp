@@ -7,6 +7,9 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
     // 세션정보 가져오기
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    Connection conn =null;
     try {
     String id = (String) session.getAttribute("id");
     
@@ -15,10 +18,9 @@
 	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+    conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    
     String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
@@ -107,12 +109,12 @@ font-size: 14px;
     }
 %>
 	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="BE & AT"/>
-		</jsp:include>
+</jsp:include>
 						<form method="post" name="writeform" style="margin-top: 5%;"
 						    onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">
@@ -126,7 +128,7 @@ font-size: 14px;
 						    <td  width="70"   align="center">이 름</td>
 						    <td  width="330" align="left">
 						       <input type="text" size="10" maxlength="10" class="writeinput"
-						          name="writer" style="ime-mode:active;" value="<%=rs.getString("lw_id")%>" readonly></td><!--active:한글-->
+						          name="writer" style="ime-mode:active;" value="<%=rs.getString("lw_id")%>" readonly ></td><!--active:한글-->
 						  </tr>
 						  <tr>
 						    <td  width="70" align="center" >제 목</td>
@@ -137,7 +139,7 @@ font-size: 14px;
 						      else
 						    	 strV = "[답변]";
 						    %>
-						    <input type="text" size="40" style="float:left" maxlength="50" name="subject" class="writeinput"value="<%=strV%>" style="ime-mode:active;">
+						    <input type="text" size="40" style="float:left" maxlength="11" name="subject" class="writeinput"value="<%=strV%>" style="ime-mode:active;">
 						    
 						    <button class="button salmon button_addr" style="float:right;height: 42px;" type="button"onclick="openfileadd()">파일 업로드</button>
 						    <button class="button salmon button_addr" style="float:right;height: 42px;margin-right: 10px;" type="button"onclick="openimgadd()">이미지 추가</button>
@@ -193,10 +195,18 @@ font-size: 14px;
 						<!-- 파일업로드하는거임  -->
 						 <%} %>  
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>     
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>    
 				</div>
 			</div>
@@ -219,7 +229,5 @@ font-size: 14px;
 		</div>
 	</div>
 </div>
-
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

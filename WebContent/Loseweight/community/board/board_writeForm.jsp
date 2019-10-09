@@ -6,6 +6,9 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
     <%
     // 세션정보 가져오기
+     PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    Connection conn =null;
     try {
     String id = (String) session.getAttribute("id");
     
@@ -14,19 +17,15 @@
 	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+    conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+   
     String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
     pstmt.setString(1,id);
     rs = pstmt.executeQuery();
     
-%>
-<%
-	request.setCharacterEncoding("utf-8");
 %>
 <!-- 업로드 변수 초기화 -->
 <%
@@ -109,12 +108,12 @@ font-size: 14px;
     }
 %>
 	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="0"/>
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="자유게시판"/>
-		</jsp:include>
+</jsp:include>
 			<form method="post" name="writeform" style="margin-top: 5%;"onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">
 						<input type="hidden" name="ref" value="<%=ref%>">
@@ -195,12 +194,19 @@ font-size: 14px;
 						 <%} %>  
 						 <%
 						  }catch(Exception e){}
+						  	  finally {
+						      if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+						      if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+						      if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+  										}	
 						%>     
 						 <%
-						  }catch(Exception e){}
-						%>
-						
-		<jsp:include page="../community_footerinclude.jsp"></jsp:include>    
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
+						%>    
 				</div>
 </body>
 </html>

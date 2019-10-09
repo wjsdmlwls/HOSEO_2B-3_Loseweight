@@ -143,6 +143,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4></td></tr>
 			<%}%>
 	</table>
+	
 	<div class="pageselect">
 	<%
 	    if (count > 0) {
@@ -175,21 +176,25 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	        }       
 	    }
 	%>
-	</div>
+	
 		<form method="post" action="board_list.jsp">		
-			<div style="margin:0 auto;margin-top:10px;width: 1200px;text-align: center;">
-				<select class="search_list" name="searchcol"> <!-- 검색 컬럼 -->
-			        <option value="subject">제목</option>
-			        <option value="writer">작성자</option>
-			        <option value="content">내용</option>
-			    </select>
-				<input class="search_input" name="listsearch" type="text">
-				<input type="image" src="images/search.gif">
-				<a href="board_writeForm.jsp" style="float: right;">
-				<input class="write_btn" value="글쓰기"></a>
-			</div>
+		<div style="margin:0 auto;margin-top:10px;">
+		<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
+	        <OPTION value='subject'>제목</OPTION>
+	        <OPTION value='writer'>작성자</OPTION>
+	        <OPTION value='content'>내용</OPTION>
+	    </SELECT>
+		<input class="search_input" name="listsearch" type="text">
+		<input type="image" type="submit" src="images/search.gif">
+		<%if(id.toString().equals("admin")){%><a href="board_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
+	<%}else{
+		
+	}%>
+		</div>
 		</form>
-		<jsp:include page="../community_footerinclude.jsp"></jsp:include>
-		</div>					
+
+
+
+					
 </body>
 </html>

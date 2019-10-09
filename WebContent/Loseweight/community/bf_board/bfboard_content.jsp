@@ -118,121 +118,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../css/style.css">
+<!--slide-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="bf_board_content_css.css">
 <script src="../js/jquery.slim.min.js"></script>
-<script type="text/javascript" src="../../lw_user/vcheck.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<!--slide end-->
+<style>
+
+</style>
 </head>
 <!-- stlye css -->
-<style>
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-.board_dir:link {text-decoration:none; color:#000;}
-.board_dir:visited {text-decoration:none; color:#000;}
-.board_dir:active {text-decoration:none; color:#000;}
-.board_dir:hover {text-decoration:none; color:#000;}
-<style>
-.cotent_first_line{
-font-size:20px;
-color:#707070;
-}
-.content_subject{
-font-size:30px;
-color:#363636;
-border-bottom:1px solid #a1a1a1;
-}
-.cotents{
-height:auto;
-min-height: 500px;
-word-break: break-all;
-white-space: pre-wrap;
-margin-top:20px;
-font-size:16px;
-color:#000;
-line-height:25px;
-}
-.upload_content{
-font-size: 14;
-color: #7d7d7d;
-border:1px solid #d8d8d8;
-margin:20px 0;
-padding-left:20px;
-}
-.downlode_ob{
-text-decoration: none;
-font-size: 14;
-margin-left: 13;
-color: #7d7d7d;
-}
-.downlode_ob:hover{
-   color: red;
-}
-.all_button{
-border-style:none;
-color: #fff;
-font-size:13px;
-background-color:#666;
-width:90px;
-height:40px;
-}
-#all_button{
-border-style:none;
-color: #fff;
-font-size:9px;
-background-color:#666;
-width:50px;
-height:25px;
-}
-.reply_box{
-text-align:center;
-margin: 0 auto;
-margin-top:100px;
-margin-bottom:50px;
-background: #f3f3f3;
-height:200px;
-width:920px;
-position:relative;
-padding-right:80px;
-}
-.reply_box_centent{
-padding-top:50px;
-}
-.reply_button{
-border-style:none;
-color: #fff;
-font-size:13px;
-background-color:#666;
-width:90px;
-height:109px;
-position:absolute;
-}
-.btn_box{
-margin:0 auto;
-margin-top:10px;
-width:1000px;
-}
-.reply_content{
-margin:0 auto;
-width:1000px;
-height:500px;
-}
-.test123{
-
-border-bottom:1px solid red;
-}
-tr.tableline td{
-	border-bottom:1px solid #ddd;
-}
-
-.noreple{
-height:200px;
-text-align:center;
-font-size:30px;
-font-weight:550;
-margin:0 auto;
-}
-</style>
+<link rel="stylesheet" href="../../css/style.css">
 <script type="text/javascript">
+
+//form 두개 사용 
 $(function() {
 	$(".replyedit").on("click", function() {
 		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
@@ -260,86 +160,83 @@ $(function() {
 	
 });
 function  sendProcess(f){
-	f.action="board_replyedelete.jsp";
+	f.action="bfboard_replyedelete.jsp";
     f.submit();      
     
 }
 function  sendedit(f){
-	f.action="board_replyedit.jsp";
+	f.action="bfboard_replyedit.jsp";
     f.submit();      
     
 }
 </script>
+
+		
+		
 <body>
-	<div class="div_body">
-		<jsp:include page="../community_topinclude.jsp" >
+<jsp:include page="../community_topinclude.jsp" >
 			<jsp:param name="tom" value="3"/>
 			<jsp:param name="toc" value="1"/>
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="BE & AT"/>
-		</jsp:include>	
+</jsp:include>
+	<div class="div_body">
+
 		<div style='width: 100%;'>
 			
 			<div class="div_sidecontents" >
 				<div class="mypage_form">
-				<div style="margin:0 auto;margin-top:5%;width:1020px">			
+				<div style="margin:0 auto;margin-top:5%;width:1000px">			
+								<a href='list.jsp' class="board_dir"style="font-weight:bold;text-decoration:none"></a>
 				</div>
-					<table style="margin:0 auto;width:1100px;border-top:50px">  
-					 <tr class="tableline" ><td style="border-color: #000;"colspan="5"></td></tr>
-					<tr height="30">
-					    <td align="left"  align="center" colspan="3">
-						    <a style="font-size: 20px;font-weight: bold;"> <%=article.getSubject()%></a></td>
-						    
+					<table style="margin:0 auto; width:1000px;">  		
+					  <!-- 글쓴이 날짜-->
+					  <tr >
+					    <td>작성자  <%=article.getWriter()%>&nbsp;&nbsp;|&nbsp;&nbsp;<%=sdf.format(article.getReg_date())%></td>					    
+					  <!--   <td width="50px">조회수</td> 					
+					    <td><%=article.getReadcount()%></td>-->					  					    
 					  </tr>
-					  <tr height="30">
-					    <td align="left"style="width:1;"><%=article.getWriter()%></td>
-						<td style="width:1px;text-align:center;">|</td>
-					    <td align="left"><%= sdf.format(article.getReg_date())%></td>
-					    <td align="center" style="width:35px;">조회</td>
-					    <td align="center" align="center"style="width:35px;">
-						     <%=article.getReadcount()%></td>
+					  
+					  <!-- 제목 -->
+					  <tr height="70px;">
+					    <td class="content_subject"><%=article.getSubject()%></td>		    					  					  
 					  </tr>
-					  <tr class="tableline"><td colspan="5"></td></tr>
+					  		
 					  <tr>
-					    <td align="left" colspan="3">
-					           <pre style="height:auto;min-height: 500px; word-break: break-all; white-space: pre-wrap;"><%=article.getContent()%></pre></td>
+					  <!-- 내용 -->
+					  <td align="left" colspan="3">
+					  <pre class="cotents"><%=article.getContent()%></pre>
+					  </td>
 					           
-					  </tr>
-					   <% if(article.getFilename0()!=null){%>
-					  <tr class="tableline">
-						  <td colspan="5">
-						  <div id="upload" style="border:solid 1px;min-height: 100px;">
+					  </tr> <% if(article.getFilename0()!=null){%>
+					  
+						<tr>
+						<td height="70px;" class="upload_content">
+						  <!-- 파일 다운로드 링크 -->
+						  <div id="upload">
+						  첨부파일 
 						  <% if(article.getFilename0()!=null){%>
-							   <a href="<%=article.getFilepath0()%>" style="border:none" type="text/html"target="_blank"download><%=article.getFilename0()%></a><br>
+	<a class="downlode_ob" href="<%=article.getFilepath0()%>"type="text/html"target="_blank"download>
+	<%=article.getFilename0()%></a><br>
 							     <% if(article.getFilename1()!=null){%>
-							  		 <a href="<%=article.getFilepath1()%>" style="border:none" type="text/html"download><%=article.getFilename1()%></a><br>
+							  		 <a class="downlode_ob" href="<%=article.getFilepath1()%>" type="text/html" download><%=article.getFilename1()%></a><br>
 							  		 
 							   <%}}
 							     }else{%>
 							   <%} %>
 						 </div>
-						  </td>
-					  </tr>
-					  <tr height="30">      
-					    <td colspan="4" align="right" > 
-						  <input type="button" value="글수정" class="newbutton"
-					       onclick="document.location.href='bfboard_updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
-						   &nbsp;&nbsp;
-						  <input type="button" value="글삭제" class="newbutton"
- 					       onclick="document.location.href='bfboard_deleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
-						   &nbsp;&nbsp;
-					      <input type="button" value="답글쓰기" class="newbutton"
-					       onclick="document.location.href='bfboard_writeForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'">
-						   &nbsp;&nbsp;
-					       <input type="button" value="글목록" class="newbutton"
-					       onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">
-					    </td>
-					  </tr>
-					</table>   
+						 </td>
+						 </tr>
+						 
+						
+					  
+					  				
+					</table>    																																							
 				</div>
 			</div>
 		</div>
-				<div class="reply_box">
+
+		<div class="reply_box">
 		<form action = "bfboard_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
@@ -350,18 +247,22 @@ function  sendedit(f){
 		
 		<%if(id!=null){%>
 	
-		<div class="reply_box_centent" style="padding-top: 25px;">
-			<textarea name="recontent" style="height: 148px;"id="recontent" cols="110" rows="6"></textarea>
-			<input type="submit" class="reply_button" value="댓글 등록" style="height: 148px;">
+		<div class="reply_box_centent">
+			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
+			<input type="submit" class="reply_button" value="댓글 등록">
+		</div>	
 		</div>
-		</div>
+			<%}else{ %>
+			<div class="reply_box_centent">
+			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
+			<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login"><div style="padding-top:50%">댓글 등록</div></a>
 			<%} %>
 		</form>
 		</div>
 			
 	</div>
 	<div style="padding-bottom:60px;">
-		<form method="post" action="notice_replyedit.jsp" onsubmit="return writeSave()">
+		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
 			<div style="display:none">
 				<input name="num" value="<%=article.getNum()%>">
 				<input name="pageNum" value="<%=pageNum%>">
@@ -402,33 +303,43 @@ function  sendedit(f){
 			  
 		<%}while(replylist.next());
 		}else{%>
+		 
+			<div class="noreple">댓글이 없습니다</div>
 		
-		<div class="noreple">댓글이 없습니다</div>
-			  
 		<%}%>	
 	</table>
-	
+	<div class="btn_box">
+	<div align="right">
+	<%if(id!=null){%>
+						  <input type="button" value="글수정" class="all_button"
+					       onclick="document.location.href='bfboard_updateForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+						   &nbsp;&nbsp;
+						  <input type="button" value="글삭제" class="all_button"
+ 					       onclick="document.location.href='bfboard_deleteForm.jsp?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+						   &nbsp;&nbsp;
+					      <input type="button" value="답글쓰기" class="all_button"
+					       onclick="document.location.href='bfboard_writeForm.jsp?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>'">
+						   &nbsp;&nbsp;
+					       <input type="button" value="글목록" class="all_button"
+					       onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">
+					       </div>
+					          <%}else{ %><input type="button" value="글목록" class="all_button"
+					       onclick="document.location.href='bfboard_list.jsp?pageNum=<%=pageNum%>'">
+					       <%} %>
+	</div>		
 	</form>
-	</div>
-	<% 
-	}catch(Exception e){
-		
-	}finally {
+	<%}catch(Exception e){}finally {
         if (rs != null) try { rs.close(); } catch(SQLException ex) {}
         if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
         if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-    }	 
-					 %>
-	 <%
-		  }catch(Exception e){
-			  
-		  }finally {
-	          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-	          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-	      }	
-				%>    
-		<jsp:include page="../community_footerinclude.jsp"></jsp:include>
-	</div>	
+    }	  
+	 %>
+	 <%}catch(Exception e){}finally {
+	        if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    }	  
+	 %>
+	
 </body>
 </html>

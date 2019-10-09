@@ -62,157 +62,7 @@
 <head>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
-<style>
-#img_border_main{
-margin: 0 auto;
-text-align:center;
-width:1200px;
-margin-top: 5%;
-height:auto;
-padding:10px;
-min-height: 1000px;
-}
-.shop_board_ul{
-	width:100%;
-	padding:0;
-	margin:0;
-    list-style: none;
-    border-top:2px solid #333;
-    
-}
-.shop_board_ul:after {
-content:"";
-display:block;
-clear:both;
-}
-.shop_board_li{
-  text-align: left;
-    margin: 30px 0 10px 30px;
-    margin-bottom: 20px;
-    width: 350px;
-    height: 300px;
-    float: left;
-    box-sizing: border-box;
-    border: 0;
-
-}
-
-#bottom_write_button{
-text-align: center;
-position:absolute;
-margin-top: -5px;
-float:right;
-margin-left:25%;
-}
-
-.img_subject{
-text-decoration:none;
-color: #222;
-font-size: 28px;
-font-weight: 1000;
-line-height: 30px;  
-word-break:break-all;
-margin:10 auto;
-}
-
-.img_subject:hover{
- text-decoration:underline;
- color:#FF0000;
-}
-
-.img_writer{
-text-decoration:none;
-color: #222;
-font-size: 18px;
-font-weight: 500;
-line-height: 30px;  
-}
-
-.img_writer:hover{
- text-decoration:underline;
- color:#FF0000;
-}
-.shopboard_img{
- background-size:cover;
- width:340px;
- height:240px;
-}
-
-.img_background{
-background-color:#333;
-opacity: 0.5;
-width:100%;
-height:100%;
-}
-.img_background:hover{
-opacity: 0;
-width:100%;
-height:100%;
-}
-.bottom_img{
-    margin: 0 auto;
-    height: 100px;
-    width: 1200px;
-    text-align: center;
-    margin-top:200px;
-}
-.pageselect_num{
-	display: inline-block;
-    font-family: 'Tahoma';
-    font-weight: normal;
-    font-size: 13px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border: 1px solid #e5e5e5;
-    margin: 0 2px;
-    text-align: center;
-    vertical-align: top;
-    color:#7d7d7d;
-}
-.pageselect_num:hover{
-   color: #fff;
-   background: #737373;
-   }
-.page_next_pre_img{
-	display: inline-block;
-    font-family: 'Tahoma';
-    font-weight: normal;
-    font-size: 13px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border: 1px solid  #e5e5e5;
-    margin: 0 2px;
-    text-align: center;
-    vertical-align: top; 
-}
-.page_next_pre_img:hover{
-   color: #fff;
-   background: #737373;
-   }
-   
-.search_list{
-width:100px;
-height:50px;
-border-style: none;
-border-bottom:1px solid #a8a8a8;
-}
-.search_input{
-width:250px;
-height:49px;
-border-style: none;
-margin-left:10px;
-border-bottom:1px solid #a8a8a8;
-}   
-.write_btn{
-width:100px;
-text-align:center;
-height:47.5px;
-border-style: 1px solid #a8a8a8;
-margin-left:10px;
-}
-</style>
+<link href="bfboard_listcss.css" rel="stylesheet" type="text/css">
 
 <title>게시판</title>
 </head>
@@ -222,7 +72,9 @@ margin-left:10px;
 	String id= null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-	}	
+	}else{
+		id="";
+	}
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
 <jsp:include page="../community_topinclude.jsp" >
@@ -231,7 +83,8 @@ margin-left:10px;
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="BE & AT"/>
 </jsp:include>
-<div style="margin:0 auto;text-align:center;">
+
+<div class="search_bar">
 	<form method="post" action="bfboard_list.jsp">
 		<div style="margin:0 auto; margin-top:10px;">
 		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
@@ -350,15 +203,13 @@ margin-left:10px;
 	
 	%>
 	
-	<%if(id!=null||id!=""){%>
+	<%if(id==null||id==""){%>
 	
+	
+	<%}else{%>
 	<a href="bfboard_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
-	
-	
 	<%} %>
 
-	</div>	
-	
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>				
+	</div>					
 </body>
 </html>

@@ -79,7 +79,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 <jsp:include page="../../community/community_topinclude.jsp" >
 			<jsp:param name="tom" value="4"/>
 			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="Service_center.png"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
 			<jsp:param name="boardname" value="문의하기"/>
 </jsp:include>
 		
@@ -176,23 +176,25 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	        }       
 	    }
 	%>
-	</div>
-	</div>
+	
 		<form method="post" action="question_list.jsp">		
-		<div style="margin:0 auto;margin-top:10px;width: 1200px;text-align:center;">
-		<select class="search_list" name="searchcol"> <!-- 검색 컬럼 -->
-	        <option value="subject">제목</option>
-	        <option value="writer">작성자</option>
-	        <option value="content">내용</option>
-	    </select>
+		<div style="margin:0 auto;margin-top:10px;">
+		<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
+	        <OPTION value='subject'>제목</OPTION>
+	        <OPTION value='writer'>작성자</OPTION>
+	        <OPTION value='content'>내용</OPTION>
+	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
-		<input type="image" src="images/search.gif">
-		<a href="notice_writeForm.jsp" style="float: right;">
-<input class="write_btn" value="글쓰기"></a></div>
+		<input type="image" type="submit" src="images/search.gif">
+		<%if(id.toString().equals("admin")){%><a href="question_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
+	<%}else{
+		
+	}%>
+		</div>
 		</form>
 
 
 
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>									
+					
 </body>
 </html>

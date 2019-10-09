@@ -4,12 +4,14 @@
    	<%@ page import="java.io.File" %>
     <%@page import="java.sql.*" %>
 <%@page import="java.io.PrintWriter" %>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
+    <%request.setCharacterEncoding("utf-8");%>
     <%
     // 세션정보 가져오기
+    
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    Connection conn = null;
     try {
     String id = (String) session.getAttribute("id");
     
@@ -18,10 +20,9 @@
 	String dbPass="3whakstp";
 	
     UserDAO db= new UserDAO();
-    Connection conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+    conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    
     String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
@@ -112,12 +113,12 @@ font-size: 14px;
     }
 %>
 	<div class="div_body">
-		<jsp:include page="../../community/community_topinclude.jsp" >
-				<jsp:param name="tom" value="4"/>
-				<jsp:param name="toc" value="0"/>
-				<jsp:param name="imgs" value="Service_center.png"/>
-				<jsp:param name="boardname" value="공지사항"/>
-		</jsp:include>
+<jsp:include page="../../community/community_topinclude.jsp" >
+			<jsp:param name="tom" value="4"/>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="공지사항"/>
+</jsp:include>
 			<form method="post" name="writeform" style="margin-top: 5%;"onsubmit="return writeSave()">
 						<input type="hidden" name="num" value="<%=num%>">
 						<input type="hidden" name="ref" value="<%=ref%>">
@@ -171,7 +172,7 @@ font-size: 14px;
 						  <tr>      
 						    <td colspan=2 align="right"> 
 						      <input type="submit" id="write" class="newbutton" value="글쓰기" onClick="sendProcess(this.form);writeSave();" >  
-						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='notice_list.jsp'">
+						      <input type="button"class="newbutton" value="목록보기" OnClick="window.location='list.jsp'">
 						    </td>
 						  </tr>
 						  <tr style="display: none;"><!-- upload db에 보내는용도  -->
@@ -196,13 +197,19 @@ font-size: 14px;
 						<!-- 파일업로드하는거임  -->
 						 <%} %>  
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>     
 						 <%
-						  }catch(Exception e){}
+						  }catch(Exception e){}finally {
+					          if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+					      }	
 						%>    
 		</div>
-		
-<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>			
 </body>
 </html>
