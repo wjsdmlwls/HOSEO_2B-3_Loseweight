@@ -335,6 +335,8 @@ function  sendedit(f){
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	    }	  
 	 %>
+	</div>
 	
+	<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

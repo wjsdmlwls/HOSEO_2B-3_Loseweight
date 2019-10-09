@@ -208,5 +208,7 @@ font-size: 14px;
 					      }	
 						%>    
 				</div>
+				
+	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>	
 </body>
 </html>

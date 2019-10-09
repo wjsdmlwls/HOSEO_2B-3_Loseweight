@@ -100,6 +100,7 @@ font-size: 14px;
 	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	      }	 
 					 %>
-	
+					 
+	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

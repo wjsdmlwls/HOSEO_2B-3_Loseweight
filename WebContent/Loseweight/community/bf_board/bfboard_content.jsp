@@ -328,6 +328,8 @@ function  sendedit(f){
 					       <%} %>
 	</div>		
 	</form>
+	</div>
+	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>
 	<%}catch(Exception e){}finally {
         if (rs != null) try { rs.close(); } catch(SQLException ex) {}
         if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}

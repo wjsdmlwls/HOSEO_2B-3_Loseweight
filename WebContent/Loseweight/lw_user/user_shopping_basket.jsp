@@ -224,11 +224,11 @@ font-size: 12px;
 								String img0=listsearchresult.getString("img0");			
 								int cost=listsearchresult.getInt("cost");
 								int quantity=listsearchresult.getInt("quantity");
-								int selling_price=listsearchresult.getInt("selling_price");
 								int delivery_charge=listsearchresult.getInt("delivery_charge");
 								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");	
 								String option1=listsearchresult.getString("option1");			
 								int option1price=listsearchresult.getInt("option1price");	
+								int selling_price=listsearchresult.getInt("selling_price")+option1price;
 								i=i+5;
 				%>		
 				<script language='javascript'>
@@ -254,15 +254,24 @@ font-size: 12px;
 						}
 					}
 						function basketplus<%=i%>(){
-							
+							var one<%=i%> = true;
+							   if(document.getElementById("quantity<%=i%>").value =="0"){
 							 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 							 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
-							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-parseInt(document.getElementById("delivery<%=i%>").value);
-							 
-						   if(document.getElementById("selling<%=i%>").value && document.getElementById("quantity<%=i%>").value){
-						  document.getElementById("total<%=i%>").value =parseInt(document.getElementById("selling<%=i%>").value) * parseInt(document.getElementById("quantity<%=i%>").value);
-							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)+(parseInt(document.getElementById("delivery<%=i%>").value));
-							 
+							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-(parseInt(document.getElementById("delivery<%=i%>").value));
+							   }
+							   if(document.getElementById("quantity<%=i%>").value !="0"){
+									 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+									 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
+									 if (one<%=i%>){
+									 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)+parseInt(document.getElementById("delivery<%=i%>").value);
+									 one<%=i%> = false;
+									 }
+									   }
+							   
+							   if(document.getElementById("selling<%=i%>").value && document.getElementById("quantity<%=i%>").value){
+						  document.getElementById("total<%=i%>").value = parseInt(document.getElementById("selling<%=i%>").value) * parseInt(document.getElementById("quantity<%=i%>").value);
+						  document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value);
 						  document.getElementById("product_total").value=parseInt(document.getElementById("total<%=i%>").value)+parseInt(document.getElementById("product_total").value);
 						  document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)+parseInt(document.getElementById("delivery_total").value);
 						  }
@@ -289,7 +298,7 @@ font-size: 12px;
 			<tr>
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
-					<select class="quantity_input"id="quantity<%=i%>"'name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
+					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
 					<option value="0" selected>수량</option>
 					<option value="1">1</option>
 					<option value="2">2</option>

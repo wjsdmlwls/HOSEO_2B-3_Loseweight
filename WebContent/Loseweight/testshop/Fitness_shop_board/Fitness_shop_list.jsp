@@ -79,7 +79,7 @@
 	}
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
 %>
-	<jsp:include page="../../community/community_topinclude.jsp" >
+<jsp:include page="../../community/community_topinclude.jsp" >
 				<jsp:param name="tom" value="5"/>
 				<jsp:param name="toc" value="not"/>
 				<jsp:param name="imgs" value="shop.png"/>

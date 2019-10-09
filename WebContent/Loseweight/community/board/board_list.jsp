@@ -190,11 +190,11 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	<%}else{
 		
 	}%>
-		</div>
+	
 		</form>
-
-
-
-					
+		</div>
+		</div>
+		
+	<jsp:include page="../community_footerinclude.jsp"></jsp:include>	
 </body>
 </html>

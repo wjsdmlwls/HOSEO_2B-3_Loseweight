@@ -210,6 +210,7 @@
 	<a href="bfboard_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
 	<%} %>
 
-	</div>					
+	</div>				
+	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>	
 </body>
 </html>
