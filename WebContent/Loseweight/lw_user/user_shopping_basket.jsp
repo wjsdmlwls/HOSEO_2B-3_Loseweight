@@ -253,19 +253,22 @@ font-size: 12px;
 							return false;
 						}
 					}
+
+					var one<%=i%> = true;
 						function basketplus<%=i%>(){
-							var one<%=i%> = true;
 							   if(document.getElementById("quantity<%=i%>").value =="0"){
 							 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 							 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-(parseInt(document.getElementById("delivery<%=i%>").value));
+							 one<%=i%> = true;
 							   }
 							   if(document.getElementById("quantity<%=i%>").value !="0"){
 									 document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 									 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 									 if (one<%=i%>){
+										 one<%=i%> = false;
 									 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)+parseInt(document.getElementById("delivery<%=i%>").value);
-									 one<%=i%> = false;
+									
 									 }
 									   }
 							   
