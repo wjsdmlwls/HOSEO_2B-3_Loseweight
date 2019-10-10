@@ -66,6 +66,10 @@ create table shopping_basket(
 	reduced_price int null, /*할인가=소비자가격-판매가  //DAO에서 계산처리함 */
 	option1 varchar(30), /*옵션선택*/
 	option1price int,	/*옵션선택가격*/
+	option2 varchar(30), /*옵션선택*/
+	option2price int,	/*옵션선택가격*/
+	option3 varchar(30), /*옵션선택*/
+	option3price int,	/*옵션선택가격*/
 	big_category varchar(30) not null,
 	middle_category varchar(30) not null,
 	small_category varchar(30) not null,
