@@ -32,10 +32,6 @@
 
 <html>
 <head>
-
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
 <!-- 이미지창 띄우기  -->
 <script type="text/javascript">
 	var openWin;

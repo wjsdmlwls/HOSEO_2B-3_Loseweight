@@ -3,10 +3,6 @@
 
 <html>
 <head>
-<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/community/include.css">
-<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
-<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
-<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
 <title>게시판</title>
 </head>
 <body>

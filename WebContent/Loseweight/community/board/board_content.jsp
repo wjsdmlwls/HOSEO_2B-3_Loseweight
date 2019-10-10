@@ -113,10 +113,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--slide-->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="content_css.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
 </head>
 <!-- stlye css -->

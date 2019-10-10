@@ -18,8 +18,12 @@
 <!--slide end-->
 <!-- modal windows -->
 <script>
+function loginshow() {
+	   $( '#myModal_l' ).modal( 'show' );
+	}
 window.closeModal = function() {
    $( '#myModal_l' ).modal( 'hide' );
+   location.reload();
 }
 </script>
 <style>
@@ -75,7 +79,7 @@ padding-top:150px;
 		
 		<div class="div_top">
 		<!-- 클릭시 모달창 새로 띄움  -->
-							<div class="modallist">
+							<div class="modallist" id="myModal">
 								<!-- signUp modal -->
 								 <div id="myModal_l" class="modal fade" style="margin-top:40px">
 							        <div class="modal-dialog" style="margin-top:100px">
@@ -98,7 +102,7 @@ padding-top:150px;
 			<nav style="float:right; padding:10px;">
 					<li class="nav">
 							<%if(id==null){ %>
-							<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l">로그인</a>
+							<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l" onclick="loginshow();">로그인</a>
 							
 							<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
 							

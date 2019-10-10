@@ -54,8 +54,8 @@ public class shopping_basket_DAO {
 			
 			sql = "insert into shopping_basket(num,lw_salesnum,lw_id,reg_date,quantity,"
 					+ "link,cost,selling_price,reduced_price,delivery_charge,option1,option1price,"
-					+ "big_category,middle_category,small_category,product_name,img0)"
-					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "big_category,middle_category,small_category,product_name,img0,select_quantity)"
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -82,6 +82,7 @@ public class shopping_basket_DAO {
 
 			pstmt.setString(16, article.getProduct_name());
 			pstmt.setString(17, article.getImg0());
+			pstmt.setInt(18, article.getSelect_quantity());
 			
 			
 			pstmt.executeUpdate();

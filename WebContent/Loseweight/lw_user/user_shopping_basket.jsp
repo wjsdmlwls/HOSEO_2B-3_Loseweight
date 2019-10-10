@@ -229,11 +229,11 @@ font-size: 12px;
 								String option1=listsearchresult.getString("option1");			
 								int option1price=listsearchresult.getInt("option1price");	
 								int selling_price=listsearchresult.getInt("selling_price")+option1price;
+								int select_quantity=listsearchresult.getInt("select_quantity");
 								i=i+5;
 				%>		
 				<script language='javascript'>
-				
-					function maxquantitys<%=i%>(){
+									function maxquantitys<%=i%>(){
 						
 						var max = document.getElementById("quantitys<%=i%>").textContent;
 						var maxs = parseInt(max);
@@ -280,6 +280,7 @@ font-size: 12px;
 						  }
 						}
 			</script>
+			
 					<form  method="post">
 				<tr>
 					<td rowspan="2" colspan="2">
@@ -302,7 +303,7 @@ font-size: 12px;
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
 					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
-					<option value="0" selected>수량</option>
+					<option value="<%=select_quantity %>" selected><%=select_quantity%></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -332,7 +333,7 @@ font-size: 12px;
 		
 		</table>
 		<div class="basket_pricersultbox">
-		<h4 class="basket_result">총 상품가격 </h4><input type="text" class="basket_pricersultinputbox" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 상품가격 </h4><input type="text" class="basket_pricersultinputbox" id="product_total" value=0 value=""readonly><h4 class="basket_result">원</h4>
 		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
 		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
 		</div>

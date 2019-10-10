@@ -62,9 +62,6 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <link href="Fitness_shop_listcss.css" rel="stylesheet" type="text/css">
-<style>
-
-</style>
 
 <title>게시판</title>
 </head>

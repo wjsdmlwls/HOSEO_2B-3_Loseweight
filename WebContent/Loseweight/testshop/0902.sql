@@ -59,7 +59,8 @@ create table shopping_basket(
     lw_salesnum int(11) not null, /*상품글번호*/
     lw_id varchar(50) not null,	/*아이디*/	
     reg_date datetime default '00-00-00 00:00' not null,				    
- 	quantity int not null,  /*수량*/
+ 	quantity int not null,  /*수량*/	    
+ 	select_quantity int not null,  /*선택한수량*/
     link varchar(300) not null, /*게시글 링크*/
     cost int not null,   /*소비자 가격*/ 
 	selling_price int not null, /*판매가*/
@@ -73,6 +74,8 @@ create table shopping_basket(
 	delivery_charge int, /*배송비*/
 	img0 varchar(300) 
 )
+select * from shopping_basket
+drop table shopping_basket
 drop table shopping_basket
 select count(*) from shopping_basket where lw_id ="admin";
 select * from shopping_basket where img0 = 'null';

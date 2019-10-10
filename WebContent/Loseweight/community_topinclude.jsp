@@ -17,10 +17,8 @@
 <script>
 	<!-- modal windows -->
 	window.closeModal = function() {
-	   $( '#myModal_l' ).modal( 'hide' );
-	}
-	<!-- modal windows -->
-	/*스크롤 내리면 top 고정 */
+		   $( '#myModal_l' ).modal( 'hide' );
+		}
 	
 	$( document ).ready( function() {
 

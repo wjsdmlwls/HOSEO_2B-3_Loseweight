@@ -61,11 +61,8 @@
   		else{	
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
+			script.println("alert('회원가입 완료되었습니다.')");
 			script.println("window.parent.closeModal();");
-			script.println("</script>");
-			script.println("<script>");
-			script.println("window.parent.closeModal();");
-			script.println("alert('회원가입 완료.')");
 			script.println("</script>");
 			//회원가입이 되었을때 메인페이지로 이동
 		}  
@@ -73,6 +70,8 @@
 	}
 	
 %>
-
+<script>
+	location.href="user_signUp(old).jsp";
+</script>
 </body>
 </html>

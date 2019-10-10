@@ -41,7 +41,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다')");
-		script.println("window.parent.closeModal();");
+		script.println("history.back()");
 		script.println("</script>");
 		//비밀번호가 틀렸을때
 	}else if(result == -1) {
@@ -60,5 +60,8 @@
 		//DB오류가 있을때
 	}
 %>
+<script>
+	location.href="login(old).jsp";
+</script>
 </body>
 </html>

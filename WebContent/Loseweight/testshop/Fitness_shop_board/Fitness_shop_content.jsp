@@ -121,11 +121,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--slide-->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="Fitness_shop_content_css.css">
-<script src="jquery-1.10.2.js"></script>
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
 <style>
 .someimg{
@@ -237,12 +233,14 @@ function maxquantitys(){
 	var maxs = parseInt(max);
 	var maxt = document.getElementById("quantity").value;
 	var maxx = parseInt(maxt);
-	
 	if(max<maxx){
-		
 		alert("재고량보다 많은 수 를 입력하셨어요^^");
 		 document.getElementById("quantity").value=0;
+		 document.getElementById("select_quantity").value=0;
 		return false;
+	}
+	else{
+		document.getElementById("select_quantity").value=document.getElementById('quantity').value
 	}
 }
 function setValues(){
@@ -260,6 +258,9 @@ function basket_check(){
 		return false;
 	}else if(con.quantity.value==0){
 		alert("수량을 입력해 주세요");
+		return false;
+	}else if(obj.option1.value==""){
+		alert("옵션을 선택해주세요");
 		return false;
 	}
 	
@@ -317,8 +318,7 @@ function basket_check(){
 							<p><span>재고량</span></p><span id="quantitys"><%=article.getQuantity()%></span>
 						</li>
 						<li>
-							<p><span>수량</span></p><span><input type="text" id="quantity" name="quantity" size="3"
-					      onchange="maxquantitys();sum(this.value);" value="0"></span>
+							<p><span>수량</span></p><span><input type="text" id="quantity" name="quantity" size="3" onchange="maxquantitys();sum(this.value);" value="0"></span>
 						</li>
 						<li>
 							<p>
@@ -357,6 +357,7 @@ function basket_check(){
 		<input type="text" id="select_option1" name="option1">
 		<input type="text" id="select_option1price" name="option1price">
 		<input name="quantity" value="<%=article.getQuantity()%>">
+		<input id="select_quantity" name="select_quantity" value="">
 		<input name="img0" value="<%=article.getImg0()%>">
 		<input name="cost" value="<%=article.getCost()%>">
 		<input name="selling_price" value="<%=article.getSelling_price()%>">

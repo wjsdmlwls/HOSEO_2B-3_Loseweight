@@ -19,13 +19,13 @@ text-decoration: underline;
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/community/include.css">
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/maincss.css">
 <script>
-	<!-- modal windows -->
-	window.closeModal = function() {
-	   $( '#myModal_l' ).modal( 'hide' );
+function loginshow() {
+	   $( '#myModal_l' ).modal( 'show' );
 	}
-	<!-- modal windows -->
-	
-	 /*스크롤 내리면 top 고정 */
+	window.closeModal = function() {
+	$( '#myModal_l' ).modal( 'hide' );
+	location.reload();
+	}
 	
 	$( document ).ready( function() {
 
@@ -233,7 +233,7 @@ text-decoration: underline;
 		<%}}%>
 		
 		
-<div class="modallist">
+				<div class="modallist">
 								<!-- signUp modal -->
 								<div id="myModal_l" class="modal fade" style="margin-top:40px">
 							        <div class="modal-dialog" style="margin-top:100px;">
@@ -250,5 +250,6 @@ text-decoration: underline;
 								        </div>
 								</div>
 							</div>
+						
 </body>
 </html>

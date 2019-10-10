@@ -33,9 +33,6 @@
 
 <html>
 <head>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	var openWin;
 	function openimgadd() {

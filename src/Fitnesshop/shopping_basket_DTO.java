@@ -14,8 +14,17 @@ public class shopping_basket_DTO {
 	private int selling_price;
 	private int reduced_price;
 	private int delivery_charge ;
+	private int select_quantity;
 
 	private String img0;
+	
+	public int getSelect_quantity() {
+		return select_quantity;
+	}
+	public void setSelect_quantity(int select_quantity) {
+		this.select_quantity = select_quantity;
+	}
+	
 	public String getImg0() {
 		return img0;
 	}

@@ -34,11 +34,6 @@
 %>
 <html>
 <head>
-<!--slide-->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<!--slide end-->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>

@@ -18,9 +18,7 @@ pageEncoding="UTF-8"%>
             openWin = window.open("/2019_JeonJSP/zipfinder/zipSearch.jsp",
                     "childForm", "width=580, height=500, resizable = no, scrollbars = yes");    
         }
-        function closemodal(){
-        	window.parent.closeModal();
-        }
+        
    </script>
    <!-- 주소 end -->
 </head>
@@ -68,7 +66,7 @@ pageEncoding="UTF-8"%>
 				<input class="singup_input" type="text" name="lw_phone" placeholder="전화번호">
 				<input type="text" name="lw_lp" value=0 style="display:none">                      
 				<div class="singupbuttonarer">
-					<button type="submit" class="button salmon" style="width:400px;height:40px" onclick="closemodal()"><span>회원가입</span></button>
+					<button type="submit" class="button salmon" style="width:400px;height:40px"><span>회원가입</span></button>
 				</div>
 			</form>
 		</div>

@@ -38,9 +38,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery.slim.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="../../css/style.css">
 <script type="text/javascript" src="../../lw_user/vcheck.js"></script>
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
