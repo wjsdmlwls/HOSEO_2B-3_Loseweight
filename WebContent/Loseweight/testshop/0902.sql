@@ -64,8 +64,8 @@ create table shopping_basket(
     cost int not null,   /*소비자 가격*/ 
 	selling_price int not null, /*판매가*/
 	reduced_price int null, /*할인가=소비자가격-판매가  //DAO에서 계산처리함 */
-	option1 varchar(30) not null, /*옵션선택*/
-	option1price int not null,	/*옵션선택가격*/
+	option1 varchar(30), /*옵션선택*/
+	option1price int,	/*옵션선택가격*/
 	big_category varchar(30) not null,
 	middle_category varchar(30) not null,
 	small_category varchar(30) not null,
@@ -77,3 +77,30 @@ drop table shopping_basket
 select count(*) from shopping_basket where lw_id ="admin";
 select * from shopping_basket where img0 = 'null';
 select * from shopping_basket where lw_id like 'choyk12';
+
+create table order_obj(
+	ordernum int not null primary key auto_increment,   /*구매 번호*/
+	lw_salesnum int(11) not null,						 /*물품 번호*/
+	product_name varchar(30) not null,					/*상품 이름*/
+	img0 text not null,									/*상품 이미지*/
+	total_money int not null,							/*총 가격*/
+	pointplus int default 0,							/*적립금*/
+	quantity int not null,        						/*수량*/
+	
+	
+	
+	option1 varchar(30) null,							/*옵션*/
+	option1price int null,
+	option2 varchar(30) null,
+	option2price int null,
+	option3 varchar(30) null,
+	option3price int null,
+
+	/*카드 정보*/
+	
+	cardnum1 int(16) null,
+	
+	lw_id varchar(50) not null,							/*구매자 아이디*/
+	order_time datetime default '00-00-00 00:00' not null /*구매 날짜*/
+)
+

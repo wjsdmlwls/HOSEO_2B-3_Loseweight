@@ -27,7 +27,7 @@
 				if(session.getAttribute("id")!=null){
 					id=(String)session.getAttribute("id");
 					}else{
-					id="";
+					id=""; 
 					}	
 
     		PreparedStatement pstmt = null;
@@ -366,8 +366,12 @@ function basket_check(){
 		<input name="small_category" value="<%=article.getSmall_category()%>">		
 		<input name="product_name" value="<%=article.getProduct_name()%>">
 		<input name="delivery_charge" value="<%=article.getDelivery_charge()%>">
-		
+		<%if(id==""){ %>
+		<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login">
+		<button class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button></a>
+		<%}else{ %>
 		<button type="submit" class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button> 
+		<%} %>
 		</form>
 		 <button class="buttons">구매하기</button>
 		<%} %>
