@@ -213,7 +213,7 @@ font-size: 12px;
 				      <td width="100">배송비</td>
 					</tr>
 		    </thead>
-		<%
+			<%
 					if(listsearchresult.next()){
 						int i=0;
 						int totalprice=0;
@@ -248,8 +248,7 @@ font-size: 12px;
 							 document.getElementById("product_total").value=parseInt(document.getElementById("product_total").value)-parseInt(document.getElementById("total<%=i%>").value);
 							 document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value)-parseInt(document.getElementById("delivery<%=i%>").value);
 							 document.getElementById("quantity<%=i%>").value=0;
-							 document.getElementById("total<%=i%>").value=0;
-							 
+							 document.getElementById("total<%=i%>").value=0;	 
 							return false;
 						}
 					}
@@ -280,19 +279,22 @@ font-size: 12px;
 						  }
 						}
 			</script>
-			
-					<form  method="post">
+					<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp">
 				<tr>
 					<td rowspan="2" colspan="2">
 					<%if (img0.equals("null")){%>
 						<img class="basket_img" src="/2019_JeonJSP/Loseweight/img/logo/logo_BY.png" >
 				    <%}else{%>			    
-				    	<img class="basket_img" src="<%=img0%>">
+				    	<img class="basket_img" name="img0" src="<%=img0%>">
+				    	 <input type="hidden" name="img0" value="<%=img0%>">
 				    <%}%>
 				    </td>
 			    <td style="text-align: left;"><a class="product_name"><%=product_name%></a>
+			    <input type="hidden" name="product_name" value="<%=product_name%>">
 			    
 			    <a class="option<%=i%>"><%=option1%></a>
+			    <input type="hidden" name="options" value="<%=option1%>">
+			     <input type="hidden" name="option1price" value="<%=option1price%>">
 			    <input type="submit" class="break_basket" value="X" onClick="DeleteProcess(this.form); writeSave();"></td>
 			    <td rowspan="2" class="selling"><input type="text" class="total_input" readonly name="total<%=i%>" id="total<%=i%>" value=0>원</td><!-- 개수+가격=총가격  -->
 			    
@@ -300,6 +302,7 @@ font-size: 12px;
 			    }else{ %>무료<input type="hidden" id="delivery<%=i%>" name="delivery<%=i%>"value="0"readonly><%} %></td>	<!-- 배송비  -->
 			</tr>    	
 			<tr>
+				
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
 					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
@@ -314,16 +317,17 @@ font-size: 12px;
 					<option value="8">8</option>
 					<option value="9">9</option>
 					</select><!-- 수량  -->
-						
+					<input type="hidden" name="quantitys">
 				</td>
 			</tr>
 			<tr style="display:none;">
 				<td>
-					<span id="quantitys<%=i%>"><%=quantity%></span>	
+					<span id="quantitys<%=i%>" ><%=quantity%></span>	
 					<input name="num" value="<%=num%>">
 				</td>
 			</tr>
-		</form>
+	
+		
 		<%
 			}while(listsearchresult.next());
 		%>
@@ -332,11 +336,16 @@ font-size: 12px;
 		<%} %>
 		
 		</table>
+		
 		<div class="basket_pricersultbox">
-		<h4 class="basket_result">총 상품가격 </h4><input type="text" class="basket_pricersultinputbox" id="product_total" value=0 value=""readonly><h4 class="basket_result">원</h4>
-		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
-		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 상품가격 </h4><input type="text"  class="basket_pricersultinputbox" name ="product_total" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" name="delivery_total" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" name="total_hap" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
 		</div>
+	
+		
+		<div><button type="submit">구매하기</button></div>
+		</form>
 		<%}catch (Exception e) {
 				e.printStackTrace();
 			}
