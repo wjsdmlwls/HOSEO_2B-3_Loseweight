@@ -11,7 +11,7 @@ int quantity = Integer.parseInt(request.getParameter("quantity"));  */
 
 String[] product_name = request.getParameterValues("product_name");
 String[] img0 = request.getParameterValues("img0"); 
-String[] quantitys = request.getParameterValues("quantitys");
+String[] select_quantity = request.getParameterValues("select_quantity");
 String[] options = request.getParameterValues("options");
 String[] option1price = request.getParameterValues("option1price");
 
@@ -67,7 +67,7 @@ function cardnumsum(){
 <table>
 <tr><td><img src="<%=img0[i]%>" width="100px" height="100px"></td>
 <td>제품 이름<%=product_name[i]%> |</td>
-<td>상품 개수<%=quantitys[i]%> |</td>
+<td>상품 개수<%=select_quantity[i]%> |</td>
 <td>상품옵션 <%=options[i]%> + <%=option1price[i]%> </td></tr>
 </table>
 </div>

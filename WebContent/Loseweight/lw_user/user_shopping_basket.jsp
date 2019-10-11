@@ -203,6 +203,7 @@ font-size: 12px;
 		</jsp:include>
 		</div>
 		
+			<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp">
 		<table class="user_shopping_baskettable">
 		<thead>
 		   		 <tr>
@@ -278,8 +279,24 @@ font-size: 12px;
 						  document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)+parseInt(document.getElementById("delivery_total").value);
 						  }
 						}
+
+						$(function () {
+
+						 var idval = $('#quantityss<%=i%>');
+
+						   $('#quantity<%=i%>').change(function(){
+
+						        var element = $(this).find('option:selected'); 
+
+						        var myTag = element.attr('cost_value<%=i%>'); 
+
+						         idval.val(myTag);
+
+						   });
+
+						});
+
 			</script>
-					<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp">
 				<tr>
 					<td rowspan="2" colspan="2">
 					<%if (img0.equals("null")){%>
@@ -302,22 +319,21 @@ font-size: 12px;
 			    }else{ %>무료<input type="hidden" id="delivery<%=i%>" name="delivery<%=i%>"value="0"readonly><%} %></td>	<!-- 배송비  -->
 			</tr>    	
 			<tr>
-				
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
 					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
-					<option value="<%=select_quantity %>" selected><%=select_quantity%></option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
+					<option value="<%=select_quantity %>" cost_value<%=i%>="<%=select_quantity %>"selected><%=select_quantity%></option>
+					<option value="1" cost_value<%=i%>="1">1</option>
+					<option value="2" cost_value<%=i%>="2">2</option>
+					<option value="3" cost_value<%=i%>="3">3</option>
+					<option value="4" cost_value<%=i%>="4">4</option>
+					<option value="5" cost_value<%=i%>="5">5</option>
+					<option value="6" cost_value<%=i%>="6">6</option>
+					<option value="7" cost_value<%=i%>="7">7</option>
+					<option value="8" cost_value<%=i%>="8">8</option>
+					<option value="9" cost_value<%=i%>="9">9</option>
 					</select><!-- 수량  -->
-					<input type="hidden" name="quantitys">
+					<input type="hidden" name="select_quantity" id="quantityss<%=i%>">
 				</td>
 			</tr>
 			<tr style="display:none;">
