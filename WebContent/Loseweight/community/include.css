@@ -15,6 +15,7 @@
 */
 .top_in_login-up{
 	float:right; 
+	height:0px;
 }
 .mainlogo_box{
 	width: 135px;
@@ -22,16 +23,29 @@
     display:block;
 }
 /*menu and nav*/
+.iner{
+	width: 1400px;
+	height:90px;
+    margin: 0 auto;
+	
+}
 .menu{
 	width:900px;
-	height:50px;
+	height:90px;
 	margin:0 auto;
-	padding-top:70px;
 }
 .menu ul {
     list-style:none;
     margin:0;
     padding:0;
+    padding-top: 20px;
+    margin-left: 40px;
+}
+.menu:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+transition: width 1s ease 0.5s, margin-top 1s ease-out 0.5s;
+    opacity: 1;
+    top:-65px;
 }
 
 .menu ul li {
@@ -61,6 +75,34 @@
 	color: #eee; 
 	text-decoration: none;
 }
+.nav01 ul{
+    height: 220px;
+    position: absolute;
+    width: 900px;
+    top: -215px;
+    z-index: -200;
+    background: #000;
+    margin-top: 65px;
+    text-align: center;
+    margin-left: -40px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+        opacity: 0;
+}
+.nav01 ul li{
+   margin-top:85px;
+}
+.nav01 ul li a{
+   opacity: 0.5;
+   font-size: 17px;
+}
+.nav01 ul li a:hover{
+   opacity: 1;
+   
+}
 /*menu and nav*/
 #community{
 	top:0px;
@@ -76,7 +118,8 @@
 .Opacity_box{
 	top:0px;
 	z-index:1;
-	height:130px;
+	height:90px;
+	border-bottom: 1px solid rgba(255, 255, 255,0.3);
 }
 .top_in_delete_logo{
 	display:none;
@@ -88,7 +131,7 @@
 	position: fixed;
 	top: 0px;
 	background: black;
-	height:130px;
+	height:90px;
 	transition: all ease 0.5s 0s;
 }
 
@@ -140,6 +183,12 @@ font-size:17px;
 color:#ccc;
 font-weight: bold;
 text-decoration:none;
+-webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+
 }
 .menubar ul li:hover a{
 color:#ccc;
@@ -163,7 +212,11 @@ background:#fff;
 /*left:0;*/
 }
 .menubar li:hover ul{
+	
+transition: width 1s ease 0.5s, margin-top 1s ease-out 0.5s;
 display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+
+
 }
 
 .menubar li li {

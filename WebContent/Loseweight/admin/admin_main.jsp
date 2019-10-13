@@ -14,7 +14,8 @@
 	request.setCharacterEncoding("UTF-8");
 	String listsearch = ""; 
     String pageNum = request.getParameter("pageNum");
-
+	String mincalendar = "2000-01-01"; 	
+	String maxcalendar = "2099-12-31"; 	
     if (pageNum == null) {
         pageNum = "1";
     }
@@ -36,7 +37,6 @@
 	if(searchcol==""||searchcol==null){
 		searchcol ="product_name";
 	}
-
 	jekimDB usedb = new jekimDB();
 	usedb.connect();
 	
@@ -51,7 +51,7 @@
 	String listsql1="select count(*) from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%'";
 	ResultSet rs = stmt.executeQuery(listsql1);
 	
-	String listsql2="select * from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%' limit "+startRow+","+pageSize+"";
+	String listsql2="select * from Fitness_shop where "+searchcol+" like '%"+listsearch+"%' limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
@@ -117,6 +117,9 @@ table.lw_shopboard tbody td {
 .adminpage_list{
 	margin-top:100px;
 }
+.adminpage_list a{
+font-size:50px
+}
 </style>
 </head>
 <body>
@@ -155,7 +158,8 @@ table.lw_shopboard tbody td {
 <div class="adminpage_body">
 	<h1>LoseWeight 관리자 페이지</h1>
 	<div class="adminpage_list">
-	<a href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list.jsp'>상품 리스트</a>
+	<a href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list.jsp'>상품 리스트</a><Br>
+	<a href='/2019_JeonJSP/Loseweight/admin/admin_user_list.jsp'>유저 리스트</a>
 	</div>
 </div>	
 </body>

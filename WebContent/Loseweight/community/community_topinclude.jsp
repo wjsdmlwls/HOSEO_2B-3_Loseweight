@@ -81,7 +81,10 @@ function loginshow() {
 		String boardname = request.getParameter("boardname"); /*table of contents*/
 %>
 	<div class="top_include_body">
+		<div class="top_backgorund">
 		<img id="community" src="/2019_JeonJSP/Loseweight/community/includeback_img/<%=imgs%>" alt="community" >
+		<div style="position: relative;text-align: center;padding-top: 155px;"><a style="color: #fff;font-size: 40px;font-weight: bold;cursor: context-menu;text-decoration: none;"><%=boardname %></a></div>
+		</div>
 			<div class="Opacity_box">
 				<nav class="top_in_login-up">
 						<li class="nav">
@@ -96,6 +99,10 @@ function loginshow() {
 								<%} %>
 						</li>
 				</nav>
+				<div class="iner">
+				<div>
+					<img style="position: absolute;width: 150px;height: auto;margin-top: 15px;"src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png">
+				</div>
 				<div class='menu'>			
 					<ul class="nav01">
 						<li>
@@ -114,12 +121,26 @@ function loginshow() {
 							<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>shop</a>
 						</li>
 						
+							<ul>
+							     <li style="margin-left: 40px;"><a href="#">다이어트</a></li>
+							     <li style="margin-left:20px;"><a href="#">다이어트</a></li>
+							     <li style="margin-left: -5px;"><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
+							     <li style="margin-left: -10px;"><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
+							     <li style="margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
+							     
+							     <li style="margin-left: 40px;margin-top:0;"><a href="#">다이어트</a></li>
+							     <li style="margin-top:0;margin-left: 20px;"><a href="#">다이어트</a></li>
+							     <li style="margin-left: -20px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
+							     <li style="margin-left: -30px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
+							     <li style="margin-top:0; margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
+							</ul>
 					</ul>
 				</div>
 			</div>
+			</div>
 	</div>
 	<!-- nav menu -->
-	<div class="menubar" style="margin-top:370px">
+	<div class="menubar" style="margin-top:155px">
 <ul>
  <li style="width:100px"><a href='/2019_JeonJSP/Loseweight/lw_main.jsp'><img style="width: 30px; height: 30px;margin-top: 13px;" src="/2019_JeonJSP/Loseweight/img/top_include/btn_home_location.png"></a></li>
  

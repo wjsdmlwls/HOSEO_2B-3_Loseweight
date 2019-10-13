@@ -6,13 +6,15 @@
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<%!int pageSize = 9;
+<%!int pageSize = 20;
     SimpleDateFormat sdf = 
         new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 	String listsearch = ""; 
+	String mincalendar = ""; 	
+	String maxcalendar ="";
     String pageNum = request.getParameter("pageNum");
 
     if (pageNum == null) {
@@ -26,8 +28,16 @@
     List<Fitnesshop_DTO> articleList = null; 
     
     listsearch = request.getParameter("listsearch");
+    mincalendar = request.getParameter("mincalendar");
+    maxcalendar = request.getParameter("maxcalendar");
 	if(listsearch==null){
 		listsearch ="";
+	}
+	if(mincalendar==null || mincalendar==""){
+		mincalendar = "2000-01-01";
+	}
+	if(maxcalendar==null || maxcalendar==""){
+		maxcalendar = "2099-12-31";
 	}
 	Fitnesshop_DAO dbPro = Fitnesshop_DAO.getInstance();
     count = dbPro.getArticleCount(); 
@@ -48,10 +58,10 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String listsql1="select count(*) from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%'";
+	String listsql1="select count(*) from Fitness_shop where write_date between '"+mincalendar+"' and '"+maxcalendar+"' and "+searchcol+"  like '%"+listsearch+"%'";
 	ResultSet rs = stmt.executeQuery(listsql1);
 	
-	String listsql2="select * from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%' limit "+startRow+","+pageSize+"";
+	String listsql2="select * from Fitness_shop where (write_date between '"+mincalendar+"' and '"+maxcalendar+"') and ("+searchcol+"  like '%"+listsearch+"%') limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
@@ -60,12 +70,66 @@
 <html>
 <head>
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
-<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
-<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        <script>
+            $(function() {
+                
+            
+                //오늘 날짜를 출력
+                $("#today").text(new Date().toLocaleDateString());
+
+                //datepicker 한국어로 사용하기 위한 언어설정
+                $.datepicker.setDefaults($.datepicker.regional['ko']); 
+                
+                // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+                // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+
+                //시작일.
+                $('#mincalendar').datepicker({
+                    showOn: "both",                     // 달력을 표시할 타이밍 (both: focus or button)
+                    buttonImage: "images/calendar.png", // 버튼 이미지
+                    buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
+                    buttonText: "날짜선택",             // 버튼의 대체 텍스트
+                    dateFormat: "yy-mm-dd",             // 날짜의 형식
+                    changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
+                    //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+                    onClose: function( selectedDate ) {    
+                        // 시작일(fromDate) datepicker가 닫힐때
+                        // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                        $("#maxcalendar").datepicker( "option", "minDate", selectedDate );
+                    }                
+                });
+
+                //종료일
+                $('#maxcalendar').datepicker({
+                    showOn: "both", 
+                    buttonImage: "images/calendar.png", 
+                    buttonImageOnly : true,
+                    buttonText: "날짜선택",
+                    dateFormat: "yy-mm-dd",
+                    changeMonth: true,
+                    //minDate: 0, // 오늘 이전 날짜 선택 불가
+                    onClose: function( selectedDate ) {
+                        // 종료일(toDate) datepicker가 닫힐때
+                        // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+                        $("#mincalendar").datepicker( "option", "maxDate", selectedDate );
+                    }                
+                });
+            });
+        </script>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="/2019_JeonJSP/Loseweight/css/style.css" rel="stylesheet" type="text/css">
 <link href="admin_shoplist.css" rel="stylesheet" type="text/css">
-
+<%=mincalendar %>
+<%=maxcalendar %>
+<%=listsearch %>
+<%=searchcol %>
+<%=startRow %>
+<%=pageSize %>
 <title>게시판</title>
 <style>
 table.lw_shopboard {
@@ -74,6 +138,10 @@ table.lw_shopboard {
     line-height: 1.5;
 
 }
+table.lw_shopboard tbody:hover .lw_shoplistboard{
+	background: #ccc;
+    opacity: 0.9;
+}
 table.lw_shopboard thead tr {
     padding: 10px;
     font-weight: bold;
@@ -81,6 +149,7 @@ table.lw_shopboard thead tr {
     color: #369;
     border-bottom: 3px solid #036;
 }
+
 table.lw_shopboard thead td {
     padding: 10px;
     vertical-align: top;
@@ -162,7 +231,13 @@ table.lw_shopboard tbody td {
 	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
 		<input type="image" type="submit" src="images/search.gif">
-		</div>
+			작성일<span id="today"></span>
+          <label for="mincalendar"></label>
+          <input type="text" id="mincalendar" name="mincalendar">
+          ~
+          <label for="maxcalendar"></label>
+          <input type="text" id="maxcalendar" name="maxcalendar">
+		</div>        
 	</form>
 </div>
 		<div class="lw_shopadmintable">
@@ -184,13 +259,15 @@ table.lw_shopboard tbody td {
 				      <td >상품노출</td>
 				      <td >판매상태</td>
 				      <td >이벤트</td>
-				      <td >option 0</td>
-				      <td >option 가격0</td>				      		      
-				      <td >작성일</td>
 				      <td >option 1</td>
-				      <td >option 가격1 </td>		
+				      <td >option 가격1</td>		
+				      <td >option 2</td>
+				      <td >option 가격2 </td>
+				      <td >option 3</td>
+				      <td >option 가격3 </td>
+				      <td >작성일</td>	
 				      <td >작성자</td>
-				      <td >패스워드</td>
+				      <td >수정</td>
 					</tr>
 		    </thead>
 	<%
@@ -214,7 +291,12 @@ table.lw_shopboard tbody td {
 								int salestatus=listsearchresult.getInt("salestatus");			
 								int productevent=listsearchresult.getInt("productevent");										
 								String option1=listsearchresult.getString("option1");		
-								int option1price=listsearchresult.getInt("option1price");					
+								int option1price=listsearchresult.getInt("option1price");									
+								String option2=listsearchresult.getString("option2");		
+								int option2price=listsearchresult.getInt("option2price");										
+								String option3=listsearchresult.getString("option3");		
+								int option3price=listsearchresult.getInt("option3price");			
+								String lw_id=listsearchresult.getString("lw_id");					
 								int replycount=0;
 								Fitnesshop_DAO dbPro1 = Fitnesshop_DAO.getInstance();
 								Fitnesshop_DTO article =  dbPro.getArticle(Integer.parseInt(lw_salesnum));
@@ -227,7 +309,7 @@ table.lw_shopboard tbody td {
 			    
 			    <td><%=lw_salesnum %></td>
 			    <td><%=product_code%></td>
-			    <td><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>"> <%=product_name%></a></td>
+			    <td><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_content.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>"> <%=product_name%></a></td>
 			    <td><%=cost%></td>
 			    <td><%=reduced_price%>%</td>
 			    <td><%=selling_price%></td>
@@ -241,8 +323,14 @@ table.lw_shopboard tbody td {
 			    <td><%=salestatus%></td>
 			    <td><%=productevent%></td>
 			    <td><%=option1%></td>
-			    <td><%=option1price%></td>				
+			    <td><%=option1price%></td>		
+			    <td><%=option2%></td>
+			    <td><%=option3price%></td>		
+			    <td><%=option3%></td>
+			    <td><%=option3price%></td>				
 			    <td><%=write_date%></td>	
+			    <td><%=lw_id%></td>
+			    <td><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_updateForm.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>" target="_blank"><input type="button"value="수정"></a></td>
 			 </tr>
 			 
 			
@@ -253,8 +341,8 @@ table.lw_shopboard tbody td {
 	}else{
 		%>
 			  <tr class="tableline">
-			  <td colspan="6">
-			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
+			  <td colspan="30">
+			  <h4 style="padding: 300;text-align:center;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4>
 			  </td></tr>
 				</tbody>
 			<%}	%>

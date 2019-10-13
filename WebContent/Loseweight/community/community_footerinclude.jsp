@@ -36,7 +36,7 @@
 				</p>
 				<p class="corp">@2019_2b03_Jsp procject LoseWeight_2b03</p>
 				<p class="logo">
-					<a href="#"><img src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png"></a>
+					<a href="/2019_JeonJSP/Loseweight/lw_main.jsp"><img src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png"></a>
 				</p>
 				<!-- 로고 들어갈 자리-->
 			</div>
