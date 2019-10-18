@@ -3,12 +3,11 @@
     
 <%@ page import = "Fitnesshop.shopping_basket_DAO" %>
 <%@ page import = "Fitnesshop.shopping_basket_DTO" %>
+<%@ page import = "user.UserDAO"%>
 <%request.setCharacterEncoding("utf-8");%>
+
 <%
-/* String[] lw_salesnum =  request.getParameterValues("lw_salesnum");
-
-int quantity = Integer.parseInt(request.getParameter("quantity"));  */
-
+String[] lw_salesnum = request.getParameterValues("lw_salesnum2");
 String[] product_name = request.getParameterValues("product_name");
 String[] img0 = request.getParameterValues("img0"); 
 String[] select_quantity = request.getParameterValues("select_quantity");
@@ -18,7 +17,21 @@ String[] option1price = request.getParameterValues("option1price");
 int product_total = Integer.parseInt(request.getParameter("product_total"));
 int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
 int total_hap = Integer.parseInt(request.getParameter("total_hap"));
+
+
+
+String id= null;
+if(session.getAttribute("id")!=null){
+	id=(String)session.getAttribute("id");
+	}else{
+	id=""; 
+	}	
+
+UserDAO db = new UserDAO();
+int point = db.lpupdate(id);
+
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,14 +43,12 @@ function chack_buy(){
 	var payment2 =  document.getElementById("payment2").checked;
 	
 	if(payment1 == true){
-		
 		document.getElementById("d").style.display='none';
 		document.getElementById("c").style.display='block';
 		return false;
 	}
 	
 	else if(payment2 == true){
-		
 		document.getElementById("d").style.display='block';
 		document.getElementById("c").style.display='none';
 		return false;
@@ -58,17 +69,20 @@ function cardnumsum(){
 
 <body>
 
-
-<%=product_name.length%>개의 제품을 구매하시려 합니다.
-
-<%for(int i = 0; product_name.length>i; i++){%>
-
+<form method="post" action="order_pro.jsp">
+상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 의 제품을 구매하시려 합니다.
+<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
+<%for(int i = 0; img0.length>i; i++){%>
 <div>
 <table>
-<tr><td><img src="<%=img0[i]%>" width="100px" height="100px"></td>
+<%=lw_salesnum[i]%>
+
+<tr><td><img src="<%=img0[i]%>" width="100px" height="100px"><input type="hidden" name="img0" value="<%=img0[0]%>">
+<input type="hidden" name="imgs" value="<%=img0[i]%>">
+<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
 <td>제품 이름<%=product_name[i]%> |</td>
 <td>상품 개수<%=select_quantity[i]%> |</td>
-<td>상품옵션 <%=options[i]%> + <%=option1price[i]%> </td></tr>
+<td>상품옵션 <%=options[i]%> (<%=option1price[i]%>)</td></tr>
 </table>
 </div>
 
@@ -116,15 +130,35 @@ function cardnumsum(){
 비밀번호 앞자리<br>
 <input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
 </td></tr>
-<tr><td>상품 금액:<%=product_total%></td></tr>
-<tr><td>배송비:<%=delivery_total%></td></tr>
-<tr><td>총 결제 금액:<%=total_hap%></td></tr>
+<tr><td>상품 금액:<%=product_total%>
+<input type="hidden" name="" value="<%=product_total%>">
+</td></tr>
+<tr><td>배송비:<%=delivery_total%>
+<input type="hidden" name="" value="<%=delivery_total%>">
+</td></tr>
+<tr><td>총 결제 금액:<%=total_hap%>
+<input type="hidden" name="total_money" value="<%=total_hap%>">
+</td></tr>
+
 </table>
 </div>
+<table>
+ <tr><td><input type="text" name="lw_lpminor">마일리지 사용<br>
+ 잔여 마일리지:<%=point%> 
+ <input type="hidden" name="lw_lp" value="<%=point%>">
+ </td></tr>
+
+<tr><td><input type="text" name="addr">배송지</td></tr>
+<tr><td><input type="text" name="Recipient">수령인</td></tr>
+<tr><td><input type="text" name="demand">요구사항</td></tr>
+</table>
 <input type="hidden" name="lw_salesnum">
 <!-- 결제 방법 체크 -->
 <script>
 chack_buy();
 </script>
+<input type="hidden" name="lw_id"value="<%=id%>">
+<button type="submit">결제하기</button>
+</form>
 </body>
 </html>

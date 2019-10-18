@@ -62,7 +62,67 @@
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <link href="Fitness_shop_listcss.css" rel="stylesheet" type="text/css">
-
+<script>
+//select category 할때 1차 2차 3차 골라주기 
+function fitcategory1_change(){
+	 
+	var sporting_goods = ["2차 분류","부위별운동기구","웨이트기구","기타헬스용품"];
+	var health_food  = ["2차 분류","보조식품","다이어트/미용음료"];
+	 
+	var selectItem = $("#categoryselect1").val();
+	 
+	var changeItem;
+	  
+	if(selectItem == "기구"){
+	  changeItem = sporting_goods;
+	}
+	else if(selectItem == "식품"){
+	  changeItem = health_food;
+	}
+		 
+	$('#categoryselect2').empty();
+	$('#categoryselect3').empty();
+	for(var count = 0; count < changeItem.length; count++){                
+	                var option = $("<option value="+changeItem[count]+">"+changeItem[count]+"</option>");
+	                $('#categoryselect2').append(option);
+	            }
+	}
+function fitcategory2_change(){
+	 
+	var part_exercise = ["3차 분류","전신운동","체형관리","상체","하체"];
+	var weight_exercise = ["3차 분류","덤벨","벤치프레스","바벨"];
+	var Other_exercise = ["3차 분류","철봉","악력기","재활/보조운동","밴드"];
+	var supplement_food = ["3차 분류","프로틴","식이섬유","다이어트 간식"];
+	var diet_drink = ["3차 분류","다이어트 차","건강즙","식초/홍초"];
+	var selectItem = $("#categoryselect2").val();
+	 
+	var changeItem;
+	  
+	if(selectItem == "부위별운동기구"){
+	  changeItem = part_exercise;
+	}
+	else if(selectItem == "웨이트기구"){
+	  changeItem = weight_exercise;
+	}
+	else if(selectItem == "기타헬스용품"){
+	  changeItem =  Other_exercise;
+	}
+	else if(selectItem == "보조식품"){
+		  changeItem = supplement_food;
+		}
+	else if(selectItem == "다이어트/미용음료"){
+		 changeItem =  diet_drink;
+	}
+	 
+	$('#categoryselect3').empty();
+	 
+	for(var count = 0; count < changeItem.length; count++){                
+	                var option = $("<option value="+changeItem[count]+">"+changeItem[count]+"</option>");
+	                $('#categoryselect3').append(option);
+	            }
+	 
+	}
+</script>
 <title>게시판</title>
 </head>
 <body>
@@ -92,6 +152,17 @@
 	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
 		<input type="image" type="submit" src="images/search.gif">
+						    	<select name="big_category" class="category"id="categoryselect1" onchange="fitcategory1_change()">
+									<option>1차 분류</option>
+									<option value="기구">기구</option>
+									<option value="식품">식품</option>
+								</select>
+									 
+								<select name="middle_category" class="category" id="categoryselect2" onchange="fitcategory2_change()">
+								</select>
+								<select name="small_category" class="category" id="categoryselect3">
+								</select>
+						    		
 		</div>
 	</form>
 </div>
@@ -123,7 +194,6 @@
 			    	<div class="img_background"></div>
 			    </div>
 			  	<div class="nameTxt"><%=product_name%></div> 
-			  	<div class="ExTxt"><%=product_contents %></div>
 			  	<div class="flex">
 			  		<p class="bfcoin">
 			  			<strong><%=cost%></strong>

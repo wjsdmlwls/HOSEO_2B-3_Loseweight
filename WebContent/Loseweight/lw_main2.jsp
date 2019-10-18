@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="maincss.css">
-<link rel="stylesheet" href="community/include.css">
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <!--slide end-->
@@ -28,8 +27,11 @@ window.closeModal = function() {
 }
 </script>
 <style>
-.Opacity_box{
-	background-color: rgba(0, 0, 0, 0.6);
+.menu{
+width:1340px;
+height:50px;
+margin:0 auto;
+padding-top:150px;
 }
 </style>
 <!-- modal windows -->
@@ -75,12 +77,62 @@ window.closeModal = function() {
 			  </div>
 					<!-- slider end -->
 		
-		<jsp:include page="community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="1"/>
-			<jsp:param name="imgs" value="not.png"/>
-			<jsp:param name="boardname" value=""/>
-</jsp:include>
+		<div class="div_top">
+		<!-- 클릭시 모달창 새로 띄움  -->
+							<div class="modallist" id="myModal">
+								<!-- signUp modal -->
+								 <div id="myModal_l" class="modal fade" style="margin-top:40px">
+							        <div class="modal-dialog" style="margin-top:100px">
+							            <div class="modal-content">
+							               <iframe id="iframe_l"src="lw_user/login(old).jsp" scrolling="no" style="width: 660px; height: 690px;"></iframe>
+							            </div>
+							        </div>
+							    </div>
+								<div id="myModal_s" class="modal fade" style="margin-top:40px">
+								        <div class="modal-dialog" style="margin-top:100px">
+								            <div class="modal-content">
+								                <iframe id="iframe_s"src="lw_user/user_signUp(old).jsp" scrolling="no" style="width: 530px;height: 750px;"></iframe>
+								            </div>
+								        </div>
+								</div>
+							</div>
+		
+		<h1 class="mainlogo_box"><a href="lw_main.jsp"><img id="logo" src="img/logo/logo_BY.png" alt="logo"></a></h1>
+		<div class="Opacity_box" style="position:relative; left:0px; top:-110px; z-index:1; height:200px;">
+			<nav style="float:right; padding:10px;">
+					<li class="nav">
+							<%if(id==null){ %>
+							<a href="#" id="login_bt"data-toggle="modal" data-target="#myModal_l" onclick="loginshow();">로그인</a>
+							
+							<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
+							
+							<%}else{%>
+							<a href="lw_user/user_Info.jsp">마이페이지</a>
+							<a href="lw_user/logout.jsp">로그아웃</a>
+							<%} %>
+					</li>
+			</nav>
+			<div class='menu'>			
+			<ul class="nav01">
+				<li>
+					<a href='#'>운동방법</a>
+				</li>
+				<li>
+					<a href='#'>식단조절</a>
+				</li>
+				<li>
+					<a href='community/board/board_list.jsp'>자유게시판</a>
+				</li>
+				<li class='last'>
+					<a href='servicecenter/Noticeboard/notice_list.jsp'>고객센터</a>
+				</li>
+				<li>
+					<a href='#'>shop</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+		</div>
 	</div>
 	
 </body>

@@ -220,7 +220,7 @@ font-size: 12px;
 						int totalprice=0;
 								do{
 									String num=listsearchresult.getString("num");
-								String lw_salesnum=listsearchresult.getString("lw_salesnum");
+								int lw_salesnum=listsearchresult.getInt("lw_salesnum");
 								String product_name=listsearchresult.getString("product_name");	
 								String img0=listsearchresult.getString("img0");			
 								int cost=listsearchresult.getInt("cost");
@@ -231,6 +231,7 @@ font-size: 12px;
 								int option1price=listsearchresult.getInt("option1price");	
 								int selling_price=listsearchresult.getInt("selling_price")+option1price;
 								int select_quantity=listsearchresult.getInt("select_quantity");
+								int pointplus=listsearchresult.getInt("pointplus");
 								i=i+5;
 				%>		
 				<script language='javascript'>
@@ -291,11 +292,8 @@ font-size: 12px;
 						        var myTag = element.attr('cost_value<%=i%>'); 
 
 						         idval.val(myTag);
-
 						   });
-
 						});
-
 			</script>
 				<tr>
 					<td rowspan="2" colspan="2">
@@ -338,12 +336,13 @@ font-size: 12px;
 			</tr>
 			<tr style="display:none;">
 				<td>
-					<span id="quantitys<%=i%>" ><%=quantity%></span>	
-					<input name="num" value="<%=num%>">
+					<span id="quantitys<%=i%>" ><%=quantity%></span>
+					<input name="num" value="<%=num%>">	
+					<input name="lw_salesnum" value="<%=lw_salesnum%>">
+					<input name="pointplus" value="<%=pointplus%>">
+					<input type="hidden" name="lw_salesnum2" value="<%=lw_salesnum%>">
 				</td>
 			</tr>
-	
-		
 		<%
 			}while(listsearchresult.next());
 		%>

@@ -17,6 +17,13 @@ import javax.sql.DataSource;
 public class UserDAO {
 	
 	
+	private static UserDAO instance = new UserDAO();
+
+	// .jsp페이지에서 DB연동빈인 BoardDBBean클래스의 메소드에 접근시 필요
+	public static UserDAO getInstance() {
+		return instance;
+	}
+	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
@@ -72,7 +79,7 @@ public class UserDAO {
 			pstmt.setString(8,user.getLw_addr1());
 			pstmt.setString(9,user.getLw_addr2());
 			pstmt.setString(10,user.getLw_phone());
-			pstmt.setString(11,user.getLw_lp());
+			pstmt.setInt(11,user.getLw_lp());
 			return pstmt.executeUpdate();		//쿼리?�� ?��?��?��?��
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -100,6 +107,51 @@ public class UserDAO {
 			if(conn!=null) try {conn.close();} catch(SQLException e) {} //?��?��반납
 		}
 		return 0;
+	}
+	
+	//마일리지 사용
+	public int updatelp(User user) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql="update lw_users set lw_lp=? where lw_id=?"; 
+			
+			try {
+				pstmt =conn.prepareStatement(sql);
+				pstmt.setInt(1,user.getLw_lp());
+				pstmt.setString(2,user.getLw_id());
+				return pstmt.executeUpdate();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs!=null) try {rs.close();} catch(SQLException e) {}
+				if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+			
+			}
+			return 0;
+		}
+
+	//마일리지 가져오기
+	public int lpupdate(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int conut = 0;
+		String sql="select lw_lp from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getInt(1);
+		}		
+			}catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
 	}
 
 }

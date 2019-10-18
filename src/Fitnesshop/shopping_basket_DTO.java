@@ -15,7 +15,14 @@ public class shopping_basket_DTO {
 	private int reduced_price;
 	private int delivery_charge ;
 	private int select_quantity;
+	private int pointplus;
 
+	public int getPointplus() {
+		return pointplus;
+	}
+	public void setPointplus(int pointplus) {
+		this.pointplus = pointplus;
+	}
 	private String img0;
 	
 	public int getSelect_quantity() {

@@ -14,7 +14,7 @@ create table lw_users(
 
 create table lw_users(
 lw_id varchar(50) not null primary key);
-select * from lw_users;
+select * from lw_users where lw_lp between '10' and '20';
 desc lw_users;
 select lw_id from lw_users where lw_passwd="asd123" and lw_passwd="asd123"
 drop table lw_users;

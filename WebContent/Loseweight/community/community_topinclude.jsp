@@ -28,7 +28,6 @@ function loginshow() {
 	}
 	
 	$( document ).ready( function() {
-
 		var jbOffset = $( '.menu' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
 			$( window ).scroll( function() {
 			if ( $( document ).scrollTop() > jbOffset.top ) {
@@ -43,7 +42,16 @@ function loginshow() {
 			}
 		});
 		} );
-
+	$( document ).ready( function() {
+		var jbOffset = $( '.shop_contents' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
+			$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > jbOffset.top ) {
+				$( '.Opacity_box' ).removeClass( 'top_in_menuFixed' );
+				$(".mainlogo_box").removeClass("top_in_delete_logo");
+				$(".top_in_login-up").removeClass("top_in_login-up_delete");
+				}
+		});
+		} );
 		$(window).scroll(function() { 
 			var scroll = $(window).scrollTop();
 			//console.log(scroll);
@@ -82,6 +90,7 @@ function loginshow() {
 %>
 	<div class="top_include_body">
 		<div class="top_backgorund">
+		
 		<img id="community" src="/2019_JeonJSP/Loseweight/community/includeback_img/<%=imgs%>" alt="community" >
 		<div style="position: relative;text-align: center;padding-top: 155px;"><a style="color: #fff;font-size: 40px;font-weight: bold;cursor: context-menu;text-decoration: none;"><%=boardname %></a></div>
 		</div>
@@ -101,7 +110,9 @@ function loginshow() {
 				</nav>
 				<div class="iner">
 				<div>
-					<img style="position: absolute;width: 150px;height: auto;margin-top: 15px;"src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png">
+					<a href="/2019_JeonJSP/Loseweight/lw_main.jsp">
+						<img style="position: absolute;width: 150px;height: auto;margin-top: 15px;"src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png">
+					</a>
 				</div>
 				<div class='menu'>			
 					<ul class="nav01">

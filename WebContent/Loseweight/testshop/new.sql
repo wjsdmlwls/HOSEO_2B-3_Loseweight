@@ -52,15 +52,14 @@ create table Fitness_shop_re(
     FOREIGN KEY (lw_id) REFERENCES lw_users(lw_id) ON DELETE CASCADE ON UPDATE RESTRICT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
-select * from shopping_basket
+
 <!--shoping cart-->
 create table shopping_basket(
     num int not null primary key auto_increment,   
     lw_salesnum int(11) not null, /*상품글번호*/
     lw_id varchar(50) not null,	/*아이디*/	
     reg_date datetime default '00-00-00 00:00' not null,				    
- 	quantity int not null,  /*수량*/	    
- 	select_quantity int not null,  /*선택한수량*/
+ 	quantity int not null,  /*수량*/
     link varchar(300) not null, /*게시글 링크*/
     cost int not null,   /*소비자 가격*/ 
 	selling_price int not null, /*판매가*/
@@ -75,43 +74,57 @@ create table shopping_basket(
 	middle_category varchar(30) not null,
 	small_category varchar(30) not null,
 	product_name varchar(30) not null, /*제품명*/
-	pointplus int, /*배송비*/
 	delivery_charge int, /*배송비*/
 	img0 varchar(300) 
 )
 drop table shopping_basket
-select * from shopping_basket
-drop table shopping_basket
-drop table shopping_basket
 select count(*) from shopping_basket where lw_id ="admin";
 select * from shopping_basket where img0 = 'null';
 select * from shopping_basket where lw_id like 'choyk12';
-
+-- 결제 정보 --
 create table order_obj(
-	ordernum int not null primary key auto_increment,   /*구매 번호*/
-	lw_salesnum int(11) not null,						 /*물품 번호*/
-	product_name varchar(30) not null,					/*상품 이름*/
-	img0 text not null,									/*상품 이미지*/
-	total_money int not null,							/*총 가격*/
-	pointplus int default 0,							/*적립금*/
-	quantity int not null,        						/*수량*/
-	
-	
-	
-	option1 varchar(30) null,							/*옵션*/
-	option1price int null,
-	option2 varchar(30) null,
-	option2price int null,
-	option3 varchar(30) null,
-	option3price int null,
-
-	/*카드 정보*/
-	
-	cardnum1 int(16) null,
-	
-	lw_id varchar(50) not null,							/*구매자 아이디*/
-	order_time datetime default '00-00-00 00:00' not null /*구매 날짜*/
+	ordernum int not null primary key auto_increment,      /*구매 번호*/
+	product_names varchar(30) not null,					   /*총 상품 이름*/
+	img0 text not null,									   /*대표 이미지 1개 상품 이미지*/
+	total_money int not null,							   /*총 가격*/				     
+	payment	int not null,								   /*결제 방법*/
+	addr varchar(50) not null,  						   /*배송지 */
+	Recipient varchar(30) not null,						   /*수령인*/
+	demand varchar(255) null,							   /*요구사항*/	  
+	lw_id varchar(50) not null,							   /*구매자 아이디*/
+	order_time datetime default '00-00-00 00:00' not null  /*구매 날짜*/
 )
-select * from Fitness_shop where (write_date between '2000-01-01' and '2099-12-31') and (option1 like "빨강")limit 0,5
-select * from Fitness_shop where write_date between '2000-01-01' and '2099-12-31' and option1 like "빨강" limit 5,5;
-select * from Fitness_shop where write_date between SYSDATETIME();
+/*
+lw_lp 
+addr 3가지 
+구매 상태 (배송중 거래완료)
+
+ */
+select * from order_obj;
+desc order_obj;
+  /*사용 포인트*/
+/*pointplus int default 0,						  	   /*적립금*/
+	lw_point int null,
+	orderstatus int not null,	*/		 /*결제 상태*/	
+drop table order_obj;
+
+-- 상품 정보 --
+
+
+-- 상품테스트 --
+
+create table sangpum(
+		obj_order_num int not null primary key auto_increment,
+		ordernum int not null,							  /*참조키  = 구매 번호*/
+		lw_salesnum int(11) not null,
+		img0 text not null,
+		lw_id varchar(30) not null
+)
+select * from sangpum
+desc lw_users;
+select * from order_obj
+drop table sangpum;
+drop table sanpum;
+drop table order_obj;
+
+select * from lw_users;

@@ -117,48 +117,14 @@
     number = count-(currentPage-1)*pageSize;
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
 %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--slide-->
+
+<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
+<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="Fitness_shop_content_css.css">
-<!--slide end-->
-<style>
-.someimg{
-width:600px;
-height:500px;
-background-size:cover;
-float:left;
-}
-.content_ttt{
-float:left;
-width:300px;
-height:auto;
-padding-left:10%;
-
-}
-
-.mypage_form:after {
-content:"";
-display:block;
-clear:both;
-} 
-.textjump{
-padding-left:30px;
-}
- ul, ol, li {list-style:none; margin:0; padding:0;}
-.price01 li p {display:inline-block; width:150px; height:15px;color:#666;}
-.price01 li p span {}
-.price01 li span {}
-.buttons{
-width:125px; 
-height:60px;
-border:none;
-}
-.basket_form input{
-display:none;
-}
-</style>
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
@@ -265,12 +231,64 @@ function basket_check(){
 	}
 	
 }
-
-</script>
-
-
-
+$( document ).ready( function() {
+	var jbOffset = $( '.shop_contents' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
+		$( window ).scroll( function() {
+		if ( $( document ).scrollTop() > jbOffset.top ) {
+			$( '.shop_contents' ).addClass( 'shopsub_in_menuFixed' );
+			$( '.submenu1' ).addClass( 'shop_submenu_select' );
+			}
+	else {
+		$( '.shop_contents' ).removeClass( 'shopsub_in_menuFixed' );
+		$( '.submenu1' ).removeClass( 'shop_submenu_select' );
+		}
+	});
+	} );
 	
+	$(window).scroll(function() { 
+		var scroll = $(window).scrollTop();
+		//console.log(scroll);
+		if (scroll >= 3000) {
+			//console.log('a');
+			$(".shop_contents").addClass(".shopsub_in_menuFixed");
+			} else {
+		}
+	});
+	
+	$( document ).ready( function() {
+		var jbOffset = $( '.reply_contents' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
+			$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > jbOffset.top ) {
+				$( '.submenu1' ).removeClass( 'shop_submenu_select' );
+				$( '.submenu2' ).addClass( 'shop_submenu_select' );
+				}
+		else {
+			$( '.submenu2' ).removeClass( 'shop_submenu_select' );
+			}
+		});
+		} );
+	
+	$( document ).ready( function() {
+		var jbOffset = $( '.product-etc' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
+			$( window ).scroll( function() {
+			if ( $( document ).scrollTop() > jbOffset.top ) {
+				$( '.submenu2' ).removeClass( 'shop_submenu_select' );
+				$( '.submenu3' ).addClass( 'shop_submenu_select' );
+				}
+		else {
+			$( '.submenu3' ).removeClass( 'shop_submenu_select' );
+			}
+		});
+		} );
+		
+	
+</script>
+	<style>
+.shop_submenu_select{
+	    border-bottom: none;
+    background: #eee;
+}
+	</style>
 <body>
 <div class="div_body">
 		<jsp:include page="../../community/community_topinclude.jsp" >
@@ -296,7 +314,6 @@ function basket_check(){
 				<p style="font-size: 16px; color: #555555;"><%=article.getProduct_name()%></p>
 				<p style="font-size: 12px;color: #aaaaaa;border-bottom: 1px solid #e8e8e8; padding-bottom: 13px;">
 				<%if(article.getProduct_contents()==null){}else{%>
-				<%=article.getProduct_contents()%>
 				<%} %>
 				</p>
 					<ul class="price01">
@@ -352,7 +369,7 @@ function basket_check(){
 			</form>
 						<form method="post" name="basketforms" class="basket_form"  onsubmit="return basket_check();" action="shopping_basket_Pro.jsp">
 		<input name="link"value="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>">
-		<input name="lw_salenum" value="<%=article.getLw_salesnum()%>">
+		<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
 		<input name="lw_id" value="<%=id%>">
 		<input type="text" id="select_option1" name="option1">
 		<input type="text" id="select_option1price" name="option1price">
@@ -367,6 +384,7 @@ function basket_check(){
 		<input name="small_category" value="<%=article.getSmall_category()%>">		
 		<input name="product_name" value="<%=article.getProduct_name()%>">
 		<input name="delivery_charge" value="<%=article.getDelivery_charge()%>">
+		<input name="pointplus" value="<%=article.getPointplus()%>">
 		<%if(id==""){ %>
 		<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login">
 		<button class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button></a>
@@ -384,10 +402,25 @@ function basket_check(){
 	
 		</div>
 		</div>
-		</div>
-	<div>
-		<div class="reply_box">
-		<form action = "fitness_shop_reply.jsp" method="post" name="replyform">
+		<div name="contents" style="margin-top:100px; margin-bottom:100px;">
+			<div class="shop_content_submenu">
+				<div class="shop_contents" name="shop_contents">
+					<ul>
+						<a href="#1"><li class="submenu1">상품상세
+						</li></a>
+						<a href="#2"><li class="submenu2">상품평
+						</li></a>
+						<a href="#3"><li class="submenu3">배송/교환/반품 안내 
+						</li></a>
+					</ul>
+				</div>
+			 <div class="target" id="1" style="text-align: center; max-width: 1000px;margin: 50 auto;" >
+							<%=article.getProduct_contents()%>
+			</div>
+			</div>
+		
+		<div class="reply_box target" id="2">
+		<form  class="reply_contents" action = "fitness_shop_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
@@ -396,20 +429,18 @@ function basket_check(){
 		<%if(id!=null){%>
 		<div class="reply_box_centent">
 			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
-			<input type="submit" class="reply_button" value="댓글 등록">
+			<input type="submit" class="reply_button" value="상품평 등록">
 		</div>	
 		</div>
 			<%}else{ %>
 			<div class="reply_box_centent">
 			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
-			<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login"><div style="padding-top:50%">댓글 등록</div></a>
+			<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login"><div style="padding-top:50%">상품평 등록</div></a>
 			<%} %>
 		</div>
 	  </form>
-
-
-	  
 	</div>
+	
 	<div style="padding-bottom:60px;">
 	
 		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
@@ -457,7 +488,7 @@ function basket_check(){
 		<%}while(replylist.next());
 		}else{%>
 		 
-			<div class="noreple">댓글이 없습니다</div>
+			<div class="noreple">상품평이 없습니다</div>
 		
 		<%}%>	
 	</table>
@@ -479,15 +510,153 @@ function basket_check(){
 						  <input type="button" value="글목록" class="all_button"
 					       onclick="document.location.href='Fitness_shop_list.jsp?pageNum=<%=pageNum%>'">			   				    
 						 		   <%}%>
-						 
-					    
-					
 			</div>
-	</div>	
-	
+		</div>		
+	</form>	
+	</div>
+	<div  class="product-etc target">
+		<h5 class="prod-delivery-return-policy-title">배송정보</h5>
+		<table class="prod-delivery-return-policy-table">
+		    <colgroup>
+		        <col width="150px">
+		        <col width="340px">
+		        <col width="150px">
+		        <col width="*">
+		    </colgroup>
+		    <tbody>
+		    <tr>
+		        <th>배송방법</th>
+		        <td>순차배송</td>
+		            <th rowspan="2">배송비</th>
+		            <td rowspan="2">
+		               - 도서산간 지역 추가비용 없음
+		            </td>
+		    </tr>
+		    <tr>
+		        <th>묶음배송 여부</th>
+		        <td>가능</td>
+		    </tr>
+		    <tr>
+		        <th>배송기간</th>
+		        <td colspan="3">
+		            <ul>
+		                <li class="prod-delivery-period-contents etc-pdd-info">
+								ㆍ<span>쿠팡맨 배송 지역 : 주문 및 결제 완료 후, 1-2일 이내 도착</span>
+		                </li>
+		                <li class="prod-delivery-period-contents">
+		                    ㆍ쿠팡맨 미배송 지역 : 주문 및 결제 완료 후, 2-3일 이내 도착
+		                    <p class="prod-delivery-period__notice">
+		                            - 도서 산간 지역 등은 하루가 더 소요될 수 있습니다. 곧 고객님께도 쿠팡맨이 찾아갈 수 있도록 노력하겠습니다
+		                    </p>
+		                </li>
+		                <li class="prod-delivery-period-contents">ㆍ천재지변, 물량 수급 변동 등 예외적인 사유 발생 시, 다소 지연될 수 있는 점 양해 부탁드립니다.</li>
+		            </ul>
+		        </td>
+		    </tr>
+		    </tbody>
+		</table>
+		
+		<h5 class="prod-delivery-return-policy-title">교환/반품 안내</h5>
+		<table class="prod-delivery-return-policy-table">
+		    <colgroup>
+		        <col width="160px">
+		        <col width="*">
+		    </colgroup>
+		    <tbody>
+		    <tr>
+		        <th>교환/반품 비용</th>
+		        <td>
+		            5,000원<br>- 단, 고객 변심의 경우에만 발생<br>- 부분반품 시, 남은금액이 무료배송 조건을 유지하면 일부 반품비용이 부과
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>교환/반품 신청 기준일</th>
+		            <td>
+		                <p>ㆍ단순변심에 의한 로켓배송 상품의 교환/반품은 제품 수령 후 30일 이내까지만 가능 (교환/반품비용 고객부담)</p>
+		                <p>ㆍ상품의 내용이 표시·광고의 내용과 다른 경우에는 상품을 수령한 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터<br>
+		                    <span class="prod-delivery-return-policy__limit-list__indent">30일 이내에 청약철회 가능</span>
+		                </p>
+		            </td>
+		    </tr>
+		    </tbody>
+		</table>
+		
+		
+		<h5 class="prod-delivery-return-policy-title">교환/반품 제한사항</h5>
+		<ul class="prod-delivery-return-policy__limit-list">
+		    <li>ㆍ주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
+		    <li>ㆍ상품 포장을 개봉하여 사용 또는 설치 완료되어 상품의 가치가 훼손된 경우 (단, 내용 확인을 위한 포장 개봉의 경우는 예외)</li>
+		    <li>ㆍ고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</li>
+		    <li>ㆍ세트상품 일부 사용, 구성품을 분실하였거나 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</li>
+		    <li>ㆍ모니터 해상도의 차이로 인해 색상이나 이미지가 실제와 달라, 고객이 단순 변심으로 교환/반품을 무료로 요청하는 경우</li>
+		    <li>ㆍ제조사의 사정 (신모델 출시 등) 및 부품 가격 변동 등에 의해 무료 교환/반품으로 요청하는 경우</li>
+		</ul>
+		<p class="prod-delivery-return-policy__limit-text">※ 각 상품별로 아래와 같은 사유로 취소/반품이 제한 될 수 있습니다.</p>
+		<table class="prod-delivery-return-policy-table">
+		    <colgroup>
+		        <col width="150px">
+		        <col width="*">
+		    </colgroup>
+		    <tbody>
+		        <tr>
+		            <th>의류/잡화/수입명품</th>
+		            <td>
+		                <p>ㆍ상품의 택(TAG) 제거, 라벨 및 상품 훼손, 구성품 누락으로 상품의 가치가 현저히 감소된 경우</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <th>계절상품/식품/화장품</th>
+		            <td>
+		                <p>ㆍ신선냉동 식품의 단순변심의 경우</p>
+		                <p>ㆍ뷰티 상품 이용 시 트러블(알러지, 붉은 반점, 가려움, 따가움)이 발생하는 경우,<br>
+		                    <span class="prod-delivery-return-policy__limit-list__indent">진료 확인서 및 소견서 등을 증빙하면 환불이 가능 (제반비용 고객부담)</span>
+		                </p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <th>전자/가전/설치상품</th>
+		            <td>
+		                <p>ㆍ설치 또는 사용하여 재판매가 어려운 경우, 액정이 있는 상품의 전원을 켠 경우</p>
+		                <p>ㆍ상품의 시리얼 넘버 유출로 내장된 소프트웨어의 가치가 감소한 경우 (내비게이션, OS시리얼이 적힌 PMP)</p>
+		                <p>ㆍ홀로그램 등을 분리, 분실, 훼손하여 상품의 가치가 현저히 감소하여 재판매가 불가할 경우 (노트북, 데스크탑 PC 등)</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <th>자동차용품</th>
+		            <td>
+		                <p>ㆍ상품을 개봉하여 장착한 이후 단순변심인 경우</p>
+		            </td>
+		        </tr>
+		        <tr>
+		            <th>CD/DVD/GAME/<br>BOOK</th>
+		            <td>
+		                <span>ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</span>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+		        <div class="product-item__table product-seller">
+		            <p class="prod-delivery-return-policy-title">판매자 정보</p>
+		                <table class="prod-delivery-return-policy-table">
+		                    <colgroup>
+		                        <col width="150px">
+		                        <col width="*">
+		                    </colgroup>
+		                    <tbody><tr>
+		                        <th>판매자</th>
+		                        <td>쿠팡</td>
+		                    </tr>
+		                </tbody></table>
+		
+		                <p class="prod-minor-notice">
+		                    미성년자가 체결한 계약은 법정대리인이 동의하지 않는 경우 본인 또는 법정대리인이 취소할 수 있습니다.
+		                </p>
+		        </div>
+		</div>
 
-</form>	
-	
+<div>
+
+</div>
 
 	
 

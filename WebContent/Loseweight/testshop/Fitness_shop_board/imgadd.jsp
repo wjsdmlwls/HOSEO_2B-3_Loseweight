@@ -148,7 +148,7 @@
 <script>
 	function setParentText(){
 		if (document.getElementById("img0").value!=""){
-        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:500px"src="<%=upimgpath1%>">');
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:1000px"src="<%=upimgpath1%>">');
 			window.close();
 		} else {
 			alert("파일을 업로드해주세요");

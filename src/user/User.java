@@ -12,7 +12,7 @@ public class User {
 	private String lw_addr1;
 	private String lw_addr2;
 	private String lw_phone;
-	private String lw_lp;
+	private int lw_lp;
 	
 	public String getLw_id() {
 		return lw_id;
@@ -44,7 +44,7 @@ public class User {
 	public String getLw_phone() {
 		return lw_phone;
 	}
-	public String getLw_lp() {
+	public int getLw_lp() {
 		return lw_lp;
 	}
 	public void setLw_id(String lw_id) {
@@ -77,7 +77,7 @@ public class User {
 	public void setLw_phone(String lw_phone) {
 		this.lw_phone = lw_phone;
 	}
-	public void setLw_lp(String lw_lp) {
+	public void setLw_lp(int lw_lp) {
 		this.lw_lp = lw_lp;
 	}
 	
