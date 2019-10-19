@@ -25,6 +25,8 @@
     String product_names = request.getParameter("product_names");
     String img0 = request.getParameter("img0");
     int total_money = Integer.parseInt(request.getParameter("total_money"));
+    int product_total = Integer.parseInt(request.getParameter("product_total"));
+    int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
     
     
     int payment = Integer.parseInt(request.getParameter("payment"));
@@ -44,12 +46,19 @@
 	String[] lw_salesnum = request.getParameterValues("lw_salesnum");
 	String[] imgs = request.getParameterValues("imgs");
 	
+	String[] product_name = request.getParameterValues("product_name");
+	String[] selling_price = request.getParameterValues("selling_price");
+	String[] delivery_charge = request.getParameterValues("delivery_charge");
+	String[] quantity = request.getParameterValues("quantity");	
+	String[] option1 = request.getParameterValues("option1");	
+	String[] option1price = request.getParameterValues("option1price");		
 	
+
 %>
 <%
 //상품 테이블 insert 
 order_DAO dbPro = order_DAO.getInstance(); 
-dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw_id,order_time);
+dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw_id,order_time,product_total,delivery_total);
 
 //상품테이블과 주문내역을 연동시킬 번호
  int ordernum = dbPro.selectordernum(lw_id,order_time);
@@ -63,9 +72,14 @@ dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw
 	sanpum_DTO.setLw_id(lw_id);
 	sanpum_DTO.setLw_salesnum(Integer.parseInt(lw_salesnum[i]));
 	sanpum_DTO.setImg0(imgs[i]);
-	 
-
-    
+	sanpum_DTO.setProduct_name(product_name[i]);
+	sanpum_DTO.setQuantity(Integer.parseInt(quantity[i]));
+	sanpum_DTO.setSelling_price(Integer.parseInt(selling_price[i]));
+	sanpum_DTO.setOption1(option1[i]);
+	sanpum_DTO.setOption1price(Integer.parseInt(option1price[i]));
+	sanpum_DTO.setDelivery_charge(Integer.parseInt(delivery_charge[i]));
+	
+	
     dbPros.insertsanpum(sanpum_DTO);   
 }  
 	//마일리지 연산
@@ -79,7 +93,7 @@ dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>LoseWeight</title>
 </head>
 <body>
 <%=product_names%><br>

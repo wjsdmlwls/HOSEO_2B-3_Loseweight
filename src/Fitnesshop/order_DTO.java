@@ -16,7 +16,22 @@ public class order_DTO {
 	private int orderstatus;				   /*결제 상태*/
 	private String lw_id;					   /*구매자 아이디*/
 	private Timestamp order_time;			   /*주문 날짜*/
+
+	private int product_total;				   /*결제 상태*/
+	private int delivery_total;				   /*결제 상태*/
 	
+	public int getProduct_total() {
+		return product_total;
+	}
+	public void setProduct_total(int product_total) {
+		this.product_total = product_total;
+	}
+	public int getDelivery_total() {
+		return delivery_total;
+	}
+	public void setDelivery_total(int delivery_total) {
+		this.delivery_total = delivery_total;
+	}
 	public int getOrdernum() {
 		return ordernum;
 	}

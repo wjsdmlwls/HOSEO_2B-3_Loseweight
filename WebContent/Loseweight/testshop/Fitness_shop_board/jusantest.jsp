@@ -34,7 +34,6 @@ if(session.getAttribute("id")!=null){
 <%for(int i=0; orderList.size()>i; i++ ){
 	sanpum = orderList.get(i);
 %>
-
 <%=sanpum.getObj_order_num()%><br>  
 <%=sanpum.getLw_id()%><br>
 <img src="<%=sanpum.getImg0()%>" width="100px;" height="100px;"><br>

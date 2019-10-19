@@ -233,10 +233,10 @@ table.lw_shopboard tbody td {
 		<input type="image" type="submit" src="images/search.gif">
 			작성일<span id="today"></span>
           <label for="mincalendar"></label>
-          <input type="text" id="mincalendar" name="mincalendar">
+          <input type="text" id="mincalendar" name="mincalendar" readonly>
           ~
           <label for="maxcalendar"></label>
-          <input type="text" id="maxcalendar" name="maxcalendar">
+          <input type="text" id="maxcalendar" name="maxcalendar" readonly>
 		</div>        
 	</form>
 </div>

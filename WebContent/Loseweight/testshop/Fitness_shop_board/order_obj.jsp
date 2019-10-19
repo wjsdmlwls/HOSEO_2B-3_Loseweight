@@ -13,6 +13,8 @@ String[] img0 = request.getParameterValues("img0");
 String[] select_quantity = request.getParameterValues("select_quantity");
 String[] options = request.getParameterValues("options");
 String[] option1price = request.getParameterValues("option1price");
+String[] selling_price = request.getParameterValues("total");
+String[] delivery_charge = request.getParameterValues("delivery");
 
 int product_total = Integer.parseInt(request.getParameter("product_total"));
 int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
@@ -69,22 +71,26 @@ function cardnumsum(){
 
 <body>
 
-<form method="post" action="order_pro.jsp">
-상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 의 제품을 구매하시려 합니다.
-<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
-<%for(int i = 0; img0.length>i; i++){%>
-<div>
-<table>
-<%=lw_salesnum[i]%>
-
-<tr><td><img src="<%=img0[i]%>" width="100px" height="100px"><input type="hidden" name="img0" value="<%=img0[0]%>">
-<input type="hidden" name="imgs" value="<%=img0[i]%>">
-<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
-<td>제품 이름<%=product_name[i]%> |</td>
-<td>상품 개수<%=select_quantity[i]%> |</td>
-<td>상품옵션 <%=options[i]%> (<%=option1price[i]%>)</td></tr>
-</table>
-</div>
+	<form method="post" action="order_pro.jsp">
+		상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 의 제품을 구매하시려 합니다.
+			<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
+			<%for(int i = 0; img0.length>i; i++){%>
+			<div>
+			
+				<table>
+					<tr>
+						<td><%=lw_salesnum[i]%></td>
+						<td><img src="<%=img0[i]%>" width="100px" height="100px"><input type="hidden" name="img0" value="<%=img0[0]%>">
+						<input type="hidden" name="imgs" value="<%=img0[i]%>">
+						<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
+						<td>제품<%=product_name[i]%> |<input type="hidden" name="product_name" value="<%=product_name[i]%>"></td>
+						<td>상품 개수<%=select_quantity[i]%> | <input type="hidden" name="quantity" value="<%=select_quantity[i]%>"></td>
+						<td>상품옵션 <%=options[i]%>|<input type="hidden" name="option1" value="<%=options[i]%>"><input type="hidden" name="option1price" value="<%=option1price[i]%>"></td>
+						<td>상품가격<%=selling_price[i]%> + (<%=option1price[i]%>) |<input type="hidden" name="selling_price" value="<%=selling_price[i]%>"></td>
+						<td>배송비 <%=delivery_charge[i]%> <input type="hidden" name="delivery_charge" value="<%=delivery_charge[i]%>"></td>
+					</tr>
+				</table>
+		</div>
 
 <%} %>
 
@@ -95,7 +101,7 @@ function cardnumsum(){
 <div id="d">
 <table>
 <tr><td>계좌이체 : 우리은행 1002 537 480416 전의진</td></tr>
-<tr><td>총 결제 금액:<%=product_total%></td></tr>
+<tr><td> 상품:<%=product_total%>|배송비:<%=delivery_total%>|총 결제 금액:<%=total_hap%></td></tr>
 <tr><td>입금 계좌 : <input type="text" name="account"></td></tr>
 <tr><td>예금주 :   <input type="text" name="account_name"></td></tr>
 </table>
@@ -131,10 +137,10 @@ function cardnumsum(){
 <input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
 </td></tr>
 <tr><td>상품 금액:<%=product_total%>
-<input type="hidden" name="" value="<%=product_total%>">
+<input type="hidden" name="product_total" value="<%=product_total%>">
 </td></tr>
 <tr><td>배송비:<%=delivery_total%>
-<input type="hidden" name="" value="<%=delivery_total%>">
+<input type="hidden" name="delivery_total" value="<%=delivery_total%>">
 </td></tr>
 <tr><td>총 결제 금액:<%=total_hap%>
 <input type="hidden" name="total_money" value="<%=total_hap%>">
@@ -152,7 +158,6 @@ function cardnumsum(){
 <tr><td><input type="text" name="Recipient">수령인</td></tr>
 <tr><td><input type="text" name="demand">요구사항</td></tr>
 </table>
-<input type="hidden" name="lw_salesnum">
 <!-- 결제 방법 체크 -->
 <script>
 chack_buy();

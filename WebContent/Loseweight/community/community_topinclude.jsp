@@ -55,7 +55,7 @@ function loginshow() {
 		$(window).scroll(function() { 
 			var scroll = $(window).scrollTop();
 			//console.log(scroll);
-			if (scroll >= 200) {
+			if (scroll >= 0) {
 				//console.log('a');
 				$(".Opacity_box").addClass(".top_in_scrollchange");
 				$(".mainlogo_box").addClass("top_in_delete_logo");

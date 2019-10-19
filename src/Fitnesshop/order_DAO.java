@@ -34,13 +34,13 @@ public class order_DAO {
 		return ds.getConnection();
 	}
 	
-	public void userdatein(String product_names,String img0,int total_money,int payment,String addr,String Recipient,String demand,String lw_id,Timestamp order_time) throws Exception {
+	public void userdatein(String product_names,String img0,int total_money,int payment,String addr,String Recipient,String demand,String lw_id,Timestamp order_time,int product_total,int delivery_total) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql="insert into order_obj(product_names,img0,total_money,payment,addr,Recipient,demand,"
-				+ "lw_id,order_time) values(?,?,?,?,?,?,?,?,?)";
+				+ "lw_id,order_time,product_total,delivery_total) values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			
@@ -54,6 +54,8 @@ public class order_DAO {
 			pstmt.setString(7,demand);
 			pstmt.setString(8,lw_id);
 			pstmt.setTimestamp(9,order_time);
+			pstmt.setInt(10,product_total);
+			pstmt.setInt(11,delivery_total);
 			pstmt.executeUpdate();		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -94,7 +96,7 @@ public class order_DAO {
 	
 }
 	
-	public List<order_DTO> jumoon(String lw_id) throws Exception {
+	public List<order_DTO> jumoon(String lw_id,String mincalendar,String maxcalendar) throws Exception {
 		List<order_DTO> list = new ArrayList<>();
 		//DTO 값을 리스트에 저장하려 빈 리스트를 만듭니다.
 		  Connection conn = null;
@@ -102,8 +104,10 @@ public class order_DAO {
 	        ResultSet rs= null;
 		try{
 		     conn = getConnection();			     
-			 pstmt = conn.prepareStatement("select * from order_obj where lw_id=?");
+			 pstmt = conn.prepareStatement("select * from order_obj where lw_id=? and order_time between ? and ? ORDER BY ordernum DESC");
 			 pstmt.setString(1,lw_id);
+			 pstmt.setString(2,mincalendar);
+			 pstmt.setString(3,maxcalendar);
 			 rs = pstmt.executeQuery();
 			 //값을 찾아 쿼리 업데이트
 			
@@ -114,6 +118,8 @@ public class order_DAO {
 					DTO.setProduct_names(rs.getString("product_names"));
 					DTO.setImg0(rs.getString("img0"));
 					DTO.setTotal_money(rs.getInt("total_money"));
+					DTO.setProduct_total(rs.getInt("product_total"));
+					DTO.setDelivery_total(rs.getInt("delivery_total"));
 					DTO.setPayment(rs.getInt("payment"));
 					DTO.setAddr(rs.getString("addr"));
 					DTO.setRecipient(rs.getString("recipient"));
@@ -154,6 +160,8 @@ public class order_DAO {
 					DTO.setProduct_names(rs.getString("product_names"));
 					DTO.setImg0(rs.getString("img0"));
 					DTO.setTotal_money(rs.getInt("total_money"));
+					DTO.setProduct_total(rs.getInt("product_total"));
+					DTO.setDelivery_total(rs.getInt("delivery_total"));
 					DTO.setPayment(rs.getInt("payment"));
 					DTO.setAddr(rs.getString("addr"));
 					DTO.setRecipient(rs.getString("recipient"));

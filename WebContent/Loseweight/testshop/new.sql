@@ -86,7 +86,9 @@ create table order_obj(
 	ordernum int not null primary key auto_increment,      /*구매 번호*/
 	product_names varchar(30) not null,					   /*총 상품 이름*/
 	img0 text not null,									   /*대표 이미지 1개 상품 이미지*/
-	total_money int not null,							   /*총 가격*/				     
+	total_money int not null,							   /*총 가격*/			
+	product_total int not null,							   /*총 상품*/		
+	delivery_total int not null,							   /*총 배송비*/		
 	payment	int not null,								   /*결제 방법*/
 	addr varchar(50) not null,  						   /*배송지 */
 	Recipient varchar(30) not null,						   /*수령인*/
@@ -118,13 +120,19 @@ create table sangpum(
 		ordernum int not null,							  /*참조키  = 구매 번호*/
 		lw_salesnum int(11) not null,
 		img0 text not null,
-		lw_id varchar(30) not null
+		lw_id varchar(30) not null,
+		product_name varchar(30) not null, /*제품명*/
+		selling_price int not null, /*판매가*/
+		delivery_charge int not null, /*배송비*/
+		quantity int not null,  /*수량*/
+		option1 varchar(30) not null,
+		option1price int not null,
+		orderstatus int default 0 not null
 )
-select * from sangpum
-desc lw_users;
+select * from order_obj where lw_id='admin' and order_time between '2000-01-01' and '2099-12-31'
+select * from sangpum  /*상품명 이름 옵션/옵션가격 주문일자 주문번호 주문금액(수량) 주문상태 */
 select * from order_obj
 drop table sangpum;
-drop table sanpum;
 drop table order_obj;
 
 select * from lw_users;

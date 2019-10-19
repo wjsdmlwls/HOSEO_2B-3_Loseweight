@@ -35,32 +35,29 @@ if(session.getAttribute("id")!=null){
 <title></title>
 </head>
 <body>
-
 <%if(id!=""){%>
-	<%for(int i=0; orderList.size()>i; i++ ){
-		order = orderList.get(i);
-	%>
-		<a href="jusantest.jsp?ordernum=<%=order.getOrdernum()%>" onclick="" id="<%=order.getOrdernum()%>">
-		<%=order.getProduct_names()%><br></a><br>
-		
-		<% 
-		int ordernum = order.getOrdernum();	
-		
-		List<sanpum_DTO> orderList2 = new ArrayList<>();
-		sanpum_DAO db2 = new sanpum_DAO();
-		orderList2 = db2.testsang(ordernum,id); 
-		%>
-		
-		<%for(int d=0; orderList2.size()>d; d++ ){
-				sanpum = orderList2.get(d);
-			%>
-			<%=sanpum.getObj_order_num()%><br>  
-			<%=sanpum.getLw_id()%><br>
-			<img src="<%=sanpum.getImg0()%>" width="100px;" height="100px;"><br>
-			<%} %>
-	<%} %>
+<%for(int i=0; orderList.size()>i; i++ ){
+	order = orderList.get(i);
+%>
+<a href="jusantest.jsp?ordernum=<%=order.getOrdernum()%>" onclick="" id="<%=order.getOrdernum()%>">
+<%=order.getProduct_names()%><br></a><br>
+<% 
+int ordernum = order.getOrdernum();	
+
+List<sanpum_DTO> orderList2 = new ArrayList<>();
+sanpum_DAO db2 = new sanpum_DAO();
+orderList2 = db2.testsang(ordernum,id); 
+%>
+<%for(int d=0; orderList2.size()>d; d++ ){
+	sanpum = orderList2.get(d);
+%>
+<%=sanpum.getObj_order_num()%><br>  
+<%=sanpum.getLw_id()%><br>
+<img src="<%=sanpum.getImg0()%>" width="100px;" height="100px;"><br>
 
 
+<%} %>
+<%} %>
 <%}else{ %>
 로그인을해라 이자 슥아
 <%} %>

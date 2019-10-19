@@ -231,6 +231,7 @@ function basket_check(){
 	}
 	
 }
+
 $( document ).ready( function() {
 	var jbOffset = $( '.shop_contents' ).offset(); /*여기가 스크롤 다운시 base가 됨*/
 		$( window ).scroll( function() {
@@ -514,7 +515,7 @@ $( document ).ready( function() {
 		</div>		
 	</form>	
 	</div>
-	<div  class="product-etc target">
+	<div  class="product-etc target" id="3">
 		<h5 class="prod-delivery-return-policy-title">배송정보</h5>
 		<table class="prod-delivery-return-policy-table">
 		    <colgroup>

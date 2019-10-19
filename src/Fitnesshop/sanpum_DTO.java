@@ -6,6 +6,7 @@ public class sanpum_DTO {
 	
 	private int lw_salesnum; 
 	private int quantity;   /*수량*/
+	private int selling_price;   /*수량*/
 	private String product_name;
 	private int delivery_charge; /*배송비*/
 	private String img0; 
@@ -16,6 +17,20 @@ public class sanpum_DTO {
 	private String option3; 
 	private int option3price;
 	private int obj_order_num;
+	private int orderstatus;
+	
+	public int getOrderstatus() {
+		return orderstatus;
+	}
+	public void setOrderstatus(int orderstatus) {
+		this.orderstatus = orderstatus;
+	}
+	public int getSelling_price() {
+		return selling_price;
+	}
+	public void setSelling_price(int selling_price) {
+		this.selling_price = selling_price;
+	}
 	
 	public int getObj_order_num() {
 		return obj_order_num;

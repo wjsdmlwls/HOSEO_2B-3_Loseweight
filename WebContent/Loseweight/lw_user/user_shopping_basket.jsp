@@ -275,6 +275,7 @@ font-size: 12px;
 							   
 							   if(document.getElementById("selling<%=i%>").value && document.getElementById("quantity<%=i%>").value){
 						  document.getElementById("total<%=i%>").value = parseInt(document.getElementById("selling<%=i%>").value) * parseInt(document.getElementById("quantity<%=i%>").value);
+						  document.getElementById("total_sub<%=i%>").value = document.getElementById("total<%=i%>").value
 						  document.getElementById("delivery_total").value=parseInt(document.getElementById("delivery_total").value);
 						  document.getElementById("product_total").value=parseInt(document.getElementById("total<%=i%>").value)+parseInt(document.getElementById("product_total").value);
 						  document.getElementById("total_hap").value=parseInt(document.getElementById("product_total").value)+parseInt(document.getElementById("delivery_total").value);
@@ -311,7 +312,8 @@ font-size: 12px;
 			    <input type="hidden" name="options" value="<%=option1%>">
 			     <input type="hidden" name="option1price" value="<%=option1price%>">
 			    <input type="submit" class="break_basket" value="X" onClick="DeleteProcess(this.form); writeSave();"></td>
-			    <td rowspan="2" class="selling"><input type="text" class="total_input" readonly name="total<%=i%>" id="total<%=i%>" value=0>원</td><!-- 개수+가격=총가격  -->
+			    <td rowspan="2" class="selling">
+			    <input type="text" class="total_input" readonly name="total<%=i%>" id="total<%=i%>" value=0>원</td><!-- 개수+가격=총가격  -->
 			    
 			    <td rowspan="2" class="delivery"><%if(delivery_charge!=0){ %><input class="delivery_input"type="text" id="delivery<%=i%>"name="delivery<%=i%>"value="<%=delivery_charge%>"readonly>원<%
 			    }else{ %>무료<input type="hidden" id="delivery<%=i%>" name="delivery<%=i%>"value="0"readonly><%} %></td>	<!-- 배송비  -->
@@ -320,16 +322,16 @@ font-size: 12px;
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
 					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
-					<option value="<%=select_quantity %>" cost_value<%=i%>="<%=select_quantity %>"selected><%=select_quantity%></option>
-					<option value="1" cost_value<%=i%>="1">1</option>
-					<option value="2" cost_value<%=i%>="2">2</option>
-					<option value="3" cost_value<%=i%>="3">3</option>
-					<option value="4" cost_value<%=i%>="4">4</option>
-					<option value="5" cost_value<%=i%>="5">5</option>
-					<option value="6" cost_value<%=i%>="6">6</option>
-					<option value="7" cost_value<%=i%>="7">7</option>
-					<option value="8" cost_value<%=i%>="8">8</option>
-					<option value="9" cost_value<%=i%>="9">9</option>
+						<option value="<%=select_quantity %>" cost_value<%=i%>="<%=select_quantity %>"selected><%=select_quantity%></option>
+						<option value="1" cost_value<%=i%>="1">1</option>
+						<option value="2" cost_value<%=i%>="2">2</option>
+						<option value="3" cost_value<%=i%>="3">3</option>
+						<option value="4" cost_value<%=i%>="4">4</option>
+						<option value="5" cost_value<%=i%>="5">5</option>
+						<option value="6" cost_value<%=i%>="6">6</option>
+						<option value="7" cost_value<%=i%>="7">7</option>
+						<option value="8" cost_value<%=i%>="8">8</option>
+						<option value="9" cost_value<%=i%>="9">9</option>
 					</select><!-- 수량  -->
 					<input type="hidden" name="select_quantity" id="quantityss<%=i%>">
 				</td>
@@ -341,6 +343,9 @@ font-size: 12px;
 					<input name="lw_salesnum" value="<%=lw_salesnum%>">
 					<input name="pointplus" value="<%=pointplus%>">
 					<input type="hidden" name="lw_salesnum2" value="<%=lw_salesnum%>">
+					
+					<input type="hidden" name="total" id="total_sub<%=i%>" value="0">
+					<input type="hidden" name="delivery" value="<%=delivery_charge%>">
 				</td>
 			</tr>
 		<%

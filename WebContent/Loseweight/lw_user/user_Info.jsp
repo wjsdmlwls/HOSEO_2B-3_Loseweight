@@ -67,7 +67,6 @@
 </head>
 <!-- stlye css -->
 <script type="text/javascript" src="vcheck.js">
-	
 </script>
 <script type="text/javascript">
 	var openWin;

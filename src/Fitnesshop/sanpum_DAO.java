@@ -36,8 +36,8 @@ public class sanpum_DAO {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql="insert into sangpum(ordernum,lw_salesnum,img0,lw_id)"
-					+ " values(?,?,?,?)";
+			String sql="insert into sangpum(ordernum,lw_salesnum,img0,lw_id,product_name,selling_price,quantity,option1,option1price,delivery_charge)"
+					+ " values(?,?,?,?,?,?,?,?,?,?)";
 			try {
 				conn = getConnection();
 				
@@ -46,6 +46,13 @@ public class sanpum_DAO {
 				pstmt.setInt(2,sanpum_DTO.getLw_salesnum());
 				pstmt.setString(3,sanpum_DTO.getImg0());
 				pstmt.setString(4,sanpum_DTO.getLw_id());
+				
+				pstmt.setString(5,sanpum_DTO.getProduct_name());
+				pstmt.setInt(6,sanpum_DTO.getSelling_price());
+				pstmt.setInt(7,sanpum_DTO.getQuantity());
+				pstmt.setString(8,sanpum_DTO.getOption1());
+				pstmt.setInt(9,sanpum_DTO.getOption1price());
+				pstmt.setInt(10,sanpum_DTO.getDelivery_charge());
 				pstmt.executeUpdate();		
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -79,6 +86,12 @@ public class sanpum_DAO {
 						DTO.setOrdernum(rs.getInt("ordernum"));			
 						DTO.setImg0(rs.getString("img0"));						
 						DTO.setLw_id(rs.getString("lw_id"));					
+						DTO.setProduct_name(rs.getString("product_name"));				
+						DTO.setSelling_price(rs.getInt("selling_price"));			
+						DTO.setQuantity(rs.getInt("quantity"));					
+						DTO.setOption1(rs.getString("option1"));				
+						DTO.setOption1price(rs.getInt("option1price"));					
+						DTO.setDelivery_charge(rs.getInt("delivery_charge"));				
 						list.add(DTO);
 						//빈 리스트에 값들을 전부 저장
 					}while(rs.next());
