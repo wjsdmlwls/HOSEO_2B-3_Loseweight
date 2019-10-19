@@ -16,18 +16,14 @@
 	String lw_id = request.getParameter("lw_id");
 	int glenum = Integer.parseInt(request.getParameter("glenumpost"));
 	
-		BF_DAO boardDAO = new BF_DAO();
+	Fitnesshop_DAO boardDAO = new Fitnesshop_DAO();
 	
 	article.setLw_id(lw_id);
-	article.setGlenum(glenum);
-	article.setRecontent(recontent2);
+	article.setGlenum(glenum); 
+	article.setRecontent(recontent2); 
 	
-	Fitnesshop_DAO.updatereplyArticle2(article); 
-	
-	int num=article.getNum();
-
+	boardDAO.updatereplyArticle2(article);   
 
     response.sendRedirect("Fitness_shop_list.jsp");
 %>
 
-<%=glenum%>

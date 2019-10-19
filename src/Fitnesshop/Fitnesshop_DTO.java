@@ -27,17 +27,24 @@ public class Fitnesshop_DTO {
 	private int option2price;
 	private String option3;
 	private int option3price;
-	
-	
-	
-	
-	
+
 	private Timestamp write_date;
 	private String lw_id;
 	private String passwd;
-	
+	//댓글
+	private int glenum;
+	private String recontent;
+	private Timestamp reg_date;
+	private int star;
 	
 
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
+	
 	public int getCost() {
 		return cost;
 	}
@@ -202,5 +209,24 @@ public class Fitnesshop_DTO {
 		this.lw_id = lw_id;
 	}
 
+	
+	public int getGlenum() {
+		return glenum;
+	}
+	public String getRecontent() {
+		return recontent;
+	}
+	public Timestamp getReg_date() {
+		return reg_date;
+	}
+	public void setGlenum(int glenum) {
+		this.glenum = glenum;
+	}
+	public void setRecontent(String recontent) {
+		this.recontent = recontent;
+	}
+	public void setReg_date(Timestamp reg_date) {
+		this.reg_date = reg_date;
+	}
 	
 }

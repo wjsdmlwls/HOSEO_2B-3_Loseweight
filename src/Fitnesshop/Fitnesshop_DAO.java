@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.Context;
@@ -504,5 +505,94 @@ public class Fitnesshop_DAO {
     	}	
 		
 	}
-
+	//댓글
+	
+	public void replyArticle(Fitnesshop_DTO article) throws Exception {
+		Connection conn = null;
+	    PreparedStatement pstmt = null;  
+		try {
+		 
+	    conn = getConnection();
+		 
+	 	pstmt = conn.prepareStatement("insert into fitness_shop_re(lw_salesnum,lw_id,reContent,star,reg_date) values(?,?,?,?,?)");
+		pstmt.setInt(1, article.getLw_salesnum());
+		pstmt.setString(2, article.getLw_id());
+		pstmt.setString(3, article.getRecontent());
+		pstmt.setInt(4, article.getStar());
+		pstmt.setTimestamp(5, article.getReg_date());
+		pstmt.executeUpdate();
+		//DTO에 값을 전달함
+	}catch (SQLException e) {
+		throw new RuntimeException(e);
+	  }finally {
+          
+          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+      }	
+	}
+	//삭제
+	public void deletereplyArticle(Fitnesshop_DTO article)throws Exception {
+		 Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        try {
+		 conn = getConnection();
+		 
+		 	pstmt = conn.prepareStatement("delete from fitness_shop_re where glenum=?");
+		 	pstmt.setInt(1, article.getGlenum());
+			pstmt.executeUpdate();
+	        }catch (SQLException e) {
+	    		throw new RuntimeException(e);
+	  	  }finally {
+	         
+	          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }	
+	  	}
+	//수정
+	public void updatereplyArticle2(Fitnesshop_DTO article)throws Exception {
+		 Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        try {
+		 conn = getConnection();
+		 
+		 	pstmt = conn.prepareStatement("update fitness_shop_re set Recontent=? and star=? where glenum=? ");
+		 	pstmt.setString(1, article.getRecontent());
+		 	pstmt.setInt(2, article.getStar());
+		 	pstmt.setInt(3, article.getGlenum());
+			pstmt.executeUpdate();
+	        }catch (SQLException e) {
+	    		throw new RuntimeException(e);
+	  	  }finally {
+	          
+	          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	      }	
+	  	}
+	
+	public int starcount() throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int conut = 0;
+		String sql="select count(star) from fitness_shop_re";
+		
+		try {
+			
+		conn = getConnection();
+		pstmt =conn.prepareStatement(sql); 
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getInt(1);
+		}
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		if(conn!=null) try {conn.close();} catch(SQLException e) {}
+	}return conut;
+	
+}
 }

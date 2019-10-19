@@ -46,12 +46,14 @@ create table Fitness_shop_re(
     glenum int not null primary key auto_increment,  
     lw_salesnum int(11) not null,			     
     lw_id varchar(50) not null,				
-    reContent text not null,				
+    reContent text not null,
+    star int(5),
     reg_date datetime default '00-00-00 00:00' not null,				    
     FOREIGN KEY (lw_salesnum) REFERENCES Fitness_shop(lw_salesnum) ON DELETE CASCADE ON UPDATE RESTRICT,
     FOREIGN KEY (lw_id) REFERENCES lw_users(lw_id) ON DELETE CASCADE ON UPDATE RESTRICT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
+drop table Fitness_shop_re;
 select * from shopping_basket
 <!--shoping cart-->
 create table shopping_basket(
