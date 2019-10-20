@@ -16,7 +16,9 @@
                
           		String directory = application.getRealPath("/img/");
           		String files[] = new File(directory).list();
-%>
+       		
+     			Fitnesshop_DAO stars = Fitnesshop_DAO.getInstance(); 
+				int starcount = stars.starcount(); %>
 <%!//댓글기능 date에도 사용 
     int pageSize = 10;
     SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -70,36 +72,6 @@
 	   Fitnesshop_DTO article =  dbPro.getArticle(lw_salesnum);
        count = dbPro.getArticleCount(); 
 	  
-/*
-//ip불러오는부분
-	  InetAddress inet = InetAddress.getLocalHost();
-	  String svrIP = inet.getHostAddress();
-	  
-		//조회수 중복 체크 부분
-		Cookie[] cookieFromRequest= request.getCookies();
-		String cookieValue = null;
-		for(int i = 0; i<cookieFromRequest.length;i++){
-			cookieValue = cookieFromRequest[0].getValue();
-		}
-	 	// 쿠키 세션 입력
-		if (session.getAttribute(num+":cookie") == null) {
-		 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
-		}else {
-			session.setAttribute(num+":cookie ex", session.getAttribute(num+":cookie"));
-			if (!session.getAttribute(num+":cookie").equals(num + ":" + cookieValue )) {
-			 	session.setAttribute(num+":cookie", num + ":" + cookieValue);
-			}
-		}
-		article.setNum(num);
-		article = dbPro.getArticle(num);
-		
-	 	// 조회수 카운트
-	 	if (!session.getAttribute(num+":cookie").equals(session.getAttribute(num+":cookie ex"))) {
-	 		dbPro.updateBoardreadcount(num);	
-		 	article.setReadcount(article.getReadcount() + 1);
-	 	} 
-	 	*/
-
 	//reply search
 	jekimDB usedb = new jekimDB();
 	usedb.connect();
@@ -158,22 +130,14 @@ $(function() {
 	
 });
 function  sendProcess(f){
-	f.action="fitness_shop_replyedelete.jsp";
+	f.action="Fitness_shop_replyedelete.jsp";
     f.submit();      
     
 }
 function  sendedit(f){
-	f.action="fitness_shop_replyedit.jsp";
+	f.action="Fitness_shop_replyedit.jsp";
     f.submit();      
     
-}
-
-
-
-function myFunction(str) {
-
-	
-	document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
 }
 
 function sum(count){
@@ -368,7 +332,7 @@ $( document ).ready( function() {
 						</li>
 					</ul>
 			</form>
-						<form method="post" name="basketforms" class="basket_form"  onsubmit="return basket_check();" action="shopping_basket_Pro.jsp">
+		<form method="post" name="basketforms" class="basket_form"  onsubmit="return basket_check();" action="shopping_basket_Pro.jsp">
 		<input name="link"value="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>">
 		<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
 		<input name="lw_id" value="<%=id%>">
@@ -421,16 +385,28 @@ $( document ).ready( function() {
 			</div>
 		
 		<div class="reply_box target" id="2">
-		<form  class="reply_contents" action = "fitness_shop_reply.jsp" method="post" name="replyform">
+		<form  class="reply_contents" action ="Fitness_shop_reply.jsp" method="post" name="replyform">
 		<div style="display:none">
 			<input name="lw_id" value="<%=id%>">
 			<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
 			<input name="pageNum" value="<%=pageNum%>">
 		</div>
 		<%if(id!=null){%>
+	
 		<div class="reply_box_centent">
+		
+			
 			<textarea name="recontent" id="recontent" cols="110" rows="7"></textarea>
 			<input type="submit" class="reply_button" value="상품평 등록">
+			<p>
+			<select name="star" style="float:left; margin-left:64px; margin-top:-10px; width:100px;height:30px;" >
+			<option value="1">★</option>
+			<option value="2">★★</option>
+			<option value="3">★★★</option>
+			<option value="4">★★★★</option>
+			<option value="5">★★★★★</option>
+			</select>		
+			</p>
 		</div>	
 		</div>
 			<%}else{ %>
@@ -443,32 +419,42 @@ $( document ).ready( function() {
 	</div>
 	
 	<div style="padding-bottom:60px;">
-	
-		<form method="post" action="bfboard_replyedit.jsp" onsubmit="return writeSave()">
+		<form method="post" action="fitness_shop_replyedit.jsp" onsubmit="return writeSave()">
 			<div style="display:none">
 				<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
 				<input name="pageNum" value="<%=pageNum%>">
 			</div>
 			<!-- 댓글 부분 -->
 			<table style="margin:0 auto;width:1000px"> 
-			 
-						  			
+				
+    <%int sumstar = 0; %>				
 	<%if(replylist.next()){
 		do{
-		String num2=replylist.getString("num");
+		String num2=replylist.getString("lw_salesnum");
 		String glenum2=replylist.getString("glenum");
 		String lw_id=replylist.getString("lw_id");
 		String recontent=replylist.getString("recontent");
+		int star=replylist.getInt("star");
 		Timestamp reg_date=replylist.getTimestamp("reg_date");
-		%>
-		
+		%>  
+		<% sumstar= sumstar+star; %>
+			
 		 <tr height="50" >
 			    <td width="600"><input style="border:none; font-weight:bold; font-size:16px;width:60px;" name="lw_id" value="<%=lw_id%>" readonly></blod><a style="font-size:12px;"><%= sdf.format(reg_date)%></a></td>
 			    </tr>
 			    <tr>
 			    <td width="250" >
+			    
 			    <input type="text" class="replyeditleft1"style="border: none;display:block; " name="recontent" id="reply<%=glenum2%>_1" value="<%=recontent%>"readonly>			    
-			    <input type="text" class="replyeditleft2" style="display:none; width:100%; height:60px;" id="reply<%=glenum2%>_2" value="<%=recontent%>">		    
+			    <input type="text" class="replyeditleft2" style="display:none; width:100%; height:60px;" id="reply<%=glenum2%>_2" value="<%=recontent%>">
+			    <p style="font-size:12px;">
+		         평점 :<%if(star==1){ %> ★ 
+			     <%}else if(star==2){ %> ★★
+			     <%}else if(star==3){ %> ★★★
+			     <%}else if(star==4){ %> ★★★★
+			     <%}else if(star==5){ %> ★★★★★
+			     <%} %> 			    
+			    </p>		    
 			    <button id="all_button" class="replyedit_submit" style="display:none; float:right;"  onClick="sendedit(this.form); writeSave();"onclick="replyedit()">등록</button>
 			    <input type="hidden"class="glenumname" value="<%=glenum2%>">
 			    
@@ -491,7 +477,12 @@ $( document ).ready( function() {
 		 
 			<div class="noreple">상품평이 없습니다</div>
 		
-		<%}%>	
+		<%}%>
+		<%float star1 = sumstar;
+		  float star2 = starcount;
+		  float staravg =star1/star2;
+		%>
+		 <p style="margin:0 auto;font-size:12px;width:1000px;">상품 평점<%=Math.round(staravg*100)/100.0%></p>
 	</table>
 				
 	<div class="btn_box">
