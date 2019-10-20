@@ -10,7 +10,27 @@ public class order_DTO {
 	private int cardnum;					   /*카드번호*/
 	private int lw_point;					   /*사용 포인트*/
 	private int payment;					   /*결제 방법*/
-	private String addr;				  	   /*배송지 */
+	private String lw_zipcode;				  	   /*배송지 */
+	private String lw_addr1;				  	   /*배송지 */
+	public String getLw_zipcode() {
+		return lw_zipcode;
+	}
+	public void setLw_zipcode(String lw_zipcode) {
+		this.lw_zipcode = lw_zipcode;
+	}
+	public String getLw_addr1() {
+		return lw_addr1;
+	}
+	public void setLw_addr1(String lw_addr1) {
+		this.lw_addr1 = lw_addr1;
+	}
+	public String getLw_addr2() {
+		return lw_addr2;
+	}
+	public void setLw_addr2(String lw_addr2) {
+		this.lw_addr2 = lw_addr2;
+	}
+	private String lw_addr2;				  	   /*배송지 */
 	private String Recipient;				   /*수령인*/
 	private String demand;					   /*요구사항*/
 	private int orderstatus;				   /*결제 상태*/
@@ -56,9 +76,7 @@ public class order_DTO {
 	public int getPayment() {
 		return payment;
 	}
-	public String getAddr() {
-		return addr;
-	}
+
 	public String getRecipient() {
 		return Recipient;
 	}
@@ -97,9 +115,6 @@ public class order_DTO {
 	}
 	public void setPayment(int payment) {
 		this.payment = payment;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
 	}
 	public void setRecipient(String recipient) {
 		Recipient = recipient;

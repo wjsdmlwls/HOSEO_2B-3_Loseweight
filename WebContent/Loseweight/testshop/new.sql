@@ -90,7 +90,9 @@ create table order_obj(
 	product_total int not null,							   /*총 상품*/		
 	delivery_total int not null,							   /*총 배송비*/		
 	payment	int not null,								   /*결제 방법*/
-	addr varchar(50) not null,  						   /*배송지 */
+	lw_zipcode varchar(50) not null,  						   /*우편번호 */
+	lw_addr1 varchar(50) not null,  						   /*배송지 */
+	lw_addr2 varchar(50) not null,  						   /*상세 배송지 */
 	Recipient varchar(30) not null,						   /*수령인*/
 	demand varchar(255) null,							   /*요구사항*/	  
 	lw_id varchar(50) not null,							   /*구매자 아이디*/

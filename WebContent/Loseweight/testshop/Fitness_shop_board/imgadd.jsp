@@ -61,8 +61,10 @@
 			Enumeration<?> files = multi.getFileNames();
 			String file1 = (String) files.nextElement();
 			uploadimg1 = multi.getFilesystemName(file1);
+			
 			String file2 = (String) files.nextElement();
 			uploadimg2 = multi.getFilesystemName(file2);
+			
 			String file3 = (String) files.nextElement();
 			uploadimg3 = multi.getFilesystemName(file3);
 		}
@@ -149,6 +151,7 @@
 	function setParentText(){
 		if (document.getElementById("img0").value!=""){
         	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:1000px"src="<%=upimgpath1%>">');
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:1000px"src="<%=upimgpath2%>">');
 			window.close();
 		} else {
 			alert("파일을 업로드해주세요");
@@ -177,7 +180,7 @@ font-size: 14px;
 	<div class="div_body">
 	<div style="width:100%;height: 50px;;background:#faafaf"><h4 style="padding-top: 10;color: white; padding-left: 10px;">이미지 업로드</h4>
 	</div>
-						<form method="post" name="writeform" style="margin-top: 80px;"
+		<form method="post" name="writeform" style="margin-top: 80px;"
 						    onsubmit="return writeSave()">
 						
 						<table class="lw_board" style="margin:0 auto;">
@@ -187,7 +190,10 @@ font-size: 14px;
 							  <td>
 							  <%if (uploadimg1!=""){ %>
 							 <img style="width:250px;height:160px"src="<%=upimgpath1 %>"><br><input id="img0" name="img0" value="<%=uploadimg1 %>" style="border:none;display:none">
+							  <img style="width:250px;height:160px"src="<%=upimgpath2 %>"><br><input id="img1" name="img1" value="<%=uploadimg2 %>" style="border:none;display:none">
+							
 							 <%} else{%><input id="img0" name="img0"value="" style="border:none">
+							 <input id="img1" name="img1" value="<%=uploadimg2%>" style="border:none;">
 							 <%} %>
 						
 							  </td>
@@ -195,7 +201,7 @@ font-size: 14px;
 						  <tr>
 						  <td style="display:none">
 						  <%if (uploadimg1!=""){ %>
-						  <input id="uploadimg1" value="<%=upimgpath1 %>"><br>
+						  <input id="uploadimg1" value="<%=upimgpath1 %>"><input id="uploadimg2" value="<%=upimgpath2 %>"><br>
 						  <%}else{ %> <input id="uploadimg1" value=""><br>
 						  <% }%>
 						  </td>

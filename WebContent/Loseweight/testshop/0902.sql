@@ -37,7 +37,7 @@ lw_id varchar(12) not null
 
 desc Fitness_shop
 
-select * from Fitness_shop
+select * from Fitness_shop where big_category like '%기구%' and middle_category like '%부위별운동기구%' and small_category like '%%'
 drop table Fitness_shop
 desc bf_board;
 insert into Fitness_shop(product_code,cost,selling_price,product_name,quantity,big_category,middle_category,small_category,exposure,salestatus,option1,option1price,write_date,lw_id,passwd) values("test",777,344,"www",3,"1test","2test","3test",0,0,"0",22,"2019-09-05","admin","admin")
@@ -112,6 +112,7 @@ create table order_obj(
 	lw_id varchar(50) not null,							/*구매자 아이디*/
 	order_time datetime default '00-00-00 00:00' not null /*구매 날짜*/
 )
-select * from Fitness_shop where (write_date between '2000-01-01' and '2099-12-31') and (option1 like "빨강")limit 0,5
+select * from Fitness_shop order by lw_salesnum desc where (write_date between '2000-01-01' and '2099-12-31') and (option1 like "빨강")limit 0,5
 select * from Fitness_shop where write_date between '2000-01-01' and '2099-12-31' and option1 like "빨강" limit 5,5;
-select * from Fitness_shop where write_date between SYSDATETIME();
+select * from Fitness_shop where write_date between SYSDATETIME(); 
+select * from Fitness_shop order by product_name desc

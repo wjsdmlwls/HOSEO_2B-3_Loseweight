@@ -154,4 +154,151 @@ public class UserDAO {
 
 	}
 
+	public String pupdate(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_name from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdatephone(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_phone from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdateemail1(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_e_mail1 from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdateemail2(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_e_mail2 from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdateaddr1(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_addr1 from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdateaddr2(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_addr2 from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
+	public String pupdatezipcode(String lw_id) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String conut = "";
+		String sql="select lw_zipcode from lw_users where lw_id=?";	
+		try {			
+		pstmt =conn.prepareStatement(sql); 
+		pstmt.setString(1,lw_id);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			conut = rs.getString(1);
+		}	}
+		catch(Exception e) {
+		e.printStackTrace();
+				}finally {	
+		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		
+				}return conut;
+
+	}
 }

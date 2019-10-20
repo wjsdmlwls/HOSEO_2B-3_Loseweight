@@ -30,7 +30,9 @@
     
     
     int payment = Integer.parseInt(request.getParameter("payment"));
-    String addr = request.getParameter("addr");
+    String lw_zipcode = request.getParameter("lw_zipcode");
+    String lw_addr1 = request.getParameter("lw_addr1");
+    String lw_addr2 = request.getParameter("lw_addr2");
     
     String Recipient = request.getParameter("Recipient");
     String demand = request.getParameter("demand");
@@ -58,7 +60,7 @@
 <%
 //상품 테이블 insert 
 order_DAO dbPro = order_DAO.getInstance(); 
-dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw_id,order_time,product_total,delivery_total);
+dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,demand,lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode);
 
 //상품테이블과 주문내역을 연동시킬 번호
  int ordernum = dbPro.selectordernum(lw_id,order_time);
@@ -99,7 +101,9 @@ dbPro.userdatein(product_names,img0,total_money,payment,addr,Recipient,demand,lw
 <%=product_names%><br>
 <%=img0%><br>
 <%=total_money%><br>
-<%=addr%><br>
+<%=lw_addr1%><br>
+<%=lw_addr2%><br>
+<%=lw_zipcode%><br>
 <%=Recipient%><br>
 <%=demand%><br>
 <%=payment%><br><br>

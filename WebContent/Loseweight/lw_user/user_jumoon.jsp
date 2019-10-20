@@ -48,7 +48,7 @@ if(session.getAttribute("id")!=null){
 <title></title>
 <style>
 .user_shopping_ordertable{
-	margin:0 auto;
+	margin:20px auto;
 	width: 1000px;
 	text-align:center;
 }
@@ -64,21 +64,26 @@ background:#f9f9f9;
 	font-weight: bold;
     font-size: 20px;
 }
+.sub_menu3 ul li a{
+  	padding-left: 90px;
+    padding-right: 90px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
 </style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 </head>
 <body>
 <div class="div_body" >
 		<jsp:include page="../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="0"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="mypage.png"/>
-			<jsp:param name="boardname" value="회원정보"/>
+			<jsp:param name="tom" value="6"/>
+			<jsp:param name="toc" value="1"/>
+			<jsp:param name="imgs" value="byshoping.png"/>
+			<jsp:param name="boardname" value="구매내역"/>
 		</jsp:include>
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         <script>
             $(function() {
                 
@@ -124,10 +129,10 @@ background:#f9f9f9;
                     }                
                 });
             });
-</script>
-
-		<div style="width: 1000px;margin: 0 auto;">
-		<form method="post" action="user_jumoon.jsp">
+		</script>
+		
+		<div style="width: 1000px;margin: 50px auto;margin-bottom: 200px;">
+		<form method="post" action="user_jumoon.jsp" style="text-align: right;">
 			<div style="margin:0 auto; margin-top:10px;">
 			<input  style="display: none;" class="search_input" name="lw_id" value="<%=id%>">
 				주문일자

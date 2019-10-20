@@ -34,13 +34,13 @@ public class order_DAO {
 		return ds.getConnection();
 	}
 	
-	public void userdatein(String product_names,String img0,int total_money,int payment,String addr,String Recipient,String demand,String lw_id,Timestamp order_time,int product_total,int delivery_total) throws Exception {
+	public void userdatein(String product_names,String img0,int total_money,int payment,String lw_addr1,String Recipient,String demand,String lw_id,Timestamp order_time,int product_total,int delivery_total,String lw_addr2,String lw_zipcode) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql="insert into order_obj(product_names,img0,total_money,payment,addr,Recipient,demand,"
-				+ "lw_id,order_time,product_total,delivery_total) values(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into order_obj(product_names,img0,total_money,payment,lw_addr1,Recipient,demand,"
+				+ "lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			
@@ -49,13 +49,15 @@ public class order_DAO {
 			pstmt.setString(2,img0);
 			pstmt.setInt(3,total_money);
 			pstmt.setInt(4,payment);
-			pstmt.setString(5,addr);
+			pstmt.setString(5,lw_addr1);
 			pstmt.setString(6,Recipient);
 			pstmt.setString(7,demand);
 			pstmt.setString(8,lw_id);
 			pstmt.setTimestamp(9,order_time);
 			pstmt.setInt(10,product_total);
 			pstmt.setInt(11,delivery_total);
+			pstmt.setString(12,lw_addr2);
+			pstmt.setString(13,lw_zipcode);
 			pstmt.executeUpdate();		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -121,11 +123,13 @@ public class order_DAO {
 					DTO.setProduct_total(rs.getInt("product_total"));
 					DTO.setDelivery_total(rs.getInt("delivery_total"));
 					DTO.setPayment(rs.getInt("payment"));
-					DTO.setAddr(rs.getString("addr"));
+					DTO.setLw_addr1(rs.getString("lw_addr1"));
 					DTO.setRecipient(rs.getString("recipient"));
 					DTO.setDemand(rs.getString("demand"));
 					DTO.setLw_id(rs.getString("lw_id"));
 					DTO.setOrder_time(rs.getTimestamp("order_time"));
+					DTO.setLw_addr2(rs.getString("lw_addr2"));
+					DTO.setLw_zipcode(rs.getString("lw_zipcode"));
 					list.add(DTO);
 					//빈 리스트에 값들을 전부 저장
 				}while(rs.next());
@@ -163,11 +167,13 @@ public class order_DAO {
 					DTO.setProduct_total(rs.getInt("product_total"));
 					DTO.setDelivery_total(rs.getInt("delivery_total"));
 					DTO.setPayment(rs.getInt("payment"));
-					DTO.setAddr(rs.getString("addr"));
+					DTO.setLw_addr1(rs.getString("Lw_addr1"));
 					DTO.setRecipient(rs.getString("recipient"));
 					DTO.setDemand(rs.getString("demand"));
 					DTO.setLw_id(rs.getString("lw_id"));
 					DTO.setOrder_time(rs.getTimestamp("order_time"));
+					DTO.setLw_addr2(rs.getString("lw_addr2"));
+					DTO.setLw_zipcode(rs.getString("lw_zipcode"));
 					list.add(DTO);
 					//빈 리스트에 값들을 전부 저장
 				}while(rs.next());

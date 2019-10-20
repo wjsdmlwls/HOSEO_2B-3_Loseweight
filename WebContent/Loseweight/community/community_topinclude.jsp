@@ -102,7 +102,7 @@ function loginshow() {
 								<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
 								
 								<%}else{%>
-								<a href="/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp">장바구니</a>
+								<a href="/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp">주문내역</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">마이페이지</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/logout.jsp">로그아웃</a>
 								<%} %>
@@ -143,7 +143,7 @@ function loginshow() {
 							     <li style="margin-top:0;margin-left: 20px;"><a href="#">다이어트</a></li>
 							     <li style="margin-left: -20px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
 							     <li style="margin-left: -30px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
-							     <li style="margin-top:0; margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
+							     <li style="margin-top:0; margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"></a></li>
 							</ul>
 					</ul>
 				</div>
@@ -162,6 +162,7 @@ function loginshow() {
  <%if(tom.equals ("3")){ %>게시판<%}%>
  <%if(tom.equals ("4")){ %>고객센터<%}%>
  <%if(tom.equals ("5")){ %>shop<%}%>
+ <%if(tom.equals ("6")){ %>주문내역<%}%>
  
  </a>
  
@@ -203,8 +204,14 @@ function loginshow() {
 			 <li><a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'>식품</a></li>
 			     <%}%>
 
-			 <%if(tom.equals ("5")){ %><%}%>
-
+			 <%if(tom.equals ("6")){ %>
+			  <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp'>장바구니</a></li>
+			 <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_jumoon.jsp'>구매목록</a></li>
+			 <%}%>
+			<%if(tom.equals ("shop")){ %>
+			 <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp'>장바구니</a></li>
+			 <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_jumoon.jsp'>구매목록</a></li>
+			 <%}%>
 	 	</ul>
 	 	 <li></li>
  	</li>
@@ -240,7 +247,7 @@ function loginshow() {
 		</div>
 		<%} %>
 		<%if(tom.equals ("4")){ %>
-		<div class='sub_menu4'>			
+		<div class='sub_menu3'>			
 						<ul>
 							<li>
 								<a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'<%if(toc.equals ("0")){ %><%}%>">공지사항</a>
@@ -252,10 +259,10 @@ function loginshow() {
 					</div>
 		<%} %>
 		<%if(tom.equals ("5")){if(!toc.equals ("not")){ %>
-		<div class='sub_menu4'>			
+		<div class='sub_menu3'>			
 						<ul>
 							<li>
-								<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'<%if(toc.equals ("0")){ %><%}%>">기구</a>
+								<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'<%if(toc.equals ("0")){ %><%}%>">SHOP</a>
 							</li>
 							<li>
 								<a href='/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp'<%if(toc.equals ("1")){ %><%}%>">식품 </a>
@@ -263,7 +270,21 @@ function loginshow() {
 						</ul>
 					</div>
 		<%}}%>
+		<%if(tom.equals ("6")){ %>
+		<div class='sub_menu3' >			
+						<ul>
+							<li>
+								<a href='user_shopping_basket.jsp'<%if(toc.equals ("0")){ %><%}%>>장바구니</a>
+							</li>
+							<li>
+								<a href='user_jumoon.jsp'<%if(toc.equals ("1")){ %><%}%>>구매내역</a>
+							</li>
+						</ul>
+					</div>
+		<%} %>
+		<%if(tom.equals ("shop")){ %>
 		
+		<%} %>
 		
 				<div class="modallist">
 								<!-- signUp modal -->

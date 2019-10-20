@@ -13,8 +13,12 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String listsearch = ""; 
+	String selectcategory = ""; 
+	String selectevent = ""; 
+	String orderby = ""; 
+	String ascdesc = ""; 
     String pageNum = request.getParameter("pageNum");
-
+	
     if (pageNum == null) {
         pageNum = "1";
     }
@@ -28,6 +32,22 @@
     listsearch = request.getParameter("listsearch");
 	if(listsearch==null){
 		listsearch ="";
+	}
+	selectcategory = request.getParameter("selectcategory");
+	if(selectcategory==null){
+		selectcategory ="";
+	}
+	selectevent = request.getParameter("selectevent");
+	if(selectevent==null){
+		selectevent ="";
+	}
+	orderby = request.getParameter("orderby");
+	if(orderby==null){
+		orderby ="lw_salesnum";
+	}
+	ascdesc = request.getParameter("ascdesc");
+	if(ascdesc==null){
+		ascdesc ="desc";
 	}
 	Fitnesshop_DAO dbPro = Fitnesshop_DAO.getInstance();
     count = dbPro.getArticleCount(); 
@@ -48,10 +68,10 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String listsql1="select count(*) from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%'";
+	String listsql1="select count(*) from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%' and middle_category like '%"+selectcategory+"%'and productevent like '%"+selectevent+"%' order by "+orderby+" "+ascdesc+"  ";
 	ResultSet rs = stmt.executeQuery(listsql1);
 	
-	String listsql2="select * from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%' limit "+startRow+","+pageSize+"";
+	String listsql2="select * from Fitness_shop where "+searchcol+"  like '%"+listsearch+"%'and middle_category like '%"+selectcategory+"%' and productevent like '%"+selectevent+"%' order by "+orderby+" "+ascdesc+" limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
@@ -123,6 +143,47 @@ function fitcategory2_change(){
 	 
 	}
 </script>
+<style>
+.shop_sidemenu{
+	width: 200px;
+    float: left;
+    margin-top: 10px;
+    border: solid 1px #ccc;
+    margin-left: 100px;
+}
+.shop_sidemenu ul{
+
+}
+.shop_sidemenu ul li{
+    margin-left: -20px;
+    margin-top: 20px;
+    width: 160px;
+}
+.shop_sidemenu ul li span{
+	font-size: 15px;
+    font-weight: bold;
+}
+.shop_sidemenu ul li ul{
+	border-top: solid 1px #ccc;
+    width: 120px;
+    margin-top: 12px;
+}
+.shop_sidemenu ul li ul li{
+	font-size: 14px;
+}
+.shop_orderselect{
+	height: 30px;
+    margin-top: -30px;
+}
+.shop_orderselect ul li{
+	float:right;
+	font-size: 13px;
+    padding: 0px 5px;
+}
+.shop_orderselect_order{
+	font-weight: bold;
+}
+</style>
 <title>게시판</title>
 </head>
 <body>
@@ -140,41 +201,69 @@ function fitcategory2_change(){
 				<jsp:param name="tom" value="5"/>
 				<jsp:param name="toc" value="not"/>
 				<jsp:param name="imgs" value="shop.png"/>
-				<jsp:param name="boardname" value="기구"/>
+				<jsp:param name="boardname" value="SHOP"/>
 </jsp:include>
 
 <div class="search_bar">
 	<form method="post" action="Fitness_shop_list.jsp">
 		<div style="margin:0 auto; margin-top:10px;">
-		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='subject'>상품이름</OPTION>
-	        <OPTION value='content'>내용</OPTION>
-	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
-		<input type="image" type="submit" src="images/search.gif">
-						    	<select name="big_category" class="category"id="categoryselect1" onchange="fitcategory1_change()">
-									<option>1차 분류</option>
-									<option value="기구">기구</option>
-									<option value="식품">식품</option>
-								</select>
-									 
-								<select name="middle_category" class="category" id="categoryselect2" onchange="fitcategory2_change()">
-								</select>
-								<select name="small_category" class="category" id="categoryselect3">
-								</select>
-						    		
+						    
+		<input value="검색" type="submit">
 		</div>
 	</form>
 </div>
+		<div class="shop_sidemenu">
+		<ul>
+			<li><SPAN>이벤트</SPAN>
+				<ul>
+					<li><label for="event0"><a id="event0" href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=<%=orderby%>&ascdesc=<%=ascdesc%>&selectevent=0"><input type="checkbox" <%if(selectevent.equals("0")){ %>checked<%} %>><img src="/2019_JeonJSP/Loseweight/img/shop/new_shop.png"></a></label></li>
+					<li><a href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=<%=orderby%>&ascdesc=<%=ascdesc%>&selectevent=1"><input type="checkbox" id="event1" <%if(selectevent.equals("1")){ %>checked<%} %>><img src="/2019_JeonJSP/Loseweight/img/shop/freedelivery_shop.png"></a></li>
+					<li><a href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=<%=orderby%>&ascdesc=<%=ascdesc%>&selectevent=2"><input type="checkbox" id="event2" <%if(selectevent.equals("2")){ %>checked<%} %>><img src="/2019_JeonJSP/Loseweight/img/shop/hit_shop.png"></a></li>
+				</ul>
+			</li>
+			<li><SPAN>기구</SPAN>
+				<ul>
+					<li><a <%if (selectcategory.equals("부위별운동기구")){ %>class="shop_orderselect_order"<%}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=부위별운동기구&orderby=<%=orderby %>&ascdesc=<%=ascdesc %>&selectevent=<%=selectevent%>">부위별운동기구</a></li>
+					<li><a <%if (selectcategory.equals("웨이트기구")){ %>class="shop_orderselect_order"<%}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=웨이트기구&orderby=<%=orderby %>&ascdesc=<%=ascdesc %>&selectevent=<%=selectevent%>">웨이트기구</a></li>
+					<li><a <%if (selectcategory.equals("기타헬스용품")){ %>class="shop_orderselect_order"<%}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=기타헬스용품&orderby=<%=orderby %>&ascdesc=<%=ascdesc %>&selectevent=<%=selectevent%>">기타헬스용품</a></li>
+				</ul>
+			</li>
+			<li><SPAN ACCESSKEY=D TABINDEX=2 ONKEYPRESS="checkKey(this)" ONCliCK="disp(this.parentElement)">식품</SPAN>
+				<ul>
+					<li><a <%if (selectcategory.equals("보조식품")){ %>class="shop_orderselect_order"<%}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=보조식품&orderby=<%=orderby %>&ascdesc=<%=ascdesc %>&selectevent=<%=selectevent%>">보조식품</a></li>
+					<li><a <%if (selectcategory.equals("다이어트/미용음료")){ %>class="shop_orderselect_order"<%}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=다이어트/미용음료&orderby=<%=orderby %>&ascdesc=<%=ascdesc %>&selectevent=<%=selectevent%>">다이어트/미용음료</a></li>
+				</ul>
+			</li>
+		</ul>
+		</div>
 		<div id="img_border_main">
 		<ul class="shop_board_ul">
-	
+		
+		<div class="shop_orderselect">
+			<ul>
+				<li><a id="event0" <%if (orderby.equals("selling_price")){if(ascdesc.equals("asc")){ %>class="shop_orderselect_order"<%}}%> 
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=selling_price&ascdesc=asc&selectevent=<%=selectevent%>">낮은 가격순</a></li>
+				
+				<li><a <%if (orderby.equals("selling_price")){if(ascdesc.equals("desc")){ %>class="shop_orderselect_order"<%}}%> 
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=selling_price&ascdesc=desc&selectevent=<%=selectevent%>">높은 가격순</a></li>
+				
+				<li><a <%if (orderby.equals("lw_salesnum")){if(ascdesc.equals("desc")){ %>class="shop_orderselect_order"<%}}%>
+				href="Fitness_shop_list.jsp?pageNum=1&searchcol=product_name&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&orderby=lw_salesnum&ascdesc=desc&selectevent=<%=selectevent%>">최신 상품순</a></li>
+			</ul>
+		</div>
 	<%
 					if(listsearchresult.next()){
 								do{
 								String lw_salesnum=listsearchresult.getString("lw_salesnum");
 								String product_name=listsearchresult.getString("product_name");											
-								String product_code=listsearchresult.getString("product_code");
+								String product_code=listsearchresult.getString("product_code");										
+								int reduced_price=listsearchresult.getInt("reduced_price");
 								String product_contents=listsearchresult.getString("product_contents");	
 								int cost=listsearchresult.getInt("cost");
 								int selling_price=listsearchresult.getInt("selling_price");
@@ -195,14 +284,19 @@ function fitcategory2_change(){
 			    </div>
 			  	<div class="nameTxt"><%=product_name%></div> 
 			  	<div class="flex">
+			  		<p class="afcoin">
+			  			<%=reduced_price%>%
+			  		</p>
 			  		<p class="bfcoin">
 			  			<strong><%=cost%></strong>
 			  		</p>
-			  		<p class="afcoin">
-			  			<strong><%=selling_price%></strong>
-			  		</p>
+			  		<br>
 			  	</div>
+				  	
 			  	<div class="icon">
+			  	<p class="cfcoin">
+			  			<strong><%=selling_price%>원</strong>
+			  		</p>
 			  		<%if(productevent==1){%>
 			  		<img src="/2019_JeonJSP/Loseweight/img/shop/freedelivery_shop.png">
 			  		<%}else if(productevent==2){ %>
@@ -262,10 +356,10 @@ function fitcategory2_change(){
 	        
 	        for (int i = startPage ; i <= endPage ; i++) {  %>
 	        	<%if(i == Integer.parseInt(pageNum)){%>
-	           <a href="Fitness_shop_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="lw_salesnum<%=i %>"><div class="pageselect_num"><%= i %></div></a>
+	           <a href="Fitness_shop_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol%>&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&selectevent=<%=selectevent%>&orderby=<%=orderby%>&ascdesc=<%=ascdesc%>" id="lw_salesnum<%=i %>"><div class="pageselect_num"><%= i %></div></a>
 		          <% }
 		           else{%>
-	           <a href="Fitness_shop_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol %>&listsearch=<%=listsearch %>" id="lw_salesnum<%=i %>"><div class="pageselect_num"><%= i %></div></a>
+	           <a href="Fitness_shop_list.jsp?pageNum=<%= i %>&searchcol=<%=searchcol%>&listsearch=<%=listsearch%>&selectcategory=<%=selectcategory%>&selectevent=<%=selectevent%>&orderby=<%=orderby%>&ascdesc=<%=ascdesc%>" id="lw_salesnum<%=i %>"><div class="pageselect_num"><%= i %></div></a>
 	<%      }}
 	        	
 	        

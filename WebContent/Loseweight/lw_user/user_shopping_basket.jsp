@@ -65,11 +65,6 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/jquery.slim.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
-<script>
-	function check() {
-
-	}
-</script>
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../css/style.css">
@@ -196,14 +191,14 @@ font-size: 12px;
 <body>
 	<div class="div_body">
 		<jsp:include page="../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="0"/>
+			<jsp:param name="tom" value="6"/>
 			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="mypage.png"/>
-			<jsp:param name="boardname" value="회원탈퇴"/>
+			<jsp:param name="imgs" value="byshoping.png"/>
+			<jsp:param name="boardname" value="장바구니"/>
 		</jsp:include>
 		</div>
 		
-			<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp">
+			<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp" style="margin-top: 50px;">
 		<table class="user_shopping_baskettable">
 		<thead>
 		   		 <tr>
