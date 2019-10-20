@@ -18,6 +18,7 @@
     //마일리지
 	int lw_lpminor = Integer.parseInt(request.getParameter("lw_lpminor"));
 	int lw_lp = Integer.parseInt(request.getParameter("lw_lp"));
+	int pointplus = Integer.parseInt(request.getParameter("lw_lp_plus"));
 
 	//상세정보 리퀘스트
 	SimpleDateFormat date = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
@@ -27,7 +28,7 @@
     int total_money = Integer.parseInt(request.getParameter("total_money"));
     int product_total = Integer.parseInt(request.getParameter("product_total"));
     int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
-    int pluspoint = Integer.parseInt(request.getParameter("pluspoint"));
+    
     int payment = Integer.parseInt(request.getParameter("payment"));
     String lw_zipcode = request.getParameter("lw_zipcode");
     String lw_addr1 = request.getParameter("lw_addr1");
@@ -79,12 +80,10 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	sanpum_DTO.setOption1(option1[i]);
 	sanpum_DTO.setOption1price(Integer.parseInt(option1price[i]));
 	sanpum_DTO.setDelivery_charge(Integer.parseInt(delivery_charge[i]));
-	
-	
     dbPros.insertsanpum(sanpum_DTO);   
 }  
-	//마일리지 연산
-	user.setLw_lp(((lw_lp)-(lw_lpminor))+pluspoint); 
+//마일리지 연산
+	user.setLw_lp(((lw_lp)-(lw_lpminor))+(pointplus)); 
  	
  	UserDAO db2= UserDAO.getInstance(); 
  	db2.updatelp(user);
