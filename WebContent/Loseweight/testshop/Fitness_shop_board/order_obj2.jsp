@@ -7,26 +7,34 @@
 <%request.setCharacterEncoding("utf-8");%>
 
 <%
-String[] lw_salesnum = request.getParameterValues("lw_salesnum2");
-String[] product_name = request.getParameterValues("product_name");
-String[] img0 = request.getParameterValues("img0"); 
-String[] select_quantity = request.getParameterValues("select_quantity");
-String[] options = request.getParameterValues("options");
-String[] option1price = request.getParameterValues("option1price");
-String[] selling_price = request.getParameterValues("total");
-String[] delivery_charge = request.getParameterValues("delivery");
-<<<<<<< HEAD
-=======
-String[] pointplus = request.getParameterValues("pointplus");
 
->>>>>>> jeonPc2
-int product_total = Integer.parseInt(request.getParameter("product_total"));
-int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
-int total_hap = Integer.parseInt(request.getParameter("total_hap"));
+int lw_salesnum = Integer.parseInt(request.getParameter("lw_salesnum"));
+String product_name = request.getParameter("product_name");
+
+String img0 = request.getParameter("img0"); 
+int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+String options = request.getParameter("options");
+int option1price = Integer.parseInt(request.getParameter("option1price"));
+
+int selling_price = Integer.parseInt(request.getParameter("selling_price"));
+int delivery_charge = Integer.parseInt(request.getParameter("delivery_charge"));
+
+int pointplus = Integer.parseInt(request.getParameter("pointplus"));
+
+
+//연산 작업
+int selling  = quantity*selling_price;  //물건가격
+int sellings = quantity*(selling_price+option1price);  //물건가격
+
+int pluspoint = quantity*pointplus;  //물건가격
+
+int totals = ((quantity*selling_price)+delivery_charge);  //물건가격+배송비+옵션 가격
 
 
 
 String id= null;
+
 if(session.getAttribute("id")!=null){
 	id=(String)session.getAttribute("id");
 	}else{
@@ -35,6 +43,7 @@ if(session.getAttribute("id")!=null){
 
 UserDAO db = new UserDAO();
 int point = db.lpupdate(id);
+
 String lw_name = db.pupdate(id);
 String lw_phone = db.pupdatephone(id);
 String lw_email1 = db.pupdateemail1(id);
@@ -72,6 +81,7 @@ function chack_buy(){
 		return false;
 	}	
 }
+
 function cardnumsum(){
 	var num1 =  document.getElementById("cardnum1").value;
 	var num2 =  document.getElementById("cardnum2").value;
@@ -82,7 +92,9 @@ function cardnumsum(){
 
 	document.getElementById("rscardnum").innerHTML=(value=numsum);	
 }
+
 var openWin;
+
 function openzipcode()
 {
     // window.name = "해당페이지로 가져옴 이름"; 
@@ -248,7 +260,7 @@ function hap(){
 input {
 	border: 1px solid #ccc;
 	height:20px;
-}
+} 
 </style>
 </head>
 
@@ -263,7 +275,7 @@ input {
 				<h3>주문/결제</h3>
 			</div>
 		<div class="order_board">
-			<form method="post" action="order_pro.jsp">
+			<form method="post" action="order_pro2.jsp">
 			<div class="by_my_info"><h4>구매자 정보</h4>
 			<table class="shop_byinfomation">		
 				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
@@ -281,17 +293,8 @@ input {
 				<input type="hidden" name="lw_addr1" value="<%=lw_addr1%>" readonly>
 				<input type="hidden" name="lw_addr2" value="<%=lw_addr2%>" readonly>
 				</table>
-			</div>
-			
-		<input type="hidden" name="product_total" value="<%=product_total%>">
-		<input type="hidden" name="delivery_total" value="<%=delivery_total%>">
-<<<<<<< HEAD
-		<input type="hidden" name="total_money" value="<%=total_hap%>">
-=======
-		<input type="hidden" id ="totalhpass" name="total_money" >
->>>>>>> jeonPc2
-		
-		<div class="Payment_method"><h4>결제정보</h4>
+			</div>		
+			<div class="Payment_method"><h4>결제정보</h4>
 		<table class="Payment_select">
 		<tr>
 		<th>결제 방법</th>
@@ -359,18 +362,15 @@ input {
 			 		LP 할인
 			 	</th>
 				 <td>
-<<<<<<< HEAD
-				 	<input type="text" style="width: 100px; margin-right:10px;"name="lw_lpminor">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
-=======
-				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">
-				 	LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
->>>>>>> jeonPc2
+				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 				 	<input type="hidden" name="lw_lp" value="<%=point%>">
+				 	 <input type="hidden" name="lw_lp_plus" value="<%=pluspoint%>">
 				 </td>
 			 </tr>
 		</table>
-		<div class="order_product"><h4>상품 <a><%=product_name[0]%></a>외 <%=product_name.length-1%>개</h4>
-					<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
+		
+			<div class="order_product"><h4>상품 <a><%=product_name%></a></h4>
+					<input type="hidden" name="product_names"value="상품 <%=product_name%> ">
 					<table class="order_product_table">
 					<thead>
 						<tr> 
@@ -379,46 +379,36 @@ input {
 						      <td width="100">배송비</td>
 						</tr>
 					</thead>
-<<<<<<< HEAD
-					<%for(int i = 0; img0.length>i; i++){%>
+					
 						
 							<tr style="border-top: 1px solid #ccc;">
-								<td rowspan="2" width="120px"><img src="<%=img0[i]%>" width="100px" height="80px"><input type="hidden" name="img0" value="<%=img0[0]%>">
-=======
-					<%int points = 0; %>
-					<%for(int i = 0; img0.length>i; i++){%>
-						<%points = points+Integer.parseInt(pointplus[i])*Integer.parseInt(select_quantity[i]); %>
-							<tr style="border-top: 1px solid #ccc;">
-								<td rowspan="2" width="120px"><img src="<%=img0[i]%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0[0]%>">
->>>>>>> jeonPc2
-								<input type="hidden" name="imgs" value="<%=img0[i]%>">
-								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
-								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name[i]%></a><a style="color:#ccc;font-size:12px;">(<%=options[i]%>)</a> <input type="hidden" name="product_name" value="<%=product_name[i]%>"></td>
-								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;"><%=selling_price[i]%><input type="hidden" name="selling_price" value="<%=selling_price[i]%>">원</td>
-								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;"><%=delivery_charge[i]%><input type="hidden" name="delivery_charge" value="<%=delivery_charge[i]%>">원</td>
+								<td rowspan="2" width="120px"><img src="<%=img0%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0%>">
+								<input type="hidden" name="imgs" value="<%=img0%>">
+								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum%>"></td>
+								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">(<%=options%>)</a> 
+								<input type="hidden" name="product_name" value="<%=product_name%>"></td>
+								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;">
+								<%=selling_price%><input type="hidden" name="selling_price" value="<%=sellings%>">원</td>
+								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;"><%=delivery_charge%>
+								<input type="hidden" name="delivery_charge" value="<%=delivery_charge%>">원</td>
 							</tr>
 							
 							<tr>
 								<td>
-									<input type="hidden" name="option1" value="<%=options[i]%>">
-									<input type="hidden" name="option1price" value="<%=option1price[i]%>">
-									<a style="float:right;">수량 <%=select_quantity[i]%></a> <input type="hidden" name="quantity" value="<%=select_quantity[i]%>">
+									<input type="hidden" name="option1" value="<%=options%>">
+									<input type="hidden" name="option1price" value="<%=option1price%>">
+									<a style="float:right;">수량 <%=quantity%></a> <input type="hidden" name="quantity" value="<%=quantity%>">
 								</td>				
-							</tr>
-					<%} %>
-<<<<<<< HEAD
+							</tr>					
 					<tr class="order_total_reslut"style="border-top: 1px solid #ccc;">
 						<td colspan="5">
-						<a>상품금액 </a> : <a><%=product_total%>원</a><a>배송비 </a> : <a><%=delivery_total%>원</a><a style="font-weight: bold;">총 결제 금액 </a> : <a style="font-weight: bold;color: #ae0000;"><%=total_hap%>원</a>
-=======
-					<input type="hidden" name="pluspoint" value="<%=points%>"><br>
-					<tr class="order_total_reslut"style="border-top: 1px solid #ccc;">
-						<td colspan="5">
-						<a>상품금액 </a> : <a><%=product_total%>원</a><a>배송비 </a> : <a><%=delivery_total%>원</a>
+						<a>상품금액 </a> : <a><%=sellings%>원</a><a>배송비 </a> : <a><%=delivery_charge%>원</a>
 						<a style="font-weight: bold;">총 결제 금액 </a> : <a>
 						<input type="text" id="totalhpas" style="width:50px;border:none;font-weight: bold;color: #ae0000;" readonly>원</a>
-						<input type="hidden" id="totalhap" value="<%=total_hap%>">
->>>>>>> jeonPc2
+						<input type="hidden" name="product_total" value="<%=sellings%>">
+						<input type="hidden" name="delivery_total" value="<%=delivery_charge%>">
+						<input type="hidden" id="totalhap" value="<%=totals%>">
+						<input type="hidden" id ="totalhpass" name="total_money">
 						</td>
 					</tr>
 					</table>
@@ -428,13 +418,12 @@ input {
 		chack_buy();
 		hap();
 		</script>
-		<input type="hidden" name="lw_id"value="<%=id%>">
+		<input type="hidden" name="lw_id" value="<%=id%>">
 		<button type="submit">결제하기</button>
 		</div>
-		
 		</form>
 		</div>
-</div>
+	</div>
 	<jsp:include page="../../community/community_footerinclude.jsp"></jsp:include>	
 </body>
 </html>

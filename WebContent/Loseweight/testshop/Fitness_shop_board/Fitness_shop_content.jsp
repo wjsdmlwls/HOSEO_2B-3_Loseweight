@@ -126,14 +126,14 @@ $(function() {
 	});
 	$(".replydelete").on("click", function() {
 		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-	});
-	
+	});	
 });
+
 function  sendProcess(f){
 	f.action="Fitness_shop_replyedelete.jsp";
-    f.submit();      
-    
+    f.submit();          
 }
+
 function  sendedit(f){
 	f.action="Fitness_shop_replyedit.jsp";
     f.submit();      
@@ -141,10 +141,16 @@ function  sendedit(f){
 }
 function myFunction(str){
 
+<<<<<<< HEAD
     document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
 }
+=======
+function myFunction(str){	
+	document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
+}
+
+>>>>>>> jeonPc2
 function sum(count){
-	
 	var option_value = document.getElementById("option_value").textContent;
 	if(option_value==""){
 		option_value=0;
@@ -170,12 +176,17 @@ function maxquantitys(){
 		alert("재고량보다 많은 수 를 입력하셨어요^^");
 		 document.getElementById("quantity").value=0;
 		 document.getElementById("select_quantity").value=0;
+		 document.getElementById("suyang").value=0;
 		return false;
 	}
 	else{
 		document.getElementById("select_quantity").value=document.getElementById('quantity').value
+		document.getElementById("suyang").value=document.getElementById('quantity').value
+		
 	}
 }
+
+
 function setValues(){
 	   var sh = document.getElementById("option1price");
 	   var soption = document.getElementById("select_option1");   
@@ -183,6 +194,7 @@ function setValues(){
 	   soption.value = sh.options[sh.selectedIndex].text;   
 	   soptionprice.value = $("#option1price option:selected").val(); 
 	}
+	
 function basket_check(){
 	var obj = document.basketforms;
 	var con = document.concheck;
@@ -192,10 +204,8 @@ function basket_check(){
 	}else if(con.quantity.value==0){
 		alert("수량을 입력해 주세요");
 		return false;
-	}else if(obj.option1.value==""){
-		alert("옵션을 선택해주세요");
-		return false;
 	}
+	
 	
 }
 
@@ -318,7 +328,8 @@ $( document ).ready( function() {
     			<%if(article.getOption3()!=null){%>
     			<option value="<%=article.getOption3price()%>"><%=article.getOption3()%></option>
     			<%}else{} %>
-				</select></span></p>
+				</select><p><span></span></p>
+				
 						</li>
 						<li style="margin-top:10px;">
 							<p><span>추가 금액</span></p><strong><span id="option_value"></span></strong>
@@ -335,6 +346,7 @@ $( document ).ready( function() {
 						</li>
 					</ul>
 			</form>
+			
 		<form method="post" name="basketforms" class="basket_form"  onsubmit="return basket_check();" action="shopping_basket_Pro.jsp">
 		<input name="link"value="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_content.jsp?lw_salesnum =<%=lw_salesnum%>&pageNum=<%=currentPage%>">
 		<input name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
@@ -360,7 +372,20 @@ $( document ).ready( function() {
 		<button type="submit" class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button> 
 		<%} %>
 		</form>
-		 <button class="buttons">구매하기</button>
+		
+		<form method="post" action="order_obj2.jsp">
+		<input type="hidden" name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
+		<input type="hidden" name="product_name" value="<%=article.getProduct_name()%>">
+		<input type="hidden" name="img0" value="<%=article.getImg0()%>">
+		<input type="hidden" id="suyang" name="quantity">
+		<input type="hidden" name="option1" value="<%=article.getOption1()%>"> <!-- 상품 선택 개수 -->
+		<input type="hidden" name="option1price" value="<%=article.getOption1price()%>">
+		<input type="hidden" name="selling_price" value="<%=article.getSelling_price()%>">
+		<input type="hidden" name="delivery_charge" value="<%=article.getDelivery_charge()%>">
+		<input type="hidden" name="pointplus" value="<%=article.getPointplus()%>">
+		
+		<button class="buttons" type="submit">구매하기</button>
+		 </form>
 		<%} %>
 				</div>	
 			</div>

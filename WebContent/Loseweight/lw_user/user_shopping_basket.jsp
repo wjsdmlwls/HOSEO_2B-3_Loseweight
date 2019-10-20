@@ -333,12 +333,13 @@ font-size: 12px;
 			</tr>
 			<tr style="display:none;">
 				<td>
+				
 					<span id="quantitys<%=i%>" ><%=quantity%></span>
 					<input name="num" value="<%=num%>">	
 					<input name="lw_salesnum" value="<%=lw_salesnum%>">
 					<input name="pointplus" value="<%=pointplus%>">
 					<input type="hidden" name="lw_salesnum2" value="<%=lw_salesnum%>">
-					
+						
 					<input type="hidden" name="total" id="total_sub<%=i%>" value="0">
 					<input type="hidden" name="delivery" value="<%=delivery_charge%>">
 				</td>
@@ -353,6 +354,7 @@ font-size: 12px;
 		</table>
 		
 		<div class="basket_pricersultbox">
+		
 		<h4 class="basket_result">총 상품가격 </h4><input type="text"  class="basket_pricersultinputbox" name ="product_total" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>
 		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" name="delivery_total" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
 		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" name="total_hap" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
