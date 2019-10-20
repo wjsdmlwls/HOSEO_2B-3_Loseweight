@@ -52,7 +52,7 @@ create table Fitness_shop_re(
     FOREIGN KEY (lw_id) REFERENCES lw_users(lw_id) ON DELETE CASCADE ON UPDATE RESTRICT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
-
+select * from shopping_basket;
 <!--shoping cart-->
 create table shopping_basket(
     num int not null primary key auto_increment,   
@@ -133,8 +133,8 @@ create table sangpum(
 )
 select * from order_obj where lw_id='admin' and order_time between '2000-01-01' and '2099-12-31'
 select * from sangpum  /*상품명 이름 옵션/옵션가격 주문일자 주문번호 주문금액(수량) 주문상태 */
-select * from order_obj
+select * from sangpum where obj_order_num =1
 drop table sangpum;
 drop table order_obj;
-
+update sangpum set orderstatus=1 where ordernum =4
 select * from lw_users;

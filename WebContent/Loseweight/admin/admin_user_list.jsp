@@ -60,7 +60,6 @@
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();
 %>	
-
 <html>
 <head>
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">

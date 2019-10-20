@@ -139,7 +139,10 @@ function  sendedit(f){
     f.submit();      
     
 }
+function myFunction(str){
 
+    document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
+}
 function sum(count){
 	
 	var option_value = document.getElementById("option_value").textContent;

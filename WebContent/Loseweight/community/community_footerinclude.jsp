@@ -4,8 +4,18 @@
 <html>
 <head>
 <title>게시판</title>
+
 </head>
 <body>
+<%
+	String id= null;
+	if(session.getAttribute("id")!=null){
+		id=(String)session.getAttribute("id");
+	}else{
+		id="";
+	}
+	//로그인이 성공하면 아이디값으로 세션에 접속을함.
+%>
 	<footer id="dfooter" style="margin-top:70px">
 		<div class="footer">
 			<div class="footer_menu">
@@ -21,7 +31,7 @@
 
 				<ul class="list">
 					<li class=""><a href="#">마일리지 조회</a></li>
-					<li class="sys"><a href="/2019_JeonJSP/Loseweight/admin/admin_main.jsp">관리자 페이지</a></li>
+					<li class="sys"><%if(id.toString().equals("admin")){%><a href="/2019_JeonJSP/Loseweight/admin/admin_main.jsp">관리자 페이지</a><%} %></li>
 				</ul>
 			</div>
 			<hr style="width: 100%; border: 1px solid #888;">

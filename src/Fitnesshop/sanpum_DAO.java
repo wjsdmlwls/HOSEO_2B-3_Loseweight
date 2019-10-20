@@ -84,6 +84,7 @@ public class sanpum_DAO {
 						sanpum_DTO DTO = new sanpum_DTO();
 						DTO.setObj_order_num(rs.getInt("obj_order_num")); 
 						DTO.setOrdernum(rs.getInt("ordernum"));			
+						DTO.setOrderstatus(rs.getInt("Orderstatus"));		
 						DTO.setImg0(rs.getString("img0"));						
 						DTO.setLw_id(rs.getString("lw_id"));					
 						DTO.setProduct_name(rs.getString("product_name"));				

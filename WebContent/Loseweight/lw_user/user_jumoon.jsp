@@ -177,7 +177,7 @@ background:#f9f9f9;
 						%>
 						
 						<tr style="border-bottom: solid #ccc 1px;">
-							<td rowspan="<%=orderList2.size()%>"><%=order.getOrdernum()%><br>결제 완료<br>(<%=tempDate%> <%=tempDate2%>)</td>
+							<td rowspan="<%=orderList2.size()%>"><%=order.getOrdernum()%><br>주문일<br>(<%=tempDate%> <%=tempDate2%>)</td>
 						<%for(int d=0; orderList2.size()>d; d++ ){
 								sanpum = orderList2.get(d);
 							%>
@@ -185,12 +185,12 @@ background:#f9f9f9;
 							<td><%=sanpum.getSelling_price()%>원(<%=sanpum.getQuantity()%>개)</td>
 							<td><%=sanpum.getDelivery_charge()%>원</td>			
 							<td class="order_status">
-								<% if(sanpum.getOrderstatus()==0){%><%} %><a>입금 확인중</a>
+								<% if(sanpum.getOrderstatus()==0){%><a>입금 확인중</a><%} %>
 								<% if(sanpum.getOrderstatus()==1){%><a>입금 완료</a><%} %>
-								<% if(sanpum.getOrderstatus()==2){%><a>배송 준비중</a><%} %>
-								<% if(sanpum.getOrderstatus()==3){%><a>배송 중</a><%} %>
-								<% if(sanpum.getOrderstatus()==4){%><a>배송 완료</a><%} %>
-								<% if(sanpum.getOrderstatus()==5){%><a>거래 완료</a><%} %>
+								<% if(sanpum.getOrderstatus()==2){%><a>배송 중</a><br><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=3"><input type="button"value="수령확인"><%} %>
+								<% if(sanpum.getOrderstatus()==3){%><a>거래완료</a><br><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=4"><input type="button"value="환불신청"><%} %>
+								<% if(sanpum.getOrderstatus()==4){%><a>환불 진행중</a><%} %>
+								<% if(sanpum.getOrderstatus()==5){%><a>환불 완료</a><%} %>
 								</td>
 							</tr>	
 							<%if (d==orderList2.size()-1){ %>

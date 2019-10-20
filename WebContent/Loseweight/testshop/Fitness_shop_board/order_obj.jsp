@@ -15,7 +15,6 @@ String[] options = request.getParameterValues("options");
 String[] option1price = request.getParameterValues("option1price");
 String[] selling_price = request.getParameterValues("total");
 String[] delivery_charge = request.getParameterValues("delivery");
-
 int product_total = Integer.parseInt(request.getParameter("product_total"));
 int delivery_total = Integer.parseInt(request.getParameter("delivery_total"));
 int total_hap = Integer.parseInt(request.getParameter("total_hap"));
@@ -114,7 +113,7 @@ function openzipcode()
 }
 .shop_byinfomation{
 	width: 100%;
-	border-top: solid #ccc 1px;
+	border-top: solid #ccc 2px;
 }
 .shop_byinfomation th{
 	background: #f9f9f9;
@@ -140,6 +139,100 @@ function openzipcode()
 .Payment_method{
 	margin-top:30px;
 }
+.Payment_method td{
+	margin-top:30px;
+}
+.order_product{
+	margin-top:30px;
+}
+.order_product_table{
+	width: 1000px;
+	border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.order_product_table thead{
+	border-bottom: 1px solid #ccc;
+	background: #f9f9f9;
+}
+.order_product_table thead tr{
+	text-align: center;
+}
+.order_product_table tbody tr{
+	height:30px;
+}
+.order_product_table tr td{
+	padding:10px;
+}
+.order_total_reslut{
+	text-align:right;
+}
+.order_total_reslut a{
+	padding:3px;
+}
+.Payment_select {
+	width: 100%;
+    border-top: solid 2px #ccc;
+}
+.Payment_select tr{
+	height: 50px
+}
+.Payment_select td{
+	padding-left: 15px;
+}
+.Payment_select th{
+	background:#f9f9f9;
+	width:150px;
+}
+.Bank_card_table {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+}
+.Bank_card_table tr{
+	height: 50px;	
+    border-top: solid 1px #ccc;
+}
+.Bank_card_table td{
+	padding-left: 15px;
+}
+.Bank_card_table th{
+	background:#f9f9f9;
+	width:150px;
+}
+.Bank_Transfer_table {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+}
+.Bank_Transfer_table tr{
+	height: 50px;	
+    border-top: solid 1px #ccc;
+}
+.Bank_Transfer_table td{
+	padding-left: 15px;
+}
+.Bank_Transfer_table th{
+	background:#f9f9f9;
+	width:150px;
+}
+.order_useLP {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+}
+.order_useLP tr{
+	height: 50px;	
+}
+.order_useLP td{
+	padding-left: 15px;
+}
+.order_useLP th{
+	background:#f9f9f9;
+	width:150px;
+}
+input {
+	border: 1px solid #ccc;
+	height:20px;
+}
 </style>
 </head>
 
@@ -149,9 +242,6 @@ function openzipcode()
 			<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><img style="position: absolute;width: 150px;height: auto;margin-top: 15px;" src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png"></a>
 			</div>
 		</div>
-		<%=lw_name%>
-		<%=point%>
-		<%=lw_phone%>
 		<div class="order_body">
 			<div class="order_title">
 				<h3>주문/결제</h3>
@@ -177,44 +267,34 @@ function openzipcode()
 				</table>
 			</div>
 			
-				상품 <a><%=product_name[0]%></a>외 <%=product_name.length-1%>개.
-					<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
-					<%for(int i = 0; img0.length>i; i++){%>
-					<div>
-					
-						<table>
-							<tr>
-								<td><%=lw_salesnum[i]%></td>
-								<td><img src="<%=img0[i]%>" width="100px" height="100px"><input type="hidden" name="img0" value="<%=img0[0]%>">
-								<input type="hidden" name="imgs" value="<%=img0[i]%>">
-								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
-								<td>제품<%=product_name[i]%> |<input type="hidden" name="product_name" value="<%=product_name[i]%>"></td>
-								<td>상품 개수<%=select_quantity[i]%> | <input type="hidden" name="quantity" value="<%=select_quantity[i]%>"></td>
-								<td>상품옵션 <%=options[i]%>|<input type="hidden" name="option1" value="<%=options[i]%>"><input type="hidden" name="option1price" value="<%=option1price[i]%>"></td>
-								<td>상품가격<%=selling_price[i]%> + (<%=option1price[i]%>) |<input type="hidden" name="selling_price" value="<%=selling_price[i]%>"></td>
-								<td>배송비 <%=delivery_charge[i]%> <input type="hidden" name="delivery_charge" value="<%=delivery_charge[i]%>"></td>
-							</tr>
-						</table>
-				</div>
+		<input type="hidden" name="product_total" value="<%=product_total%>">
+		<input type="hidden" name="delivery_total" value="<%=delivery_total%>">
+		<input type="hidden" name="total_money" value="<%=total_hap%>">
 		
-		<%} %>
-		
-		<div class="Payment_method"><h4>결제방법</h4>
-		<input type="radio" name="payment" id="payment1" value="0" onclick="chack_buy()" checked>카드
-		<input type="radio" name="payment" id="payment2" value="1" onclick="chack_buy()">계좌
+		<div class="Payment_method"><h4>결제정보</h4>
+		<table class="Payment_select">
+		<tr>
+		<th>결제 방법</th>
+		<td>
+			<input type="radio" name="payment" id="payment1" value="0" onclick="chack_buy()" checked>카드
+			<input type="radio" name="payment" id="payment2" value="1" onclick="chack_buy()">계좌
+		</td>
+		</tr>
+		</table>
 		<!-- 계좌이체 -->
 		<div id="d">
-			<table>
-				<tr><td>계좌이체 : 우리은행 1002 537 480416 전의진</td></tr>
-				<tr><td> 상품:<%=product_total%>|배송비:<%=delivery_total%>|총 결제 금액:<%=total_hap%></td></tr>
-				<tr><td>입금 계좌 : <input type="text" name="account"></td></tr>
-				<tr><td>예금주 :   <input type="text" name="account_name"></td></tr>
+			<table class="Bank_Transfer_table">
+				<tr><th>계좌이체</th><td>우리은행 1002 537 480416 전의진</td></tr>
+				<tr><th>입금 계좌 </th><td><input type="text" name="account"></td></tr>
+				<tr><th>예금주</th><td><input type="text" name="account_name"></td></tr>
 			</table>
 		</div>
 		<!-- 카드 -->
 		<div id="c">
-			<table>
-				<tr><td>카드사
+			<table class="Bank_card_table">
+				<tr>
+				<th>카드사</th>
+				<td>
 					<input type="radio" name="cardname" value="BC" checked>BC
 					<input type="radio" name="cardname" value="신한">신한
 					<input type="radio" name="cardname" value="국민">국민
@@ -222,42 +302,84 @@ function openzipcode()
 					<input type="radio" name="cardname" value="카카오">카카오
 					<input type="radio" name="cardname" value="토스">토스
 				</td></tr>
-				<tr><td>
-				카드번호 :  <input type="text"  name="cardnum1" id="cardnum1" maxlength="4" style="width:40px;" onkeyup="cardnumsum()"> - 
+				<tr><th>
+				카드번호 </th>
+				<td>  
+				<input type="text"  name="cardnum1" id="cardnum1" maxlength="4" style="width:40px;" onkeyup="cardnumsum()"> - 
 						 <input type="text" name="cardnum2" id="cardnum2" maxlength="4" style="width:40px;" onkeyup="cardnumsum()">
 						- <input type="text"  name="cardnum3" id="cardnum3" maxlength="4" style="width:40px;" onkeyup="cardnumsum()"> - 
 						 <input type="text" name="cardnum4" id="cardnum4" maxlength="4" style="width:40px;" onkeyup="cardnumsum()">
 						 <input type="hidden" name="cardnum" id="rscardnum">
 				</td></tr>
-				<tr><td>Month / Year<br>
-					<input type="text" maxlength="2" style="width:40px;" name="cardmonth">
-					<input type="text" maxlength="2" style="width:40px;" name="cardyear">
-				</td></tr>
-				<tr><td>CVC<br>
-					<input type="text" maxlength="3" style="width:40px;" name="cardcvc">
-				</td></tr>
-				<tr><td>
-					비밀번호 앞자리<br>
-					<input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
-				</td></tr>
-				<tr><td>상품 금액:<%=product_total%>
-					<input type="hidden" name="product_total" value="<%=product_total%>">
-				</td></tr>
-				<tr><td>배송비:<%=delivery_total%>
-					<input type="hidden" name="delivery_total" value="<%=delivery_total%>">
-				</td></tr>
-				<tr><td>총 결제 금액:<%=total_hap%>
-					<input type="hidden" name="total_money" value="<%=total_hap%>">
-				</td></tr>
+				<tr>
+					<th>Month / Year</th>
+					<td>
+						<input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardmonth"><a style="margin-left: 5px;margin-right: 5px;">/</a><input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardyear">
+					</td>
+				</tr>
+				<tr>
+					<th>CVC</th>
+					<td>
+						<input type="text" maxlength="3" style="width:40px;" name="cardcvc">
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호 앞자리</th>
+					<td>
+						<input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
+					</td>
+				</tr>
+				
 		
 		</table>
 		</div>
-		<table>
-		 <tr><td><input type="text" name="lw_lpminor">마일리지 사용<br>
-		 잔여 마일리지:<%=point%> 
-		 <input type="hidden" name="lw_lp" value="<%=point%>">
-		 </td></tr>
+		<table class="order_useLP">
+			 <tr>
+			 	<th>
+			 		LP 할인
+			 	</th>
+				 <td>
+				 	<input type="text" style="width: 100px; margin-right:10px;"name="lw_lpminor">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
+				 	<input type="hidden" name="lw_lp" value="<%=point%>">
+				 </td>
+			 </tr>
 		</table>
+		<div class="order_product"><h4>상품 <a><%=product_name[0]%></a>외 <%=product_name.length-1%>개</h4>
+					<input type="hidden" name="product_names"value="상품 개수<%=product_name[0]%>외 <%=product_name.length-1%>개 ">
+					<table class="order_product_table">
+					<thead>
+						<tr> 
+						      <td colspan="2" width="800">상품정보</td>
+						      <td width="100">상품금액</td>  
+						      <td width="100">배송비</td>
+						</tr>
+					</thead>
+					<%for(int i = 0; img0.length>i; i++){%>
+						
+							<tr style="border-top: 1px solid #ccc;">
+								<td rowspan="2" width="120px"><img src="<%=img0[i]%>" width="100px" height="80px"><input type="hidden" name="img0" value="<%=img0[0]%>">
+								<input type="hidden" name="imgs" value="<%=img0[i]%>">
+								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
+								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name[i]%></a><a style="color:#ccc;font-size:12px;">(<%=options[i]%>)</a> <input type="hidden" name="product_name" value="<%=product_name[i]%>"></td>
+								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;"><%=selling_price[i]%><input type="hidden" name="selling_price" value="<%=selling_price[i]%>">원</td>
+								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;"><%=delivery_charge[i]%><input type="hidden" name="delivery_charge" value="<%=delivery_charge[i]%>">원</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<input type="hidden" name="option1" value="<%=options[i]%>">
+									<input type="hidden" name="option1price" value="<%=option1price[i]%>">
+									<a style="float:right;">수량 <%=select_quantity[i]%></a> <input type="hidden" name="quantity" value="<%=select_quantity[i]%>">
+								</td>				
+							</tr>
+					<%} %>
+					<tr class="order_total_reslut"style="border-top: 1px solid #ccc;">
+						<td colspan="5">
+						<a>상품금액 </a> : <a><%=product_total%>원</a><a>배송비 </a> : <a><%=delivery_total%>원</a><a style="font-weight: bold;">총 결제 금액 </a> : <a style="font-weight: bold;color: #ae0000;"><%=total_hap%>원</a>
+						</td>
+					</tr>
+					</table>
+			</div>
 		<!-- 결제 방법 체크 -->
 		<script>
 		chack_buy();

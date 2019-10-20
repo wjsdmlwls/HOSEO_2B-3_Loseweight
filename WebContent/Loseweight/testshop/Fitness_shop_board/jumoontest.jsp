@@ -18,10 +18,11 @@ if(session.getAttribute("id")!=null){
 	}else{
 	id=""; 
 	}	
-
+String mincalendar ="2000-01-01"; 	
+String maxcalendar ="2099-12-12";
  List<order_DTO> orderList = new ArrayList<>();
  order_DAO db = new order_DAO();
- orderList = db.jumoon(id);
+ orderList = db.jumoon(id,mincalendar,maxcalendar);
  
 %>
 <%
@@ -56,6 +57,7 @@ if(session.getAttribute("id")!=null){
 			%>
 			<%=sanpum.getObj_order_num()%><br>  
 			<%=sanpum.getLw_id()%><br>
+			<%=sanpum.getOrderstatus()%>
 			<img src="<%=sanpum.getImg0()%>" width="100px;" height="100px;"><br>
 			<%} %>
 	<%} %>
