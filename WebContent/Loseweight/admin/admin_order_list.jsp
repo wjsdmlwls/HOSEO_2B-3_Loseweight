@@ -250,10 +250,9 @@ table.lw_shopboard tbody td {
 				      <td>이름/옵션가격</td> 
 				      <td>아이디/상태</td> 
 				      <td>주문일자/주문번호</td>
+				      <td>사용 포인트</td>
+				      <td>누적 포인트</td>
 					</tr>
-				<tr>
-				
-				</tr>
 		    </thead>
 	<%
 					if(listsearchresult.next()){
@@ -266,11 +265,13 @@ table.lw_shopboard tbody td {
 								int payment=listsearchresult.getInt("payment");
 								String recipient=listsearchresult.getString("recipient");
 								String lw_id=listsearchresult.getString("lw_id");
-								Timestamp order_time=listsearchresult.getTimestamp("order_time");			
+								Timestamp order_time=listsearchresult.getTimestamp("order_time");
+								int lw_lpminor=listsearchresult.getInt("lw_lpminor");
+								int pluspoint=listsearchresult.getInt("pluspoint");	
 								int replycount=0;
 								Fitnesshop_DAO dbPro1 = Fitnesshop_DAO.getInstance();
 								Fitnesshop_DTO article =  dbPro.getArticle(ordernum);
-								   	String replylistsql1="select count(*) from order_obj where ordernum="+article.getLw_salesnum()+"";
+								   	String replylistsql1="select count(*) from order_obj";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
@@ -285,6 +286,8 @@ table.lw_shopboard tbody td {
 			    <td><%=recipient %></td>
 			    <td><%=lw_id %></td>
 			    <td><%=order_time %></td>
+			    <td><%=lw_lpminor%></td>
+			    <td><%=pluspoint%></td>
 			   </tr>
 			  <%List<sanpum_DTO> orderList2 = new ArrayList<>();
 					sanpum_DAO db2 = new sanpum_DAO();
@@ -307,7 +310,7 @@ table.lw_shopboard tbody td {
 			    <% if(sanpum.getOrderstatus()==1) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=2"><input type="button"value="배송확인"></a><%} %>
 			    <% if(sanpum.getOrderstatus()==2) {%>배송중<%} %>
 			    <% if(sanpum.getOrderstatus()==3) {%><a>거래완료</a><%} %>
-			    <% if(sanpum.getOrderstatus()==4) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=5" ><input type="button"value="환불요청"></a><%} %>
+			    <% if(sanpum.getOrderstatus()==4) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=5&lw_id=<%=lw_id%>&lw_lpminor=<%=lw_lpminor%>&pluspoint=<%=pluspoint%>" ><input type="button"value="환불요청"></a><%} %>
 			    <% if(sanpum.getOrderstatus()==5) {%>환불완료<%} %>
 			    
 			    </td>

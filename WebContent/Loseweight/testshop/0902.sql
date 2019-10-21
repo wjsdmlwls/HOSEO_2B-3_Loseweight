@@ -97,9 +97,6 @@ create table order_obj(
 	total_money int not null,							/*총 가격*/
 	pointplus int default 0,							/*적립금*/
 	quantity int not null,        						/*수량*/
-	
-	
-	
 	option1 varchar(30) null,							/*옵션*/
 	option1price int null,
 	option2 varchar(30) null,

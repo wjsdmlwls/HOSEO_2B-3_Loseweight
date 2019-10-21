@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.Context;
@@ -208,6 +209,26 @@ public class shopping_basket_DAO {
 				}
 		}
 		
+	}
+	public void shoppingdelete(int num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="DELETE FROM shopping_basket WHERE num=?";
+		try {
+			conn = getConnection();
+			
+			pstmt =conn.prepareStatement(sql); 
+			pstmt.setInt(1,num);
+			pstmt.executeUpdate();		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {	
+			if(rs!=null) try {rs.close();} catch(SQLException e) {}
+			if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+			if(conn!=null) try {conn.close();} catch(SQLException e) {}
+		}
 	}
 
 }

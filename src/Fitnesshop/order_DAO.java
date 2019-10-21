@@ -34,13 +34,13 @@ public class order_DAO {
 		return ds.getConnection();
 	}
 	
-	public void userdatein(String product_names,String img0,int total_money,int payment,String lw_addr1,String Recipient,String demand,String lw_id,Timestamp order_time,int product_total,int delivery_total,String lw_addr2,String lw_zipcode) throws Exception {
+	public void userdatein(String product_names,String img0,int total_money,int payment,String lw_addr1,String Recipient,String demand,String lw_id,Timestamp order_time,int product_total,int delivery_total,String lw_addr2,String lw_zipcode,int lw_lpminor ,int pluspoint) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql="insert into order_obj(product_names,img0,total_money,payment,lw_addr1,Recipient,demand,"
-				+ "lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode,lw_lpminor,pluspoint) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			
@@ -58,6 +58,8 @@ public class order_DAO {
 			pstmt.setInt(11,delivery_total);
 			pstmt.setString(12,lw_addr2);
 			pstmt.setString(13,lw_zipcode);
+			pstmt.setInt(14,lw_lpminor);
+			pstmt.setInt(15,pluspoint);
 			pstmt.executeUpdate();		
 		}catch(Exception e) {
 			e.printStackTrace();

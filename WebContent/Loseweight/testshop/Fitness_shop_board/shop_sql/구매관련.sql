@@ -9,12 +9,20 @@ create table sangpum(
         product_name varchar(30) not null, /*제품명*/
         selling_price int not null, /*판매가*/
         delivery_charge int not null, /*배송비*/
+        reduced_price int null, /*할인가*/
         quantity int not null,  /*수량*/
         option1 varchar(30) not null,
         option1price int not null,
         orderstatus int default 0 not null
 )
+select * from lw_users;
+select * from sangpum
+select * from order_obj
+select * from Fitness_shop where lw_salesnum
+update Fitness_shop set quantity=quantity+7  where lw_salesnum=2
 /*결제 정보*/
+drop table sangpum;
+drop table order_obj;
 create table order_obj(
     ordernum int not null primary key auto_increment,      /*구매 번호*/
     product_names varchar(30) not null,                       /*총 상품 이름*/
@@ -29,7 +37,9 @@ create table order_obj(
     Recipient varchar(30) not null,                           /*수령인*/
     demand varchar(255) null,                               /*요구사항*/
     lw_id varchar(50) not null,                               /*구매자 아이디*/
-    order_time datetime default '00-00-00 00:00' not null  /*구매 날짜*/
+    order_time datetime default '00-00-00 00:00' not null,  /*구매 날짜*/
+    lw_lpminor int not null,                               /*사용한 마일리지*/
+    pluspoint int not null                               /*누적 마일리지 */
 )
 /*장바구니*/
 create table shopping_basket(
@@ -57,7 +67,8 @@ create table shopping_basket(
 	delivery_charge int, /*배송비*/
 	img0 varchar(300) 
 )
-
+DELETE FROM shopping_basket
+WHERE num=?
 
 /*샾 리스트 구매 등록*/
 create table Fitness_shop(
@@ -90,7 +101,6 @@ passwd varchar(12) not null,
 lw_id varchar(12) not null
 );
 
-<<<<<<< HEAD:WebContent/Loseweight/testshop/new.sql
 desc Fitness_shop
 
 select * from Fitness_shop
@@ -172,7 +182,6 @@ drop table order_obj;
 
 
 -- 상품테스트 --
-
 create table sangpum(
 		obj_order_num int not null primary key auto_increment,
 		ordernum int not null,							  /*참조키  = 구매 번호*/
@@ -197,4 +206,3 @@ select * from lw_users;
 =======
 drop table order_obj
 drop table sangpum
->>>>>>> jeonPc2:WebContent/Loseweight/testshop/Fitness_shop_board/shop_sql/구매관련.sql

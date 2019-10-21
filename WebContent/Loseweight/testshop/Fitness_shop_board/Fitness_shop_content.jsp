@@ -141,15 +141,15 @@ function  sendedit(f){
 }
 function myFunction(str){
 
-<<<<<<< HEAD
+
     document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
 }
-=======
+
 function myFunction(str){	
 	document.getElementById("option_value").innerHTML=('<span style="color:red;font-size:12px;">'+str+'</span>');
 }
 
->>>>>>> jeonPc2
+
 function sum(count){
 	var option_value = document.getElementById("option_value").textContent;
 	if(option_value==""){

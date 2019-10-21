@@ -12,6 +12,33 @@ public class order_DTO {
 	private int payment;					   /*결제 방법*/
 	private String lw_zipcode;				  	   /*배송지 */
 	private String lw_addr1;				  	   /*배송지 */
+	private String lw_addr2;				  	   /*배송지 */
+	private String Recipient;				   /*수령인*/
+	private String demand;					   /*요구사항*/
+	private int orderstatus;				   /*결제 상태*/
+	private String lw_id;					   /*구매자 아이디*/
+	private Timestamp order_time;			   /*주문 날짜*/
+
+	private int product_total;				   
+	private int delivery_total;		
+	   
+	private int lw_lpminor;	
+	private int pluspoint;	
+	
+	public int getLw_lpminor() {
+		return lw_lpminor;
+	}
+	public void setLw_lpminor(int lw_lpminor) {
+		this.lw_lpminor = lw_lpminor;
+	}
+	public int getPluspoint() {
+		return pluspoint;
+	}
+	public void setPluspoint(int pluspoint) {
+		this.pluspoint = pluspoint;
+	}
+	
+	
 	public String getLw_zipcode() {
 		return lw_zipcode;
 	}
@@ -30,16 +57,6 @@ public class order_DTO {
 	public void setLw_addr2(String lw_addr2) {
 		this.lw_addr2 = lw_addr2;
 	}
-	private String lw_addr2;				  	   /*배송지 */
-	private String Recipient;				   /*수령인*/
-	private String demand;					   /*요구사항*/
-	private int orderstatus;				   /*결제 상태*/
-	private String lw_id;					   /*구매자 아이디*/
-	private Timestamp order_time;			   /*주문 날짜*/
-
-	private int product_total;				   /*결제 상태*/
-	private int delivery_total;				   /*결제 상태*/
-	
 	public int getProduct_total() {
 		return product_total;
 	}

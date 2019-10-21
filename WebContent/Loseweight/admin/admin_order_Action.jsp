@@ -5,13 +5,20 @@
 <%@page import="java.sql.*" %>
 
 <%@page import="java.io.PrintWriter" %>
-<%request.setCharacterEncoding("UTF-8"); %>
 
+<%@ page import = "user.*"%>
+
+<%request.setCharacterEncoding("UTF-8"); %>
 <%
 	int ordernum =Integer.parseInt(request.getParameter("ordernum"));
 	int orderstatus =Integer.parseInt(request.getParameter("orderstatus"));
+	
 %>
 <%--java bean에서 값들 불러오기--%>
+<jsp:useBean id="user"  scope="page" class="user.User">
+   <jsp:setProperty name="user" property="*"/>
+</jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,8 +63,20 @@
 	script.println("alert('정상적으로 변경 되었습니다.')");
 	script.println("history.back()");
 	script.println("</script>");
+	
 %>
-<%=ordernum %>
-<%=orderstatus %>
+<%=ordernum%>
+<%=orderstatus%>
+<% if (orderstatus==5){
+	String lw_id =request.getParameter("lw_id");
+	int lw_lpminor =Integer.parseInt(request.getParameter("lw_lpminor"));
+	int pluspoint =Integer.parseInt(request.getParameter("pluspoint"));
+	UserDAO db = new UserDAO();
+	int point = db.lpupdate(lw_id);
+
+	user.setLw_lp(((point)+(lw_lpminor))-pluspoint); 
+ 	UserDAO db2= UserDAO.getInstance(); 
+ 	db2.updatelp(user);
+	}%>
 </body>
 </html>

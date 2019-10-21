@@ -348,7 +348,7 @@ font-size: 12px;
 			}while(listsearchresult.next());
 		%>
 		<%}else{ %>
-		<h4 style="padding: 200;"><%=id %>에 대한 검색 결과가 없습니다</h4>
+		<Tr><Td colspan="9"><h4 style="padding: 200;">장바구니가 비어있습니다.</h4></Td></Tr>
 		<%} %>
 		
 		</table>
