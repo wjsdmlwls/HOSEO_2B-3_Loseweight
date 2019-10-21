@@ -16,6 +16,7 @@ String[] options = request.getParameterValues("options");
 String[] option1price = request.getParameterValues("option1price");
 String[] selling_price = request.getParameterValues("total");
 String[] delivery_charge = request.getParameterValues("delivery");
+
 String[] pointplus = request.getParameterValues("pointplus");
 
 
@@ -91,17 +92,27 @@ function openzipcode()
     openWin = window.open("/2019_JeonJSP/zipfinder/zipSearch.jsp",
             "childForm", "width=580, height=500, resizable = no, scrollbars = yes");    
 }
-
+	
 function hap(){
 	var hap1 =  document.getElementById("lw_lpminor").value;
-	var hap2 =  document.getElementById("totalhap").value;
 	
+	var hap2 =  document.getElementById("totalhap").value;
+	var point =  document.getElementById("lw_lp").value;
 	var hap3 = hap2-hap1;
+	
+	if(parseInt(hap1)>parseInt(point)){
+		alert('LP가 부족합니다');
+		return false;
+	}
 	
 	document.getElementById("totalhpas").value=hap3;
 	document.getElementById("totalhpass").value=hap3;
 	
+	
+	
 }
+
+
 
 </script>
 <style>
@@ -285,8 +296,6 @@ input {
 			
 		<input type="hidden" name="product_total" value="<%=product_total%>">
 		<input type="hidden" name="delivery_total" value="<%=delivery_total%>">
-
-
 		<input type="hidden" id ="totalhpass" name="total_money" >
 
 		
@@ -358,12 +367,13 @@ input {
 			 		LP 할인
 			 	</th>
 				 <td>
-
-				 	
+<<<<<<< HEAD
+				 	<input type="text" style="width: 100px; margin-right:10px;"name="lw_lpminor">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
+=======
 				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">
 				 	LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 
-				 	<input type="hidden" name="lw_lp" value="<%=point%>">
+				 	<input type="hidden" id="lw_lp" name="lw_lp" value="<%=point%>">
 				 </td>
 			 </tr>
 		</table>
@@ -377,12 +387,13 @@ input {
 						      <td width="100">배송비</td>
 						</tr>
 					</thead>
+
 					<%int points = 0; %>
 					<%for(int i = 0; img0.length>i; i++){%>
 						<%points = points+Integer.parseInt(pointplus[i])*Integer.parseInt(select_quantity[i]); %>
 							<tr style="border-top: 1px solid #ccc;">
 								<td rowspan="2" width="120px"><img src="<%=img0[i]%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0[0]%>">
-								
+
 								<input type="hidden" name="imgs" value="<%=img0[i]%>">
 								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum[i]%>"></td>
 								<input type="hidden" name="num" value="<%=num[i]%>" readonly>
@@ -400,7 +411,7 @@ input {
 							</tr>
 					<%} %>
 
-
+					
 					<input type="hidden" name="pluspoint" value="<%=points%>"><br>
 					<tr class="order_total_reslut"style="border-top: 1px solid #ccc;">
 						<td colspan="5">
@@ -417,8 +428,9 @@ input {
 		<script>
 		chack_buy();
 		hap();
+		maxpoint();
 		</script>
-		<input type="hidden" name="lw_id"value="<%=id%>">
+		<input type="hidden" name="lw_id"value="<%=id%>">  
 		<button type="submit">결제하기</button>
 		</div>
 		

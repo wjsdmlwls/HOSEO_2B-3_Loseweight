@@ -70,6 +70,8 @@ create table shopping_basket(
 DELETE FROM shopping_basket
 WHERE num=?
 
+drop table shopping_basket
+
 /*샾 리스트 구매 등록*/
 create table Fitness_shop(
 lw_salesnum int not null primary key auto_increment, /*상품 게시글번호*/ 
@@ -164,6 +166,7 @@ create table order_obj(
 	lw_id varchar(50) not null,							   /*구매자 아이디*/
 	order_time datetime default '00-00-00 00:00' not null  /*구매 날짜*/
 )
+drop table order_obj
 /*
 lw_lp 
 addr 3가지 

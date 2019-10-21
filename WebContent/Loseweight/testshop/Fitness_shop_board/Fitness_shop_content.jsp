@@ -366,7 +366,7 @@ $( document ).ready( function() {
 		<input name="delivery_charge" value="<%=article.getDelivery_charge()%>">
 		<input name="pointplus" value="<%=article.getPointplus()%>">
 		<%if(id==""){ %>
-		<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" class="reply_button_no_login">
+		<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit" >
 		<button class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button></a>
 		<%}else{ %>
 		<button type="submit" class="buttons" style="margin-right:30px;display: block;float: left;">장바구니</button> 
@@ -383,8 +383,12 @@ $( document ).ready( function() {
 		<input type="hidden" name="selling_price" value="<%=article.getSelling_price()%>">
 		<input type="hidden" name="delivery_charge" value="<%=article.getDelivery_charge()%>">
 		<input type="hidden" name="pointplus" value="<%=article.getPointplus()%>">
-		
+		<%if(id==""){%>
+		<a data-toggle="modal" data-target="#myModal_l" href="/2019_JeonJSP/Loseweight/lw_user/login(old).jsp" type="submit">
+		<button class="buttons" type="submit">구매하기</button></a>
+		<%}else{ %>
 		<button class="buttons" type="submit">구매하기</button>
+		<%} %>
 		 </form>
 		<%} %>
 				</div>	
@@ -679,8 +683,6 @@ $( document ).ready( function() {
 </div>
 
 	
-
-	
 	
 	<%}
 		catch(Exception e){}finally {
@@ -698,6 +700,6 @@ $( document ).ready( function() {
 	 %>
 						   
 					     
-	   	  
+	<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>	   	  
 </body>
 </html>

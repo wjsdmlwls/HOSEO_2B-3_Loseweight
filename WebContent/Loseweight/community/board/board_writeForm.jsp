@@ -35,6 +35,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
+<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
+<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
 <script>
 $(function() {

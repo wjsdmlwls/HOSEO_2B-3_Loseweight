@@ -348,7 +348,7 @@ font-size: 12px;
 			}while(listsearchresult.next());
 		%>
 		<%}else{ %>
-		<Tr><Td colspan="9"><h4 style="padding: 200;">장바구니가 비어있습니다.</h4></Td></Tr>
+		<Tr><td colspan=9><h4 style="padding: 200;"><%=id %>님 담은 물건이 없습니다 ^^</h4></td></Tr>
 		<%} %>
 		
 		</table>

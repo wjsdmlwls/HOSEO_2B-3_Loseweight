@@ -27,6 +27,7 @@ create table file(
 )
 drop table boardupload;
 
+delete from board where num=10
 drop table board;
 drop table board;
 desc board;

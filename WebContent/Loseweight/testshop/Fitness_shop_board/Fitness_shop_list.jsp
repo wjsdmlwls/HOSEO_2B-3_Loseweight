@@ -379,6 +379,7 @@ function fitcategory2_change(){
 	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="상품등록"></a>
 	<%} %>
 
-	</div>					
+	</div>	
+		<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>				
 </body>
 </html>

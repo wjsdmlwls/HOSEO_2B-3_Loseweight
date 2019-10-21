@@ -248,7 +248,7 @@ select {
 }
 
 [type=button], [type=reset], [type=submit], button {
-	-webkit-appearance: button
+	/* -webkit-appearance: button */
 }
 
 [type=button]:not (:disabled ), [type=reset]:not (:disabled ), [type=submit]:not

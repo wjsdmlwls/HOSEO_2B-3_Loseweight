@@ -138,7 +138,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	<%}while(listsearchresult.next());%>
 	<%}else{%>
 
-			  <h4 style="padding: 200;"><%=listsearch %>에 대한 검색 결과가 없습니다</h4></td></tr>
+			<Tr><td colspan=9><h4 style="padding: 200;"><%=listsearch %><%=id %>게시글이 없습니다 첫 게시글을 작성해주세요^^</h4></td></Tr>
 			<%}%>
 	</table>
 	
@@ -184,7 +184,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	    </SELECT>
 		<input class="search_input" name="listsearch" type="text">
 		<input type="image" type="submit" src="images/search.gif">
-		<%if(id.toString().equals("admin")){%><a href="question_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
+		<%if(id!=""){%><a href="question_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
 	<%}else{
 		
 	}%>

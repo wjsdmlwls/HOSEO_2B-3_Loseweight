@@ -145,11 +145,49 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
+<script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../../css/style.css">
 <title>LoseWeight</title>
+<style>
+.maindiv{
+margin:0 auto;
+width:100%;
+height:100%;
+text-align:-webkit-center;
+}
+.mainimg{
+background-image:url('images/hello.png');
+background-size:cover;
+width:500px;
+height:500px;
+
+}
+
+</style>
 </head>
 <body>
 
 
+<div>
+	<jsp:include page="../../community/community_topinclude.jsp" >
+				<jsp:param name="tom" value="7"/>
+				<jsp:param name="toc" value="0"/>
+				<jsp:param name="imgs" value="shop.png"/>
+				<jsp:param name="boardname" value="기구"/>
+		</jsp:include>
+<div class="maindiv">
 
+<div class="mainimg" ></div>
+<p style="font-size:30px;">주문이 완료되었습니다.</p>
+<p style="font-size:30px;">주문내역 확인하러가기<a href="../../../Loseweight\lw_user\user_jumoon.jsp"><img src="images/clp.png" width="50px" height="30px;"></a></p>
+<p style="font-size:30px;">쇼핑 더하기<a href="Fitness_shop_list.jsp"><img src="images/cart.png" width="50px" height="30px;"></a></p>
+
+
+
+
+</div>
+</div>
+	<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
 </body>
 </html>

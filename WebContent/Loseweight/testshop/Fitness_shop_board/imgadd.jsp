@@ -50,7 +50,7 @@
 		String uploadimg2 = "";
 		String uploadimg3 = "";
 
-		int maxSize = 1024 * 1024 * 5;
+		int maxSize = 1024 * 1024 * 20;
 		String encType = "utf-8";
 		String savefile = "img";
 		ServletContext scontext = getServletContext();
@@ -150,8 +150,8 @@
 <script>
 	function setParentText(){
 		if (document.getElementById("img0").value!=""){
-        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:1000px"src="<%=upimgpath1%>">');
-        	$(window.opener.document.getElementById("copy_div")).append('<img style="max-width:1000px"src="<%=upimgpath2%>">');
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="width:1000px"src="<%=upimgpath1%>">');
+        	$(window.opener.document.getElementById("copy_div")).append('<img style="width:1000px"src="<%=upimgpath2%>">');
 			window.close();
 		} else {
 			alert("파일을 업로드해주세요");
