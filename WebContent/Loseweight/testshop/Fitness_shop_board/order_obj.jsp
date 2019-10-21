@@ -81,7 +81,21 @@ function cardnumsum(){
 	 
 	var numsum = num1+''+num2+''+num3+''+num4
 
-	document.getElementById("rscardnum").innerHTML=(value=numsum);	
+	document.getElementById("rscardnum").innerHTML=(value=numsum);
+	
+	if(isNaN(num1)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum1").value="";
+	}else if(isNaN(num2)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum2").value="";
+	}else if(isNaN(num3)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum3").value="";
+	}else if(isNaN(num4)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum4").value="";
+	}
 }
 var openWin;
 function openzipcode()
@@ -95,24 +109,89 @@ function openzipcode()
 	
 function hap(){
 	var hap1 =  document.getElementById("lw_lpminor").value;
-	
 	var hap2 =  document.getElementById("totalhap").value;
 	var point =  document.getElementById("lw_lp").value;
 	var hap3 = hap2-hap1;
 	
 	if(parseInt(hap1)>parseInt(point)){
 		alert('LP가 부족합니다');
+		document.getElementById("lw_lpminor").value=0;
 		return false;
 	}
-	
+	//마일리지 입력
+	if(isNaN(hap1)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("lw_lpminor").value=0;
+	}
 	document.getElementById("totalhpas").value=hap3;
-	document.getElementById("totalhpass").value=hap3;
+	document.getElementById("totalhpass").value=hap3;	
+}
+
+function cardmy(){
+	var m =  document.getElementById("cardmonth").value;
+	var y =  document.getElementById("cardyear").value;
 	
 	
+	if(isNaN(m)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardmonth").value="";
+	}else if(isNaN(y)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardyear").value="";
+	}
 	
 }
 
+function cvc(){
+	var num5 =  document.getElementById("cardcvc").value;
+	if(isNaN(num5)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardcvc").value="";
+	}
+}
 
+
+function passwd(){
+	var num6 =  document.getElementById("cardpasswd").value;
+	if(isNaN(num6)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardpasswd").value="";
+	}
+}
+
+
+function card(){
+	var num1 =  document.getElementById("cardnum1").value;
+	var num2 =  document.getElementById("cardnum2").value;
+	var num3 =  document.getElementById("cardnum3").value;
+	var num4 =  document.getElementById("cardnum4").value;
+	var num5 =  document.getElementById("cardcvc").value;
+	var num6 =  document.getElementById("cardpasswd").value;
+	var m =  document.getElementById("cardmonth").value;
+	var y =  document.getElementById("cardyear").value;
+	
+
+	if(num1.length<=3||num2.length<=3||num3.length<=3||num4.length<=3||
+	   num1.length==""||num2.length==""||num3.length==""||num4.length==""){
+		alert('카드번호가 전부 입력되지 않았습니다.');
+		document.getElementById("cardnum1").value="";
+		document.getElementById("cardnum2").value="";
+		document.getElementById("cardnum3").value="";
+		document.getElementById("cardnum4").value="";
+		return false;
+	}else if(y.length==""||m.length==""){
+		alert('월/년 이 입력안된사항이있습니다.');
+		return false;
+	}else if(num5.length<=2||num5.length==""){
+		alert('CVC가 전부 입력되지 않았습니다.');
+		document.getElementById("cardcvc").value="";
+		return false;
+	}else if(num6.length==""){
+		alert('카드 패스워드가 입력되지 않았습니다.');
+		document.getElementById("cardpasswd").value="";
+		return false;
+	}
+}
 
 </script>
 <style>
@@ -123,7 +202,7 @@ function hap(){
 .div_top{
     width: 100%;
     height: 90px;
-    border-bottom: #f0f0f0 solid 1px;
+    border-bottom: #f0f0f0 solid 1px; 
 }
 .top_logo{
 	width: 1000px;
@@ -274,7 +353,7 @@ input {
 				<h3>주문/결제</h3>
 			</div>
 		<div class="order_board">
-			<form method="post" action="order_pro.jsp">
+			<form method="post" action="order_pro.jsp" onsubmit="return card();">
 			<div class="by_my_info"><h4>구매자 정보</h4>
 			<table class="shop_byinfomation">		
 				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
@@ -342,19 +421,22 @@ input {
 				<tr>
 					<th>Month / Year</th>
 					<td>
-						<input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardmonth"><a style="margin-left: 5px;margin-right: 5px;">/</a><input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardyear">
+						<input type="text" maxlength="2" style="width:40px;border:none;
+						border-bottom: 1px solid #ccc;" id="cardmonth" name="cardmonth" onkeyup="cardmy()"><a style="margin-left: 5px;margin-right: 5px;">/</a>
+						<input type="text" maxlength="2" style="width:40px;border:none;
+						border-bottom: 1px solid #ccc;" id="cardyear" name="cardyear" onkeyup="cardmy()">
 					</td>
 				</tr>
 				<tr>
 					<th>CVC</th>
 					<td>
-						<input type="text" maxlength="3" style="width:40px;" name="cardcvc">
+						<input type="text" id="cardcvc" maxlength="3" style="width:40px;" name="cardcvc" onkeyup="cvc();">
 					</td>
 				</tr>
 				<tr>
 					<th>비밀번호 앞자리</th>
 					<td>
-						<input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
+						<input type="text" id="cardpasswd" maxlength="2" style="width:20px;" name="cardpasswd" onkeyup="passwd();">**
 					</td>
 				</tr>
 				
@@ -367,9 +449,7 @@ input {
 			 		LP 할인
 			 	</th>
 				 <td>
-<<<<<<< HEAD
-				 	<input type="text" style="width: 100px; margin-right:10px;"name="lw_lpminor">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
-=======
+
 				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">
 				 	LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 
