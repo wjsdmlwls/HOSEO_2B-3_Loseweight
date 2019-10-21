@@ -58,6 +58,7 @@ create table shopping_basket(
 	img0 varchar(300) 
 )
 
+drop table shopping_basket
 
 /*샾 리스트 구매 등록*/
 create table Fitness_shop(
@@ -154,6 +155,7 @@ create table order_obj(
 	lw_id varchar(50) not null,							   /*구매자 아이디*/
 	order_time datetime default '00-00-00 00:00' not null  /*구매 날짜*/
 )
+drop table order_obj
 /*
 lw_lp 
 addr 3가지 

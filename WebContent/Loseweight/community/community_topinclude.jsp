@@ -212,6 +212,10 @@ function loginshow() {
 			 <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp'>장바구니</a></li>
 			 <li><a href='/2019_JeonJSP/Loseweight/lw_user/user_jumoon.jsp'>구매목록</a></li>
 			 <%}%>
+			 
+			  <%if(tom.equals ("7")){ %>
+			
+			 <%}%>
 	 	</ul>
 	 	 <li></li>
  	</li>
