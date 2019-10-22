@@ -23,7 +23,7 @@ update Fitness_shop set quantity=quantity+7  where lw_salesnum=2
 /*결제 정보*/
 drop table sangpum;
 drop table order_obj;
-create table order_obj(
+order_obj(
     ordernum int not null primary key auto_increment,      /*구매 번호*/
     product_names varchar(30) not null,                       /*총 상품 이름*/
     img0 text not null,                                       /*대표 이미지 1개 상품 이미지*/
@@ -32,14 +32,14 @@ create table order_obj(
     delivery_total int not null,                               /*총 배송비*/
     payment    int not null,                                   /*결제 방법*/
     lw_zipcode varchar(50) not null,                             /*우편번호*/
-    lw_addr1 varchar(50) not null,                             /*배송지 */
+    lw_addr1 varchar(50) not null,                             /*배송지*/
     lw_addr2 varchar(50) not null,                             /*상세 배송지*/
     Recipient varchar(30) not null,                           /*수령인*/
     demand varchar(255) null,                               /*요구사항*/
     lw_id varchar(50) not null,                               /*구매자 아이디*/
     order_time datetime default '00-00-00 00:00' not null,  /*구매 날짜*/
     lw_lpminor int not null,                               /*사용한 마일리지*/
-    pluspoint int not null                               /*누적 마일리지 */
+    pluspoint int not null                                 /*누적 마일리지 */ 
 )
 /*장바구니*/
 create table shopping_basket(

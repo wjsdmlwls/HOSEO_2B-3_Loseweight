@@ -22,7 +22,6 @@ int delivery_charge = Integer.parseInt(request.getParameter("delivery_charge"));
 
 int pointplus = Integer.parseInt(request.getParameter("pointplus"));
 
-
 //연산 작업
 int selling  = quantity*selling_price;  //물건가격
 int sellings = quantity*(selling_price+option1price);  //물건가격
@@ -155,7 +154,6 @@ function passwd(){
 
 function gezaa(){
 	var geza =  document.getElementById("geza").value;
-	
 	if(isNaN(geza)==true){
 		alert('숫자만 입력해주세요');
 		document.getElementById("geza").value="";
@@ -163,6 +161,14 @@ function gezaa(){
 	}
 }
 
+function tongpassd(){
+	var tongpass =  document.getElementById("tongpass").value;
+	if(isNaN(tongpass)==true){
+		alert('숫자만 입력해주세요');
+		document.getElementById("tongpass").value="";
+		return false;
+	}
+}
 
 function card(){
 	var payment1 = document.getElementById("payment1");
@@ -204,12 +210,12 @@ function card(){
 		var bank =  document.getElementById("bank").value;	
 		var geza =  document.getElementById("geza").value;
 		var dpdirname =  document.getElementById("dpdirname").value;
-	
+		var tongpass =  document.getElementById("tongpass").value;
+		
 		  if((bank=="신한" && geza.length != 11) && (bank=="신한" && geza.length != 12)) {
 	            alert("계좌번호가 잘못되었습니다.");
 	            return false;
-	            document.getElementById("accountNumber").focus();
-	           
+	            document.getElementById("accountNumber").focus();	      
 	        }
 	        //우리 13자리
 	        else if(bank=="우리" && geza.length != 13){
@@ -222,39 +228,40 @@ function card(){
 	        else if(bank=="농협" && geza.length != 13){
 	            alert("계좌번호가 잘못되었습니다.");
 	            return false;
-	            document.getElementById("accountNumber").focus();
-	        
+	            document.getElementById("accountNumber").focus();     
 	        }
 	        //국민 (구) 12자리 (신) 14자리
 	        else if((bank=="국민" && geza.length != 12) && (bank=="국민" && geza.length != 14)) {
 	            alert("계좌번호가 잘못되었습니다.");
 	            return false;
-	            document.getElementById("accountNumber").focus();
-	           
+	            document.getElementById("accountNumber").focus();	           
 	        }   
 		  	//하나 은행 14자리
 	        else if(bank=="하나" && geza.length != 14){
 	            alert("계좌번호가 잘못되었습니다.");
 	            return false;
-	            document.getElementById("accountNumber").focus();
-	         
+	            document.getElementById("accountNumber").focus();       
 	        }
 	       //IBK 은행 14자리
 	        else if (bank=="ibk" && geza.length != 14){
 	            alert("계좌번호가 잘못되었습니다.");
 	            return false;
-	            document.getElementById("accountNumber").focus();
-	          
+	            document.getElementById("accountNumber").focus();          
+	        }else if(geza==""||geza==null){
+	            alert("계좌번호를 입력해주세요");
+	            return false;
+	            document.getElementById("geza").focus();
 	        }else if(dpdirname==""||dpdirname==null){
-	            alert("이름을 입력해주세요.");
+	            alert("예금주를 입력해주세요.");
 	            return false;
 	            document.getElementById("dpdirname").focus();
-	           
-	        }
-	}
-	
+	        }else if(tongpass==""||tongpass==null){
+	            alert("계좌 비밀번호를 입력해주세요.");
+	            return false;
+	            document.getElementById("tongpass").focus();	           
+	        }	 
+		}
 }
-
 </script>
 </head>
 
@@ -301,7 +308,7 @@ function card(){
 		<!-- 계좌이체 -->
 		<div id="d">
 			<table class="Bank_Transfer_table">
-				<tr><th>계좌이체</th><td>우리은행 1002 537 480416 전의진</td></tr>
+				<tr><th>실시간 계좌이체</th><td>우리은행 1002 537 480416 전의진</td></tr>
 				<tr><th>입금 계좌 </th><td><input id="geza" type="text" name="account" onkeyup="gezaa();">
 				<select id="bank">
 				<option value="신한">신한은행</option>
@@ -312,6 +319,7 @@ function card(){
 				<option value="ibk">IBK기업은행</option>	
 				</select>
 				</td></tr>
+				<tr><th>통장 비밀번호</th><td><input type="text" id="tongpass" name="tongpass" maxlength="5" style="width:40px;" onkeyup="tongpassd();"></td></tr>
 				<tr><th>예금주</th><td><input type="text" id="dpdirname" name="account_name" maxlength="5" style="width:40px;"></td></tr>
 			</table>
 		</div>
