@@ -115,6 +115,145 @@ function hap(){
 	
 }
 
+
+function cardmy(){
+	var m =  document.getElementById("cardmonth").value;
+	var y =  document.getElementById("cardyear").value;
+	
+	
+	if(isNaN(m)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardmonth").value="";
+		return false;
+	}else if(isNaN(y)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardyear").value="";
+		return false;
+	}
+	
+}
+
+function cvc(){
+	var num5 =  document.getElementById("cardcvc").value;
+	if(isNaN(num5)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardcvc").value="";
+		return false;
+	}
+}
+
+
+function passwd(){
+	var num6 =  document.getElementById("cardpasswd").value;
+	if(isNaN(num6)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardpasswd").value="";
+		return false;
+	}
+}
+
+function gezaa(){
+	var geza =  document.getElementById("geza").value;
+	
+	if(isNaN(geza)==true){
+		alert('숫자만 입력해주세요');
+		document.getElementById("geza").value="";
+		return false;
+	}
+}
+
+
+function card(){
+	var payment1 = document.getElementById("payment1");
+	var payment2 = document.getElementById("payment2");
+	//카드 유효성
+	if(payment1.checked == true){
+		var num1 =  document.getElementById("cardnum1").value;
+		var num2 =  document.getElementById("cardnum2").value;
+		var num3 =  document.getElementById("cardnum3").value;
+		var num4 =  document.getElementById("cardnum4").value;
+		var num5 =  document.getElementById("cardcvc").value;
+		var num6 =  document.getElementById("cardpasswd").value;
+		var m =  document.getElementById("cardmonth").value;
+		var y =  document.getElementById("cardyear").value;
+		
+		if(num1.length<=3||num2.length<=3||num3.length<=3||num4.length<=3||
+		   num1.length==""||num2.length==""||num3.length==""||num4.length==""){
+			alert('카드번호가 전부 입력되지 않았습니다.');
+			document.getElementById("cardnum1").value="";
+			document.getElementById("cardnum2").value="";
+			document.getElementById("cardnum3").value="";
+			document.getElementById("cardnum4").value="";
+			return false;
+		}else if(y.length==""||m.length==""){
+			alert('월/년 이 입력안된사항이있습니다.');
+			return false;
+		}else if(num5.length<=2||num5.length==""){
+			alert('CVC가 전부 입력되지 않았습니다.');
+			document.getElementById("cardcvc").value="";
+			return false;
+		}else if(num6.length==""||num6.length<=1){
+			alert('카드 패스워드가 입력되지 않았습니다.');
+			document.getElementById("cardpasswd").value="";
+			return false;
+		}
+	}
+	//계좌번호 유효성
+	else if(payment2.checked == true){	
+		var bank =  document.getElementById("bank").value;	
+		var geza =  document.getElementById("geza").value;
+		var dpdirname =  document.getElementById("dpdirname").value;
+	
+		  if((bank=="신한" && geza.length != 11) && (bank=="신한" && geza.length != 12)) {
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	           
+	        }
+	        //우리 13자리
+	        else if(bank=="우리" && geza.length != 13){
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	           
+	        }
+	        //농협 13자리
+	        else if(bank=="농협" && geza.length != 13){
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	        
+	        }
+	        //국민 (구) 12자리 (신) 14자리
+	        else if((bank=="국민" && geza.length != 12) && (bank=="국민" && geza.length != 14)) {
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	           
+	        }   
+		  	//하나 은행 14자리
+	        else if(bank=="하나" && geza.length != 14){
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	         
+	        }
+	       //IBK 은행 14자리
+	        else if (bank=="ibk" && geza.length != 14){
+	            alert("계좌번호가 잘못되었습니다.");
+	            return false;
+	            document.getElementById("accountNumber").focus();
+	          
+	        }else if(dpdirname==""||dpdirname==null){
+	            alert("이름을 입력해주세요.");
+	            return false;
+	            document.getElementById("dpdirname").focus();
+	           
+	        }
+	}
+	
+}
+
 </script>
 <style>
 .order_body{
@@ -275,7 +414,7 @@ input {
 				<h3>주문/결제</h3>
 			</div>
 		<div class="order_board">
-			<form method="post" action="order_pro2.jsp">
+			<form method="post" action="order_pro2.jsp" onsubmit="return card();">
 			<div class="by_my_info"><h4>구매자 정보</h4>
 			<table class="shop_byinfomation">		
 				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
@@ -308,8 +447,17 @@ input {
 		<div id="d">
 			<table class="Bank_Transfer_table">
 				<tr><th>계좌이체</th><td>우리은행 1002 537 480416 전의진</td></tr>
-				<tr><th>입금 계좌 </th><td><input type="text" name="account"></td></tr>
-				<tr><th>예금주</th><td><input type="text" name="account_name"></td></tr>
+				<tr><th>입금 계좌 </th><td><input id="geza" type="text" name="account" onkeyup="gezaa();">
+				<select id="bank">
+				<option value="신한">신한은행</option>
+				<option value="국민">국민은행</option>
+				<option value="우리">우리은행</option>
+				<option value="하나">하나은행</option>
+				<option value="농협">농협</option>
+				<option value="ibk">IBK기업은행</option>	
+				</select>
+				</td></tr>
+				<tr><th>예금주</th><td><input type="text" id="dpdirname" name="account_name" maxlength="5" style="width:40px;"></td></tr>
 			</table>
 		</div>
 		<!-- 카드 -->
@@ -337,19 +485,22 @@ input {
 				<tr>
 					<th>Month / Year</th>
 					<td>
-						<input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardmonth"><a style="margin-left: 5px;margin-right: 5px;">/</a><input type="text" maxlength="2" style="width:40px;border: none;border-bottom: 1px solid #ccc;" name="cardyear">
+					<input type="text" maxlength="2" style="width:40px;border:none;
+						border-bottom: 1px solid #ccc;" id="cardmonth" name="cardmonth" onkeyup="cardmy()"><a style="margin-left: 5px;margin-right: 5px;">/</a>
+						<input type="text" maxlength="2" style="width:40px;border:none;
+						border-bottom: 1px solid #ccc;" id="cardyear" name="cardyear" onkeyup="cardmy()">
 					</td>
 				</tr>
 				<tr>
 					<th>CVC</th>
 					<td>
-						<input type="text" maxlength="3" style="width:40px;" name="cardcvc">
+						<input type="text" id="cardcvc" maxlength="3" style="width:40px;" name="cardcvc" onkeyup="cvc();">
 					</td>
 				</tr>
 				<tr>
 					<th>비밀번호 앞자리</th>
 					<td>
-						<input type="text" maxlength="2" style="width:20px;" name="cardpasswd">**
+					<input type="text" id="cardpasswd" maxlength="2" style="width:20px;" name="cardpasswd" onkeyup="passwd();">**
 					</td>
 				</tr>
 				
@@ -362,9 +513,10 @@ input {
 			 		LP 할인
 			 	</th>
 				 <td>
-				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
+				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP
+				 	 (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 				 	<input type="hidden" name="lw_lp" value="<%=point%>">
-				 	 <input type="hidden" name="lw_lp_plus" value="<%=pluspoint%>">
+				 	 <input type="hidden" name="pluspoint" value="<%=pluspoint%>">
 				 </td>
 			 </tr>
 		</table>

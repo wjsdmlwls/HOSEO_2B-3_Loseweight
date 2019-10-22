@@ -18,7 +18,7 @@
     //마일리지
 	int lw_lpminor = Integer.parseInt(request.getParameter("lw_lpminor"));
 	int lw_lp = Integer.parseInt(request.getParameter("lw_lp"));
-	int pointplus = Integer.parseInt(request.getParameter("lw_lp_plus"));
+    int pluspoint = Integer.parseInt(request.getParameter("pluspoint"));
 
 	//상세정보 리퀘스트
 	SimpleDateFormat date = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
@@ -60,7 +60,7 @@
 <%
 //상품 테이블 insert 
 order_DAO dbPro = order_DAO.getInstance(); 
-dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,demand,lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode);
+dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,demand,lw_id,order_time,product_total,delivery_total,lw_addr2,lw_zipcode,lw_lpminor,pluspoint);
 
 //상품테이블과 주문내역을 연동시킬 번호
  int ordernum = dbPro.selectordernum(lw_id,order_time);
@@ -83,7 +83,7 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
     dbPros.insertsanpum(sanpum_DTO);   
 }  
 //마일리지 연산
-	user.setLw_lp(((lw_lp)-(lw_lpminor))+(pointplus)); 
+	user.setLw_lp(((lw_lp)-(lw_lpminor))+(pluspoint)); 
  	
  	UserDAO db2= UserDAO.getInstance(); 
  	db2.updatelp(user);
