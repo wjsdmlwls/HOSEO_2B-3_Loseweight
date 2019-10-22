@@ -60,6 +60,7 @@ String lw_zipcode = db.pupdatezipcode(id);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="order2.css">
 <link rel="stylesheet" href="/2019_JeonJSP/Loseweight/css/bootstrap.min.css">
 <script src="/2019_JeonJSP/Loseweight/js/jquery.slim.min.js"></script>
 <script src="/2019_JeonJSP/Loseweight/js/bootstrap.bundle.min.js"></script>
@@ -116,152 +117,6 @@ function hap(){
 }
 
 </script>
-<style>
-.order_body{
-	width: 1000px;
-    margin: 20px auto;
-}
-.div_top{
-    width: 100%;
-    height: 90px;
-    border-bottom: #f0f0f0 solid 1px;
-}
-.top_logo{
-	width: 1000px;
-    margin: 0 auto;
-}
-.order_title{
-	width: 1000px;
-    margin: 0 auto;
-    border-bottom: solid #777;
-    padding-bottom: 10px;
-}
-.order_board{
-	margin-top:20px
-}
-.shop_byinfomation{
-	width: 100%;
-	border-top: solid #ccc 2px;
-}
-.shop_byinfomation th{
-	background: #f9f9f9;
-	width:140px;
-	border-right: solid #ccc 1px;
-	padding-right: 10px;
-    text-align: right;
-    font-size: 14px;
-}
-.shop_byinfomation tr{
-	border-top: solid #ccc 1px;
-    border-bottom: solid #ccc 1px;
-    height:50px;    
-}
-.myinfo{
- border:none;
- margin-left: 15px;
- font-size: 15px;
-}
-.pick_up{
-	margin-top: 30px;
-}
-.Payment_method{
-	margin-top:30px;
-}
-.Payment_method td{
-	margin-top:30px;
-}
-.order_product{
-	margin-top:30px;
-}
-.order_product_table{
-	width: 1000px;
-	border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-.order_product_table thead{
-	border-bottom: 1px solid #ccc;
-	background: #f9f9f9;
-}
-.order_product_table thead tr{
-	text-align: center;
-}
-.order_product_table tbody tr{
-	height:30px;
-}
-.order_product_table tr td{
-	padding:10px;
-}
-.order_total_reslut{
-	text-align:right;
-}
-.order_total_reslut a{
-	padding:3px;
-}
-.Payment_select {
-	width: 100%;
-    border-top: solid 2px #ccc;
-}
-.Payment_select tr{
-	height: 50px
-}
-.Payment_select td{
-	padding-left: 15px;
-}
-.Payment_select th{
-	background:#f9f9f9;
-	width:150px;
-}
-.Bank_card_table {
-	width: 100%;
-    border-bottom: solid 1px #ccc;
-    border-top: solid 1px #ccc;
-}
-.Bank_card_table tr{
-	height: 50px;	
-    border-top: solid 1px #ccc;
-}
-.Bank_card_table td{
-	padding-left: 15px;
-}
-.Bank_card_table th{
-	background:#f9f9f9;
-	width:150px;
-}
-.Bank_Transfer_table {
-	width: 100%;
-    border-bottom: solid 1px #ccc;
-    border-top: solid 1px #ccc;
-}
-.Bank_Transfer_table tr{
-	height: 50px;	
-    border-top: solid 1px #ccc;
-}
-.Bank_Transfer_table td{
-	padding-left: 15px;
-}
-.Bank_Transfer_table th{
-	background:#f9f9f9;
-	width:150px;
-}
-.order_useLP {
-	width: 100%;
-    border-bottom: solid 1px #ccc;
-}
-.order_useLP tr{
-	height: 50px;	
-}
-.order_useLP td{
-	padding-left: 15px;
-}
-.order_useLP th{
-	background:#f9f9f9;
-	width:150px;
-}
-input {
-	border: 1px solid #ccc;
-	height:20px;
-} 
-</style>
 </head>
 
 <body>
@@ -419,7 +274,10 @@ input {
 		hap();
 		</script>
 		<input type="hidden" name="lw_id" value="<%=id%>">
-		<button type="submit">결제하기</button>
+		<div style="text-align: center;margin: 30px;">
+			<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><input class="shopping_btn"type="button" value="계속 쇼핑하기"></a>
+			<button type="submit" class="by_btn">결제하기</button>
+		</div>
 		</div>
 		</form>
 		</div>

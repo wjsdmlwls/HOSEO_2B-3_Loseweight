@@ -182,7 +182,8 @@ function loginshow() {
     </ul>
     
  </li>
- 	<li><a href="#"><%=boardname%></a>	
+<% if(!toc.equals ("not")){%>
+ 	<li><a href="#"><%=boardname%></a>
 	 	<ul>
 		 	<%if(tom.equals ("0")){ %>
 		 		 <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">회원정보</a></li>
@@ -221,8 +222,8 @@ function loginshow() {
 			
 			 <%}%>
 	 	</ul>
-	 	 <li></li>
  	</li>
+ 	<%} %>
 </div>
 <hr style="background:#ccc; margin-top: -1px;">
 	<!-- nav menu -->
@@ -291,7 +292,6 @@ function loginshow() {
 					</div>
 		<%} %>
 		<%if(tom.equals ("shop")){ %>
-		
 		<%} %>
 		
 				<div class="modallist">

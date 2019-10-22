@@ -93,6 +93,9 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="order2.css">
+<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/community/include.css">
 <title>LoseWeight</title>
 <style>
 .maindiv{
@@ -112,20 +115,24 @@ height:500px;
 </head>
 <body>
 <div>
-	<jsp:include page="../../community/community_topinclude.jsp" >
-				<jsp:param name="tom" value="7"/>
-				<jsp:param name="toc" value="0"/>
-				<jsp:param name="imgs" value="shop.png"/>
-				<jsp:param name="boardname" value="기구"/>
-	</jsp:include>
-<div class="maindiv">
-
-<div class="mainimg" ></div>
-<p style="font-size:30px;">주문이 완료되었습니다.</p>
-<p style="font-size:30px;">주문내역 확인하러가기<a href="../../../Loseweight\lw_user\user_jumoon.jsp"><img src="images/clp.png" width="50px" height="30px;"></a></p>
-<p style="font-size:30px;">쇼핑 더하기<a href="Fitness_shop_list.jsp"><img src="images/cart.png" width="50px" height="30px;"></a></p>
-
-</div>
+	<div>
+	<div class="div_top">
+			<div class="top_logo">
+			<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><img style="position: absolute;width: 150px;height: auto;margin-top: 15px;" src="/2019_JeonJSP/Loseweight/img/footer_include/logo.png"></a>
+			</div>
+		</div>
+		<div class="order_body">
+			<div class="order_title">
+				<h3>주문/결제</h3>
+			</div>
+		</div>
+	<div class="maindiv">
+		<div class="mainimg" ></div>
+			<p style="font-size:30px;">주문이 완료되었습니다.</p>
+			<p style="font-size:30px;">주문내역 확인하러가기<a href="../../../Loseweight\lw_user\user_jumoon.jsp"><img src="images/clp.png" width="50px" height="30px;"></a></p>
+			<p style="font-size:30px;">쇼핑 더하기<a href="Fitness_shop_list.jsp"><img src="images/cart.png" width="50px" height="30px;"></a></p>
+		</div>
+	</div>
 </div>
 
 <jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>	  

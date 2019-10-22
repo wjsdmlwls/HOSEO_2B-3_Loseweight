@@ -1,0 +1,175 @@
+
+.order_body{
+	width: 1000px;
+    margin: 20px auto;
+}
+.div_top{
+    width: 100%;
+    height: 90px;
+    border-bottom: #f0f0f0 solid 1px; 
+}
+.top_logo{
+	width: 1000px;
+    margin: 0 auto;
+}
+.order_title{
+	width: 1000px;
+    margin: 0 auto;
+    border-bottom: solid #777;
+    padding-bottom: 10px;
+}
+.order_board{
+	margin-top:20px
+}
+.shop_byinfomation{
+	width: 100%;
+	border-top: solid #ccc 2px;
+}
+.shop_byinfomation th{
+	background: #f9f9f9;
+	width:140px;
+	border-right: solid #ccc 1px;
+	padding-right: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+.shop_byinfomation tr{
+	border-top: solid #ccc 1px;
+    border-bottom: solid #ccc 1px;
+    height:50px;    
+}
+.myinfo{
+ border:none;
+ margin-left: 15px;
+ font-size: 15px;
+}
+.pick_up{
+	margin-top: 30px;
+}
+.Payment_method{
+	margin-top:30px;
+}
+.Payment_method td{
+	margin-top:30px;
+}
+.order_product{
+	margin-top:30px;
+}
+.order_product_table{
+	width: 1000px;
+	border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.order_product_table thead{
+	border-bottom: 1px solid #ccc;
+	background: #f9f9f9;
+}
+.order_product_table thead tr{
+	text-align: center;
+}
+.order_product_table tbody tr{
+	height:30px;
+}
+.order_product_table tr td{
+	padding:10px;
+}
+.order_total_reslut{
+	text-align:right;
+}
+.order_total_reslut a{
+	padding:3px;
+}
+.Payment_select {
+	width: 100%;
+    border-top: solid 2px #ccc;
+}
+.Payment_select tr{
+	height: 50px
+}
+.Payment_select td{
+	padding-left: 15px;
+}
+.Payment_select th{
+	background:#f9f9f9;
+	width:150px;
+}
+.Bank_card_table {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+}
+.Bank_card_table tr{
+	height: 50px;	
+    border-top: solid 1px #ccc;
+}
+.Bank_card_table td{
+	padding-left: 15px;
+}
+.Bank_card_table th{
+	background:#f9f9f9;
+	width:150px;
+}
+.Bank_Transfer_table {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+}
+.Bank_Transfer_table tr{
+	height: 50px;	
+    border-top: solid 1px #ccc;
+}
+.Bank_Transfer_table td{
+	padding-left: 15px;
+}
+.Bank_Transfer_table th{
+	background:#f9f9f9;
+	width:150px;
+}
+.order_useLP {
+	width: 100%;
+    border-bottom: solid 1px #ccc;
+}
+.order_useLP tr{
+	height: 50px;	
+}
+.order_useLP td{
+	padding-left: 15px;
+}
+.order_useLP th{
+	background:#f9f9f9;
+	width:150px;
+}
+.by_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #aba0a0;
+    color: #fff;
+}
+
+input {
+	border: 1px solid #ccc;
+	height:20px;
+}
+
+.shopping_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #fff;
+    height:63px;
+}
