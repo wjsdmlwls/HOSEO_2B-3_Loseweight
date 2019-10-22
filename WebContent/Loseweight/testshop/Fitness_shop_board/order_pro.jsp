@@ -135,11 +135,6 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	if(conn!=null)
 		try{conn.close();}catch(SQLException sqle){}
 	}
-	PrintWriter script = response.getWriter();
-	script.println("<script>");
-	script.println("alert('정상적으로 변경 되었습니다.')");
-	script.println("history.back()");
-	script.println("</script>");
 %>
 <!DOCTYPE html>
 <html>

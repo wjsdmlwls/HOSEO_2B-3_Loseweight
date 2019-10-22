@@ -141,7 +141,12 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 			<Tr><td colspan=9><h4 style="padding: 200;"><%=listsearch %><%=id %>게시글이 없습니다 첫 게시글을 작성해주세요^^</h4></td></Tr>
 			<%}%>
 	</table>
-	
+	<%if(id==null||id==""){%>
+	<%}else{%>
+	<div style="width: 1200px;margin: 10px auto;height: 50px;">
+		<a href="board_writeForm.jsp" style="float: right;">
+		<input class="write_btn" value="글쓰기"></a></div>
+	<%} %>
 	<div class="pageselect">
 	<%
 	    if (count > 0) {
@@ -176,19 +181,17 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 	%>
 	
 		<form method="post" action="board_list.jsp">		
-		<div style="margin:0 auto;margin-top:10px;">
-		<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='subject'>제목</OPTION>
-	        <OPTION value='writer'>작성자</OPTION>
-	        <OPTION value='content'>내용</OPTION>
-	    </SELECT>
-		<input class="search_input" name="listsearch" type="text">
-		<input type="image" type="submit" src="images/search.gif">
-		<%if(id!=""){%><a href="board_writeForm.jsp"><input class="write_btn"value="글쓰기"></a></div>
-	<%}else{
-		
-	}%>
-	
+			<div style="margin: 0 auto;margin-top: 10px;width: 415px;border: solid 2px #6f4e37;">
+				<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
+			        <OPTION value='subject'>제목</OPTION>
+			        <OPTION value='writer'>작성자</OPTION>
+			        <OPTION value='content'>내용</OPTION>
+			    </SELECT>
+				<input class="search_input" name="listsearch" type="text">
+				<div style="width: 50px;height: 50px;float: right;">
+					<input style="width: 35px;height: 35px;margin-top: 7px;"type="image" type="submit" src="../../img/search/search.png">
+				</div>
+			</div>	
 		</form>
 		</div>
 		</div>

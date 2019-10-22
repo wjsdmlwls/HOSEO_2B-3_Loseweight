@@ -13,7 +13,7 @@ create table lw_zipcode(
 UPDATE lw_zipcode SET NEW_ZIPCODE = CONCAT('0',NEW_ZIPCODE) WHERE zipcode
 /*텍스트에는 앞자리 0이 빠져있어서 신우편주소인데도 4자리가 들어가있어서 5자리로 수정 */
 
-UPDATE zipcode SET NEW_ZIPCODE = CONCAT('0',NEW_ZIPCODE);
+UPDATE lw_zipcode SET NEW_ZIPCODE = CONCAT('0',NEW_ZIPCODE);
 /*이게 맞는거*/
 
 select * from lw_zipcode

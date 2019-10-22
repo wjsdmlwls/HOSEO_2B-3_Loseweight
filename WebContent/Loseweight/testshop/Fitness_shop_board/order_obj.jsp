@@ -256,9 +256,39 @@ function hap(){
 	background:#f9f9f9;
 	width:150px;
 }
+.by_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #aba0a0;
+    color: #fff;
+}
+
 input {
 	border: 1px solid #ccc;
 	height:20px;
+}
+
+.shopping_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #fff;
+    height:63px;
 }
 </style>
 </head>
@@ -367,9 +397,7 @@ input {
 			 		LP 할인
 			 	</th>
 				 <td>
-<<<<<<< HEAD
-				 	<input type="text" style="width: 100px; margin-right:10px;"name="lw_lpminor">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
-=======
+				 
 				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">
 				 	LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 
@@ -431,7 +459,10 @@ input {
 		maxpoint();
 		</script>
 		<input type="hidden" name="lw_id"value="<%=id%>">  
-		<button type="submit">결제하기</button>
+		<div style="text-align: center;margin: 30px;">
+			<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><input class="shopping_btn"type="button" value="계속 쇼핑하기"></a>
+			<button type="submit" class="by_btn">결제하기</button>
+		</div>
 		</div>
 		
 		</form>

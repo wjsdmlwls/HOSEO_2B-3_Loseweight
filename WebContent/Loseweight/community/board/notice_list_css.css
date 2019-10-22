@@ -65,14 +65,13 @@ text-align:center;
 width:100px;
 height:50px;
 border-style: none;
-border-bottom:1px solid #a8a8a8;
+border-right:1px solid #a8a8a8;
 }
 .search_input{
 width:250px;
 height:49px;
 border-style: none;
 margin-left:10px;
-border-bottom:1px solid #a8a8a8;
 }
 .write_btn{
 width:100px;

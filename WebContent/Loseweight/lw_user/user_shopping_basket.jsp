@@ -185,6 +185,34 @@ font-size: 12px;
     font-size: 18px;
     text-align:center;	
 }
+.shopping_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #fff;
+}
+.by_btn{
+	font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    width: 216px;
+    line-height: 18px;
+    border: 2px solid #aba0a0;
+    border-radius: 4px;
+    padding: 22px 0 19px;
+    text-align: center;
+    background: #aba0a0;
+    color: #fff;
+}
+
 </style>
 
 <!-- 주소 end -->
@@ -357,11 +385,14 @@ font-size: 12px;
 		
 		<h4 class="basket_result">총 상품가격 </h4><input type="text"  class="basket_pricersultinputbox" name ="product_total" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>
 		<h4 class="basket_result">총 배송비 </h4> <input type="text" class="basket_pricersultinputbox" name="delivery_total" id="delivery_total" value=0 readonly><h4 class="basket_result">원</h4>
-		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" name="total_hap" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
+		<h4 class="basket_result">총 주문금액</h4><input type="text" class="basket_pricersultinputbox" style="color:#ae0000" name="total_hap" id="total_hap" value=0 readonly><h4 class="basket_result">원</h4>
 		</div>
 	
 		
-		<div><button type="submit">구매하기</button></div>
+		<div style="width: 1000px;margin: 0 auto;text-align: center;">
+		<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><input class="shopping_btn"type="button" value="계속 쇼핑하기"></a>
+		<button class="by_btn"type="submit">구매하기</button>
+		</div>
 		</form>
 		<%}catch (Exception e) {
 				e.printStackTrace();

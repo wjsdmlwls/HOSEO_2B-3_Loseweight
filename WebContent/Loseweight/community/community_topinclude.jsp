@@ -5,6 +5,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "user.*"%>
 
 <html>
 <head>
@@ -82,6 +83,8 @@ function loginshow() {
 		id=(String)session.getAttribute("id");
 	}	
 	//로그인이 성공하면 아이디값으로 세션에 접속을함.
+	UserDAO db = new UserDAO();
+	int point = db.lpupdate(id);
 	%>
 <% 
 		String tom = request.getParameter("tom"); /*table of menu*/
@@ -102,6 +105,7 @@ function loginshow() {
 								<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
 								
 								<%}else{%>
+								<a><%=point %></a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp">주문내역</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">마이페이지</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/logout.jsp">로그아웃</a>

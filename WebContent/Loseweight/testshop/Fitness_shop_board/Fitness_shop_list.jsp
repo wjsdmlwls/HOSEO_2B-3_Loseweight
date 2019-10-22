@@ -206,10 +206,11 @@ function fitcategory2_change(){
 
 <div class="search_bar">
 	<form method="post" action="Fitness_shop_list.jsp">
-		<div style="margin:0 auto; margin-top:10px;">
-		<input class="search_input" name="listsearch" type="text">
-						    
-		<input value="검색" type="submit">
+		<div style="margin: 0 auto;margin-top: 10px;width: 415px;border: solid 2px #6f4e37;">
+				<input class="search_input" name="listsearch" type="text">
+				<div style="width: 40px;height: 50px;float: right;">
+					<input style="width: 35px;height: 35px;margin-top: 7px;"type="image" type="submit" src="../../img/search/search.png">
+			</div>	
 		</div>
 	</form>
 </div>
@@ -335,6 +336,13 @@ function fitcategory2_change(){
 	
 		</ul>
 				</div>
+	<%if(id==null||id==""){%>
+	<%}else if(id.equals("admin")){%>
+		<div style="width: 1200px;margin: 10px auto;height: 50px;">
+				<a href="Fitness_shop_writeForm.jsp" style="float: right;">
+				<input class="write_btn" value="글쓰기"></a>
+		</div>
+	<%} %>
 	<div class="bottom_img">
 	<%
 	    if (count > 0) {
@@ -372,13 +380,6 @@ function fitcategory2_change(){
 	    }
 	
 	%>
-	
-	<%if(id==null||id==""){%>
-
-	<%}else if(id.equals("admin")){%>
-	<a href="Fitness_shop_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="상품등록"></a>
-	<%} %>
-
 	</div>	
 		<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>				
 </body>

@@ -276,7 +276,7 @@ table.lw_shopboard tbody td {
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
 				<tbody>
-				<tr class="lw_shoplistboard">
+				<tr class="lw_shoplistboard"style="border-top:2px solid ">
 			    <td><%=ordernum %></td>
 			    <td><%=product_names %></td>
 			    <td><%=product_total %></td>
@@ -295,7 +295,7 @@ table.lw_shopboard tbody td {
 					%><%for(int d=0; orderList2.size()>d; d++ ){
 						sanpum = orderList2.get(d);%>
 			    <tr class="lw_shoplistboard">
-			    <td style="background:#fff;"></td>
+			    <td style="background:#fff;border:none;"></td>
 			    <td><%=sanpum.getProduct_name()%></td>
 			    <td><%=sanpum.getSelling_price()%></td>
 			    <td><%=sanpum.getDelivery_charge()%></td>
@@ -310,7 +310,8 @@ table.lw_shopboard tbody td {
 			    <% if(sanpum.getOrderstatus()==1) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=2"><input type="button"value="배송확인"></a><%} %>
 			    <% if(sanpum.getOrderstatus()==2) {%>배송중<%} %>
 			    <% if(sanpum.getOrderstatus()==3) {%><a>거래완료</a><%} %>
-			    <% if(sanpum.getOrderstatus()==4) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=5&lw_id=<%=lw_id%>&lw_lpminor=<%=lw_lpminor%>&pluspoint=<%=pluspoint%>" ><input type="button"value="환불요청"></a><%} %>
+			    <% if(sanpum.getOrderstatus()==4) {%><a href="/2019_JeonJSP/Loseweight/admin/admin_order_Action.jsp?ordernum=<%=ordernum%>&orderstatus=5&lw_id=<%=lw_id%>&lw_lpminor=<%=lw_lpminor%>&pluspoint=<%=pluspoint%>" >
+			    <input type="button"value="환불요청"></a><%} %>
 			    <% if(sanpum.getOrderstatus()==5) {%>환불완료<%} %>
 			    
 			    </td>

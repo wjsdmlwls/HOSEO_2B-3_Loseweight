@@ -364,7 +364,7 @@ input {
 				 <td>
 				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 				 	<input type="hidden" name="lw_lp" value="<%=point%>">
-				 	 <input type="hidden" name="lw_lp_plus" value="<%=pluspoint%>">
+				 	 <input type="hidden" name="pluspoint" value="<%=pluspoint%>">
 				 </td>
 			 </tr>
 		</table>

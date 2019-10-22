@@ -86,14 +86,16 @@
 
 <div class="search_bar">
 	<form method="post" action="bfboard_list.jsp">
-		<div style="margin:0 auto; margin-top:10px;">
-		<SELECT class="search_list" name='searchcol'> <!-- 검색 컬럼 -->
-	        <OPTION value='subject'>제목</OPTION>
-	        <OPTION value='writer'>작성자</OPTION>
-	        <OPTION value='content'>내용</OPTION>
-	    </SELECT>
-		<input class="search_input" name="listsearch" type="text">
-		<input type="image" type="submit" src="images/search.gif">
+		<div style="margin: 0 auto;margin-top: 10px;width: 415px;border: solid 2px #6f4e37;">
+			<SELECT class="search_list"name='searchcol'> <!-- 검색 컬럼 -->
+		        <OPTION value='subject'>제목</OPTION>
+		        <OPTION value='writer'>작성자</OPTION>
+		        <OPTION value='content'>내용</OPTION>
+		    </SELECT>
+			<input class="search_input" name="listsearch" type="text">
+			<div style="width: 50px;height: 50px;float: right;">
+				<input style="width: 35px;height: 35px;margin-top: 7px;"type="image" type="submit" src="../../img/search/search.png">
+			</div>
 		</div>
 	</form>
 </div>
@@ -119,8 +121,7 @@
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>
-				
-			    <li class="shop_board_li"  OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
+				<li class="shop_board_li"  OnClick="location.href ='bfboard_content.jsp?num=<%=num%>&pageNum=<%=currentPage%>'">
 			    			   
 			    <%if (img0!=null){%>
 			    <div class="shopboard_img" style="background-image:url('<%=img0%>');"><div class="img_background"></div></div>
@@ -133,27 +134,18 @@
 			           <%=subject%></p>
 			            <a class="img_writer" href="mailto:<%=email%>">			          
 				       <p><%=writer%></a>&nbsp;<%= sdf.format(reg_date)%></p>
-			          
-				        
-				        
-				       
 				
 			<% if(readcount>=20){%>
 			         <img src="images/hot.png" border="0"  height="16"><%}%> 
 			  </li>
-			  
 			
 		<%
 			}while(listsearchresult.next());
 		%>
-		
 	<%
 	}else{
 			%>
-			  
 			<Tr><td colspan=9><h4 style="padding: 200;"><%=listsearch %><%=id %>게시글이 없습니다 첫 게시글을 작성해주세요^^</h4></td></Tr>
-			
-			
 			
 			
 			<%}
@@ -161,7 +153,13 @@
 	
 			</ul>
 			</div>
-			
+			<%if(id==null||id==""){%>
+			<%}else{%>
+			<div style="width: 1200px;margin: 10px auto;height: 50px;">
+				<a href="bfboard_writeForm.jsp" style="float: right;">
+				<input class="write_btn" value="글쓰기"></a>
+			</div>
+			<%} %>
 	<div class="bottom_img">
 	<%
 	    if (count > 0) {
@@ -199,14 +197,6 @@
 	    }
 	
 	%>
-	
-	<%if(id==null||id==""){%>
-	
-	
-	<%}else{%>
-	<a href="bfboard_writeForm.jsp"><input id="bottom_write_button" class="write_btn" value="글쓰기"></a>
-	<%} %>
-
 	</div>				
 	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>	
 </body>
