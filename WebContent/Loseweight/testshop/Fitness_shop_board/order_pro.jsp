@@ -125,10 +125,8 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	}
 %>
 <%
-	
 	}catch(Exception e){
 	e.printStackTrace();
-	str="member 테이블에 새로운 레코드를 추가에 실패하였습니다.";
 	}finally{
 	if(pstmt!=null)
 		try{pstmt.close();}catch(SQLException sqle){}
@@ -183,6 +181,6 @@ height:500px;
 
 </div>
 </div>
-	<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>
+	<jsp:include page="../../community/community_footerinclude.jsp"></jsp:include>
 </body>
 </html>
