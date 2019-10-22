@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.sql.*" %>
     <%@ page import = "java.sql.Timestamp" %>
     <%@ page import = "java.text.SimpleDateFormat" %>
     <%@ page import = "Fitnesshop.order_DAO" %>
@@ -14,6 +15,20 @@
 <jsp:useBean id="user"  scope="page" class="user.User">
    <jsp:setProperty name="user" property="*"/>
 </jsp:useBean>
+<%	
+
+	Connection conn=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	String str="";
+	try{
+	String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
+	
+	Class.forName("com.mysql.jdbc.Driver");
+	conn=DriverManager.getConnection(jdbcUrl, dbId, dbPass);%>
 <%
     //마일리지
 	int lw_lpminor = Integer.parseInt(request.getParameter("lw_lpminor"));
@@ -81,6 +96,13 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	sanpum_DTO.setOption1price(Integer.parseInt(option1price[i]));
 	sanpum_DTO.setDelivery_charge(Integer.parseInt(delivery_charge[i]));
     dbPros.insertsanpum(sanpum_DTO);   
+	
+    String sql="update Fitness_shop set quantity=quantity-? where lw_salesnum=?";
+
+	pstmt=conn.prepareStatement(sql);
+	pstmt.setInt(1, Integer.parseInt(quantity[i]));
+	pstmt.setInt(2, Integer.parseInt(lw_salesnum[i]));
+	pstmt.executeUpdate();
 }  
 //마일리지 연산
 	user.setLw_lp(((lw_lp)-(lw_lpminor))+(pluspoint)); 
@@ -88,7 +110,16 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
  	UserDAO db2= UserDAO.getInstance(); 
  	db2.updatelp(user);
 %>
-    
+   <%
+	}catch(Exception e){
+	e.printStackTrace();
+	}finally{
+	if(pstmt!=null)
+		try{pstmt.close();}catch(SQLException sqle){}
+	if(conn!=null)
+		try{conn.close();}catch(SQLException sqle){}
+	}
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,6 +159,7 @@ height:500px;
 		</div>
 	<div class="maindiv">
 		<div class="mainimg" ></div>
+			<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><input class="shopping_btn"type="button" value="계속 쇼핑하기"></a>
 			<p style="font-size:30px;">주문이 완료되었습니다.</p>
 			<p style="font-size:30px;">주문내역 확인하러가기<a href="../../../Loseweight\lw_user\user_jumoon.jsp"><img src="images/clp.png" width="50px" height="30px;"></a></p>
 			<p style="font-size:30px;">쇼핑 더하기<a href="Fitness_shop_list.jsp"><img src="images/cart.png" width="50px" height="30px;"></a></p>

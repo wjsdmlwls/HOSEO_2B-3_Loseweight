@@ -115,10 +115,14 @@ table.lw_shopboard tbody td {
     background: #efefef;
 }
 .adminpage_list{
-	margin-top:100px;
+	width: 1300px;
+    height: 50px;
+    margin: 100 auto;
 }
 .adminpage_list a{
-font-size:50px
+font-size:40px;
+margin-left:100px;
+margin-right:100px;
 }
 </style>
 </head>
@@ -156,11 +160,11 @@ font-size:50px
 				</div>
 </div>				
 <div class="adminpage_body">
-	<h1>LoseWeight 관리자 페이지</h1>
+	<h1 style="padding-top: 200px;">LoseWeight 관리자 페이지</h1>
 	<div class="adminpage_list">
-		<a href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list.jsp'>상품 리스트</a><Br>
-		<a href='/2019_JeonJSP/Loseweight/admin/admin_user_list.jsp'>유저 리스트</a><br>
-		<a href='/2019_JeonJSP/Loseweight/admin/admin_order_list.jsp'>거래 리스트</a>
+		<a style="float: left;" href='/2019_JeonJSP/Loseweight/admin/admin_fit_shop_list.jsp'>상품 리스트</a>
+		<a style="float: left;" href='/2019_JeonJSP/Loseweight/admin/admin_user_list.jsp'>유저 리스트</a>
+		<a style="float: left;" href='/2019_JeonJSP/Loseweight/admin/admin_order_list.jsp'>거래 리스트</a>
 	</div>
 </div>	
 </body>
