@@ -286,7 +286,7 @@ function fitcategory2_change(){
 			    	<div class="img_backgrounds"></div>
 			    </div>
 			   
-			  	<div class="nameTxt"><%=product_name%><%=salestatus%>0이 준비</div> 
+			  	<div class="nameTxt"><%=product_name%></div> 
 			  	<div class="flex">
 			  		<p class="afcoin">
 			  			<%=reduced_price%>%
@@ -323,7 +323,7 @@ function fitcategory2_change(){
 			    	<div class="img_background"></div>
 			    </div>
 			   <%} %>
-			  	<div class="nameTxt"><%=product_name%><%=salestatus%>0이 준비</div> 
+			  	<div class="nameTxt"><%=product_name%></div> 
 			  	<div class="flex">
 			  		<p class="afcoin">
 			  			<%=reduced_price%>%
