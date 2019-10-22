@@ -272,18 +272,21 @@ function fitcategory2_change(){
 								int productevent=listsearchresult.getInt("productevent");
 								Timestamp write_date=listsearchresult.getTimestamp("write_date");								
 								String img0=listsearchresult.getString("img0");
+								int salestatus=listsearchresult.getInt("salestatus");
 								int replycount=0;
 								Fitnesshop_DAO dbPro1 = Fitnesshop_DAO.getInstance();
 								Fitnesshop_DTO article =  dbPro.getArticle(Integer.parseInt(lw_salesnum));
 								   	String replylistsql1="select count(*) from Fitness_shop_re where lw_salesnum="+article.getLw_salesnum()+"";
 								   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 								if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
-				%>	
-			    <li class="shop_board_li" OnClick="location.href ='Fitness_shop_content.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>'">
+				%>
+				<%if(salestatus==0){ %>
+			       <li class="shop_board_li">
 			    <div class="shopboard_img" style="background-image:url('<%=img0%>');">
-			    	<div class="img_background"></div>
+			    	<div class="img_backgrounds"></div>
 			    </div>
-			  	<div class="nameTxt"><%=product_name%></div> 
+			   
+			  	<div class="nameTxt"><%=product_name%><%=salestatus%>0이 준비</div> 
 			  	<div class="flex">
 			  		<p class="afcoin">
 			  			<%=reduced_price%>%
@@ -308,7 +311,44 @@ function fitcategory2_change(){
 			  	
 			  	</div>
 			  </li>
-		
+			     
+			    <%}else if(salestatus==1){ %>
+			    <li class="shop_board_li" OnClick="location.href ='Fitness_shop_content.jsp?lw_salesnum=<%=lw_salesnum%>&pageNum=<%=currentPage%>'">
+			    <%if(quantity==0){%>
+			     <div class="shopboard_img" style="background-image:url('<%=img0%>');">
+			    	<div class="img_backgroundq"></div>
+			    </div>
+			    <%}else{%>
+			    <div class="shopboard_img" style="background-image:url('<%=img0%>');">
+			    	<div class="img_background"></div>
+			    </div>
+			   <%} %>
+			  	<div class="nameTxt"><%=product_name%><%=salestatus%>0이 준비</div> 
+			  	<div class="flex">
+			  		<p class="afcoin">
+			  			<%=reduced_price%>%
+			  		</p>
+			  		<p class="bfcoin">
+			  			<strong><%=cost%></strong>
+			  		</p>
+			  		<br>
+			  	</div>
+				  	
+			  	<div class="icon">
+			  	<p class="cfcoin">
+			  			<strong><%=selling_price%>원</strong>
+			  		</p>
+			  		<%if(productevent==1){%>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/freedelivery_shop.png">
+			  		<%}else if(productevent==2){ %>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/hit_shop.png">
+			  		<%}else{ %>
+			  		<img src="/2019_JeonJSP/Loseweight/img/shop/new_shop.png">
+			  		<%} %>
+			  	
+			  	</div>
+			  </li>
+		 <%} %>
 			
 	
 		

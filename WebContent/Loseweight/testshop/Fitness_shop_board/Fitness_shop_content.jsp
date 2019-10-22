@@ -337,7 +337,7 @@ $( document ).ready( function() {
 						<li style="border-bottom:2px solid #e8e8e8;margin-bottom:30px;margin-top:10px;"></li>
 						<%if(article.getQuantity()==0){ %>
 						<li style="margin-top:10px;">
-							<p style="font-size:30px ;text-align:center; color:red;"><strong>일시 품절</strong></p>
+							<p style="font-size:30px ;text-align:center; color:red;"><img src="images/slodoutline.png"></p>
 						</li>
 						<%}else{%>
 						<li>
