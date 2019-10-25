@@ -103,42 +103,7 @@
 <script type="text/javascript">
 
 //form 두개 사용 
-$(function() {
-	$(".replyedit").on("click", function() {
-		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
-		$(this).parent().prev().children(".replyeditleft2").css({"display": "block"});
-		$(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');
-		$(this).parent().prev().children(".replyedit_submit").css({"display": "block"});
-		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-		$(this).css({"display":"none"});
-		$(this).next(".replydelete").css({"display":"none"});
-		$(this).next().next(".replycancel").css({"display":"block"});
-	});
-	$(".replycancel").on("click", function() {
-		$(this).parent().prev().children(".replyeditleft1").css({"display": "block","position":"relative"});
-		$(this).parent().prev().children(".replyeditleft2").css({"display": "none"});
-		$(this).parent().prev().children(".replyeditleft2").attr('name','');
-		$(this).parent().prev().children(".replyedit_submit").css({"display": "none"});
-		$(this).parent().prev().children(".glenumname").attr('name','');
-		$(this).prev().prev(".replyedit").css({"display":"inline"});
-		$(this).prev(".replydelete").css({"display":"inline"});
-		$(this).css({"display":"none"});
-	});
-	$(".replydelete").on("click", function() {
-		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
-	});	
-});
 
-function  sendProcess(f){
-	f.action="Fitness_shop_replyedelete.jsp";
-    f.submit();          
-}
-
-function  sendedit(f){
-	f.action="Fitness_shop_replyedit.jsp";
-    f.submit();      
-    
-}
 function myFunction(str){
 
 
@@ -275,7 +240,46 @@ $( document ).ready( function() {
 				<jsp:param name="imgs" value="shop.png"/>
 				<jsp:param name="boardname" value="기구"/>
 		</jsp:include>
+	<script type="text/javascript">
 
+//form 두개 사용 
+$(function() {
+	$(".replyedit").on("click", function() {
+		$(this).parent().prev().children(".replyeditleft1").css({"display": "none","position":"absolute"});
+		$(this).parent().prev().children(".replyeditleft2").css({"display": "block"});
+		$(this).parent().prev().children(".replyeditleft2").attr('name','recontent2');
+		$(this).parent().prev().children(".replyedit_submit").css({"display": "block"});
+		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
+		$(this).css({"display":"none"});
+		$(this).next(".replydelete").css({"display":"none"});
+		$(this).next().next(".replycancel").css({"display":"block"});
+	});
+	$(".replycancel").on("click", function() {
+		$(this).parent().prev().children(".replyeditleft1").css({"display": "block","position":"relative"});
+		$(this).parent().prev().children(".replyeditleft2").css({"display": "none"});
+		$(this).parent().prev().children(".replyeditleft2").attr('name','');
+		$(this).parent().prev().children(".replyedit_submit").css({"display": "none"});
+		$(this).parent().prev().children(".glenumname").attr('name','');
+		$(this).prev().prev(".replyedit").css({"display":"inline"});
+		$(this).prev(".replydelete").css({"display":"inline"});
+		$(this).css({"display":"none"});
+	});
+	$(".replydelete").on("click", function() {
+		$(this).parent().prev().children(".glenumname").attr('name','glenumpost');
+	});	
+});
+
+function  sendProcess(f){
+	f.action="Fitness_shop_replyedelete.jsp";
+    f.submit();          
+}
+
+function  sendedit(f){
+	f.action="Fitness_shop_replyedit.jsp";
+    f.submit();      
+    
+}
+</script>
 		<div style='width: 100%;'>
 			<div class="div_sidecontents" >
 					<div class="mypage_form">

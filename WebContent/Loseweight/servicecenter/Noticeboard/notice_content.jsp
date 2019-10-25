@@ -117,6 +117,17 @@
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
+
+
+		
+		
+<body>
+<jsp:include page="../../community/community_topinclude.jsp" >
+			<jsp:param name="tom" value="4"/>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="공지사항"/>
+</jsp:include>
 <script type="text/javascript">
 
 //form 두개 사용 
@@ -157,16 +168,6 @@ function  sendedit(f){
     f.submit();          
 }
 </script>
-
-		
-		
-<body>
-<jsp:include page="../../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="servicecenter.png"/>
-			<jsp:param name="boardname" value="공지사항"/>
-</jsp:include>
 	<div class="div_body">
 
 		<div style='width: 100%;'>
