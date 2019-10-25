@@ -21,7 +21,7 @@
     conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
  
    
-    String sql = "SELECT * FROM lw_users WHERE lw_id = ?";
+    String sql = "select * from lw_users where lw_id = ?";
  
     pstmt = conn.prepareStatement(sql);
     pstmt.setString(1,id);

@@ -108,7 +108,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 								int replycount=0;
 											NoticeDAO dbPro1 = NoticeDAO.getInstance();
 											NoticeDTO article =  dbPro.getArticle(Integer.parseInt(num));
-										   	String replylistsql1="select count(*) from Noticeboardre where num="+article.getNum()+"";
+										   	String replylistsql1="select count(*) from noticeboardre where num="+article.getNum()+"";
 										   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 										if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
 				%>

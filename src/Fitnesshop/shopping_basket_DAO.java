@@ -215,7 +215,7 @@ public class shopping_basket_DAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql="DELETE FROM shopping_basket WHERE num=?";
+		String sql="delete from shopping_basket where num=?";
 		try {
 			conn = getConnection();
 			

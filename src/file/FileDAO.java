@@ -20,7 +20,7 @@ public class FileDAO {
 	}
 	
 	public int uplode(String fileName,String fileRealName) {
-		String sql="INSERT INTO FILE VALUES(?,?)";
+		String sql="insert into file values(?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fileName);

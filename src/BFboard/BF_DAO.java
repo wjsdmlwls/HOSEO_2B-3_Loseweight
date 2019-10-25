@@ -447,7 +447,7 @@ public class BF_DAO {
 			 
 		    conn = getConnection();
 			 
-		 	pstmt = conn.prepareStatement("insert into bf_boardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
+		 	pstmt = conn.prepareStatement("insert into bf_boardre(num,lw_id,recontent,reg_date) values(?,?,?,?)");
 			pstmt.setInt(1, article.getNum());
 			pstmt.setString(2, article.getLw_id());
 			pstmt.setString(3, article.getRecontent());
@@ -506,7 +506,7 @@ public class BF_DAO {
 			        try {
 				 conn = getConnection();
 				 
-				 	pstmt = conn.prepareStatement("update bf_boardre set Recontent=? where glenum=? ");
+				 	pstmt = conn.prepareStatement("update bf_boardre set recontent=? where glenum=? ");
 				 	pstmt.setString(1, article.getRecontent());
 				 	pstmt.setInt(2, article.getGlenum());
 					pstmt.executeUpdate();
