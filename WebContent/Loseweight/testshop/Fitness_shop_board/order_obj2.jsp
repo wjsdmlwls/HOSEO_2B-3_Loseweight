@@ -15,6 +15,7 @@ String img0 = request.getParameter("img0");
 int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 String options = request.getParameter("options");
+String option1 = request.getParameter("option1");
 int option1price = Integer.parseInt(request.getParameter("option1price"));
 
 int selling_price = Integer.parseInt(request.getParameter("selling_price"));
@@ -81,7 +82,38 @@ function chack_buy(){
 		return false;
 	}	
 }
-
+function chack_addr(){
+	var addr_befor =  document.getElementById("addr_befor").checked;
+	var addr_after =  document.getElementById("addr_after").checked;
+	
+	if(addr_befor == true){
+		document.getElementById("addr_a").style.display='none';
+		document.getElementById("addr_b").style.display='block';
+		document.getElementById('Recipient_befor').name='Recipient';
+		document.getElementById('lw_zipcode_befor').name='lw_zipcode';
+		document.getElementById('lw_addr1_befor').name='lw_addr1';
+		document.getElementById('lw_addr2_befor').name='lw_addr2';
+		document.getElementById('Recipient').name='Recipient_after';
+		document.getElementById('lw_zipcode').name='lw_zipcode_after';
+		document.getElementById('lw_addr1').name='lw_addr1_after';
+		document.getElementById('lw_addr2').name='lw_addr2_after';
+		return false;
+	}
+	
+	else if(addr_after == true){
+		document.getElementById("addr_a").style.display='block';
+		document.getElementById("addr_b").style.display='none';
+		document.getElementById('Recipient_befor').name='Recipient_befor';
+		document.getElementById('lw_zipcode_befor').name='lw_zipcode_befor';
+		document.getElementById('lw_addr1_befor').name='lw_addr1_befor';
+		document.getElementById('lw_addr2_befor').name='lw_addr2_befor';
+		document.getElementById('Recipient').name='Recipient';
+		document.getElementById('lw_zipcode').name='lw_zipcode';
+		document.getElementById('lw_addr1').name='lw_addr1';
+		document.getElementById('lw_addr2').name='lw_addr2';
+		return false;
+	}	
+}
 function cardnumsum(){
 	var num1 =  document.getElementById("cardnum1").value;
 	var num2 =  document.getElementById("cardnum2").value;
@@ -286,15 +318,38 @@ function card(){
 				</table>
 			</div>
 			<div class="pick_up"><h4>수령지</h4>
-			<table class="shop_byinfomation">		
+			<table class="shop_byinfomation">
+			<Tr>	
+				<th>배송지</th>
+				<td>
+					<input type="radio" name="addr_select" id="addr_befor" value="0" onclick="chack_addr()" checked>기존 배송지
+					<input type="radio" name="addr_select" id="addr_after" value="1" onclick="chack_addr()">신규 배송지
+				</td>	
+			</Tr>
+			</table>
+			<input type="hidden" id="lw_zipcode_befor" name="lw_zipcode" value="<%=lw_zipcode%>">
+			<input type="hidden" id="lw_addr1_befor"  name="lw_addr1" value="<%=lw_addr1%>"readonly>
+			<input type="hidden" id="lw_addr2_befor" name="lw_addr2" value="<%=lw_addr2%>"readonly>
+			<input type="hidden" id="Recipient_befor" name="Recipient" value="<%=lw_name%>" >
+			<div id="addr_b">
+				
+			<table class="shop_byinfomation2">
 				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
 				<tr><th>주소</th><td><a class="myinfo"><%=lw_addr1%> <%=lw_addr2%>(<%=lw_zipcode %>)</a></td></tr>
 				<tr><th>연락처</th><td><a class="myinfo"><%=lw_phone%></a></td></tr>
-				<input type="hidden" name="lw_zipcode" value="<%=lw_zipcode%>" readonly>
-				<input type="hidden" name="lw_addr1" value="<%=lw_addr1%>" readonly>
-				<input type="hidden" name="lw_addr2" value="<%=lw_addr2%>" readonly>
+				
 				</table>
-			</div>		
+			</div>
+			<div id="addr_a" style="display:none">
+			<table class="shop_byinfomation2">
+				<tr><th>이름</th><td><input id="Recipient" name="Recipient_after" value="<%=lw_name%>"></td></tr>
+				<tr><th>우편번호</th><td><input id="lw_zipcode"name="lw_zipcode_after" value="<%=lw_zipcode%>"><button class="button salmon button_addr" type="button"onclick="openzipcode()">주소검색</button></td></tr>
+				<tr><th>주소</th><td>	<input id="lw_addr1"name="lw_addr1_after" value="<%=lw_addr1%>"></td></tr>
+				<tr><th>상세주소</th><td><input id="lw_addr2"name="lw_addr2_after" value="<%=lw_addr2%>"></td></tr>
+				<tr><th>연락처</th><td><input value="<%=lw_phone%>"></td></tr>
+				</table>
+			</div>	
+			</div>
 			<div class="Payment_method"><h4>결제정보</h4>
 		<table class="Payment_select">
 		<tr>
@@ -400,7 +455,7 @@ function card(){
 								<td rowspan="2" width="120px"><img src="<%=img0%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0%>">
 								<input type="hidden" name="imgs" value="<%=img0%>">
 								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum%>"></td>
-								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">(<%=options%>)</a> 
+								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">(<%=option1%>)</a> 
 								<input type="hidden" name="product_name" value="<%=product_name%>"></td>
 								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;">
 								<%=selling_price%><input type="hidden" name="selling_price" value="<%=sellings%>">원</td>
@@ -410,7 +465,7 @@ function card(){
 							
 							<tr>
 								<td>
-									<input type="hidden" name="option1" value="<%=options%>">
+									<input type="hidden" name="option1" value="<%=option1%>">
 									<input type="hidden" name="option1price" value="<%=option1price%>">
 									<a style="float:right;">수량 <%=quantity%></a> <input type="hidden" name="quantity" value="<%=quantity%>">
 								</td>				

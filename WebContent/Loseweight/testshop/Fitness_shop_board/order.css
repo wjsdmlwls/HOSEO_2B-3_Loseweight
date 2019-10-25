@@ -25,6 +25,7 @@
 	width: 100%;
 	border-top: solid #ccc 2px;
 }
+
 .shop_byinfomation th{
 	background: #f9f9f9;
 	width:140px;
@@ -35,6 +36,21 @@
 }
 .shop_byinfomation tr{
 	border-top: solid #ccc 1px;
+    border-bottom: solid #ccc 1px;
+    height:50px;    
+}
+.shop_byinfomation2{
+	width: 100%;
+}
+.shop_byinfomation2 th{
+	background: #f9f9f9;
+	width:140px;
+	border-right: solid #ccc 1px;
+	padding-right: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+.shop_byinfomation2 tr{
     border-bottom: solid #ccc 1px;
     height:50px;    
 }

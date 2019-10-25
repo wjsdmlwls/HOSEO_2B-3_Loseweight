@@ -74,6 +74,38 @@ function chack_buy(){
 		return false;
 	}	
 }
+function chack_addr(){
+	var addr_befor =  document.getElementById("addr_befor").checked;
+	var addr_after =  document.getElementById("addr_after").checked;
+	
+	if(addr_befor == true){
+		document.getElementById("addr_a").style.display='none';
+		document.getElementById("addr_b").style.display='block';
+		document.getElementById('Recipient_befor').name='Recipient';
+		document.getElementById('lw_zipcode_befor').name='lw_zipcode';
+		document.getElementById('lw_addr1_befor').name='lw_addr1';
+		document.getElementById('lw_addr2_befor').name='lw_addr2';
+		document.getElementById('Recipient').name='Recipient_after';
+		document.getElementById('lw_zipcode').name='lw_zipcode_after';
+		document.getElementById('lw_addr1').name='lw_addr1_after';
+		document.getElementById('lw_addr2').name='lw_addr2_after';
+		return false;
+	}
+	
+	else if(addr_after == true){
+		document.getElementById("addr_a").style.display='block';
+		document.getElementById("addr_b").style.display='none';
+		document.getElementById('Recipient_befor').name='Recipient_befor';
+		document.getElementById('lw_zipcode_befor').name='lw_zipcode_befor';
+		document.getElementById('lw_addr1_befor').name='lw_addr1_befor';
+		document.getElementById('lw_addr2_befor').name='lw_addr2_befor';
+		document.getElementById('Recipient').name='Recipient';
+		document.getElementById('lw_zipcode').name='lw_zipcode';
+		document.getElementById('lw_addr1').name='lw_addr1';
+		document.getElementById('lw_addr2').name='lw_addr2';
+		return false;
+	}	
+}
 function cardnumsum(){
 	var num1 =  document.getElementById("cardnum1").value;
 	var num2 =  document.getElementById("cardnum2").value;
@@ -277,6 +309,15 @@ function card(){
 	        }
 	    }
 }
+//주소창
+var openWin;
+function openzipcode() {
+	// window.name = "해당페이지로 가져옴 이름"; 
+	window.name = "user_info";
+	// window.open("open할 window", "자식창 이름", "팝업창 옵션");
+	openWin = window.open("../../../zipfinder/zipSearch.jsp", "childForm",
+			"width=580, height=500, resizable = no, scrollbars = yes");
+}
 </script>
 </head>
 
@@ -294,21 +335,47 @@ function card(){
 			<form method="post" action="order_pro.jsp" onsubmit="return card();"> 
 			<div class="by_my_info"><h4>구매자 정보</h4>
 			<table class="shop_byinfomation">		
-				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
+				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a></tr>
 				<tr><th>이메일</th><td><a class="myinfo"><%=lw_email1%>@<%=lw_email2%></a></td></tr>
 				<tr><th>휴대폰번호</th><td><a class="myinfo"><%=lw_phone%></a></td></tr>
 					
 				</table>
 			</div>
 			<div class="pick_up"><h4>수령지</h4>
-			<table class="shop_byinfomation">		
+			<table class="shop_byinfomation">
+			<Tr>	
+				<th>배송지</th>
+				<td>
+					<input type="radio" name="addr_select" id="addr_befor" value="0" onclick="chack_addr()" checked>기존 배송지
+					<input type="radio" name="addr_select" id="addr_after" value="1" onclick="chack_addr()">신규 배송지
+				</td>	
+			</Tr>
+			</table>
+			<input type="hidden" id="lw_zipcode_befor" name="lw_zipcode" value="<%=lw_zipcode%>">
+			<input type="hidden" id="lw_addr1_befor"  name="lw_addr1" value="<%=lw_addr1%>"readonly>
+			<input type="hidden" id="lw_addr2_befor" name="lw_addr2" value="<%=lw_addr2%>"readonly>
+			<input type="hidden" id="Recipient_befor" name="Recipient" value="<%=lw_name%>" >
+			<div id="addr_b">
+				
+			<table class="shop_byinfomation2">
 				<tr><th>이름</th><td><a class="myinfo"><%=lw_name%></a><input class="myinfo" type="hidden" name="Recipient" value="<%=lw_name%>" readonly></td></tr>
 				<tr><th>주소</th><td><a class="myinfo"><%=lw_addr1%> <%=lw_addr2%>(<%=lw_zipcode %>)</a></td></tr>
 				<tr><th>연락처</th><td><a class="myinfo"><%=lw_phone%></a></td></tr>
-				<input type="hidden" name="lw_zipcode" value="<%=lw_zipcode%>" readonly>
-				<input type="hidden" name="lw_addr1" value="<%=lw_addr1%>" readonly>
-				<input type="hidden" name="lw_addr2" value="<%=lw_addr2%>" readonly>
+				
 				</table>
+			</div>
+			<div id="addr_a" style="display:none">
+			<table class="shop_byinfomation2">
+				<tr><th>이름</th><td><input id="Recipient" name="Recipient_after" value="<%=lw_name%>"></td></tr>
+				<tr><th>우편번호</th><td><input id="lw_zipcode"name="lw_zipcode_after" value="<%=lw_zipcode%>"><button class="button salmon button_addr" type="button"onclick="openzipcode()">주소검색</button></td></tr>
+				<tr><th>주소</th><td>	<input id="lw_addr1"name="lw_addr1_after" value="<%=lw_addr1%>"></td></tr>
+				<tr><th>상세주소</th><td><input id="lw_addr2"name="lw_addr2_after" value="<%=lw_addr2%>"></td></tr>
+				<tr><th>연락처</th><td><input value="<%=lw_phone%>"></td></tr>
+				</table>
+			</div>
+			
+			
+				
 			</div>
 			
 		<input type="hidden" name="product_total" value="<%=product_total%>">
