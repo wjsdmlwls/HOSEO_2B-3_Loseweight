@@ -506,7 +506,7 @@ public class BF_DAO {
 			        try {
 				 conn = getConnection();
 				 
-				 	pstmt = conn.prepareStatement("update bf_boardre set recontent=? where glenum=? ");
+				 	pstmt = conn.prepareStatement("update bf_boardre set recontent=? where glenum=?");
 				 	pstmt.setString(1, article.getRecontent());
 				 	pstmt.setInt(2, article.getGlenum());
 					pstmt.executeUpdate();

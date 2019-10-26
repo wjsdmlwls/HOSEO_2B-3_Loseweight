@@ -99,9 +99,9 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String replylistsql1="select count(*) from Noticeboardre where num="+article.getNum()+"";
+	String replylistsql1="select count(*) from noticeboardre where num="+article.getNum()+"";
 	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-	String replylistsql2="select * from Noticeboardre where num="+article.getNum()+"";
+	String replylistsql2="select * from noticeboardre where num="+article.getNum()+"";
 	ResultSet replylist = usedb.resultQuery(replylistsql2);
 	
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();

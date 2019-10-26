@@ -431,7 +431,7 @@ function card(){
 			 		LP 할인
 			 	</th>
 				 <td>
-				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP
+				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();" value="0">LP
 				 	 (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 				 	<input type="hidden" name="lw_lp" value="<%=point%>">
 				 	 <input type="hidden" name="pluspoint" value="<%=pluspoint%>">

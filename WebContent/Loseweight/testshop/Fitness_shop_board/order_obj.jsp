@@ -465,7 +465,7 @@ function openzipcode() {
 			 	</th>
 				 <td>
 
-				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">
+				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();" value="0">
 				 	LP (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 
 				 	<input type="hidden" id="lw_lp" name="lw_lp" value="<%=point%>">
