@@ -503,7 +503,12 @@ function card(){
 								<td rowspan="2" width="120px"><img src="<%=img0%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0%>">
 								<input type="hidden" name="imgs" value="<%=img0%>">
 								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum%>"></td>
-								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">(<%=option1%>)</a> 
+								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">
+								<%if(option1==null||option1==""){%>
+								<%}else{%>
+								(<%=option1%>)
+								<%} %>
+								</a> 
 								<input type="hidden" name="product_name" value="<%=product_name%>"></td>
 								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;">
 								<%=selling_price%><input type="hidden" name="selling_price" value="<%=sellings%>">원</td>
@@ -513,6 +518,7 @@ function card(){
 							
 							<tr>
 								<td>
+								
 									<input type="hidden" name="option1" value="<%=option1%>">
 									<input type="hidden" name="option1price" value="<%=option1price%>">
 									<a style="float:right;">수량 <%=quantity%></a> <input type="hidden" name="quantity" value="<%=quantity%>">
