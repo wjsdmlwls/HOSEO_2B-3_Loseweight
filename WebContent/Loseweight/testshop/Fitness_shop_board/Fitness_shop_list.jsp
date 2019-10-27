@@ -380,7 +380,7 @@ function fitcategory2_change(){
 	<%}else if(id.equals("admin")){%>
 		<div style="width: 1200px;margin: 10px auto;height: 50px;">
 				<a href="Fitness_shop_writeForm.jsp" style="float: right;">
-				<input class="write_btn" value="글쓰기"></a>
+				<input class="write_btn" value="상품등록"></a>
 		</div>
 	<%} %>
 	<div class="bottom_img">

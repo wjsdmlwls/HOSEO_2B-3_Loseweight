@@ -538,5 +538,48 @@ public class board_DAO {
 			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			      }	
 			  	}	
+	
+			public void insertHistory(String id, int boardNum, String board) throws Exception {
+				Connection conn = null;
+		        PreparedStatement pstmt = null;
+		        ResultSet rs= null;
+		        try {
+		        	conn = getConnection();
+		        	pstmt = conn.prepareStatement("SELECT count(1) AS cnt FROM quick_blist WHERE id=? AND board_num=? AND board=?");
+		        	pstmt.setString(1, id);
+		        	pstmt.setInt(2, boardNum);
+		        	pstmt.setString(3, board);
+		        	
+					rs = pstmt.executeQuery();
+					//값을 찾	아 쿼리 업데이트
+					
+					if(rs.next()) {
+						do {
+							int cnt = rs.getInt("cnt");
+							if(cnt==0) {
+								pstmt = conn.prepareStatement("INSERT INTO quick_blist(id,board_num,board,readcount) VALUES(?,?,?,1)");
+					        	pstmt.setString(1, id);
+					        	pstmt.setInt(2, boardNum);
+					        	pstmt.setString(3, board);
+								pstmt.executeUpdate();
+							}else {
+								pstmt = conn.prepareStatement("UPDATE quick_blist SET readcount = readcount+1, reg_date = now() WHERE id=? AND board_num=? AND board=?");
+								pstmt.setString(1, id);
+					        	pstmt.setInt(2, boardNum);
+					        	pstmt.setString(3, board);
+								pstmt.executeUpdate();
+							}
+						}while(rs.next());
+					}        	
+		        }catch (SQLException e) {
+		    		throw new RuntimeException(e);
+		  	  }finally {
+			         
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
+		        
+			}
 
+				
 }

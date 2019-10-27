@@ -49,7 +49,7 @@ create table foodplan_boardre(
     lw_id varchar(50) not null,				
     reContent text not null,				
     reg_date datetime default '00-00-00 00:00' not null,				    
-    FOREIGN KEY (num) REFERENCES board(num) ON DELETE CASCADE ON UPDATE RESTRICT,
+    FOREIGN KEY (num) REFERENCES foodplan_board(num) ON DELETE CASCADE ON UPDATE RESTRICT,
     FOREIGN KEY (lw_id) REFERENCES lw_users(lw_id) ON DELETE CASCADE ON UPDATE RESTRICT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 

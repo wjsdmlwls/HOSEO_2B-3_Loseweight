@@ -535,5 +535,6 @@ public class NoticeDAO {
 			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			      }	
 			  	}	
-
+			
+			
 }

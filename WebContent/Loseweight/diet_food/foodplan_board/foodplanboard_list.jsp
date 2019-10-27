@@ -78,7 +78,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 			<jsp:param name="tom" value="2"/>
 			<jsp:param name="toc" value="0"/>
 			<jsp:param name="imgs" value="food.png"/>
-			<jsp:param name="boardname" value="식단관리"/>
+			<jsp:param name="boardname" value="식단TIP"/>
 </jsp:include>
 		
 			<div style='margin: 0 auto; width: 100%; margin-top: 5%;'>
@@ -109,6 +109,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 										   	String replylistsql1="select count(*) from foodplan_boardre where num="+article.getNum()+"";
 										   	ResultSet rs2 = stmt.executeQuery(replylistsql1);
 										if(rs2.next()){ replycount = rs2.getInt(1); } rs.close();
+										content=content.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
 				%>
 		 <tr class="list_tr">
 			<td width="250" rowspan="2" style="border-bottom: 1px solid #d4d4d4;"><center><img style="width:220px;height:120px;"src="<%=img0%>"/></center></td>
@@ -128,7 +129,10 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 			<% }%>		
 			
 			  </tr>
-			  <tr style="border-bottom: 1px solid #d4d4d4;"><td><p class="content_preview"><%=content %></p>
+			  <tr style="border-bottom: 1px solid #d4d4d4;"><td style="max-width: 900;max-height: 50;">
+			  <pre class="content_preview">
+			  <%=content %>
+			  </pre>
 			  <pre class="foodplanboard_status" style="float:left"><img src="/2019_JeonJSP/Loseweight/img/board/ico_eye.gif"><%=readcount%></pre>
 			  <pre class="foodplanboard_status" style="padding-left: 10;"><img src="/2019_JeonJSP/Loseweight/img/board/ico_balloon.gif"><%=replycount%></pre></td></tr>
 

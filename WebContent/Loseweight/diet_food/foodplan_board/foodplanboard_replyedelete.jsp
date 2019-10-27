@@ -22,7 +22,7 @@
 	
 	int num = Integer.parseInt(request.getParameter("num"));
     String pageNum = request.getParameter("pageNum");
-    response.sendRedirect("foodplanboardboard_content.jsp?num="+num+"&pageNum="+pageNum+"");
+    response.sendRedirect("foodplanboard_content.jsp?num="+num+"&pageNum="+pageNum+"");
 %>
 
 <%=glenum%>

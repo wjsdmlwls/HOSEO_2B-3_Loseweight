@@ -113,7 +113,9 @@
 	//댓글 개수 확인후 개수만큼 select문 뿌려주려고함
 	
     number = count-(currentPage-1)*pageSize;
-	if(rs2.next()){ rs2.getInt(1); } rs2.close();
+	if(rs2.next()){ rs2.getInt(1); } rs2.close();	
+	
+	dbPro.insertHistory(id,num,"bf_board");
 %>
 <html>
 <head>

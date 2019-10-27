@@ -71,14 +71,14 @@ window.closeModal = function() {
 	 catch(Exception e) {
 	  e.printStackTrace();
 	 }
-	 String upimgpath1= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg1;
+	 String upimgpath1= "http://106.10.32.22:8080/2019_JeonJSP/img/" + uploadimg1;
 	 String upimgtag1 = "<img src="+upimgpath1+">";
 	 
-	 String upimgpath2= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg2;
+	 String upimgpath2= "http://106.10.32.22:8080/2019_JeonJSP/img/" + uploadimg2;
 	 String upimgtag2= "<img src="+upimgpath2+">";
 	 
-	 String upimgpath3= "http://localhost:8080/2019_JeonJSP/img/" + uploadimg3;
-	 String upimgtag3= "<img src="+upimgpath3+">";
+	 String upimgpath3= "http://106.10.32.22:8080/2019_JeonJSP/img/" + uploadimg3;
+	 String upimgtag3= "<img src="+upimgpath3+">"; 
 %>
 <!-- 파일업로드  -->
 </head>

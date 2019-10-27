@@ -180,7 +180,7 @@ font-size: 14px;
 			<jsp:param name="tom" value="2"/>
 			<jsp:param name="toc" value="0"/>
 			<jsp:param name="imgs" value="food.png"/>
-			<jsp:param name="boardname" value="식단관리"/>
+			<jsp:param name="boardname" value="식단TIP"/>
 </jsp:include>
 <script type="text/javascript">
 	$(function() {

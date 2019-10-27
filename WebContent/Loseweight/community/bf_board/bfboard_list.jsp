@@ -199,5 +199,6 @@
 	%>
 	</div>				
 	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>	
+	<%@ include file="../../quick/quick.jsp" %>
 </body>
 </html>

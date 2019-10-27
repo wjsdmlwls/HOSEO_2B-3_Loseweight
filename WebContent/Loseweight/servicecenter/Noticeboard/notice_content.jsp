@@ -59,7 +59,7 @@
 
    try{
       NoticeDAO dbPro = NoticeDAO.getInstance(); 
-      NoticeDTO article =  dbPro.getArticle(num);
+      NoticeDTO article =  dbPro.getArticle(num);   
       count = dbPro.getArticleCount(); 
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();

@@ -60,6 +60,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 <link href="style.css" rel="stylesheet" type="text/css">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <link href="notice_list_css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/2019_JeonJSP/Loseweight/quick/quick.css">
 <title>게시판</title>
 </head>
 
@@ -195,7 +196,7 @@ if(rs.next()){ count = rs.getInt(1); } rs.close();
 		</form>
 		</div>
 		</div>
-		
 	<jsp:include page="../community_footerinclude.jsp"></jsp:include>	
+	<%@ include file="../../quick/quick.jsp" %>
 </body>
 </html>

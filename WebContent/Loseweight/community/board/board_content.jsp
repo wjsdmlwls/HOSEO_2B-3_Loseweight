@@ -61,6 +61,7 @@
    try{
       board_DAO dbPro = board_DAO.getInstance(); 
       board_DTO article =  dbPro.getArticle(num);
+      
       count = dbPro.getArticleCount(); 
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();
@@ -84,12 +85,13 @@
 	 	
 		article.setNum(num);
 		article = dbPro.getArticle(num);
-
+		
 	 	// 조회수 카운트
 	 	if (!session.getAttribute(num+":cookie").equals(session.getAttribute(num+":cookie ex"))) {
 	 		dbPro.updateBoardreadcount(num);	
 		 	article.setReadcount(article.getReadcount() + 1);
 	 	}
+	 
 %>
 <%
 	//reply search
@@ -108,6 +110,9 @@
 	
     number = count-(currentPage-1)*pageSize;
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
+
+	dbPro.insertHistory(id,num,"board");
+	
 %>
 <html>
 <head>
