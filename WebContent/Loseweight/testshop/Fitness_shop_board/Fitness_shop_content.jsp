@@ -170,8 +170,6 @@ function basket_check(){
 		alert("수량을 입력해 주세요");
 		return false;
 	}
-	
-	
 }
 
 $( document ).ready( function() {
@@ -377,7 +375,7 @@ function  sendedit(f){
 		<%} %>
 		</form>
 		
-		<form method="post" action="order_obj2.jsp">
+		<form method="post"  onsubmit="return basket_check();"action="order_obj2.jsp">
 		<input type="hidden" name="lw_salesnum" value="<%=article.getLw_salesnum()%>">
 		<input type="hidden" name="product_name" value="<%=article.getProduct_name()%>">
 		<input type="hidden" name="img0" value="<%=article.getImg0()%>">

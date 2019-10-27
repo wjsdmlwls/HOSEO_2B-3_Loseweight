@@ -124,7 +124,7 @@ function loginshow() {
 							<a href='#'>운동방법</a>
 						</li>
 						<li>
-							<a href='#'>식단조절</a>
+							<a href='/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp'>식단조절</a>
 						</li>
 						<li>
 							<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a>
@@ -138,7 +138,7 @@ function loginshow() {
 						
 							<ul>
 							     <li style="margin-left: 40px;"><a href="#">다이어트</a></li>
-							     <li style="margin-left:20px;"><a href="#">다이어트</a></li>
+							     <li style="margin-left:20px;"><a href="/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp">다이어트</a></li>
 							     <li style="margin-left: -5px;"><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
 							     <li style="margin-left: -10px;"><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
 							     <li style="margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
@@ -173,7 +173,7 @@ function loginshow() {
  
 	<ul>
      <li><a href="#">운동방법</a></li>
-     <li><a href="#">식단조절</a></li>
+     <li><a href="/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp">식단조절</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a></li>
      <li><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>

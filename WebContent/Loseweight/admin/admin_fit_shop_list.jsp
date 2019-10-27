@@ -58,10 +58,10 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String listsql1="select count(*) from Fitness_shop where write_date between '"+mincalendar+"' and '"+maxcalendar+"' and "+searchcol+"  like '%"+listsearch+"%'";
+	String listsql1="select count(*) from fitness_shop where write_date between '"+mincalendar+"' and '"+maxcalendar+"' and "+searchcol+"  like '%"+listsearch+"%'";
 	ResultSet rs = stmt.executeQuery(listsql1);
 	
-	String listsql2="select * from Fitness_shop where (write_date between '"+mincalendar+"' and '"+maxcalendar+"') and ("+searchcol+"  like '%"+listsearch+"%') limit "+startRow+","+pageSize+"";
+	String listsql2="select * from fitness_shop where (write_date between '"+mincalendar+"' and '"+maxcalendar+"') and ("+searchcol+"  like '%"+listsearch+"%') limit "+startRow+","+pageSize+"";
 	ResultSet listsearchresult = usedb.resultQuery(listsql2);
 	number = count-(currentPage-1)*pageSize;
 	if(rs.next()){ count = rs.getInt(1); } rs.close();

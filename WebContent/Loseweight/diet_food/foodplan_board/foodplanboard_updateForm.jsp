@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*,user.UserDAO"%>
    	<%@ page import="java.io.File" %>
-	<%@ page import = "board.board_DAO" %>
-	<%@ page import = "board.board_DTO" %>
+<%@ page import = "foodplanboard.foodplanDAO" %>
+<%@ page import = "foodplanboard.foodplanDTO" %>
     <%@page import="java.sql.*" %>
     
 <%@page import="java.io.PrintWriter" %>
@@ -46,14 +46,7 @@
 <!-- modal windows -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
-	<script type="text/javascript">
-	$(function() {
-	$('#write').click(function() {
-		var dbTxt = $('#copy_div').html();
-		$('#content').text(dbTxt); //공백 제거
-		});
-	});
-	</script>
+	
 <!-- 업로드 버튼생성  -->
 	<script>
 	var arrInput = new Array(0);
@@ -179,22 +172,30 @@ font-size: 14px;
 	int num = Integer.parseInt(request.getParameter("num"));
   String pageNum = request.getParameter("pageNum");
   try{
-      board_DAO dbPro = board_DAO.getInstance(); 
-      board_DTO article =  dbPro.updateGetArticle(num);
+	  foodplanDAO dbPro = foodplanDAO.getInstance(); 
+	  foodplanDTO article =  dbPro.updateGetArticle(num);
 %>
 	<div class="div_body">
-<jsp:include page="../community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
+<jsp:include page="../../community/community_topinclude.jsp" >
+			<jsp:param name="tom" value="2"/>
 			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="community.png"/>
-			<jsp:param name="boardname" value="자유게시판"/>
+			<jsp:param name="imgs" value="food.png"/>
+			<jsp:param name="boardname" value="식단관리"/>
 </jsp:include>
+<script type="text/javascript">
+	$(function() {
+	$('#write').click(function() {
+		var dbTxt = $('#copy_div').html();
+		$('#content').text(dbTxt); //공백 제거
+		});
+	});
+	</script>
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			<div class="div_sidecontents" >
 				<div class="mypage_form">
 					<br>
 					<form method="post" name="writeform" 
-					action="board_updatePro.jsp?pageNum=<%=pageNum%>" onsubmit="return writeSave()">
+					action="foodplanboard_updatePro.jsp?pageNum=<%=pageNum%>" onsubmit="return writeSave()">
 					<table>
 					  <tr>
 					    <td align="left" width="200">
@@ -223,7 +224,7 @@ font-size: 14px;
 					   <td align="right" colspan="2"> 
 					     <input type="submit" class="newbutton"value="글수정" id="write">  
 					     <input type="button"class="newbutton" value="목록보기" 
-					       onclick="document.location.href='board_list.jsp?pageNum=<%=pageNum%>'">
+					       onclick="document.location.href='foodplanboard_list.jsp?pageNum=<%=pageNum%>'">
 					   </td>
 					 </tr>
 					 <tr style="display: none;"> <!-- upload db에 보내는용도  -->
@@ -287,6 +288,6 @@ font-size: 14px;
 		</div>
 	</div>
 	
-	<jsp:include page="../community_footerinclude.jsp" ></jsp:include>	
+	<jsp:include page="../../community/community_footerinclude.jsp" ></jsp:include>	
 </body>
 </html>
