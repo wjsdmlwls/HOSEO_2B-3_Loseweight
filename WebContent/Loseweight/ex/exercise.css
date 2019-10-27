@@ -1,0 +1,146 @@
+@CHARSET "UTF-8";
+
+body{
+	margin:0 auto;
+	
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  /* float: left;
+  width: 100%;
+  padding: 10px;
+  height: 300px; */ /* Should be removed. Only for demonstration */
+}
+
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+
+  .column {
+    width: 100%;
+    height: 600px;
+    /* border: 1px solid #000; */
+    margin: 0 auto;
+  }
+  .column1{
+  	width:25%;
+  	height: 600px;
+  	float:left;
+  	margin-left:20px;
+  	border: 1px solid #000;
+  	margin-left:100px;
+  }
+  .column2{
+  	width:65%;
+  	height: 600px;
+  	float: left;
+  	margin-right:20px;
+  	border: 1px solid #000;
+  	text-align: center;
+  }
+  
+  .icon rightchevronthin{
+ 	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    padding-bottom: .1rem;
+    padding-right: 1rem;
+    position: relative;
+  }
+  h4{
+  	font-family: "segoe ui","malgun gothic bold","malgun gothic","microsoft neogothic bold",applegothic,sans-serif;
+    font-size: 0.5rem;
+    line-height: 1.733;
+    text-transform: uppercase;
+  }
+  p{
+    font-family: "segoe ui","malgun gothic","microsoft neogothic",applegothic,sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.429;
+  }
+  h1{
+  	font-family: "segoe ui","malgun gothic","microsoft neogothic",applegothic,sans-serif;
+    color: #0075d5;
+    max-height: 15.5rem;
+    overflow: hidden;
+    padding-bottom: .6rem;
+  }
+  h4, p, h1{
+  	text-align:left;
+  }
+  
+.slide-view{
+	width: 40%;
+    float: left;
+    margin: 15px 0 0 20px;
+}
+.step-notes{
+	width: 600px;	
+}
+  .ex1 p a{
+  	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    padding-bottom: .1rem;
+    padding-right: 1rem;
+    position: relative;
+    text-decoration: none;
+  }
+  .ex1 p a:hover{
+  	text-decoration: none;
+  }
+  .exD{
+  	margin-left:100px;
+  	border: 1px solid #000;
+  	width:90%;
+  	height:100%;
+  }
+  hr{
+  	boder: 1px solid #ffafcf;
+  }
+  exercise-section{
+  	margin-left:20px;
+  }
+  
+  .ex_dan{
+  	height: 241px;
+    margin-left: 15px;
+    margin-bottom: 50px;
+
+  }
+  .ex_Pre{
+  	height: 241px;
+    border-radius: 80px;
+    margin-left: 15px;
+  }
+  .exercise-section h3 ,p, h5, h4, h2, h6{
+  	margin-left:20px;
+  }
+  
+   .exercise-metadata a {
+  	color: black;
+  }
+  
+  .exercise-metadata a:hover {
+  	text-decoration: blink;
+  	color: red;
+  }
+  .exercise-metadata1 a {
+  	color:blue;
+  }
+  .exercise-metadata1 a:hover {
+  	text-decoration: blink;
+  	color:red;
+  }
+  
