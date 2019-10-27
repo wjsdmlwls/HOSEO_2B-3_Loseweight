@@ -425,10 +425,17 @@ margin-right:15px;
 							  <td  width="100" colspan="2"><input type="text"class="writeinput"name="option3price"maxlength="9"style="" onKeyPress="SetNum(this);" onKeyDown="fncCheckNumber();"></td>
 							  <th  width="100" colspan="1"><a class="addhead"></a></th>
 						  </tr>
-						</table>
-						<input type="hidden" name="lw_id" value="<%=rs.getString("lw_id")%>">
+						  <tr>
+						  <th style="border:none;background:none;" colspan="8">
+						  <input type="hidden" name="lw_id" value="<%=rs.getString("lw_id")%>">
 						<input type="hidden" name="passwd" value="<%=rs.getString("lw_passwd")%>">
-						<button type="submit" id="write">보내기</button>
+						<button class="button salmon button_addr" style="float:right;wdith:100px;height:60px;" type="submit" id="write">상품등록</button>
+						</th>
+						
+						</tr>
+						
+						</table>
+						
 						</form>  
 						<!-- 파일업로드하는거임  -->
 						<%} 

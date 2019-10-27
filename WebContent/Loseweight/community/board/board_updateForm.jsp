@@ -7,6 +7,7 @@
     
 <%@page import="java.io.PrintWriter" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
+<%request.setCharacterEncoding("utf-8");%>
     <%
     	// 세션정보 가져오기
     	PreparedStatement pstmt = null;
@@ -46,14 +47,7 @@
 <!-- modal windows -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  textarea에넣는 스크립트 div로 넣으면 error -->
-	<script type="text/javascript">
-	$(function() {
-	$('#write').click(function() {
-		var dbTxt = $('#copy_div').html();
-		$('#content').text(dbTxt); //공백 제거
-		});
-	});
-	</script>
+
 <!-- 업로드 버튼생성  -->
 	<script>
 	var arrInput = new Array(0);
@@ -189,6 +183,16 @@ font-size: 14px;
 			<jsp:param name="imgs" value="community.png"/>
 			<jsp:param name="boardname" value="자유게시판"/>
 </jsp:include>
+
+	<script type="text/javascript">
+	$(function() {
+	$('#write').click(function() {
+		var dbTxt = $('#copy_div').html();
+		$('#content').text(dbTxt); //공백 제거
+		});
+	});
+	</script>
+	
 		<div style='width:1000px;margin:0 auto;margin-top: 5%;'>
 			<div class="div_sidecontents" >
 				<div class="mypage_form">

@@ -10,7 +10,6 @@ create table Noticeboard(
     re_step smallint not null,
     re_level smallint not null,
     content text not null,
-    ip varchar(20) not null,
     members int not null,
     img0 text null,
     filename0 varchar(50) null,
