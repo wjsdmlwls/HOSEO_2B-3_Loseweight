@@ -28,9 +28,9 @@ if (lw_passwd3!="" || lw_passwd3!=null){
 
 	String str="";
 	try{
-	String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
-	String dbId="jspid";
-	String dbPass="jsppass";
+	String jdbcUrl="jdbc:mysql://localhost:3306/loseweight_db";
+	String dbId="lw_admin";
+	String dbPass="3whakstp";
 	
 	Class.forName("com.mysql.jdbc.Driver");
 	conn=DriverManager.getConnection(jdbcUrl, dbId, dbPass);

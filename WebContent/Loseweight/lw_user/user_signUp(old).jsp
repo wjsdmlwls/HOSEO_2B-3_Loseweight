@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
 	<div class="singup_form">
 		<div>
 			<div>
-				<a style="margin-top: -30px;"><img src="../img/logo/logo.png" alt="" /></a>
+				<a style="margin-top: -30px;"><img src="logo.png" alt="" /></a>
 			</div>
 		</div>
 		<div class="singup_postform autosize" style="margin-top:-30px;">
