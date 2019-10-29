@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="style.css" rel="stylesheet" type="text/css">
+<link href="ex.css" rel="stylesheet" type="text/css">
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link href="notice_list_css.css" rel="stylesheet" type="text/css">
 <link href="../community/include.css" rel="stylesheet" type="text/css">
