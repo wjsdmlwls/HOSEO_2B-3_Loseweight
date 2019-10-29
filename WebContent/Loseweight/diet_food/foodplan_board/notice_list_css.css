@@ -1,0 +1,138 @@
+.notice_table{
+margin:auto;
+width:1200px;
+border-collapse: collapse;
+white-space:nowrap;
+color:#7d7d7d;
+}
+.tr1{
+ margin-top:10px;
+ color:#7d7d7d;
+ border-bottom:2px solid #444444;
+}
+.tr1 td{
+	padding:10px;
+}
+.list_tr{
+height:50px;
+color:#7d7d7d;
+}
+.list_tr td{
+	padding-top:15px;
+	padding-bottom:15px;
+} 
+.content_preview{
+    width: 700px;
+    max-height: 65px;
+    word-break: break-all;
+    white-space: initial;
+    font-weight: normal;
+    color: #747474;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 1.2em;
+    height: 3.3em;
+}
+.content_preview img{
+	display:none;
+}
+.foodplanboard_status{
+	color: #ff2626;
+	font-size: 14px;
+	font-weight: normal;
+	
+}
+.foodplanboard_status img{
+	margin-right: 10px;	
+}
+.a_subject{
+text-decoration:none;
+font-size: 16px;
+color:#444;
+font-weight:bold;
+
+}
+.a_subject:hover{
+ text-decoration:underline;
+ color:#FF0000;
+}
+.a_email{
+text-decoration:none;
+color:black;
+font-size: 16;
+color:#7d7d7d;
+}
+.a_email:hover{
+ text-decoration:underline;
+ color:#FF0000;
+}
+.pageselect{
+margin:15;
+text-align:center;
+}
+.pageselect_num{
+	display: inline-block;
+    font-family: 'Tahoma';
+    font-weight: normal;
+    font-size: 13px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    margin: 0 2px;
+    text-align: center;
+    vertical-align: top;
+    color:#7d7d7d;
+}
+.pageselect_num:hover{
+   color: #fff;
+   background: #737373;
+   }
+.search_list{
+width:100px;
+height:50px;
+border-style: none;
+border-right:1px solid #a8a8a8;
+}
+.search_input{
+width:250px;
+height:49px;
+border-style: none;
+margin-left:10px;
+}
+.write_btn{
+width:100px;
+text-align:center;
+height:47.5px;
+border-style: 1px solid #a8a8a8;
+margin-left:10px;
+}
+.page_next_pre_img{
+	display: inline-block;
+    font-family: 'Tahoma';
+    font-weight: normal;
+    font-size: 13px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid  #e5e5e5;
+    margin: 0 2px;
+    text-align: center;
+    vertical-align: top;
+}
+.page_next_pre_img:hover{
+   color: #fff;
+   background: #737373;
+   }
+   
+.noreple{
+height:200px;
+text-align:center;
+font-size:30px;
+font-weight:550;
+margin:0 auto;
+}

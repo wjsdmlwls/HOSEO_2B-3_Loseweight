@@ -123,6 +123,19 @@ function cardnumsum(){
 	var numsum = num1+''+num2+''+num3+''+num4
 
 	document.getElementById("rscardnum").innerHTML=(value=numsum);	
+	if(isNaN(num1)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum1").value="";
+	}else if(isNaN(num2)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum2").value="";
+	}else if(isNaN(num3)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum3").value="";
+	}else if(isNaN(num4)==true){
+		alert('숫자만 입력해 주세요');
+		document.getElementById("cardnum4").value="";
+	}
 }
 
 var openWin;
@@ -236,6 +249,41 @@ function card(){
 			document.getElementById("cardpasswd").value="";
 			return false;
 		}
+		var cardNum = ""+num1+num2+num3+num4;
+		var cardArray = new Array();
+		   var sumNum = 0;
+		   var checkNum = 0;
+		   //배열에 값 넣기
+		   for(i=0;i<15;i++){
+		      //짝수번호일 경우 
+		      if(i%2==0){
+		         var overNumb = parseInt(cardNum.substr(i,1))*2;
+		         //곱한 값이 10이 넘을 경우
+		         if(overNumb>=10){
+		            cardArray[i] = parseInt(overNumb.toString().substr(0,1))+
+		                        parseInt(overNumb.toString().substr(1,1));
+		         }else{
+		            cardArray[i] = overNumb;
+		         }
+		      }
+		      //홀수번호일 경우
+		      else{
+		         cardArray[i] = parseInt(cardNum.substr(i,1))*1;
+		      }
+		      sumNum = sumNum + cardArray[i];
+		   }
+		   //체크 번호 구하기
+		   if(sumNum>=10){
+		      checkNum = 10 - parseInt(sumNum.toString().substr(1,1));
+		   }else if(sumNum>=100){
+		      checkNum = 10 - sumNum.toString().substr(2,1);
+		   }
+		   //카드번호 마지막과 체크 번호와 일치하는지 검사
+		   if(checkNum!=parseInt(cardNum.substr(15,1))){
+		      alert("카드번호가 일치하지않습니다. ");
+		      return false;
+		   }else{
+		   }
 	}
 	//계좌번호 유효성
 	else if(payment2.checked == true){	
@@ -431,7 +479,7 @@ function card(){
 			 		LP 할인
 			 	</th>
 				 <td>
-				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();">LP
+				 	<input type="text" style="width: 100px; margin-right:10px;" id="lw_lpminor" name="lw_lpminor" onkeyup="hap();" value="0">LP
 				 	 (<a style="font-weight:bold">사용가능한 LP:<%=point%></a>)<br>
 				 	<input type="hidden" name="lw_lp" value="<%=point%>">
 				 	 <input type="hidden" name="pluspoint" value="<%=pluspoint%>">
@@ -455,7 +503,12 @@ function card(){
 								<td rowspan="2" width="120px"><img src="<%=img0%>" width="100px;" height="80px"><input type="hidden" name="img0" value="<%=img0%>">
 								<input type="hidden" name="imgs" value="<%=img0%>">
 								<input type="hidden" name="lw_salesnum" value="<%=lw_salesnum%>"></td>
-								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">(<%=option1%>)</a> 
+								<td style="border-bottom: 1px solid #ccc;"><a style="font-size:15px; font-weight:bold;"><%=product_name%></a><a style="color:#ccc;font-size:12px;">
+								<%if(option1==null||option1==""){%>
+								<%}else{%>
+								(<%=option1%>)
+								<%} %>
+								</a> 
 								<input type="hidden" name="product_name" value="<%=product_name%>"></td>
 								<td rowspan="2" style="text-align: center;border-left: solid 1px #ccc;">
 								<%=selling_price%><input type="hidden" name="selling_price" value="<%=sellings%>">원</td>
@@ -465,6 +518,7 @@ function card(){
 							
 							<tr>
 								<td>
+								
 									<input type="hidden" name="option1" value="<%=option1%>">
 									<input type="hidden" name="option1price" value="<%=option1price%>">
 									<a style="float:right;">수량 <%=quantity%></a> <input type="hidden" name="quantity" value="<%=quantity%>">

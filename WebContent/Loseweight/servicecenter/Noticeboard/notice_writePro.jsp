@@ -15,7 +15,7 @@
 </jsp:useBean>
 <%
 	article.setReg_date(new Timestamp(System.currentTimeMillis()));
-
+	article.setIp(request.getRemoteAddr());
 	
 	
     NoticeDAO dbPro = NoticeDAO.getInstance();

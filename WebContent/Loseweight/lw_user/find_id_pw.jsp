@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%request.setCharacterEncoding("utf-8");%>
 
 <html>
 <head>
@@ -12,7 +12,7 @@
 </head>
 <body style="width:550px">
 	<div class="idps_topform">
-		<a href="login(old).jsp"><img src="../img/logo/logo.png" alt="" /></a>
+		<a href="login(old).jsp"><img src="logo.png" alt="" /></a>
 		<div class="idps_form">
 			<h3>아이디찾기</h3>	
 		</div>

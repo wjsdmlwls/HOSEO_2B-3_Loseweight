@@ -108,7 +108,7 @@ public class order_DAO {
 	        ResultSet rs= null;
 		try{
 		     conn = getConnection();			     
-			 pstmt = conn.prepareStatement("select * from order_obj where lw_id=? and order_time between ? and ? ORDER BY ordernum DESC");
+			 pstmt = conn.prepareStatement("select * from order_obj where lw_id=? and order_time between ? and ?  order by ordernum desc");
 			 pstmt.setString(1,lw_id);
 			 pstmt.setString(2,mincalendar);
 			 pstmt.setString(3,maxcalendar);

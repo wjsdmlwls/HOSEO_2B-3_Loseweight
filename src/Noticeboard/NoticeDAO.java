@@ -449,7 +449,7 @@ public class NoticeDAO {
 			try {
 		    conn = getConnection();
 			 
-		 	pstmt = conn.prepareStatement("insert into Noticeboardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
+		 	pstmt = conn.prepareStatement("insert into noticeboardre(num,lw_id,recontent,reg_date) values(?,?,?,?)");
 			pstmt.setInt(1, article.getNum());
 			pstmt.setString(2, article.getLw_id());
 			pstmt.setString(3, article.getRecontent());
@@ -474,7 +474,7 @@ public class NoticeDAO {
 			try{
 			
 			     conn = getConnection();			     
-				 pstmt = conn.prepareStatement("select * from Noticeboardre where num=?");
+				 pstmt = conn.prepareStatement("select * from noticeboardre where num=?");
 				 pstmt.setInt(1,num);
 				 rs = pstmt.executeQuery();
 				 //값을 찾아 쿼리 업데이트
@@ -507,7 +507,7 @@ public class NoticeDAO {
 			        try {
 				 conn = getConnection();
 				 
-				 	pstmt = conn.prepareStatement("update Noticeboardre set Recontent=? where glenum=? ");
+				 	pstmt = conn.prepareStatement("update noticeboardre set recontent=? where glenum=? ");
 				 	pstmt.setString(1, article.getRecontent());
 				 	pstmt.setInt(2, article.getGlenum());
 					pstmt.executeUpdate();
@@ -525,7 +525,7 @@ public class NoticeDAO {
 			        try {
 				 conn = getConnection();
 				 
-				 	pstmt = conn.prepareStatement("delete from Noticeboardre where glenum=?");
+				 	pstmt = conn.prepareStatement("delete from noticeboardre where glenum=?");
 				 	pstmt.setInt(1, article.getGlenum());
 					pstmt.executeUpdate();
 			        }catch (SQLException e) {
@@ -535,5 +535,6 @@ public class NoticeDAO {
 			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			      }	
 			  	}	
-
+			
+			
 }

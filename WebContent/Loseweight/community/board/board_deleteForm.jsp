@@ -4,6 +4,7 @@
     <%@page import="java.sql.*" %>    
 <%@page import="java.io.PrintWriter" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*" %>
+<%request.setCharacterEncoding("utf-8");%>
     <%
     // 세션정보 가져오기
     PreparedStatement pstmt = null;

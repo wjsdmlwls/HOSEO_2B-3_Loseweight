@@ -3,6 +3,7 @@
  <%@page import="java.sql.*" %>
  <%@page import="java.io.PrintWriter" %>
  <%@page import="user.UserDAO.*" %>
+ <%request.setCharacterEncoding("utf-8");%>
  <jsp:useBean id="user" class="user.User" scope="page"/> 
  
 <html>

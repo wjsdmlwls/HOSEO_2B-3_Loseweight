@@ -97,7 +97,7 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	sanpum_DTO.setDelivery_charge(Integer.parseInt(delivery_charge[i]));
     dbPros.insertsanpum(sanpum_DTO);   
 	
-    String sql="update Fitness_shop set quantity=quantity-? where lw_salesnum=?";
+    String sql="update fitness_shop set quantity=quantity-? where lw_salesnum=?";
 
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setInt(1, Integer.parseInt(quantity[i]));

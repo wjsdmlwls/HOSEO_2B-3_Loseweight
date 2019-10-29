@@ -61,6 +61,7 @@
    try{
       board_DAO dbPro = board_DAO.getInstance(); 
       board_DTO article =  dbPro.getArticle(num);
+      
       count = dbPro.getArticleCount(); 
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();
@@ -84,12 +85,13 @@
 	 	
 		article.setNum(num);
 		article = dbPro.getArticle(num);
-
+		
 	 	// 조회수 카운트
 	 	if (!session.getAttribute(num+":cookie").equals(session.getAttribute(num+":cookie ex"))) {
 	 		dbPro.updateBoardreadcount(num);	
 		 	article.setReadcount(article.getReadcount() + 1);
 	 	}
+	 
 %>
 <%
 	//reply search
@@ -108,6 +110,9 @@
 	
     number = count-(currentPage-1)*pageSize;
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
+
+	dbPro.insertHistory(id,num,"board");
+	
 %>
 <html>
 <head>
@@ -118,6 +123,17 @@
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
+
+
+		
+		
+<body>
+<jsp:include page="../community_topinclude.jsp" >
+			<jsp:param name="tom" value="3"/>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="community.png"/>
+			<jsp:param name="boardname" value="자유게시판"/>
+</jsp:include>
 <script type="text/javascript">
 
 //form 두개 사용 
@@ -158,16 +174,6 @@ function  sendedit(f){
     
 }
 </script>
-
-		
-		
-<body>
-<jsp:include page="../community_topinclude.jsp" >
-			<jsp:param name="tom" value="3"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="community.png"/>
-			<jsp:param name="boardname" value="자유게시판"/>
-</jsp:include>
 	<div class="div_body">
 
 		<div style='width: 100%;'>

@@ -225,8 +225,7 @@ font-size: 12px;
 			<jsp:param name="boardname" value="장바구니"/>
 		</jsp:include>
 		</div>
-		
-			<form method="post" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp" style="margin-top: 50px;">
+			<form method="post" onsubmit="return basket_check();" action="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/order_obj.jsp" style="margin-top: 50px;">
 		<table class="user_shopping_baskettable">
 		<thead>
 		   		 <tr>
@@ -251,6 +250,7 @@ font-size: 12px;
 								int delivery_charge=listsearchresult.getInt("delivery_charge");
 								Timestamp reg_date=listsearchresult.getTimestamp("reg_date");	
 								String option1=listsearchresult.getString("option1");			
+								if(option1==null){option1="";}
 								int option1price=listsearchresult.getInt("option1price");	
 								int selling_price=listsearchresult.getInt("selling_price")+option1price;
 								int select_quantity=listsearchresult.getInt("select_quantity");
@@ -318,6 +318,7 @@ font-size: 12px;
 						         idval.val(myTag);
 						   });
 						});
+						
 			</script>
 				<tr>
 					<td rowspan="2" colspan="2">
@@ -344,7 +345,7 @@ font-size: 12px;
 			<tr>
 				<td style="text-align: right;">
 					<input class="selling_input" id="selling<%=i%>"name="selling<%=i%>"onkeyup='basketplus<%=i%>()'value="<%=selling_price%>"readonly>원<!-- 판매가격  -->
-					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="1" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
+					<select class="quantity_input"id="quantity<%=i%>" name="quantity<%=i%>" value="0" onchange="basketplus<%=i%>(); maxquantitys<%=i%>();sum(this.value);">
 						<option value="<%=select_quantity %>" cost_value<%=i%>="<%=select_quantity %>"selected><%=select_quantity%></option>
 						<option value="1" cost_value<%=i%>="1">1</option>
 						<option value="2" cost_value<%=i%>="2">2</option>
@@ -374,13 +375,59 @@ font-size: 12px;
 			</tr>
 		<%
 			}while(listsearchresult.next());
+								
 		%>
+		<%=i %>
+		<script>
+			function basket_check(){
+			 if (<%=i%>==5){
+				 if(document.getElementById("quantityss5").value==""){
+						alert("수량을 입력해 주세요");
+						return false;
+						}
+				 	}
+			 if (<%=i%>==10){
+				if(document.getElementById("quantityss10").value==""||document.getElementById("quantityss5").value==""){
+					alert("수량을 입력해 주세요");
+					return false;
+					}
+			 	} 
+			 if (<%=i%>==15){
+					if(document.getElementById("quantityss15").value==""||document.getElementById("quantityss10").value==""||document.getElementById("quantityss5").value==""){
+						alert("수량을 입력해 주세요");
+						return false;
+						}
+				 	}
+			 if (<%=i%>==20){
+					if(document.getElementById("quantityss20").value==""||document.getElementById("quantityss15").value==""||document.getElementById("quantityss10").value==""||document.getElementById("quantityss5").value==""){
+						alert("수량을 입력해 주세요");
+						return false;
+						}
+				 	}
+			 if (<%=i%>==25){
+					if(document.getElementById("quantityss25").value==""||document.getElementById("quantityss20").value==""||
+							document.getElementById("quantityss15").value==""||document.getElementById("quantityss10").value==""||
+							document.getElementById("quantityss5").value==""){
+						alert("수량을 입력해 주세요");
+						return false;
+						}
+				 	} 
+			 if (<%=i%>==30){
+						if(document.getElementById("quantityss30").value==""||document.getElementById("quantityss25").value==""||
+								document.getElementById("quantityss20").value==""||document.getElementById("quantityss15").value==""||
+								document.getElementById("quantityss10").value==""||document.getElementById("quantityss5").value==""){
+							alert("수량을 입력해 주세요");
+							return false;
+							}
+					 	}
+			}
+		</script>
 		<%}else{ %>
 		<Tr><td colspan=9><h4 style="padding: 200;"><%=id %>님 담은 물건이 없습니다 ^^</h4></td></Tr>
+		
 		<%} %>
 		
 		</table>
-		
 		<div class="basket_pricersultbox">
 		
 		<h4 class="basket_result">총 상품가격 </h4><input type="text"  class="basket_pricersultinputbox" name ="product_total" id="product_total" value=0 readonly><h4 class="basket_result">원</h4>

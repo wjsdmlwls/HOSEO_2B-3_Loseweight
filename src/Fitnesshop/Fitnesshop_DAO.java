@@ -53,7 +53,7 @@ public class Fitnesshop_DAO {
 				number = 1;
 			// 쿼리를 작성
 			
-			sql = "insert into Fitness_shop(product_code,cost,selling_price,reduced_price,product_name,product_contents,quantity"
+			sql = "insert into fitness_shop(product_code,cost,selling_price,reduced_price,product_name,product_contents,quantity"
 					+ ",big_category,middle_category,small_category,brand,delivery_charge,pointplus,img0,exposure,salestatus"
 					+ ",productevent,option1,option1price,option2,option2price,option3,option3price,write_date,passwd,lw_id)"
 					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -126,7 +126,7 @@ public class Fitnesshop_DAO {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select count(*) from Fitness_shop ");
+			pstmt = conn.prepareStatement("select count(*) from fitness_shop ");
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -309,7 +309,7 @@ public class Fitnesshop_DAO {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select * from Fitness_shop where lw_salesnum = ?");
+			pstmt = conn.prepareStatement("select * from fitness_shop where lw_salesnum = ?");
 			pstmt.setInt(1, lw_salesnum);
 			rs = pstmt.executeQuery();
 
@@ -382,7 +382,7 @@ public class Fitnesshop_DAO {
 			conn = getConnection();
 			
 		
-					sql = "update Fitness_shop set product_code=?,product_name=?"
+					sql = "update fitness_shop set product_code=?,product_name=?"
 							+ ",cost=?,reduced_price=?,selling_price=?"
 							+ ",quantity=?,brand=?,delivery_charge=?,big_category=?,middle_category=?,small_category=?,"
 							+ "product_contents=?,img0=?,exposure=?,salestatus=?, productevent=?,pointplus=?,"
@@ -458,7 +458,7 @@ public class Fitnesshop_DAO {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("delete from Fitness_shop where lw_salesnum = ? and passwd =? and lw_id=? ");
+			pstmt = conn.prepareStatement("delete from fitness_shop where lw_salesnum = ? and passwd =? and lw_id=? ");
 			pstmt.setInt(1, lw_salesnum);
 			pstmt.setString(2, passwd);
 			pstmt.setString(3, lw_id);
@@ -514,7 +514,7 @@ public class Fitnesshop_DAO {
 		 
 	    conn = getConnection();
 		 
-	 	pstmt = conn.prepareStatement("insert into fitness_shop_re(lw_salesnum,lw_id,reContent,star,reg_date) values(?,?,?,?,?)");
+	 	pstmt = conn.prepareStatement("insert into fitness_shop_re(lw_salesnum,lw_id,recontent,star,reg_date) values(?,?,?,?,?)");
 		pstmt.setInt(1, article.getLw_salesnum());
 		pstmt.setString(2, article.getLw_id());
 		pstmt.setString(3, article.getRecontent());
@@ -555,7 +555,7 @@ public class Fitnesshop_DAO {
 	        try {
 		 conn = getConnection();
 		 
-		 	pstmt = conn.prepareStatement("update fitness_shop_re set Recontent=? and star=? where glenum=? ");
+		 	pstmt = conn.prepareStatement("update fitness_shop_re set recontent=? and star=? where glenum=? ");
 		 	pstmt.setString(1, article.getRecontent());
 		 	pstmt.setInt(2, article.getStar());
 		 	pstmt.setInt(3, article.getGlenum());

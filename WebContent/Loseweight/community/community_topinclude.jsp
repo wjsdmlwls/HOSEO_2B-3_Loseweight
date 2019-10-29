@@ -105,7 +105,7 @@ function loginshow() {
 								<a href="#" id="singup_bt"data-toggle="modal" data-target="#myModal_s">회원가입</a>
 								
 								<%}else{%>
-								<a><%=point %></a>
+								<a><img src="lp.png" style="padding-right:10px;"><%=point %></a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_shopping_basket.jsp">주문내역</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/user_Info.jsp">마이페이지</a>
 								<a href="/2019_JeonJSP/Loseweight/lw_user/logout.jsp">로그아웃</a>
@@ -121,10 +121,10 @@ function loginshow() {
 				<div class='menu'>			
 					<ul class="nav01">
 						<li>
-							<a href='#'>운동방법</a>
+							<a href='/2019_JeonJSP/Loseweight/ex/ex.jsp'>운동방법</a>
 						</li>
 						<li>
-							<a href='#'>식단조절</a>
+							<a href='/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp'>식단조절</a>
 						</li>
 						<li>
 							<a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a>
@@ -137,15 +137,15 @@ function loginshow() {
 						</li>
 						
 							<ul>
-							     <li style="margin-left: 40px;"><a href="#">다이어트</a></li>
-							     <li style="margin-left:20px;"><a href="#">다이어트</a></li>
+							     <li style="margin-left: 40px;"><a href="/2019_JeonJSP/Loseweight/ex/ex.jsp">맨몸운동</a></li>
+							     <li style="margin-left:20px;"><a href="/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp">추천식단</a></li>
 							     <li style="margin-left: -5px;"><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
 							     <li style="margin-left: -10px;"><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
 							     <li style="margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
 							     
-							     <li style="margin-left: 40px;margin-top:0;"><a href="#">다이어트</a></li>
-							     <li style="margin-top:0;margin-left: 20px;"><a href="#">다이어트</a></li>
-							     <li style="margin-left: -20px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
+							     <li style="margin-left: 40px;margin-top:0;"><a href="/2019_JeonJSP/Loseweight/ex/ex_gigu1.jsp">기구운동</a></li>
+							     <li style="margin-top:0;margin-left: 25px;"><a href="/2019_JeonJSP/Loseweight/ex/exfood.jsp">식단TIP</a></li>
+							     <li style="margin-left: -15px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
 							     <li style="margin-left: -30px;margin-top:0;"><a href='/2019_JeonJSP/Loseweight/servicecenter/questionboard/question_list.jsp'>문의하기</a></li>
 							     <li style="margin-top:0; margin-left: 10px;"><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"></a></li>
 							</ul>
@@ -172,8 +172,8 @@ function loginshow() {
  
  
 	<ul>
-     <li><a href="#">운동방법</a></li>
-     <li><a href="#">식단조절</a></li>
+     <li><a href="/2019_JeonJSP/Loseweight/ex/ex.jsp">운동방법</a></li>
+     <li><a href="/2019_JeonJSP/Loseweight/diet_food/foodplan_board/foodplanboard_list.jsp">식단조절</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>게시판</a></li>
      <li><a href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>고객센터</a></li>
      <li><a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp">shop</a></li>
@@ -191,12 +191,17 @@ function loginshow() {
 			     <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/lw_user/user_delete.jsp">회원탈퇴</a></li>
 			     
 			<%}%>
-			 <%if(tom.equals ("1")){ %><%}%>
-			 <%if(tom.equals ("2")){ %><%}%>
+			 <%if(tom.equals ("1")){ %>
+				 <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/ex/ex.jsp">맨몸운동</a></li>
+				 <li><a class="menu_s" href="/2019_JeonJSP/Loseweight/ex/ex_gigu1.jsp">기구운동</a></li>
+			 <%}%>
+			 <%if(tom.equals ("2")){ %>
+			 	 <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>추천식단</a></li>
+			     <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>식단TIP</a></li>
+			 <%}%>
 			 <%if(tom.equals ("3")){ %> 
 			 	 <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/board/board_list.jsp'>자유게시판</a></li>
 			     <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/community/bf_board/bfboard_list.jsp'>BEFOR & AFTER</a></li>
-			     
 			 <%}%>
 			 <%if(tom.equals ("4")){ %>
 			 	 <li><a class="menu_s" href='/2019_JeonJSP/Loseweight/servicecenter/Noticeboard/notice_list.jsp'>공지사항</a></li>
@@ -306,7 +311,7 @@ function loginshow() {
 								<div id="myModal_s" class="modal fade" style="margin-top:40px">
 								        <div class="modal-dialog" style="margin-top:100px">
 								            <div class="modal-content">
-								                <iframe id="iframe_s"src="/2019_JeonJSP/Loseweight/lw_user/user_signUp(old).jsp"style="width: 530px;height: 750px;" scrolling="no"></iframe>
+								                <iframe id="iframe_s"src="/2019_JeonJSP/Loseweight/lw_user/user_signUp(old).jsp"style="width: 530px;height: 850px;" scrolling="no"></iframe>
 								            </div>
 								        </div>
 								</div>

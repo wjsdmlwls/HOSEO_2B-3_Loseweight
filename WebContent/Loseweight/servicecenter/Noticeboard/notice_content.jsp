@@ -59,7 +59,7 @@
 
    try{
       NoticeDAO dbPro = NoticeDAO.getInstance(); 
-      NoticeDTO article =  dbPro.getArticle(num);
+      NoticeDTO article =  dbPro.getArticle(num);   
       count = dbPro.getArticleCount(); 
 	  int ref=article.getRef();
 	  int re_step=article.getRe_step();
@@ -99,9 +99,9 @@
 	con=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	stmt=con.createStatement();
 	
-	String replylistsql1="select count(*) from Noticeboardre where num="+article.getNum()+"";
+	String replylistsql1="select count(*) from noticeboardre where num="+article.getNum()+"";
 	ResultSet rs2 = stmt.executeQuery(replylistsql1);
-	String replylistsql2="select * from Noticeboardre where num="+article.getNum()+"";
+	String replylistsql2="select * from noticeboardre where num="+article.getNum()+"";
 	ResultSet replylist = usedb.resultQuery(replylistsql2);
 	
 	if(rs2.next()){ rs2.getInt(1); } rs2.close();
@@ -117,6 +117,17 @@
 </head>
 <!-- stlye css -->
 <link rel="stylesheet" href="../../css/style.css">
+
+
+		
+		
+<body>
+<jsp:include page="../../community/community_topinclude.jsp" >
+			<jsp:param name="tom" value="4"/>
+			<jsp:param name="toc" value="0"/>
+			<jsp:param name="imgs" value="servicecenter.png"/>
+			<jsp:param name="boardname" value="공지사항"/>
+</jsp:include>
 <script type="text/javascript">
 
 //form 두개 사용 
@@ -157,16 +168,6 @@ function  sendedit(f){
     f.submit();          
 }
 </script>
-
-		
-		
-<body>
-<jsp:include page="../../community/community_topinclude.jsp" >
-			<jsp:param name="tom" value="4"/>
-			<jsp:param name="toc" value="0"/>
-			<jsp:param name="imgs" value="servicecenter.png"/>
-			<jsp:param name="boardname" value="공지사항"/>
-</jsp:include>
 	<div class="div_body">
 
 		<div style='width: 100%;'>

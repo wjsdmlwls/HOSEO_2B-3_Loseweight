@@ -71,9 +71,9 @@ window.closeModal = function() {
 	  e.printStackTrace();
 	 }
 	
-	 String fullpath0 =  "http://localhost:8080/2019_JeonJSP/img/" + filename0;
+	 String fullpath0 =  "http://106.10.32.22:8080/2019_JeonJSP/img/" + filename0;
 	 uploadfile0 = filename0;
-	 String fullpath1 =  "http://localhost:8080/2019_JeonJSP/img/" + filename1;
+	 String fullpath1 =  "http://106.10.32.22:8080/2019_JeonJSP/img/" + filename1;
 	 uploadfile1 = filename1;
 %>
 <!-- 파일업로드  -->
@@ -176,9 +176,9 @@ $(function() {
 							   <input type="text" name="filename0" id="filenames0" value="<%=uploadfile0%>" style="border:none"><br>
 							   <input type="text" name="filename1" id="filenames1" value="<%=uploadfile1%>" style="border:none"><br>
 							   <%
-							   		String filelink0="http://localhost:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile0;
-									String filelink1="http://localhost:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile1;
-								%>	<!-- 호스트 다르면 변경해라  -->
+							   		String filelink0="http://106.10.32.22:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile0;
+									String filelink1="http://106.10.32.22:8080/"+request.getContextPath()+"/downloadAction?file="+uploadfile1;
+								%>	<!-- 호스트 다르면 변경해라  --> 
 							   <input type="text" name="filepath0" id="filepath0"value="<%=filelink0%>" style="border:none"><br>
 							   <input type="text" name="filepath1" id="filepath1"value="<%=filelink1%>" style="border:none"><br>
 							 </div>

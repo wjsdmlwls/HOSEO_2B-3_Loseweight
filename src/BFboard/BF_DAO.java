@@ -447,7 +447,7 @@ public class BF_DAO {
 			 
 		    conn = getConnection();
 			 
-		 	pstmt = conn.prepareStatement("insert into bf_boardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
+		 	pstmt = conn.prepareStatement("insert into bf_boardre(num,lw_id,recontent,reg_date) values(?,?,?,?)");
 			pstmt.setInt(1, article.getNum());
 			pstmt.setString(2, article.getLw_id());
 			pstmt.setString(3, article.getRecontent());
@@ -506,7 +506,7 @@ public class BF_DAO {
 			        try {
 				 conn = getConnection();
 				 
-				 	pstmt = conn.prepareStatement("update bf_boardre set Recontent=? where glenum=? ");
+				 	pstmt = conn.prepareStatement("update bf_boardre set recontent=? where glenum=?");
 				 	pstmt.setString(1, article.getRecontent());
 				 	pstmt.setInt(2, article.getGlenum());
 					pstmt.executeUpdate();
@@ -536,6 +536,46 @@ public class BF_DAO {
 			          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			      }	
 			  	}	
-
+			public void insertHistory(String id, int boardNum, String board) throws Exception {
+				Connection conn = null;
+		        PreparedStatement pstmt = null;
+		        ResultSet rs= null;
+		        try {
+		        	conn = getConnection();
+		        	pstmt = conn.prepareStatement("SELECT count(1) AS cnt FROM quick_blist WHERE id=? AND board_num=? AND board=?");
+		        	pstmt.setString(1, id);
+		        	pstmt.setInt(2, boardNum);
+		        	pstmt.setString(3, board);
+		        	
+					rs = pstmt.executeQuery();
+					//값을 찾	아 쿼리 업데이트
+					
+					if(rs.next()) {
+						do {
+							int cnt = rs.getInt("cnt");
+							if(cnt==0) {
+								pstmt = conn.prepareStatement("INSERT INTO quick_blist(id,board_num,board,readcount) VALUES(?,?,?,1)");
+					        	pstmt.setString(1, id);
+					        	pstmt.setInt(2, boardNum);
+					        	pstmt.setString(3, board);
+								pstmt.executeUpdate();
+							}else {
+								pstmt = conn.prepareStatement("UPDATE quick_blist SET readcount = readcount+1, reg_date = now() WHERE id=? AND board_num=? AND board=?");
+								pstmt.setString(1, id);
+					        	pstmt.setInt(2, boardNum);
+					        	pstmt.setString(3, board);
+								pstmt.executeUpdate();
+							}
+						}while(rs.next());
+					}        	
+		        }catch (SQLException e) {
+		    		throw new RuntimeException(e);
+		  	  }finally {
+			         
+		          if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+		          if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		      }	
+		        
+			}
 
 }

@@ -103,7 +103,7 @@ dbPro.userdatein(product_names,img0,total_money,payment,lw_addr1,Recipient,deman
 	sanpum_DTO.setDelivery_charge(Integer.parseInt(delivery_charge[i]));
     dbPros.insertsanpum(sanpum_DTO);   
 
-	String sql="update Fitness_shop set quantity=quantity-? where lw_salesnum=?";
+	String sql="update fitness_shop set quantity=quantity-? where lw_salesnum=?";
 	
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setInt(1, Integer.parseInt(quantity[i]));
@@ -179,8 +179,10 @@ height:500px;
 	
 		<div class="mainimg" ></div>
 			<p style="font-size:30px;">주문이 완료되었습니다.</p>
-			<p style="font-size:30px;">주문내역 확인하러가기<a href="../../../Loseweight\lw_user\user_jumoon.jsp"><img src="images/clp.png" width="50px" height="30px;"></a></p>
-			<p style="font-size:30px;">쇼핑 더하기<a href="Fitness_shop_list.jsp"><img src="images/cart.png" width="50px" height="30px;"></a></p>
+			<div style="width: 1000px;margin: 0 auto;text-align: center;">
+		<a href="/2019_JeonJSP/Loseweight/lw_user/user_jumoon.jsp"><input class="shopping_btn"type="button" value="주문내역 "></a>
+		<a href="/2019_JeonJSP/Loseweight/testshop/Fitness_shop_board/Fitness_shop_list.jsp"><input style="height: 63px;"class="by_btn"type="button" value="쇼핑 더하기"/></a>
+		</div>
 	</div>
 </div>
 

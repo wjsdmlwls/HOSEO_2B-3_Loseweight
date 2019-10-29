@@ -428,7 +428,7 @@ public class questionDAO {
 		try {
 	    conn = getConnection();
 		 
-	 	pstmt = conn.prepareStatement("insert into questionboardre(num,lw_id,reContent,reg_date) values(?,?,?,?)");
+	 	pstmt = conn.prepareStatement("insert into questionboardre(num,lw_id,recontent,reg_date) values(?,?,?,?)");
 		pstmt.setInt(1, article.getNum());
 		pstmt.setString(2, article.getLw_id());
 		pstmt.setString(3, article.getRecontent());
@@ -486,7 +486,7 @@ public class questionDAO {
 		        try {
 			 conn = getConnection();
 			 
-			 	pstmt = conn.prepareStatement("update questionboardre set Recontent=? where glenum=? ");
+			 	pstmt = conn.prepareStatement("update questionboardre set recontent=? where glenum=? ");
 			 	pstmt.setString(1, article.getRecontent());
 			 	pstmt.setInt(2, article.getGlenum());
 				pstmt.executeUpdate();
