@@ -111,7 +111,11 @@ create table order_obj(
 	lw_id varchar(50) not null,							/*구매자 아이디*/
 	order_time datetime default '00-00-00 00:00' not null /*구매 날짜*/
 )
+select * from order_obj
 select * from Fitness_shop order by lw_salesnum desc where (write_date between '2000-01-01' and '2099-12-31') and (option1 like "빨강")limit 0,5
 select * from Fitness_shop where write_date between '2000-01-01' and '2099-12-31' and option1 like "빨강" limit 5,5;
 select * from Fitness_shop where write_date between SYSDATETIME(); 
 select * from Fitness_shop order by product_name desc
+select left(img0,16)from fitness_shop
+
+update fitness_shop set img0 =replace(img0,'localhost','106.10.32.22')
